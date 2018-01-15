@@ -1,19 +1,14 @@
-/**	Zoológico - BD - 15/01/2018
- * Classe de início do projeto!
- */
-package br;
-
-/**
+/** 
  * @author Wilder
- *
+ * UFRPE - Banco de dados
+ * br.ufrpe.zoologico - Versao 1.0 - 2017.2
+ * TODO 15.01.2018 
  */
+package br.ufrpe.zoologico;
+
 public class Principal {
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 	}
 

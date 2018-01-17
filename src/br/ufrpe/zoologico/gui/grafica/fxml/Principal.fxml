@@ -15,12 +15,22 @@
             <Image url="@../imagens/Zoo%20logo.jpg" />
          </image>
       </ImageView>
-      <TextField fx:id="loginId" layoutX="520.0" layoutY="450.0" prefWidth="150.0" promptText="Login" />
-      <PasswordField fx:id="senhaId" layoutX="520.0" layoutY="500.0" prefWidth="150.0" promptText="Senha" />
+      <TextField fx:id="loginId" layoutX="520.0" layoutY="450.0" onAction="#validaLogin" prefWidth="150.0" promptText="Login">
+         <tooltip>
+            <Tooltip fx:id="tooltipLogin" anchorX="520.0" anchorY="450.0" text="Digite o login" x="520.0" y="450.0" />
+         </tooltip>
+      </TextField>
+      <PasswordField fx:id="senhaId" layoutX="520.0" layoutY="500.0" onAction="#validaLogin" prefWidth="150.0" promptText="Senha">
+         <tooltip>
+            <Tooltip fx:id="tooltipSenha" anchorX="520.0" anchorY="500.0" text="Digite a senha" x="520.0" y="500.0" />
+         </tooltip>
+      </PasswordField>
       <ProgressIndicator fx:id="progressId" disable="true" layoutX="568.0" layoutY="584.0" visible="false">
          <effect>
             <Glow level="1.0" />
          </effect>
       </ProgressIndicator>
+      <Pane layoutX="10.0" layoutY="10.0" prefHeight="700.0" prefWidth="200.0" style="-fx-background-color: #1003;" />
+      <Pane layoutX="1070.0" layoutY="10.0" prefHeight="700.0" prefWidth="200.0" style="-fx-background-color: #1003;" />
    </children>
 </AnchorPane>

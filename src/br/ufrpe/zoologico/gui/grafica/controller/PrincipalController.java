@@ -6,7 +6,6 @@
  */
 package br.ufrpe.zoologico.gui.grafica.controller;
 
-import java.awt.Event;
 import java.net.URL;
 import java.util.ResourceBundle;
 

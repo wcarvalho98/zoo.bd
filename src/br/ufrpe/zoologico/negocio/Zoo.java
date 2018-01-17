@@ -9,7 +9,7 @@ package br.ufrpe.zoologico.negocio;
 import java.time.LocalDateTime;
 
 public class Zoo {
-	private Integer idZoo;  
+	private int idZoo;  
     private String cnpj;  
     private String nome;  
     private String razao_social;  

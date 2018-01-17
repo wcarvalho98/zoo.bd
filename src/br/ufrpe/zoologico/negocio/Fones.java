@@ -8,7 +8,13 @@ package br.ufrpe.zoologico.negocio;
 
 public class Fones {
 	private String fone;
-	private Integer idZoo;
+	private int idZoo;
+	
+	public Fones(String fone, int idZoo){
+		this.setFone(fone);
+		this.setIdZoo(idZoo);
+	}
+	
 	/**
 	 * Metodo: getFone
 	 * @return fone

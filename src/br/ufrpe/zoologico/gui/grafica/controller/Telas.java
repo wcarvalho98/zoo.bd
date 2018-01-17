@@ -15,7 +15,6 @@ import java.util.Optional;
 import br.ufrpe.zoologico.Principal;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -31,7 +30,7 @@ public class Telas {
 	private FXMLLoader f;
 	
 	private Telas(){
-		setCena(new ArrayList<Scene>());
+		cena = new ArrayList<Scene>();
 	}
 
 	/**
@@ -87,15 +86,11 @@ public class Telas {
 	 * @return instance
 	 */
 	public static Telas getInstance() {
-		return instance;
-	}
+		if (instance == null) {
+			instance = new Telas();
+		}
 
-	/**
-	 * Metodo: setInstance
-	 * @param instance the instance to set
-	 */
-	public static void setInstance(Telas instance) {
-		Telas.instance = instance;
+		return instance;
 	}
 
 	/**
@@ -110,8 +105,8 @@ public class Telas {
 	 * Metodo: setCena
 	 * @param cena the cena to set
 	 */
-	public void setCena(ArrayList<Scene> cena) {
-		this.cena = cena;
+	public void setCena(Scene cena) {
+		this.cena.add(cena);
 	}
 
 	/**
@@ -171,7 +166,7 @@ public class Telas {
 	 * @return Node
 	 */
 	public Node carregarFXML(String tela) {
-		String r = "gui/grafica/FXML/" + tela + ".fxml";
+		String r = "gui/grafica/fxml/" + tela + ".fxml";
 		Node root = null;
 		f = new FXMLLoader(p.getClass().getResource(r));
 		try {

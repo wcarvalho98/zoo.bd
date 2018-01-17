@@ -130,25 +130,46 @@ public class Telas {
 		this.f = f;
 	}
 	
+	/** 
+	 * Metodo: abrirTelaDialogo
+	 * @return void
+	 */
 	public void abrirTelaDialogo() {
 		dialogStage.setScene(cena.get(cena.size() - 1));
 		dialogStage.showAndWait();
 	}
 
+	/** 
+	 * Metodo: fecharTelaDialogo
+	 * @return void
+	 */
 	public void fecharTelaDialogo() {
 		this.cena.remove(cena.size() - 1);
 		dialogStage.close();
 	}
 
+	/** 
+	 * Metodo: abrirTela
+	 * @return void
+	 */
 	public void abrirTela() {
 		stage.setScene(this.cena.get(cena.size() - 1));
 		stage.show();
 	}
 
+	/** 
+	 * Metodo: fecharTela
+	 * @return void
+	 */
 	public void fecharTela() {
 		stage.close();
 	}
 
+	/** 
+	 * Metodo: carregarFXML
+	 * @param tela
+	 * @return Node
+	 */
 	public Node carregarFXML(String tela) {
 		String r = "gui/grafica/FXML/" + tela + ".fxml";
 		Node root = null;
@@ -163,10 +184,18 @@ public class Telas {
 		return root;
 	}
 	
+	/** 
+	 * Metodo: voltarTela
+	 * @return void
+	 */
 	public void voltarTela() {
 		this.cena.remove(cena.size() - 1);
 	}
 	
+	/** 
+	 * Metodo: sairDoSistema
+	 * @return void
+	 */
 	public void sairDoSistema() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Confirmação");

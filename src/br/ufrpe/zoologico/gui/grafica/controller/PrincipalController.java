@@ -12,13 +12,16 @@ import java.util.ResourceBundle;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public class PrincipalController implements Initializable{
+public class PrincipalController implements Initializable {
 	
 	@FXML
 	private TextField loginId;
@@ -50,6 +53,9 @@ public class PrincipalController implements Initializable{
 			progressId.setVisible(true);
 			loginId.setEditable(false);
 			senhaId.setEditable(false);
+			t.fecharTelaDialogo();
+			t.setCena(new Scene((Parent) t.carregarFXML("Admin")));
+			t.abrirTela();
 		}
 			
 	}

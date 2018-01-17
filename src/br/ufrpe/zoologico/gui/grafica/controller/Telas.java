@@ -166,7 +166,7 @@ public class Telas {
 	 * @return Node
 	 */
 	public Node carregarFXML(String tela) {
-		String r = "gui/grafica/fxml/" + tela + ".fxml";
+		String r = "gui/grafica/FXML/" + tela + ".fxml";
 		Node root = null;
 		f = new FXMLLoader(p.getClass().getResource(r));
 		try {

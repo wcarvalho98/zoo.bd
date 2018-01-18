@@ -125,5 +125,9 @@ INSERT INTO `pedido_servico` (`id`,`status_pedido`,`dt_execucao`,`vl_total`,`dt_
 
 INSERT INTO `fatura` (`idFatura`,`valor`,`dataDaFatura`,`dt_paga`,`vl_multa`,`stats`,`tp_fatura`,`id_ped_serv`) VALUES (1,100,'2018-01-15','2018-01-16',0,'Em andamento','Boleto',1),(2,51.3,'2017-07-09','2017-07-10',0,'A caminho','Boleto',2),(3,98.28,'2018-01-14','2018-01-14',0,'Em andamento','Crédito',3),(4,207.89,'2017-05-04','2017-05-06',0,'Entregue','Boleto',4),(5,402.01,'2018-01-02','2018-01-10',0,'Em andamento','Débito automático',5),(6,591.09,'2018-01-04','2018-01-10',0,'Em andamento','Débito automático',6),(7,765.5,'2018-01-05','2018-01-06',0,'A caminho','Boleto',7),(8,1070.35,'2016-06-08','2016-06-08',0,'A caminho','Crédito',8),(9,930.08,'2018-01-06','2018-01-11',0,'Entregue','Boleto',9),(10,479.9,'2018-01-07','2018-01-09',0,'Entregue','Crédito',10);
 
+INSERT INTO `categoria` (`cod`,`descr`) VALUES (1,'Limpeza'),(2,'Alimento'),(3,'Medicament'),(4,'Diversos');
+
+INSERT INTO `sub_categoria` (`cod`,`descr`,`categ`) VALUES (1,'Sabão',1),(2,'Detergente',1),(3,'Alvejante',1),(4,'Ração',2),(5,'Vegetal',2),(6,'Carne',2),(7,'Remédio',3),(8,'Esparadrapo',3),(9,'Agulha',3),(10,'Mecânico',4),(11,'Brita',4);
+
 
 

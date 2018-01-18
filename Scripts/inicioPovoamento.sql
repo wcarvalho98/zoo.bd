@@ -131,5 +131,6 @@ INSERT INTO `sub_categoria` (`cod`,`descr`,`categ`) VALUES (1,'Sabão',1),(2,'De
 
 INSERT INTO `fornecedor` (`cod`,`Nome`,`cnpj`,`telefone`,`ativo`) VALUES (1,'João','55130294871','8130302341',1),(2,'Maria','55284903917','8130312049',1),(3,'José','55439512963','8130321757',1),(4,'Bruno','55594122009','8130331465',1),(5,'Ricardo','55748731055','8130341173',0),(6,'Joaquim','55903340101','8130350881',0),(7,'Jorge','56057949147','8130360589',0);
 
+INSERT INTO `produto_ref` (`cod`,`descr`,`freq_pedido`,`cod_barra`,`qtd_estoque`,`preco_ult_compra`,`qtd_total_estoque`,`qtd_min`,`subcat`,`categ`,`fornecedor`) VALUES (1,'Limpa jaula',5,'9382746520',15,150,20,10,2,1,1),(2,'Ração para cães',5,'9592837121',50,590,55,5,4,2,2),(3,'Carne para leão',4,'9802927722',40,510,49,5,6,2,2),(4,'Remédios para animais',6,'1001301832',90,489,102,10,7,3,4),(5,'Equipamentos de manutenção',3,'1022310892',30,302,80,10,10,4,5);
 
 

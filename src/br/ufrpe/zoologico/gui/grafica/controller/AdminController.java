@@ -9,7 +9,7 @@ package br.ufrpe.zoologico.gui.grafica.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import br.ufrpe.zoologico.negocio.Funcionario;
+import br.ufrpe.zoologico.negocio.beans.Funcionario;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

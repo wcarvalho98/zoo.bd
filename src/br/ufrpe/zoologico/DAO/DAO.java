@@ -28,44 +28,24 @@ public abstract class DAO<T> {
 		this.comando = comando;
 	}
 
-	public void conectar(){
-		try {  
-			con = ConFactory.conexao(URL, NOME, SENHA);  
-			comando = con.createStatement();    
-		} catch (ClassNotFoundException e) {  
-			//vou ver
-		} catch (SQLException e) {  
-			//vou ver			  
-		}
+	public void conectar() throws ClassNotFoundException, SQLException{
+		con = ConFactory.conexao(URL, NOME, SENHA);  
+		comando = con.createStatement();    
 	}
 	
-	public void fechar() {  
-		try {
-			comando.close();
-		    con.close();    
-		}
-		catch (SQLException e) {  
-			//vou ver  
-		}
+	public void fechar() throws SQLException{  
+		comando.close();
+		con.close();    
 	}
 	
-	public void executar(String sql){
+	public void executar(String sql) throws Exception{
 		conectar();
-		
-		try{
-			comando.executeUpdate(sql);
-		}
-		catch(SQLException e){
-			//vou ver
-		}
-		finally{
-			fechar();
-		}
+		comando.executeUpdate(sql);
 	}
 	
 	public abstract void inserir(T o) throws Exception;
 	
-	public abstract void remover(int id) throws Exception;
+	public abstract void remover(T o) throws Exception;
 	
 	public abstract void alterar(T o) throws Exception;
 	

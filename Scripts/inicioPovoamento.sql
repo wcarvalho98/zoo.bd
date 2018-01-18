@@ -98,7 +98,7 @@ INSERT INTO `especie` (`seq`,`nome`,`genero`) VALUES (1,'Onitorrinco',1),(2,'Hip
 
 insert into Especie_indicada (id_jaula, seq) VALUES (6,1),(4,2),(6,3), (3,4),(2,5);
 
-replace INTO `animal` (`id`,`nome`,`vivo`,`dt_nasc`,`dt_falecimento`,`idade`,`nome_vulgar`,`obs`,`id_zoo`,`id_jaula`,`ordem`,`genero`,`especie`) VALUES (1,'Cachorro',1,'2015-02-03',NULL,3,'Júnior',NULL,1,2,6,8,9),(2,'Lobo',0,'2000-07-01','2017-06-05',6,'Nino',NULL,1,0,6,8,10),(3,'Gato',1,'2006-09-04',NULL,9,'Tica',NULL,1,3,6,9,11),(4,'Aranha Armadeira',1,NULL,NULL,NULL,'Ariana','Data de nascimento indefinida',1,4,7,10,NULL),(5,'Escorpião Marrom',0,'2016-10-14','2017-02-17',0,'Enzo',NULL,1,5,8,11,12),(6,'Tubarão Branco',1,'1997-08-17',NULL,20,'Bibito','Cuidados especiais',1,8,9,12,13),(7,'Leão',1,'2018-01-04',NULL,0,'João','Recém-nascido',1,1,6,7,7);
+insert INTO `animal` (`id`,`nome`,`vivo`,`dt_nasc`,`dt_falecimento`,`idade`,`nome_vulgar`,`obs`,`id_zoo`,`id_jaula`,`ordem`,`genero`,`especie`) VALUES (1,'Cachorro',1,'2015-02-03',NULL,3,'Júnior',NULL,1,2,6,8,9),(2,'Lobo',0,'2000-07-01','2017-06-05',6,'Nino',NULL,1,0,6,8,10),(3,'Gato',1,'2006-09-04',NULL,9,'Tica',NULL,1,3,6,9,11),(4,'Aranha Armadeira',1,NULL,NULL,NULL,'Ariana','Data de nascimento indefinida',1,4,7,10,NULL),(5,'Escorpião Marrom',0,'2016-10-14','2017-02-17',0,'Enzo',NULL,1,5,8,11,12),(6,'Tubarão Branco',1,'1997-08-17',NULL,20,'Bibito','Cuidados especiais',1,8,9,12,13),(7,'Leão',1,'2018-01-04',NULL,0,'João','Recém-nascido',1,1,6,7,7);
 
 INSERT INTO `consulta` (`id_consulta`,`dat_consulta`,`obs`,`id_veterinario`,`id_animal`) VALUES (1,'2011-03-20 15:00:00','Tudo ok!','01439264834',1),(2,'2011-05-21 15:17:00','Tudo ok!','02244715739',2),(3,'2011-07-22 15:22:30','Tudo ok!','01439264834',1),(4,'2011-09-22 14:29:03','Tudo ok!','02244715739',2),(5,'2011-11-23 17:03:00','Tudo ok!','52135800926',3),(6,'2012-01-24 22:04:03','Tudo ok!','43221775479',4),(7,'2012-03-26 09:13:04','Tudo ok!','43221775479',5),(8,'2012-05-27 10:05:08','Tudo ok!','01439264834',6),(9,'2012-07-28 08:49:05','Tudo ok!','02244715739',7),(10,'2012-09-28 20:09:37','Tudo ok!','52135800926',8);
                      
@@ -122,6 +122,8 @@ insert into diagnostico (id_consulta,id_doenca, descri) VALUES
                         (5,5, null);
 
 INSERT INTO `pedido_servico` (`id`,`status_pedido`,`dt_execucao`,`vl_total`,`dt_pedido`,`idZoo`) VALUES (1,0,NULL,100.00,'2018-01-15',1),(2,1,'2017-07-15',51.30,'2017-07-09',1),(3,0,NULL,98.28,'2018-01-14',1),(4,1,'2017-06-08',207.89,'2017-05-04',1),(5,0,NULL,402.01,'2018-01-02',1),(6,0,NULL,591.09,'2018-01-04',1),(7,1,'2018-01-07',765.50,'2018-01-05',1),(8,1,'2016-06-08',1070.35,'2016-06-08',1),(9,0,NULL,930.08,'2018-01-06',1),(10,0,NULL,479.90,'2018-01-07',1);
+
+INSERT INTO `fatura` (`idFatura`,`valor`,`dataDaFatura`,`dt_paga`,`vl_multa`,`stats`,`tp_fatura`,`id_ped_serv`) VALUES (1,100,'2018-01-15','2018-01-16',0,'Em andamento','Boleto',1),(2,51.3,'2017-07-09','2017-07-10',0,'A caminho','Boleto',2),(3,98.28,'2018-01-14','2018-01-14',0,'Em andamento','Crédito',3),(4,207.89,'2017-05-04','2017-05-06',0,'Entregue','Boleto',4),(5,402.01,'2018-01-02','2018-01-10',0,'Em andamento','Débito automático',5),(6,591.09,'2018-01-04','2018-01-10',0,'Em andamento','Débito automático',6),(7,765.5,'2018-01-05','2018-01-06',0,'A caminho','Boleto',7),(8,1070.35,'2016-06-08','2016-06-08',0,'A caminho','Crédito',8),(9,930.08,'2018-01-06','2018-01-11',0,'Entregue','Boleto',9),(10,479.9,'2018-01-07','2018-01-09',0,'Entregue','Crédito',10);
 
 
 

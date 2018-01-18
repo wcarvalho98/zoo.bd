@@ -54,8 +54,7 @@ insert into Curso (id, descr, carga_hor, tipo) VALUES
   (3,"09953268944" ,'2000-02-24'),
   (4,"52135800926" ,'2009-01-12');
 
-insert into administrador (cpf, senha_de_acesso, idZoo, login) VALUES
-  ('04554245944', 'admi', 1, 'admin');	
+INSERT INTO `administrador` (`cpf`,`senha_de_acesso`,`idZoo`,`login`) VALUES ('12345678901','admin',1,'admin');
 
 insert into func_tratador(cpf, situacao) Values
   ("01134566299", null),
@@ -91,11 +90,11 @@ insert into Jaula (id_Jaula,  stats, tipo, dt_ultima_inspecao, populacao_max, ob
                   (5, false,'Grade', '2017-01-01', 10, null, 7, 5.87, 13, 6,1, "00011122233"),
                   (6, true,'aquario','2011-01-01', 20,null, 7, 10.2, 16, 5,1, "00011122233");
 				
-insert into Ordem (nome) VALUES ('monotrematas'),('Cetacios'),('cenarta'),('primatas'),('quiroptara'),('carnívoros');
+INSERT INTO `ordem` (`id`,`nome`) VALUES (1,'Monotremata'),(2,'Cetacio'),(3,'Cenarta'),(4,'Primata'),(5,'Quiroptara'),(6,'Carnívoro'),(7,'Araneae'),(8,'Scorpiones'),(9,'Lamniformes');
 				
-insert into Genero (nome, ordem) VALUES ('Ornithorhynchus',1), ('Whippomorpha',2), ('Delphinus',2), ('Pan',4), ('Gorilla',4), ('Pongo',4), ('Phantera',6);  
+INSERT INTO `genero` (`seq`,`nome`,`ordem`) VALUES (1,'Ornithorhynchus',1),(2,'Whippomorpha',2),(3,'Delphinus',2),(4,'Pan',4),(5,'Gorilla',4),(6,'Pongo',4),(7,'Phantera',6),(8,'Canis',6),(9,'Felis',6),(10,'Phoneutria',7),(11,'Tytus',8),(12,'Carcharodon',9);
 
-insert into Especie(nome, genero) VALUES ('Onitorrinco',1), ('Hipopotamo',2), ('Golfinho',3), ('Chimpanzé',4), ('Gorila', 5), ('Oragotando', 6), ('Leão', 7), ('Tigre', 7);
+INSERT INTO `especie` (`seq`,`nome`,`genero`) VALUES (1,'Onitorrinco',1),(2,'Hipopotamo',2),(3,'Golfinho',3),(4,'Chimpanzé',4),(5,'Gorila',5),(6,'Oragotando',6),(7,'Leo',7),(8,'Tigre',7),(9,'Familiaris',8),(10,'Lupus',8),(11,'Catus',9),(12,'Bahiensis',11),(13,'Carcharias',12);
 
 insert into Especie_indicada (id_jaula, seq) VALUES (6,1),(4,2),(6,3), (3,4),(2,5);
 

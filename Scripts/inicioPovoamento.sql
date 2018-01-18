@@ -100,7 +100,30 @@ insert into Especie_indicada (id_jaula, seq) VALUES (6,1),(4,2),(6,3), (3,4),(2,
 
 replace INTO `animal` (`id`,`nome`,`vivo`,`dt_nasc`,`dt_falecimento`,`idade`,`nome_vulgar`,`obs`,`id_zoo`,`id_jaula`,`ordem`,`genero`,`especie`) VALUES (1,'Cachorro',1,'2015-02-03',NULL,3,'Júnior',NULL,1,2,6,8,9),(2,'Lobo',0,'2000-07-01','2017-06-05',6,'Nino',NULL,1,0,6,8,10),(3,'Gato',1,'2006-09-04',NULL,9,'Tica',NULL,1,3,6,9,11),(4,'Aranha Armadeira',1,NULL,NULL,NULL,'Ariana','Data de nascimento indefinida',1,4,7,10,NULL),(5,'Escorpião Marrom',0,'2016-10-14','2017-02-17',0,'Enzo',NULL,1,5,8,11,12),(6,'Tubarão Branco',1,'1997-08-17',NULL,20,'Bibito','Cuidados especiais',1,8,9,12,13),(7,'Leão',1,'2018-01-04',NULL,0,'João','Recém-nascido',1,1,6,7,7);
 
-
+insert into Consulta (dat_consulta, obs, id_veterinario, id_animal) VALUES
+					 ('2018-01-11', 'Ferimento na pata esquerda', 1, 1),
+                     ('2018-01-11', null, 1, 10),
+                     ('2018-01-10', null, 3, 6),
+                     ('2017-12-27', null, 2, 2),
+                     ('2017-12-12', null, 4, 7);
+                     
+insert into Doenca (descricao) VALUES
+					('Febre Leonina'),
+                    ('Vírus Zyspro'),
+	                ('OnitorDoença'),
+                    ('Ferimento Exposto'),
+                    ('Cancer');
+insert into Sintomas (idDoenca, descricao) Values
+					  (1, 'Cansaço e Fadiga'),
+                      (2, 'Hemorragia'),
+                      (3, 'Seco');
+                      
+insert into diagnostico (id_consulta,id_doeca, descri) VALUES
+						(1,4,null),
+                        (2,3,null),
+                        (3,2,null),
+                        (4,1, null),
+                        (5,5, null);
 
 
 

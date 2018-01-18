@@ -129,5 +129,7 @@ INSERT INTO `categoria` (`cod`,`descr`) VALUES (1,'Limpeza'),(2,'Alimento'),(3,'
 
 INSERT INTO `sub_categoria` (`cod`,`descr`,`categ`) VALUES (1,'Sabão',1),(2,'Detergente',1),(3,'Alvejante',1),(4,'Ração',2),(5,'Vegetal',2),(6,'Carne',2),(7,'Remédio',3),(8,'Esparadrapo',3),(9,'Agulha',3),(10,'Mecânico',4),(11,'Brita',4);
 
+INSERT INTO `fornecedor` (`cod`,`Nome`,`cnpj`,`telefone`,`ativo`) VALUES (1,'João','55130294871','8130302341',1),(2,'Maria','55284903917','8130312049',1),(3,'José','55439512963','8130321757',1),(4,'Bruno','55594122009','8130331465',1),(5,'Ricardo','55748731055','8130341173',0),(6,'Joaquim','55903340101','8130350881',0),(7,'Jorge','56057949147','8130360589',0);
+
 
 

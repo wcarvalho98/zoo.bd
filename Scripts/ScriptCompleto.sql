@@ -1,4 +1,4 @@
-Create schema Zoologico;
+-- Create schema Zoologico;
 use Zoologico;
 
 create table if not exists Zoologico(
@@ -76,8 +76,8 @@ create table if not exists Funcionario(
     data_de_contratacao date, 
     salario double, 
     ender varchar(50), 
-    jornada_trabalho int not null, 
-    idZoo int not null not null,
+    jornada_trabalho int, 
+    idZoo int not null,
 	primary key(CPF),
 	foreign key(jornada_trabalho) references Jornada_De_Trabalho(id) on update cascade on delete set null,
 	foreign key(idZoo) references Zoologico(idZoo) on delete cascade
@@ -103,7 +103,7 @@ create table if not exists Faz(
 create table if not exists Administrador(
 	cpf varchar(11),
     senha_de_acesso varchar(100),
-    idZoo int not null,
+    idZoo int,
     login varchar(100),
 	primary key(CPF),
 	foreign key(idZoo) references Zoologico(idZoo) on delete cascade on update set null,
@@ -276,7 +276,7 @@ create table if not exists Tratamento(
     data_fim date,
     resultado boolean default true,
     obs varchar(250),
-    id_consulta int not null,
+    id_consulta int,
     primary key(id_tratamento),
     foreign key(id_consulta) references Consulta(id_consulta) on delete set null
 );

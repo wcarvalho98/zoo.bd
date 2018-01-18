@@ -99,6 +99,8 @@ insert into Especie(nome, genero) VALUES ('Onitorrinco',1), ('Hipopotamo',2), ('
 
 insert into Especie_indicada (id_jaula, seq) VALUES (6,1),(4,2),(6,3), (3,4),(2,5);
 
+INSERT INTO Animal()
+
 
 
 

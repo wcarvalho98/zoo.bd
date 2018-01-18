@@ -54,7 +54,7 @@ insert into Curso (id, descr, carga_hor, tipo) VALUES
   (3,"09953268944" ,'2000-02-24'),
   (4,"52135800926" ,'2009-01-12');
 
-INSERT INTO `administrador` (`cpf`,`senha_de_acesso`,`idZoo`,`login`) VALUES ('12345678901','admin',1,'admin');
+INSERT INTO `administrador` (`cpf`,`senha_de_acesso`,`idZoo`,`login`) VALUES ('04554245944','admin',1,'admin');
 
 insert into func_tratador(cpf, situacao) Values
   ("01134566299", null),

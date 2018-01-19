@@ -470,7 +470,7 @@ create table if not exists Instituicao(
 create table if not exists Reserva(
 	qtd_pessoas int, 
     dt_validade date, 
-    horário time, 
+    horario time, 
     dt_reserva date, 
     valor double, 
     stats varchar(50), 

@@ -516,9 +516,9 @@ create table if not exists Tipo_Pagamento(
 
 create table if not exists Nota_Fiscal(
 	NFE int auto_increment, 
-	ICMS double, 
-    valor_total double, 
-    vl_total_desconto double, 
+	ICMS double(8,2), 
+    valor_total double(8,2), 
+    vl_total_desconto double(8,2), 
     data_NF date,
 	primary key(NFE)
 );

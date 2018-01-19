@@ -3,11 +3,11 @@ insert into Zoologico (idZoo,cnpj,nome,razao_social, hr_inic_func, hr_fim) VALUE
 
 insert into fones(idZoo, numero) VALUES (1, '81-3255-9988'), (1, '81-3433-9988'), (1,'81-33333-8888');    
 
-insert into docs (idZoo, idDocs, docs) values (1,1, load_file("C:/Users/Pedro/Desktop/scripts/docs/teste.txt")),
-											  (1,2, load_file("C:/Users/Pedro/Desktop/scripts/docs/teste1.txt")),
-                                              (1,3, load_file("C:/Users/Pedro/Desktop/scripts/docs/teste2.txt")),
-                                              (1,4, load_file("C:/Users/Pedro/Desktop/scripts/docs/teste3.txt")),
-                                              (1,5, load_file("C:/Users/Pedro/Desktop/scripts/docs/teste4.txt"));
+#insert into docs (idZoo, idDocs, docs) values (1,1, load_file("C:/Users/Pedro/Desktop/scripts/docs/teste.txt")),
+#											  (1,2, load_file("C:/Users/Pedro/Desktop/scripts/docs/teste1.txt")),
+#                                              (1,3, load_file("C:/Users/Pedro/Desktop/scripts/docs/teste2.txt")),
+#                                              (1,4, load_file("C:/Users/Pedro/Desktop/scripts/docs/teste3.txt")),
+#                                              (1,5, load_file("C:/Users/Pedro/Desktop/scripts/docs/teste4.txt"));
     
 insert into licenca (id_licenca, descr, data_de_expiracao, idZoo) VALUES (1,'licença dos bombeiros', '2015-04-12', 1),
                                                                          (2,'licença dos macacos albinos', '2011-02-12', 1),
@@ -79,7 +79,7 @@ insert into veterinario (CPF, estado, CRMV) VALUES ("52135800926", 'PE', '1073')
 
 insert into ponto (cpf, data_hora_inicial, data_hora_fim, faltou) VALUES 
 				  ("01134566299", '2018-01-16T10:25:00','2018-01-16T15:25:00',false),
-                  ("02123521356", '2018-01-16T15:25:00','2018-01-16T120:25:00', false),
+                  ("02123521356", '2018-01-16T15:25:00','2018-01-16T20:25:00', false),
                   ("02335553324", '2018-01-16T11:00:00', '2018-01-16T18:25:00', false);
 
 insert into Jaula (id_Jaula,  stats, tipo, dt_ultima_inspecao, populacao_max, obs, perid_insp_dias, altura, largura, profundidade, idZoo, cpf_tratador) VALUES

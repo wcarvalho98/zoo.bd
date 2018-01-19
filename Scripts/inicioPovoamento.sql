@@ -3,11 +3,8 @@ insert into Zoologico (idZoo,cnpj,nome,razao_social, hr_inic_func, hr_fim) VALUE
 
 insert into fones(idZoo, numero) VALUES (1, '81-3255-9988'), (1, '81-3433-9988'), (1,'81-3333-8888');    
 
-#insert into docs (idZoo, idDocs, docs) values (1,1, load_file("C:/Users/Pedro/Desktop/scripts/docs/teste.txt")),
-#											  (1,2, load_file("C:/Users/Pedro/Desktop/scripts/docs/teste1.txt")),
-#                                              (1,3, load_file("C:/Users/Pedro/Desktop/scripts/docs/teste2.txt")),
-#                                              (1,4, load_file("C:/Users/Pedro/Desktop/scripts/docs/teste3.txt")),
-#                                              (1,5, load_file("C:/Users/Pedro/Desktop/scripts/docs/teste4.txt"));
+insert into docs (idZoo, idDocs, docs) values (1,1, null),
+											  (1,2, null);
     
 insert into licenca (id_licenca, descr, data_de_expiracao, idZoo) VALUES (1,'licença dos bombeiros', '2015-04-12', 1),
                                                                          (2,'licença dos macacos albinos', '2011-02-12', 1),
@@ -22,8 +19,7 @@ insert into Jornada_De_Trabalho (id, trabalha_sabado, descr) VALUES (1, true, 'L
 
 insert into Dia VALUES (1,'descricaoTeste' ), (2, 'descricaoTeste'), (3,'descricaoTeste' ), (4,'descricaoTeste' ), (5, 'descricaoTeste'), (6, 'descricaoTeste'), (7, 'descricaoTeste'); 
 
-insert into Turno VALUES (1,'descricaoTeste', '06:00:00', '22:00:00'), (2,'descricaoTeste','10:00:00', '19:00:00' ), (3,'descricaoTeste', '08:00:00', '20:00:00' ), (4,'descricaoTeste', '08:00:00', '12:00:00' ), (5,'descricaoTeste','12:00:00', '20:00:00' ),
-						 (6, 'descricaoTeste','16:00:00', '20:00:00'), (7,'descricaoTeste','18:00:00', '20:00:00' ), (8,'descricaoTeste','20:00:00', '23:00:00' ), (9,'descricaoTeste', '10:00:00', '14:00:00'), (10,'descricaoTeste', '00:00:00', '06:00:00' );
+INSERT INTO `turno` (`cod`,`descricao`,`hr_inicio`,`hr_fim`) VALUES (1,'Diurno','06:00:00','22:00:00'),(2,'Diarista','10:00:00','19:00:00'),(3,'Padrão','08:00:00','20:00:00'),(4,'Matutino','08:00:00','12:00:00'),(5,'Vespertino','12:00:00','20:00:00'),(6,'Tarde-noite','16:00:00','20:00:00'),(7,'Horista','18:00:00','20:00:00'),(8,'Horista noturno','20:00:00','23:00:00'),(9,'Horista matutino','10:00:00','14:00:00'),(10,'Diarista noturno','00:00:00','06:00:00');
 
 insert into Tem (cod, seq, id) VALUES (1,1,1), (1,2,1), (2,2,4), (5,6,7), (2,5,6);
 
@@ -88,7 +84,7 @@ insert into Jaula (id_Jaula,  stats, tipo, dt_ultima_inspecao, populacao_max, ob
                   (3, true, 'Grade', '2018-01-03', 12, null, 7, 7.98, 14, 7,1, "02123521356"),
                   (4, true, 'Grade', '2018-01-04', 13, null, 7, 8.43, 14, 7,1, "02123521356"),
                   (5, false,'Grade', '2017-01-01', 10, null, 7, 5.87, 13, 6,1, "00011122233"),
-                  (6, true,'aquario','2011-01-01', 20,null, 7, 10.2, 16, 5,1, "00011122233");
+                  (6, true,'aquario','2011-01-01', 20, null, 7, 10.2, 16, 5,1, "00011122233");
 				
 INSERT INTO `ordem` (`id`,`nome`) VALUES (1,'Monotremata'),(2,'Cetacio'),(3,'Cenarta'),(4,'Primata'),(5,'Quiroptara'),(6,'Carnívoro'),(7,'Araneae'),(8,'Scorpiones'),(9,'Lamniformes');
 				

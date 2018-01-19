@@ -6,6 +6,52 @@
  */
 package br.ufrpe.zoologico.repositorio;
 
-public class RepositorioFones {
+import java.util.ArrayList;
 
+import br.ufrpe.zoologico.negocio.beans.Fones;
+import br.ufrpe.zoologico.repositorio.Interfaces.IRepositorio;
+
+public class RepositorioFones implements IRepositorio<Fones>{
+
+	private ArrayList<Fones> repositorio;
+	private static IRepositorio<Fones> instance;
+	
+	private RepositorioFones(){
+		repositorio = new ArrayList<>();
+	}
+	
+	private static IRepositorio<Fones> getInstace(){
+		if(instance == null){
+			instance = new RepositorioFones();
+		}
+		return instance;
+	}
+	
+	@Override
+	public void cadastrar(Fones obj) {
+		repositorio.add(obj);
+	}
+
+	@Override
+	public void atualizar(Fones newObj) {
+		// TODO cadastrar dois números distintos 
+		repositorio.set(newObj.getIdZoo(), newObj);
+	}
+
+	@Override
+	public void remover(Fones obj) {
+		repositorio.remove(obj);
+	}
+
+	@Override
+	public Fones buscar(int id) {
+		return null;
+	}
+
+	@Override
+	public ArrayList<Fones> listarTodos() {
+		return repositorio;
+	}
+
+	
 }

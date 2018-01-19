@@ -141,3 +141,7 @@ INSERT INTO `reserva` (`qtd_pessoas`,`dt_validade`,`horÃ¡rio`,`dt_reserva`,`va
 
 INSERT INTO `empresa_terceira` (`CNPJ`,`fone`,`email`) VALUES ('51246524501523','8130348461','deditificacao.vet@hotmail.com'),('54161235214982','8130339456','vet_santos@hotmail.com'),('57075945928441','8130330451','saneamento.94@gmail.com'),('59990656641900','8130321446','giga.limpa@uol.com.br'),('62905367355359','8130312441','oficial_hosp.vet@bol.com.br');
 
+INSERT INTO `endereco` (`idEnd`,`idForn`,`bairro`,`rua`,`cep`,`estado`) VALUES (1,1,'Ibirapuera','Rua das flores','51450-561','Pe'),(2,2,'Silveira','Rua das silveiras','51487-653','Sã'),(3,3,'Cardinal','Rua dos números','51524-745','Ri'),(4,4,'Santos','Rua dos anjos','51561-837','Pe'),(5,5,'Flamengo','Avenida Dom Miguel','51598-929','Ba'),(6,6,'Fluminense','Rua Intrépida','51636-021','Se'),(7,7,'Casa Azul','Avenida João Brito Blue','51673-113','Pe');
+
+
+

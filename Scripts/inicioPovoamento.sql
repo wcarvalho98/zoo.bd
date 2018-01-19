@@ -143,7 +143,7 @@ INSERT INTO `empresa_terceira` (`CNPJ`,`fone`,`email`) VALUES ('51246524501523',
 
 INSERT INTO `endereco` (`idEnd`,`idForn`,`bairro`,`rua`,`cep`,`estado`) VALUES (1,1,'Ibirapuera','Rua das flores','51450-561','Pe'),(2,2,'Silveira','Rua das silveiras','51487-653','Sã'),(3,3,'Cardinal','Rua dos números','51524-745','Ri'),(4,4,'Santos','Rua dos anjos','51561-837','Pe'),(5,5,'Flamengo','Avenida Dom Miguel','51598-929','Ba'),(6,6,'Fluminense','Rua Intrépida','51636-021','Se'),(7,7,'Casa Azul','Avenida João Brito Blue','51673-113','Pe');
 
-INSERT INTO `estoque` (`id`,`idZoo`,`descr`,`localização`) VALUES (1,1,'Estoque de ração','Dentro do zoo'),(2,1,'Estoque de carne','Dentro do zoo'),(3,1,'Próximo do fornecedor','Rua dos anjos'),(4,1,'Próximo do fornecedor','Avenida José Pinheiros'),(5,1,'Estoque de medicamento','Dentro do zoo'),(6,1,'Estoque de diversos','Dentro do zoo');
+INSERT INTO `estoque` (`id`,`idZoo`,`descr`,`localizacao`) VALUES (1,1,'Estoque de ração','Dentro do zoo'),(2,1,'Estoque de carne','Dentro do zoo'),(3,1,'Próximo do fornecedor','Rua dos anjos'),(4,1,'Próximo do fornecedor','Avenida José Pinheiros'),(5,1,'Estoque de medicamento','Dentro do zoo'),(6,1,'Estoque de diversos','Dentro do zoo');
 
 INSERT INTO `incidente` (`seq`,`descr`) VALUES (1,'Infecção alimentícia no restaurante'),(2,'Crianças vomitando após show'),(3,'Show com problemas no equipamento'),(4,'Quebra de equipamento diverso'),(5,'Uso indevido do espaço reservado'),(6,'Invasão de mal caráter');
 

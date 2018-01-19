@@ -349,7 +349,7 @@ create table if not exists Estoque(
 	id int primary key auto_increment, 
     idZoo int not null,
     descr varchar(100), 
-    localizaçao varchar(100),
+    localizacao varchar(100),
     foreign key (idZoo) references Zoologico (idZoo)
 ); 
 

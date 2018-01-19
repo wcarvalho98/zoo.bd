@@ -1,4 +1,5 @@
--- Create schema Zoologico;
+DROP SCHEMA zoologico;
+Create schema Zoologico;
 use Zoologico;
 
 create table if not exists Zoologico(

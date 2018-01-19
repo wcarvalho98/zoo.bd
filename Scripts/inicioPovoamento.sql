@@ -100,8 +100,8 @@ insert into Especie_indicada (id_jaula, seq) VALUES (6,1),(4,2),(6,3), (3,4),(2,
 
 INSERT INTO `animal` (`id`,`nome`,`vivo`,`dt_nasc`,`dt_falecimento`,`idade`,`nome_vulgar`,`obs`,`id_zoo`,`id_jaula`,`ordem`,`genero`,`especie`) VALUES (1,'Leão',1,'2018-01-04',NULL,0,'João','Recém-nascido',1,1,6,7,7),(2,'Cachorro',1,'2015-02-03',NULL,3,'Júnior',NULL,1,2,6,8,9),(3,'Lobo',0,'2000-07-01','2017-06-05',6,'Nino',NULL,1,3,6,8,10),(4,'Gato',1,'2006-09-04',NULL,9,'Tica',NULL,1,3,6,9,11),(5,'Aranha Armadeira',1,NULL,NULL,NULL,'Ariana','Data de nascimento indefinida',1,4,7,10,NULL),(6,'Escorpião Marrom',0,'2016-10-14','2017-02-17',0,'Enzo',NULL,1,5,8,11,12),(7,'Tubarão Branco',1,'1997-08-17',NULL,20,'Bibito','Cuidados especiais',1,6,9,12,13);
 
-INSERT INTO `consulta` (`id_consulta`,`dat_consulta`,`obs`,`id_veterinario`,`id_animal`) VALUES (1,'2011-03-20 15:00:00','Tudo ok!','01439264834',1),(2,'2011-05-21 15:17:00','Tudo ok!','02244715739',2),(3,'2011-07-22 15:22:30','Tudo ok!','01439264834',1),(4,'2011-09-22 14:29:03','Tudo ok!','02244715739',2),(5,'2011-11-23 17:03:00','Tudo ok!','52135800926',3),(6,'2012-01-24 22:04:03','Tudo ok!','43221775479',4),(7,'2012-03-26 09:13:04','Tudo ok!','43221775479',5),(8,'2012-05-27 10:05:08','Tudo ok!','01439264834',6),(9,'2012-07-28 08:49:05','Tudo ok!','02244715739',7),(10,'2012-09-28 20:09:37','Tudo ok!','52135800926',7);
-                     
+INSERT INTO `consulta` (`id_consulta`,`dat_consulta`,`obs`,`id_veterinario`,`id_animal`) VALUES (1,'2011-03-20 15:00:00','Tudo ok!','01439264834',1),(2,'2011-05-21 15:17:00','Tudo ok!','02244715739',2),(3,'2011-07-22 15:22:30','Tudo ok!','01439264834',1),(4,'2011-09-22 14:29:03','Tudo ok!','02244715739',2),(5,'2018-01-10 17:03:00','Prescrição de medicamento e início de tratamento.','52135800926',3),(6,'2018-01-11 18:04:34','Prescrição de medicamento e início de tratamento.','43221775479',4),(7,'2018-01-12 20:08:34','Prescrição de medicamento e início de tratamento.','43221775479',5),(8,'2018-01-13 09:43:53','Prescrição de medicamento e início de tratamento.','01439264834',6),(9,'2018-01-14 17:32:15','Prescrição de medicamento e início de tratamento.','02244715739',7),(10,'2018-01-15 00:00:54','Tudo ok!','52135800926',8);
+                    
 insert into Doenca (id_doenca, descricao) VALUES
 					(1, 'Febre Leonina'),
                     (2, 'Vírus Zyspro'),
@@ -114,12 +114,7 @@ insert into Sintoma (id_doenca, descricao) Values
                       (2, 'Hemorragia'),
                       (3, 'Seco');
                       
-insert into diagnostico (id_consulta,id_doenca, descri) VALUES
-						(1,4,null),
-                        (2,3,null),
-                        (3,2,null),
-                        (4,1, null),
-                        (5,5, null);
+INSERT INTO `diagnostico` (`id_consulta`,`id_doenca`,`descri`) VALUES (5,'1','Doença de fácil controle'),(6,'2','Doença de fácil controle'),(7,'3','Necessidade de acompanhamento'),(8,'4','Doença de alta periculosidade'),(9,'5','Doença de fácil controle');
 
 INSERT INTO `pedido_servico` (`id`,`status_pedido`,`dt_execucao`,`vl_total`,`dt_pedido`,`idZoo`) VALUES (1,0,NULL,100.00,'2018-01-15',1),(2,1,'2017-07-15',51.30,'2017-07-09',1),(3,0,NULL,98.28,'2018-01-14',1),(4,1,'2017-06-08',207.89,'2017-05-04',1),(5,0,NULL,402.01,'2018-01-02',1),(6,0,NULL,591.09,'2018-01-04',1),(7,1,'2018-01-07',765.50,'2018-01-05',1),(8,1,'2016-06-08',1070.35,'2016-06-08',1),(9,0,NULL,930.08,'2018-01-06',1),(10,0,NULL,479.90,'2018-01-07',1);
 
@@ -160,6 +155,10 @@ INSERT INTO `nota_fiscal` (`NFE`,`ICMS`,`valor_total`,`vl_total_desconto`,`data_
 INSERT INTO `tipo_pagamento` (`cod`,`descr`) VALUES (1,'Crédito'),(2,'Débito'),(3,'À vista'),(4,'À prazo');
 
 INSERT INTO `pagamento` (`cod`,`data_pagamento`,`stats`,`vl_pago`,`tipo_pag`,`idFatura`,`NFE`) VALUES (1,'2018-01-16','Em andamento',113.769,1,1,1),(2,'2017-07-10','A caminho',64.8,1,2,2),(3,'2018-01-14','Em andamento',132.264,1,3,3),(4,'2017-05-06','Entregue',308.151,4,4,4),(5,'2018-01-10','Em andamento',419.724,2,5,5),(6,'2018-01-10','Em andamento',609.8301,2,6,6),(7,'2018-01-06','A caminho',757.4706,3,7,7),(8,'2016-06-08','A caminho',1022.5071,1,8,8),(9,'2018-01-11','Entregue',886.9356,3,9,9),(10,'2018-01-09','Entregue',472.4451,1,10,10);
+
+INSERT INTO `pode_ter` (`id_jaula`,`seq`,`data_incidente`,`houve_morte`) VALUES (1,4,NULL,NULL),(2,4,NULL,NULL),(3,4,NULL,NULL),(4,4,NULL,NULL),(5,4,NULL,NULL),(6,4,NULL,NULL);
+
+INSERT INTO `tratamento` (`id_tratamento`,`em_andamento`,`data_inicio`,`data_fim`,`resultado`,`obs`,`id_consulta`) VALUES (1,0,'2018-01-10','2018-01-12',1,'Tratamento com sucesso',5),(2,1,'2018-01-11','2018-01-19',0,'Reagindo bem ao tratamento',6),(3,1,'2018-01-12','2018-01-20',0,'Pouca reação ao tratamento',7),(4,0,'2018-01-13','2018-01-15',0,'Sem reação ao tratamento',8),(5,0,'2018-01-14','2018-01-16',1,'Tratamento com sucesso',9);
 
 
 

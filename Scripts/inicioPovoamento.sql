@@ -158,7 +158,9 @@ INSERT INTO `pagamento` (`cod`,`data_pagamento`,`stats`,`vl_pago`,`tipo_pag`,`id
 
 INSERT INTO `pode_ter` (`id_jaula`,`seq`,`data_incidente`,`houve_morte`) VALUES (1,4,NULL,NULL),(2,4,NULL,NULL),(3,4,NULL,NULL),(4,4,NULL,NULL),(5,4,NULL,NULL),(6,4,NULL,NULL);
 
-INSERT INTO `tratamento` (`id_tratamento`,`em_andamento`,`data_inicio`,`data_fim`,`resultado`,`obs`,`id_consulta`) VALUES (1,0,'2018-01-10','2018-01-12',1,'Tratamento com sucesso',5),(2,1,'2018-01-11','2018-01-19',0,'Reagindo bem ao tratamento',6),(3,1,'2018-01-12','2018-01-20',0,'Pouca reação ao tratamento',7),(4,0,'2018-01-13','2018-01-15',0,'Sem reação ao tratamento',8),(5,0,'2018-01-14','2018-01-16',1,'Tratamento com sucesso',9);
+INSERT INTO `tratamento` (`id_tratamento`,`em_andamento`,`data_inicio`,`data_fim`,`resultado`,`obs`,`id_consulta`) VALUES (1,0,'2018-01-10','2018-01-12',1,'Tratamento com sucesso',5),(2,1,'2018-01-11','2018-01-18',0,'Reagindo bem ao tratamento',6),(3,1,'2018-01-12','2018-01-19',0,'Pouca reação ao tratamento',7),(4,0,'2018-01-13','2018-01-15',0,'Sem reação ao tratamento',8),(5,0,'2018-01-14','2018-01-16',1,'Tratamento com sucesso',9);
+
+INSERT INTO `prescricao` (`id_medicamento`,`id_tratamento`,`posologia`) VALUES (1,3,'1 g'),(2,2,'30 mg'),(6,1,'50 mg'),(6,4,'130 mg'),(6,5,'550 mg');
 
 
 

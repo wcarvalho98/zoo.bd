@@ -6,6 +6,11 @@
  */
 package br.ufrpe.zoologico.negocio.beans;
 
-public class Secretario {
+import java.time.LocalDate;
 
+public class Secretario extends Funcionario{
+	public Secretario(String cpf, String nome, String fone1, String fone2, String especializacao,
+			LocalDate data_de_contratacao, double salario, String endereco){
+		super(cpf, nome, fone1, fone2, especializacao, data_de_contratacao, salario, endereco);
+	}
 }

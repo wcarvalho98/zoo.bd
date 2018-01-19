@@ -155,7 +155,7 @@ INSERT INTO `item_servico` (`idPed`,`idServ`,`qtd`,`vl_unitario`,`status_item`,`
 
 INSERT INTO `medicamento` (`id_medicamento`,`nome`,`isAtivo`,`descricao_frequencia`,`bula`) VALUES (1,'Albesatran',1,'12 em 12 hrs/7 dias',NULL),(2,'Cominutran',0,'8 em 8 hrs/7 dias',NULL),(3,'Centireum',0,'12 em 12 hrs/7 dias',NULL),(4,'Philotiscopo',1,'24 em 24 hrs/10 dias',NULL),(5,'Adenalzina',1,'48 em 48 hrs/16 dias',NULL),(6,'Aceptina',1,'4 em 4 hrs/2 dias',NULL),(7,'Mericutan',0,'Vide a bula',NULL),(8,'Mercivutan',0,'Vide a bula',NULL);
 
-INSERT INTO `nota_fiscal` (`NFE`,`ICMS`,`valor_total`,`vl_total_desconto`,`data_NF`) VALUES (1,26.41,100,92.5,'2017-12-20'),(2,314.03,51.3,47.4525,'2017-12-25'),(3,48.68,98.28,90.909,'2018-01-03'),(4,134.5,207.89,192.29825,'2018-01-06'),(5,64.35,402.01,371.85925,'2017-12-17'),(6,86.4990000000001,591.09,546.75825,'2017-11-27'),(7,76.1340000000001,765.5,708.0875,'2017-11-07'),(8,65.7690000000001,1070.35,990.07375,'2017-10-18'),(9,55.4040000000001,930.08,860.324,'2017-09-28'),(10,45.0390000000001,479.9,443.9075,'2017-09-08');
+INSERT INTO `nota_fiscal` (`NFE`,`ICMS`,`valor_total`,`vl_total_desconto`,`data_NF`) VALUES (1,26.41,126.41,113.77,'2017-12-20'),(2,20.70,72.00,64.80,'2017-12-25'),(3,48.68,146.96,132.26,'2018-01-03'),(4,134.50,342.39,308.15,'2018-01-06'),(5,64.35,466.36,419.72,'2017-12-17'),(6,86.50,677.59,609.83,'2017-11-27'),(7,76.13,841.63,757.47,'2017-11-07'),(8,65.77,1136.12,1022.51,'2017-10-18'),(9,55.40,985.48,886.94,'2017-09-28'),(10,45.04,524.94,472.45,'2017-09-08');
 
 INSERT INTO `tipo_pagamento` (`cod`,`descr`) VALUES (1,'Crédito'),(2,'Débito'),(3,'À vista'),(4,'À prazo');
 

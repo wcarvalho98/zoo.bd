@@ -151,5 +151,7 @@ INSERT INTO `item_estoque` (`cod_prod_ref`,`id`,`qtd`,`data_entrada`,`vl_compra`
 
 INSERT INTO `servico` (`id`,`descr`,`valor`) VALUES (1,'Manutenção jaula',100.00),(2,'Manutenção jaula',51.30),(3,'Manutenção jaula',98.28),(4,'Limpeza zoologico',207.89),(5,'Limpeza zoologico',402.01),(6,'Transporte de alimento',591.09),(7,'Transporte de alimento',765.50),(8,'Manutenção jaula',1070.35),(9,'Limpeza zoologico',930.08),(10,'Transporte de alimento',479.90);
 
+INSERT INTO `item_servico` (`idPed`,`idServ`,`qtd`,`vl_unitario`,`status_item`,`dt_realizacao`) VALUES (1,1,1,100.00,0,NULL),(2,2,1,51.30,1,'2017-07-15'),(3,3,1,98.28,0,NULL),(4,4,1,207.89,1,'2017-06-08'),(5,5,1,402.01,0,NULL),(6,6,1,591.09,0,NULL),(7,7,1,765.50,1,'2018-01-07'),(8,8,1,1070.35,1,'2016-06-08'),(9,9,1,930.08,0,NULL),(10,10,1,479.90,0,NULL);
+
 
 

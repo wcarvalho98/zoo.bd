@@ -20,8 +20,6 @@ public class Jaula {
 	private Zoo zoo;
 	private Tratador tratador;
 	
-	
-	
 	/**
 	 * @param stats
 	 * @param dt_ultima_inspecao

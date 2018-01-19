@@ -4,7 +4,7 @@ use Zoologico;
 
 create table if not exists Zoologico(
 	idZoo int auto_increment, 
-    cnpj varchar(11) not null unique, 
+    cnpj varchar(14) not null unique, 
     nome varchar(30), 
     razao_social varchar(30), 
     hr_inic_func time, 
@@ -327,8 +327,9 @@ create table if not exists pode_ter(
 create table if not exists Fornecedor (
 	cod int  AUTO_INCREMENT, 
 	Nome varchar(30), 
-	cnpj varchar(11), 
-	telefone varchar(13), 
+	cnpj varchar(14), 
+	telefone_1 varchar(13), 
+	telefone_2 varchar(13),
 	ativo boolean,
     primary key(cod)
 );
@@ -456,7 +457,7 @@ create table if not exists Espacos_Reservavel(
 );
 
 create table if not exists Instituicao(
-	cnpj varchar(11) not null, 
+	cnpj varchar(14) not null, 
     nome_contato varchar(30), 
     email varchar(50), 
     telefone_1 varchar(13), 
@@ -477,10 +478,8 @@ create table if not exists Reserva(
     hr_final_reser time, 
     e_cortesia varchar(200), 
     tp_evento varchar(50), 
-    
-    CNPJ varchar(11), 
+    CNPJ varchar(14), 
     id_espaco int,
-	
     primary key(CNPJ, id_espaco),
 	foreign key(CNPJ) references Instituicao(cnpj),
 	foreign key(id_espaco) references Espacos_Reservavel (id_espaco)
@@ -500,7 +499,7 @@ create table if not exists Fatura(
 );
 
 create table if not exists Reservado(
-	CNPJ varchar(11), 
+	CNPJ varchar(14), 
     id_espaco int, 
     idFatura int unique,
 	primary key(CNPJ, id_espaco),
@@ -549,5 +548,3 @@ create table if not exists Calendario(
     todo_list varchar(250),
 	primary key(seq)
 );
-
-drop table telefonefornecedor;

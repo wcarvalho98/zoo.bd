@@ -1,5 +1,5 @@
 use zoologico;
-insert into Zoologico (idZoo,cnpj,nome,razao_social, hr_inic_func, hr_fim) VALUES (1, '12345678910', 'Zootropia', 'sociável', '08:00:00', '20:00:00');
+insert into Zoologico (idZoo,cnpj,nome,razao_social, hr_inic_func, hr_fim) VALUES (1, '12345678910123', 'Zootropia', 'sociável', '08:00:00', '20:00:00');
 
 insert into fones(idZoo, numero) VALUES (1, '81-3255-9988'), (1, '81-3433-9988'), (1,'81-33333-8888');    
 
@@ -129,14 +129,15 @@ INSERT INTO `categoria` (`cod`,`descr`) VALUES (1,'Limpeza'),(2,'Alimento'),(3,'
 
 INSERT INTO `sub_categoria` (`cod`,`descr`,`categ`) VALUES (1,'Sabão',1),(2,'Detergente',1),(3,'Alvejante',1),(4,'Ração',2),(5,'Vegetal',2),(6,'Carne',2),(7,'Remédio',3),(8,'Esparadrapo',3),(9,'Agulha',3),(10,'Mecânico',4),(11,'Brita',4);
 
-INSERT INTO `fornecedor` (`cod`,`Nome`,`cnpj`,`telefone`,`ativo`) VALUES (1,'João','55130294871','8130302341',1),(2,'Maria','55284903917','8130312049',1),(3,'José','55439512963','8130321757',1),(4,'Bruno','55594122009','8130331465',1),(5,'Ricardo','55748731055','8130341173',0),(6,'Joaquim','55903340101','8130350881',0),(7,'Jorge','56057949147','8130360589',0);
+INSERT INTO `fornecedor` (`cod`,`Nome`,`cnpj`,`telefone_1`,`telefone_2`,`ativo`) VALUES (1,'João','55135124034952','8130302341','8130554328',1),(2,'Maria','55284965289134','8130312049','8131259446',1),(3,'José','55434806543316','8130321757','8131964564',1),(4,'Bruno','55584647797498','8130331465','8132669682',1),(5,'Ricardo','55734489051680','8130341173','8133374800',0),(6,'Joaquim','55884330305862','8130350881','8134079918',0),(7,'Jorge','56034171560044','8130360589','8134785036',0);
 
 INSERT INTO `produto_ref` (`cod`,`descr`,`freq_pedido`,`cod_barra`,`qtd_estoque`,`preco_ult_compra`,`qtd_total_estoque`,`qtd_min`,`subcat`,`categ`,`fornecedor`) VALUES (1,'Limpa jaula',5,'9382746520',15,150,20,10,2,1,1),(2,'Ração para cães',5,'9592837121',50,590,55,5,4,2,2),(3,'Carne para leão',4,'9802927722',40,510,49,5,6,2,2),(4,'Remédios para animais',6,'1001301832',90,489,102,10,7,3,4),(5,'Equipamentos de manutenção',3,'1022310892',30,302,80,10,10,4,5);
 
-INSERT INTO `instituicao` (`cnpj`,`nome_contato`,`email`,`telefone_1`,`telefone_2`,`razao_social`,`tipo_instituicao`) VALUES ('00112233445','Figueira','figueira_racoes@gmail.com','8130204551',NULL,'FigRaç',NULL),('11223344556','Joaquim','joaquim.silveira@hotmail.com','8231214040','82993123412','JJVet',NULL);
+INSERT INTO `instituicao` (`cnpj`,`nome_contato`,`email`,`telefone_1`,`telefone_2`,`razao_social`,`tipo_instituicao`) VALUES ('00112233445566','Figueira','figueira_racoes@gmail.com','8130204551',NULL,'FigRaç',NULL),('11223344556677','Joaquim','joaquim.silveira@hotmail.com','8231214040','82993123412','JJVet',NULL);
 
 INSERT INTO `espacos_reservavel` (`id_espaco`,`dimensao_area`,`capacidade`,`tipo`,`nome`,`idZoo`) VALUES (1,700,15,'Área comum','Espaço vivência',1),(2,500,13,'Área externa','Parque infantil',1),(3,150.84,8,'Área interna','Restaurante',1),(4,900.5,23,'Área comum','Espaço recreativo',1),(5,49.31,7,'Área interna','Jaula interativa',1);
 
-INSERT INTO `reserva` (`qtd_pessoas`,`dt_validade`,`horário`,`dt_reserva`,`valor`,`stats`,`hr_inicio_reser`,`hr_final_reser`,`e_cortesia`,`tp_evento`,`CNPJ`,`id_espaco`) VALUES (20,'2018-01-23','16:47:22','2018-01-18',977.82,'A realizar','19:30:00','05:00:00',NULL,'Festa noturna','00112233445',4),(7,'2018-01-19','09:37:54','2018-01-14',483.38,'Realizado','15:00:00','18:00:00',NULL,'Excursão científica','00112233445',5),(15,'2018-01-22','15:00:00','2018-01-17',854.21,'Realizado','14:00:00','17:00:00',NULL,'Exposição escolar','11223344556',1),(10,'2018-01-21','13:12:38','2018-01-16',730.6,'Realizado','09:20:00','12:00:00',NULL,'Festa infantil','11223344556',2),(8,'2018-01-20','11:25:16','2018-01-15',606.99,'A realizar','19:00:00','22:20:00',NULL,'Confraternização empresarial','11223344556',3);
+INSERT INTO `reserva` (`qtd_pessoas`,`dt_validade`,`horÃ¡rio`,`dt_reserva`,`valor`,`stats`,`hr_inicio_reser`,`hr_final_reser`,`e_cortesia`,`tp_evento`,`CNPJ`,`id_espaco`) VALUES (20,'2018-01-23','16:47:22','2018-01-18',977.82,'A realizar','19:30:00','05:00:00',NULL,'Festa noturna','00112233445566',4),(7,'2018-01-19','09:37:54','2018-01-14',483.38,'Realizado','15:00:00','18:00:00',NULL,'Excursão científica','00112233445566',5),(15,'2018-01-22','15:00:00','2018-01-17',854.21,'Realizado','14:00:00','17:00:00',NULL,'Exposição escolar','11223344556677',1),(10,'2018-01-21','13:12:38','2018-01-16',730.6,'Realizado','09:20:00','12:00:00',NULL,'Festa infantil','11223344556677',2),(8,'2018-01-20','11:25:16','2018-01-15',606.99,'A realizar','19:00:00','22:20:00',NULL,'Confraternização empresarial','11223344556677',3);
 
+INSERT INTO `empresa_terceira` (`CNPJ`,`fone`,`email`) VALUES ('51246524501523','8130348461','deditificacao.vet@hotmail.com'),('54161235214982','8130339456','vet_santos@hotmail.com'),('57075945928441','8130330451','saneamento.94@gmail.com'),('59990656641900','8130321446','giga.limpa@uol.com.br'),('62905367355359','8130312441','oficial_hosp.vet@bol.com.br');
 

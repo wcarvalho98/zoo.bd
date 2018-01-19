@@ -343,14 +343,6 @@ create table if not exists Endereco(
     primary key(idEnd),
     foreign key(idForn) references Fornecedor(cod)
 );
-# mudei isso aqui de Telefone para TelefoneFornecedor
-create table if not exists TelefoneFornecedor(
-	idFornecedor int not null, 
-    idFone int not null unique auto_increment, 
-    telefone varchar(13), 
-    primary key (idFornecedor, idFone), 
-    foreign key (idFornecedor) references Fornecedor(cod)
-);
 
 create table if not exists Estoque(
 	id int primary key auto_increment, 
@@ -558,3 +550,4 @@ create table if not exists Calendario(
 	primary key(seq)
 );
 
+drop table telefonefornecedor;

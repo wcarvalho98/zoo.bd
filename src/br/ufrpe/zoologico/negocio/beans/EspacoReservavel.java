@@ -6,43 +6,87 @@
  */
 package br.ufrpe.zoologico.negocio.beans;
 
-import java.time.LocalDateTime;
+
 
 public class EspacoReservavel {
-	private int idZoo;  
-    private String cnpj;  
-    private String nome;  
-    private String razao_social;  
-    private LocalDateTime hr_inic_func;  
-    private LocalDateTime hr_fim;
-	
-    /**
-	 * Metodo: getIdZoo
-	 * @return idZoo
-	 */
-	public Integer getIdZoo() {
-		return idZoo;
-	}
+	private int id;
+	private double dimensao_area;
+	private int capacidade;
+	private String tipo;
+	private String nome;
+	private int idZoo;
 	/**
-	 * Metodo: setIdZoo
-	 * @param idZoo the idZoo to set
+	 * @param id
+	 * @param dimensao_area
+	 * @param capacidade
+	 * @param tipo
+	 * @param nome
+	 * @param idZoo
 	 */
-	public void setIdZoo(Integer idZoo) {
+	public EspacoReservavel(int id, double dimensao_area, int capacidade, String tipo, String nome, int idZoo) {
+		super();
+		this.id = id;
+		this.dimensao_area = dimensao_area;
+		this.capacidade = capacidade;
+		this.tipo = tipo;
+		this.nome = nome;
 		this.idZoo = idZoo;
 	}
 	/**
-	 * Metodo: getCnpj
-	 * @return cnpj
+	 * Metodo: getId
+	 * @return id
 	 */
-	public String getCnpj() {
-		return cnpj;
+	public int getId() {
+		return id;
 	}
 	/**
-	 * Metodo: setCnpj
-	 * @param cnpj the cnpj to set
+	 * Metodo: setId
+	 * @param id the id to set
 	 */
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
+	public void setId(int id) {
+		this.id = id;
+	}
+	/**
+	 * Metodo: getDimensao_area
+	 * @return dimensao_area
+	 */
+	public double getDimensao_area() {
+		return dimensao_area;
+	}
+	/**
+	 * Metodo: setDimensao_area
+	 * @param dimensao_area the dimensao_area to set
+	 */
+	public void setDimensao_area(double dimensao_area) {
+		this.dimensao_area = dimensao_area;
+	}
+	/**
+	 * Metodo: getCapacidade
+	 * @return capacidade
+	 */
+	public int getCapacidade() {
+		return capacidade;
+	}
+	/**
+	 * Metodo: setCapacidade
+	 * @param capacidade the capacidade to set
+	 */
+	public void setCapacidade(int capacidade) {
+		this.capacidade = capacidade;
+	}
+	/**
+	 * Metodo: getTipo
+	 * @return tipo
+	 */
+	public String getTipo() {
+		return tipo;
+	}
+	/**
+	 * Metodo: setTipo
+	 * @param tipo the tipo to set
+	 */
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	/**
 	 * Metodo: getNome
@@ -59,55 +103,67 @@ public class EspacoReservavel {
 		this.nome = nome;
 	}
 	/**
-	 * Metodo: getRazao_social
-	 * @return razao_social
+	 * Metodo: getIdZoo
+	 * @return idZoo
 	 */
-	public String getRazao_social() {
-		return razao_social;
+	public int getIdZoo() {
+		return idZoo;
 	}
 	/**
-	 * Metodo: setRazao_social
-	 * @param razao_social the razao_social to set
+	 * Metodo: setIdZoo
+	 * @param idZoo the idZoo to set
 	 */
-	public void setRazao_social(String razao_social) {
-		this.razao_social = razao_social;
+	public void setIdZoo(int idZoo) {
+		this.idZoo = idZoo;
 	}
-	/**
-	 * Metodo: getHr_inic_func
-	 * @return hr_inic_func
-	 */
-	public LocalDateTime getHr_inic_func() {
-		return hr_inic_func;
+	@Override
+	public String toString() {
+		return "EspacoReservavel [id=" + id + ", dimensao_area=" + dimensao_area + ", capacidade=" + capacidade
+				+ ", tipo=" + tipo + ", nome=" + nome + ", idZoo=" + idZoo + "]";
 	}
-	/**
-	 * Metodo: setHr_inic_func
-	 * @param hr_inic_func the hr_inic_func to set
-	 */
-	public void setHr_inic_func(LocalDateTime hr_inic_func) {
-		this.hr_inic_func = hr_inic_func;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + capacidade;
+		long temp;
+		temp = Double.doubleToLongBits(dimensao_area);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + id;
+		result = prime * result + idZoo;
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
+		return result;
 	}
-	/**
-	 * Metodo: getHr_fim
-	 * @return hr_fim
-	 */
-	public LocalDateTime getHr_fim() {
-		return hr_fim;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EspacoReservavel other = (EspacoReservavel) obj;
+		if (capacidade != other.capacidade)
+			return false;
+		if (Double.doubleToLongBits(dimensao_area) != Double.doubleToLongBits(other.dimensao_area))
+			return false;
+		if (id != other.id)
+			return false;
+		if (idZoo != other.idZoo)
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (tipo == null) {
+			if (other.tipo != null)
+				return false;
+		} else if (!tipo.equals(other.tipo))
+			return false;
+		return true;
 	}
-	/**
-	 * Metodo: setHr_fim
-	 * @param hr_fim the hr_fim to set
-	 */
-	public void setHr_fim(LocalDateTime hr_fim) {
-		this.hr_fim = hr_fim;
-	} 
 	
-	public boolean equals(Object o){
-		boolean res = false;
-		if(o != null && o.getClass() == this.getClass()){
-			if(this.getIdZoo().equals(((EspacoReservavel) o).getIdZoo())){
-				res = true;
-			}
-		}
-		return res;
-	}
+	
 }

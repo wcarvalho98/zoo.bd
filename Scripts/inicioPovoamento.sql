@@ -144,7 +144,7 @@ INSERT INTO `incidente` (`seq`,`descr`) VALUES (1,'Infecção alimentícia no re
 
 INSERT INTO `item_estoque` (`cod_prod_ref`,`id`,`qtd`,`data_entrada`,`vl_compra`,`data_validade`,`id_animal`) VALUES (1,3,20,'2017-12-23',219.64,'2019-12-23',4),(2,1,55,'2017-12-20',800.51,'2018-06-20',2),(3,2,49,'2017-12-22',5015.6,'2018-03-22',1),(4,5,102,'2017-12-21',4264.32,'2019-12-21',3),(5,6,80,'2018-01-05',2765.34,'2022-01-05',7);
 
-INSERT INTO `servico` (`id`,`descr`,`valor`) VALUES (1,'Manutenção jaula',100.00),(2,'Manutenção jaula',51.30),(3,'Manutenção jaula',98.28),(4,'Limpeza zoologico',207.89),(5,'Limpeza zoologico',402.01),(6,'Transporte de alimento',591.09),(7,'Transporte de alimento',765.50),(8,'Manutenção jaula',1070.35),(9,'Limpeza zoologico',930.08),(10,'Transporte de alimento',479.90);
+INSERT INTO `servico` (`id`,`descr`,`valor`) VALUES (1,'Manutenção jaula  - Área 1',100.00),(2,'Manutenção jaula  - Área 2',51.30),(3,'Manutenção jaula  - Área 3',98.28),(4,'Limpeza zoologico - Área 1',207.89),(5,'Limpeza zoologico  - Área 3',402.01),(6,'Transporte de alimento  - Área 2',591.09),(7,'Transporte de alimento  - Área 1',765.50),(8,'Manutenção jaula  - Área 4',1070.35),(9,'Limpeza zoologico  - Área 2',930.08),(10,'Transporte de alimento  - Área 3',479.90);
 
 INSERT INTO `item_servico` (`idPed`,`idServ`,`qtd`,`vl_unitario`,`status_item`,`dt_realizacao`) VALUES (1,1,1,100.00,0,NULL),(2,2,1,51.30,1,'2017-07-15'),(3,3,1,98.28,0,NULL),(4,4,1,207.89,1,'2017-06-08'),(5,5,1,402.01,0,NULL),(6,6,1,591.09,0,NULL),(7,7,1,765.50,1,'2018-01-07'),(8,8,1,1070.35,1,'2016-06-08'),(9,9,1,930.08,0,NULL),(10,10,1,479.90,0,NULL);
 
@@ -161,6 +161,8 @@ INSERT INTO `pode_ter` (`id_jaula`,`seq`,`data_incidente`,`houve_morte`) VALUES 
 INSERT INTO `tratamento` (`id_tratamento`,`em_andamento`,`data_inicio`,`data_fim`,`resultado`,`obs`,`id_consulta`) VALUES (1,0,'2018-01-10','2018-01-12',1,'Tratamento com sucesso',5),(2,1,'2018-01-11','2018-01-18',0,'Reagindo bem ao tratamento',6),(3,1,'2018-01-12','2018-01-19',0,'Pouca reação ao tratamento',7),(4,0,'2018-01-13','2018-01-15',0,'Sem reação ao tratamento',8),(5,0,'2018-01-14','2018-01-16',1,'Tratamento com sucesso',9);
 
 INSERT INTO `prescricao` (`id_medicamento`,`id_tratamento`,`posologia`) VALUES (1,3,'1 g'),(2,2,'30 mg'),(6,1,'50 mg'),(6,4,'130 mg'),(6,5,'550 mg');
+
+INSERT INTO `trata` (`id_medicamento`,`id_doenca`) VALUES (1,'3'),(2,'2'),(3,'2'),(4,'1'),(5,'3'),(6,'1'),(6,'4'),(6,'5'),(7,'4'),(8,'2');
 
 
 

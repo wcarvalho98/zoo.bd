@@ -7,5 +7,38 @@
 package br.ufrpe.zoologico.negocio.beans;
 
 public class Prescricao {
+	private Tratamento tratamento;
+	private Medicamento medicamento;
+	private String posologia;
+	
+	public Prescricao(Tratamento tratamento, Medicamento medicamento, String dosagem){
+		this.tratamento = tratamento;
+		this.medicamento = medicamento;
+		this.posologia = dosagem;
+	}
 
+	public Tratamento getTratamento() {
+		return tratamento;
+	}
+
+	public void setTratamento(Tratamento tratamento) {
+		this.tratamento = tratamento;
+	}
+
+	public Medicamento getMedicamento() {
+		return medicamento;
+	}
+
+	public void setMedicamento(Medicamento medicamento) {
+		this.medicamento = medicamento;
+	}
+
+	public String getPosologia() {
+		return posologia;
+	}
+
+	public void setPosologia(String posologia) {
+		this.posologia = posologia;
+	}
+	
 }

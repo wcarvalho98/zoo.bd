@@ -7,41 +7,25 @@
 package br.ufrpe.zoologico.negocio.beans;
 
 public class Dia {
-	private String fone;
-	private int idZoo;
+	private int seq;
+	private String desc;
 	
-	public Dia(String fone, int idZoo){
-		this.setFone(fone);
-		this.setIdZoo(idZoo);
+	public Dia(String desc){
+		this.desc = desc;
 	}
 	
-	/**
-	 * Metodo: getFone
-	 * @return fone
-	 */
-	public String getFone() {
-		return fone;
+	public int getSeq() {
+		return seq;
 	}
-	/**
-	 * Metodo: setFone
-	 * @param fone the fone to set
-	 */
-	public void setFone(String fone) {
-		this.fone = fone;
+	public void setSeq(int seq) {
+		this.seq = seq;
 	}
-	/**
-	 * Metodo: getIdZoo
-	 * @return idZoo
-	 */
-	public Integer getIdZoo() {
-		return idZoo;
+	public String getDesc() {
+		return desc;
 	}
-	/**
-	 * Metodo: setIdZoo
-	 * @param idZoo the idZoo to set
-	 */
-	public void setIdZoo(Integer idZoo) {
-		this.idZoo = idZoo;
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
+	
 	
 }

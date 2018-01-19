@@ -6,42 +6,50 @@
  */
 package br.ufrpe.zoologico.negocio.beans;
 
+import java.time.LocalDateTime;
+
 public class Ponto {
-	private String fone;
-	private int idZoo;
+	private LocalDateTime data_hora_inicial;
+	private LocalDateTime data_hora_fim;
+	private boolean faltou;
+	private Funcionario funcionario;
 	
-	public Ponto(String fone, int idZoo){
-		this.setFone(fone);
-		this.setIdZoo(idZoo);
+	public Ponto(LocalDateTime chegou, LocalDateTime saiu, boolean faltou, Funcionario funcionario){
+		this.data_hora_inicial = chegou;
+		this.data_hora_fim = saiu;
+		this.faltou = faltou;
+		this.funcionario = funcionario;
 	}
-	
-	/**
-	 * Metodo: getFone
-	 * @return fone
-	 */
-	public String getFone() {
-		return fone;
+
+	public LocalDateTime getData_hora_inicial() {
+		return data_hora_inicial;
 	}
-	/**
-	 * Metodo: setFone
-	 * @param fone the fone to set
-	 */
-	public void setFone(String fone) {
-		this.fone = fone;
+
+	public void setData_hora_inicial(LocalDateTime data_hora_inicial) {
+		this.data_hora_inicial = data_hora_inicial;
 	}
-	/**
-	 * Metodo: getIdZoo
-	 * @return idZoo
-	 */
-	public Integer getIdZoo() {
-		return idZoo;
+
+	public LocalDateTime getData_hora_fim() {
+		return data_hora_fim;
 	}
-	/**
-	 * Metodo: setIdZoo
-	 * @param idZoo the idZoo to set
-	 */
-	public void setIdZoo(Integer idZoo) {
-		this.idZoo = idZoo;
+
+	public void setData_hora_fim(LocalDateTime data_hora_fim) {
+		this.data_hora_fim = data_hora_fim;
 	}
-	
+
+	public boolean isFaltou() {
+		return faltou;
+	}
+
+	public void setFaltou(boolean faltou) {
+		this.faltou = faltou;
+	}
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
 }

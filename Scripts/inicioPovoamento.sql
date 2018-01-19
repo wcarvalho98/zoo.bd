@@ -155,9 +155,11 @@ INSERT INTO `item_servico` (`idPed`,`idServ`,`qtd`,`vl_unitario`,`status_item`,`
 
 INSERT INTO `medicamento` (`id_medicamento`,`nome`,`isAtivo`,`descricao_frequencia`,`bula`) VALUES (1,'Albesatran',1,'12 em 12 hrs/7 dias',NULL),(2,'Cominutran',0,'8 em 8 hrs/7 dias',NULL),(3,'Centireum',0,'12 em 12 hrs/7 dias',NULL),(4,'Philotiscopo',1,'24 em 24 hrs/10 dias',NULL),(5,'Adenalzina',1,'48 em 48 hrs/16 dias',NULL),(6,'Aceptina',1,'4 em 4 hrs/2 dias',NULL),(7,'Mericutan',0,'Vide a bula',NULL),(8,'Mercivutan',0,'Vide a bula',NULL);
 
-INSERT INTO `nota_fiscal` (`NFE`,`ICMS`,`valor_total`,`vl_total_desconto`,`data_NF`) VALUES (1,26.41,126.41,113.77,'2017-12-20'),(2,20.70,72.00,64.80,'2017-12-25'),(3,48.68,146.96,132.26,'2018-01-03'),(4,134.50,342.39,308.15,'2018-01-06'),(5,64.35,466.36,419.72,'2017-12-17'),(6,86.50,677.59,609.83,'2017-11-27'),(7,76.13,841.63,757.47,'2017-11-07'),(8,65.77,1136.12,1022.51,'2017-10-18'),(9,55.40,985.48,886.94,'2017-09-28'),(10,45.04,524.94,472.45,'2017-09-08');
+INSERT INTO `nota_fiscal` (`NFE`,`ICMS`,`valor_total`,`vl_total_desconto`,`data_NF`) VALUES (1,26.41,126.41,113.77,'2018-01-16'),(2,20.70,72.00,64.80,'2017-07-10'),(3,48.68,146.96,132.26,'2018-01-14'),(4,134.50,342.39,308.15,'2017-05-06'),(5,64.35,466.36,419.72,'2018-01-10'),(6,86.50,677.59,609.83,'2018-01-10'),(7,76.13,841.63,757.47,'2018-01-06'),(8,65.77,1136.12,1022.51,'2016-06-08'),(9,55.40,985.48,886.94,'2018-01-11'),(10,45.04,524.94,472.45,'2018-01-09');
 
 INSERT INTO `tipo_pagamento` (`cod`,`descr`) VALUES (1,'Crédito'),(2,'Débito'),(3,'À vista'),(4,'À prazo');
+
+INSERT INTO `pagamento` (`cod`,`data_pagamento`,`stats`,`vl_pago`,`tipo_pag`,`idFatura`,`NFE`) VALUES (1,'2018-01-16','Em andamento',113.769,1,1,1),(2,'2017-07-10','A caminho',64.8,1,2,2),(3,'2018-01-14','Em andamento',132.264,1,3,3),(4,'2017-05-06','Entregue',308.151,4,4,4),(5,'2018-01-10','Em andamento',419.724,2,5,5),(6,'2018-01-10','Em andamento',609.8301,2,6,6),(7,'2018-01-06','A caminho',757.4706,3,7,7),(8,'2016-06-08','A caminho',1022.5071,1,8,8),(9,'2018-01-11','Entregue',886.9356,3,9,9),(10,'2018-01-09','Entregue',472.4451,1,10,10);
 
 
 

@@ -527,7 +527,7 @@ create table if not exists Pagamento(
 	cod int auto_increment, 
 	data_pagamento date, 
     stats varchar(50), 
-    vl_pago double, 
+    vl_pago double(8,2), 
     tipo_pag int, 
     idFatura int not null unique, 
     NFE int unique,

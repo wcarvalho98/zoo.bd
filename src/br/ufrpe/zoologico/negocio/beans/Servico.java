@@ -7,41 +7,86 @@
 package br.ufrpe.zoologico.negocio.beans;
 
 public class Servico {
-	private String fone;
-	private int idZoo;
+	private int id;
+	private String descr;
+	private double valor;
+	/**
+	 * @param id
+	 * @param descr
+	 * @param valor
+	 */
+	public Servico(int id, String descr, double valor) {
+		super();
+		this.id = id;
+		this.descr = descr;
+		this.valor = valor;
+	}
+	/**
+	 * Metodo: getId
+	 * @return id
+	 */
+	public int getId() {
+		return id;
+	}
+	/**
+	 * Metodo: setId
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+	/**
+	 * Metodo: getDescr
+	 * @return descr
+	 */
+	public String getDescr() {
+		return descr;
+	}
+	/**
+	 * Metodo: setDescr
+	 * @param descr the descr to set
+	 */
+	public void setDescr(String descr) {
+		this.descr = descr;
+	}
+	/**
+	 * Metodo: getValor
+	 * @return valor
+	 */
+	public double getValor() {
+		return valor;
+	}
+	/**
+	 * Metodo: setValor
+	 * @param valor the valor to set
+	 */
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Servico other = (Servico) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+	@Override
+	public String toString() {
+		return "Servico [id=" + id + ", descr=" + descr + ", valor=" + valor + "]";
+	}
 	
-	public Servico(String fone, int idZoo){
-		this.setFone(fone);
-		this.setIdZoo(idZoo);
-	}
-	
-	/**
-	 * Metodo: getFone
-	 * @return fone
-	 */
-	public String getFone() {
-		return fone;
-	}
-	/**
-	 * Metodo: setFone
-	 * @param fone the fone to set
-	 */
-	public void setFone(String fone) {
-		this.fone = fone;
-	}
-	/**
-	 * Metodo: getIdZoo
-	 * @return idZoo
-	 */
-	public Integer getIdZoo() {
-		return idZoo;
-	}
-	/**
-	 * Metodo: setIdZoo
-	 * @param idZoo the idZoo to set
-	 */
-	public void setIdZoo(Integer idZoo) {
-		this.idZoo = idZoo;
-	}
 	
 }

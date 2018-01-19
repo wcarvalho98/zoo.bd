@@ -149,5 +149,7 @@ INSERT INTO `incidente` (`seq`,`descr`) VALUES (1,'Infecção alimentícia no re
 
 INSERT INTO `item_estoque` (`cod_prod_ref`,`id`,`qtd`,`data_entrada`,`vl_compra`,`data_validade`,`id_animal`) VALUES (1,3,20,'2017-12-23',219.64,'2019-12-23',4),(2,1,55,'2017-12-20',800.51,'2018-06-20',2),(3,2,49,'2017-12-22',5015.6,'2018-03-22',1),(4,5,102,'2017-12-21',4264.32,'2019-12-21',3),(5,6,80,'2018-01-05',2765.34,'2022-01-05',7);
 
+INSERT INTO `servico` (`id`,`descr`,`valor`) VALUES (1,'Manutenção jaula',200.00),(2,'Manutenção jaula',325.20),(3,'Manutenção jaula',246.34),(4,'Limpeza zoologico',956.64),(5,'Limpeza zoologico',1495.42),(6,'Transporte de alimento',2034.20),(7,'Transporte de alimento',2572.98),(8,'Manutenção jaula',321.84),(9,'Limpeza zoologico',964.15),(10,'Transporte de alimento',1648.54),(11,'Manutenção jaula',482.92),(12,'Limpeza zoologico',404.06);
+
 
 

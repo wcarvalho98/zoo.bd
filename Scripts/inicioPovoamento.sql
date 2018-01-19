@@ -1,7 +1,7 @@
 use zoologico;
 insert into Zoologico (idZoo,cnpj,nome,razao_social, hr_inic_func, hr_fim) VALUES (1, '12345678910123', 'Zootropia', 'sociável', '08:00:00', '20:00:00');
 
-insert into fones(idZoo, numero) VALUES (1, '81-3255-9988'), (1, '81-3433-9988'), (1,'81-33333-8888');    
+insert into fones(idZoo, numero) VALUES (1, '81-3255-9988'), (1, '81-3433-9988'), (1,'81-3333-8888');    
 
 #insert into docs (idZoo, idDocs, docs) values (1,1, load_file("C:/Users/Pedro/Desktop/scripts/docs/teste.txt")),
 #											  (1,2, load_file("C:/Users/Pedro/Desktop/scripts/docs/teste1.txt")),
@@ -100,7 +100,7 @@ insert into Especie_indicada (id_jaula, seq) VALUES (6,1),(4,2),(6,3), (3,4),(2,
 
 INSERT INTO `animal` (`id`,`nome`,`vivo`,`dt_nasc`,`dt_falecimento`,`idade`,`nome_vulgar`,`obs`,`id_zoo`,`id_jaula`,`ordem`,`genero`,`especie`) VALUES (1,'Leão',1,'2018-01-04',NULL,0,'João','Recém-nascido',1,1,6,7,7),(2,'Cachorro',1,'2015-02-03',NULL,3,'Júnior',NULL,1,2,6,8,9),(3,'Lobo',0,'2000-07-01','2017-06-05',6,'Nino',NULL,1,3,6,8,10),(4,'Gato',1,'2006-09-04',NULL,9,'Tica',NULL,1,3,6,9,11),(5,'Aranha Armadeira',1,NULL,NULL,NULL,'Ariana','Data de nascimento indefinida',1,4,7,10,NULL),(6,'Escorpião Marrom',0,'2016-10-14','2017-02-17',0,'Enzo',NULL,1,5,8,11,12),(7,'Tubarão Branco',1,'1997-08-17',NULL,20,'Bibito','Cuidados especiais',1,6,9,12,13);
 
-INSERT INTO `consulta` (`id_consulta`,`dat_consulta`,`obs`,`id_veterinario`,`id_animal`) VALUES (1,'2011-03-20 15:00:00','Tudo ok!','01439264834',1),(2,'2011-05-21 15:17:00','Tudo ok!','02244715739',2),(3,'2011-07-22 15:22:30','Tudo ok!','01439264834',1),(4,'2011-09-22 14:29:03','Tudo ok!','02244715739',2),(5,'2011-11-23 17:03:00','Tudo ok!','52135800926',3),(6,'2012-01-24 22:04:03','Tudo ok!','43221775479',4),(7,'2012-03-26 09:13:04','Tudo ok!','43221775479',5),(8,'2012-05-27 10:05:08','Tudo ok!','01439264834',6),(9,'2012-07-28 08:49:05','Tudo ok!','02244715739',7),(10,'2012-09-28 20:09:37','Tudo ok!','52135800926',8);
+INSERT INTO `consulta` (`id_consulta`,`dat_consulta`,`obs`,`id_veterinario`,`id_animal`) VALUES (1,'2011-03-20 15:00:00','Tudo ok!','01439264834',1),(2,'2011-05-21 15:17:00','Tudo ok!','02244715739',2),(3,'2011-07-22 15:22:30','Tudo ok!','01439264834',1),(4,'2011-09-22 14:29:03','Tudo ok!','02244715739',2),(5,'2011-11-23 17:03:00','Tudo ok!','52135800926',3),(6,'2012-01-24 22:04:03','Tudo ok!','43221775479',4),(7,'2012-03-26 09:13:04','Tudo ok!','43221775479',5),(8,'2012-05-27 10:05:08','Tudo ok!','01439264834',6),(9,'2012-07-28 08:49:05','Tudo ok!','02244715739',7),(10,'2012-09-28 20:09:37','Tudo ok!','52135800926',7);
                      
 insert into Doenca (id_doenca, descricao) VALUES
 					(1, 'Febre Leonina'),

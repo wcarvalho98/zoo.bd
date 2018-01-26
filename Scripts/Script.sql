@@ -27,3 +27,11 @@ create function disponivel_espaco (`id_espaco` int) returns date
 	end if;
  end
 $$
+
+delimiter $$
+create procedure gera_fatura(in `valor_fatura` double, in `tp_fatura` varchar(50))
+	begin
+		INSERT INTO `fatura` (`valor`,`dataDaFatura`, `vl_multa`,`stats`, `tp_fatura`) VALUES (`valor_fatura`, curdate(), 0, 'Em andamento', `tp_fatura`);
+    end
+$$
+

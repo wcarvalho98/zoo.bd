@@ -1,3 +1,4 @@
+-- Functions
 delimiter $$
 create definer = `roat`@`localhost` function oferta (idServico int, prazo date) returns bool
  begin
@@ -27,7 +28,7 @@ create function disponivel_espaco (`id_espaco` int) returns date
 	end if;
  end
 $$
-
+-- procedure
 delimiter $$
 create procedure gera_fatura(in `valor_fatura` double, in `tp_fatura` varchar(50))
 	begin
@@ -35,6 +36,7 @@ create procedure gera_fatura(in `valor_fatura` double, in `tp_fatura` varchar(50
     end
 $$
 
+-- triggers
 delimiter $$
 create trigger atualiza_estoque after update on `item_estoque`
 for each row
@@ -43,3 +45,33 @@ begin
     where cod = new.cod_prod_ref;
 end
 $$
+
+delimiter $$
+create trigger atualiza_pedido before update on `pedido_servico`
+for each row
+begin
+	if new.dt_execucao <= curdate() then
+		set new.status_pedido = 1;
+    end if;
+end
+$$
+
+delimiter $$
+create procedure  checkCate (in idS int, in idC int, out retorno bool)
+begin 
+	declare val int;
+	select sub.categ into val from sub_categoria as sub where sub.cod = @idS;
+    if (val = idC) then
+		set @retorno = true;
+	else
+		set @retorno = false;
+	end if
+end
+delimiter ;
+
+delimiter $$
+CREATE TRIGGER checaCategoria before insert ON `animal` for each row
+begin
+	call checkCate()
+end
+delimiter ;

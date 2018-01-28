@@ -4,7 +4,7 @@ use Zoologico;
 
 create table if not exists Zoologico(
 	idZoo int auto_increment, 
-    cnpj varchar(11) not null unique, 
+    cnpj varchar(14) not null unique, 
     nome varchar(30), 
     razao_social varchar(30), 
     hr_inic_func time, 
@@ -327,8 +327,9 @@ create table if not exists pode_ter(
 create table if not exists Fornecedor (
 	cod int  AUTO_INCREMENT, 
 	Nome varchar(30), 
-	cnpj varchar(11), 
-	telefone varchar(13), 
+	cnpj varchar(14), 
+	telefone_1 varchar(13), 
+	telefone_2 varchar(13),
 	ativo boolean,
     primary key(cod)
 );
@@ -343,20 +344,12 @@ create table if not exists Endereco(
     primary key(idEnd),
     foreign key(idForn) references Fornecedor(cod)
 );
-# mudei isso aqui de Telefone para TelefoneFornecedor
-create table if not exists TelefoneFornecedor(
-	idFornecedor int not null, 
-    idFone int not null unique auto_increment, 
-    telefone varchar(13), 
-    primary key (idFornecedor, idFone), 
-    foreign key (idFornecedor) references Fornecedor(cod)
-);
 
 create table if not exists Estoque(
 	id int primary key auto_increment, 
     idZoo int not null,
     descr varchar(100), 
-    localizaçao varchar(100),
+    localizacao varchar(100),
     foreign key (idZoo) references Zoologico (idZoo)
 ); 
 
@@ -464,7 +457,7 @@ create table if not exists Espacos_Reservavel(
 );
 
 create table if not exists Instituicao(
-	cnpj varchar(11) not null, 
+	cnpj varchar(14) not null, 
     nome_contato varchar(30), 
     email varchar(50), 
     telefone_1 varchar(13), 
@@ -477,7 +470,7 @@ create table if not exists Instituicao(
 create table if not exists Reserva(
 	qtd_pessoas int, 
     dt_validade date, 
-    horário time, 
+    horario time, 
     dt_reserva date, 
     valor double, 
     stats varchar(50), 
@@ -485,10 +478,8 @@ create table if not exists Reserva(
     hr_final_reser time, 
     e_cortesia varchar(200), 
     tp_evento varchar(50), 
-    
-    CNPJ varchar(11), 
+    CNPJ varchar(14), 
     id_espaco int,
-	
     primary key(CNPJ, id_espaco),
 	foreign key(CNPJ) references Instituicao(cnpj),
 	foreign key(id_espaco) references Espacos_Reservavel (id_espaco)
@@ -508,7 +499,7 @@ create table if not exists Fatura(
 );
 
 create table if not exists Reservado(
-	CNPJ varchar(11), 
+	CNPJ varchar(14), 
     id_espaco int, 
     idFatura int unique,
 	primary key(CNPJ, id_espaco),
@@ -525,9 +516,9 @@ create table if not exists Tipo_Pagamento(
 
 create table if not exists Nota_Fiscal(
 	NFE int auto_increment, 
-	ICMS double, 
-    valor_total double, 
-    vl_total_desconto double, 
+	ICMS double(8,2), 
+    valor_total double(8,2), 
+    vl_total_desconto double(8,2), 
     data_NF date,
 	primary key(NFE)
 );
@@ -536,7 +527,7 @@ create table if not exists Pagamento(
 	cod int auto_increment, 
 	data_pagamento date, 
     stats varchar(50), 
-    vl_pago double, 
+    vl_pago double(8,2), 
     tipo_pag int, 
     idFatura int not null unique, 
     NFE int unique,
@@ -557,4 +548,3 @@ create table if not exists Calendario(
     todo_list varchar(250),
 	primary key(seq)
 );
-

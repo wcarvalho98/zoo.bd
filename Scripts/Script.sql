@@ -15,15 +15,15 @@ $$
 delimiter $$
 create function disponivel_espaco (`id_espaco` int) returns date
  begin
-	declare `retorno` date;
+	declare `retorno_reserva` date;
+    declare `retorno_validade` date;
 	declare `dia_disponivel` date default curdate();
-	select dt_reserva into `retorno` from reserva where `id_espaco` = reserva.id_espaco;
-	if `dia_disponivel`!= `retorno` then
+	select dt_validade into `retorno_validade` from reserva where `id_espaco` = reserva.id_espaco;
+    select dt_reserva into `retorno_reserva` from reserva where `id_espaco` = reserva.id_espaco;
+	if `dia_disponivel` < `retorno_reserva` or `dia_disponivel` > `retorno_validade` then
 		return `dia_disponivel`;
-	else 
-		while `dia_disponivel` = `retorno` do
-			set `dia_disponivel` = adddate(`dia_disponivel`, 1);
-		end while;
+	else
+		set `dia_disponivel` = adddate(`retorno_validade`, 1);
 		return `dia_disponivel`;
 	end if;
  end

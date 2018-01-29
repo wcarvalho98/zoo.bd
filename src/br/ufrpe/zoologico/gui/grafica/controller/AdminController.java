@@ -13,10 +13,14 @@ import br.ufrpe.zoologico.negocio.beans.Funcionario;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 public class AdminController implements Initializable {
@@ -83,7 +87,7 @@ public class AdminController implements Initializable {
 	
 	@FXML
 	public void populaTabelaVeterinario() {
-		lblTabela.setText("Veterinário");
+		lblTabela.setText("Veterinï¿½rio");
 		
 	}
 	
@@ -94,7 +98,7 @@ public class AdminController implements Initializable {
 	
 	@FXML
 	public void populaTabelaFuncionario() {
-		lblTabela.setText("Funcionário");
+		lblTabela.setText("Funcionï¿½rio");
 	}
 	
 	@FXML

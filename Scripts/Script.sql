@@ -1,6 +1,6 @@
 -- Functions
 delimiter $$
-create definer = `roat`@`localhost` function oferta (idServico int, prazo date) returns bool
+create function oferta (idServico int, prazo date) returns bool
  begin
 	declare val1 date;
 	select dt_fim into val1 from presta where idServ = idServico;
@@ -57,21 +57,40 @@ end
 $$
 
 delimiter $$
-create procedure  checkCate (in idS int, in idC int, out retorno bool)
-begin 
-	declare val int;
-	select sub.categ into val from sub_categoria as sub where sub.cod = @idS;
-    if (val = idC) then
-		set @retorno = true;
-	else
-		set @retorno = false;
-	end if
+create trigger atualiza_estoque after update on `item_estoque`
+for each row
+begin
+	update `produto_ref` set `qtd_total_estoque` = new.qtd, `preco_ult_compra` = new.vl_compra
+    where cod = new.cod_prod_ref;
 end
-delimiter ;
+$$
 
 delimiter $$
-CREATE TRIGGER checaCategoria before insert ON `animal` for each row
+create trigger atualiza_pedido before update on `pedido_servico`
+for each row
 begin
-	call checkCate()
+	if new.dt_execucao <= curdate() then
+		set new.status_pedido = 1;
+    end if;
 end
-delimiter ;
+$$
+
+
+delimiter $$
+	create procedure retorna_idade(in anos int, out b int)
+		begin select year(now()) - anos into b;
+	end;
+$$
+
+delimiter $$
+create trigger idade_em_anos before update on `animal`
+for each row
+begin
+	call retorna_idade(year(new.dt_nasc), @idad);
+	set new.idade = @idad;
+end
+$$
+
+
+
+

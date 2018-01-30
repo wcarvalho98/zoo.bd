@@ -25,15 +25,8 @@ public abstract class DAO<T> {
 	}
 	
 	public void preparar(String sql) throws Exception{
-		try {
 			conectar();
 			stmt = con.prepareStatement(sql);
-		} catch(SQLException e) {
-			throw new SQLException(e);
-		}
-		finally {
-			fechar();
-		}	
 	}
 	
 	public abstract void inserir(T o) throws Exception;
@@ -41,8 +34,6 @@ public abstract class DAO<T> {
 	public abstract void remover(T o) throws Exception;
 	
 	public abstract void alterar(T o) throws Exception;
-	
-	public abstract T buscar(int id) throws Exception;
 	
 	public abstract ArrayList<T> listarTodos() throws Exception;
 	

@@ -25,7 +25,6 @@ public class DAOConsultas extends DAO<Consulta>{
 	public void alterar(Consulta o) throws Exception {
 	}
 
-	@Override
 	public Consulta buscar(int id) throws Exception {
 		return null;
 	}

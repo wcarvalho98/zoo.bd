@@ -34,7 +34,7 @@ public class DAOFone extends DAO<Fones>{
 	public void alterar(Fones o) throws Exception {
 	}
 
-	@Override
+
 	public Fones buscar(int id) throws Exception {
 		return null;
 	}

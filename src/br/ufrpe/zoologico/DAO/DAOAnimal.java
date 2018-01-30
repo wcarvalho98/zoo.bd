@@ -25,7 +25,6 @@ public class DAOAnimal extends DAO<Animal>{
 	public void alterar(Animal o) throws Exception {
 	}
 
-	@Override
 	public Animal buscar(int id) throws Exception {
 		return null;
 	}

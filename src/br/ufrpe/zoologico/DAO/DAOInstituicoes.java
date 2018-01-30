@@ -32,7 +32,6 @@ public class DAOInstituicoes extends DAO<Instituicao> {
 		// String sql = "";
 	}
 
-	@Override
 	public Instituicao buscar(int id) throws Exception {
 		return null;
 	}

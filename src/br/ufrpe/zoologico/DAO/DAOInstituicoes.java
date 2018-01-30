@@ -18,13 +18,13 @@ public class DAOInstituicoes extends DAO<Instituicao> {
 		String sql = "INSERT INTO Instituicao VALUES (" + o.getCnpj() + ", '" + o.getNome_contato() + ", '"
 				+ o.getTelefone1() + ", '" + o.getTelefone2() + ", '" + o.getRazao_social() + ", '"
 				+ o.getTipo_instituicao() + "')";
-		getComando().executeQuery(sql);
+//		getComando().executeQuery(sql);
 	}
 
 	@Override
 	public void remover(Instituicao o) throws Exception {
 		String sql = "delete from Instituicao where cnpj = '" + o.getCnpj() + "'";
-		getComando().executeQuery(sql);
+//		getComando().executeQuery(sql);
 		}
 
 	@Override
@@ -36,12 +36,12 @@ public class DAOInstituicoes extends DAO<Instituicao> {
 	public ArrayList<Instituicao> listarTodos() throws Exception {
 		String sql = "select * from Instituicao";
 		ResultSet rst;
-		rst = getComando().executeQuery(sql);
+//		rst = getComando().executeQuery(sql);
 		ArrayList<Instituicao> listaDeInstituicoes = new ArrayList<Instituicao>();
-		while(rst.next()) {
-			Instituicao a = new Instituicao(rst.getString("cnpj"), rst.getString("nome_contato"), rst.getString("email"), rst.getString("telefone_1"), rst.getString("telefone_2"), rst.getString("razao_social"), rst.getString("tipo_instituicao"));
-			listaDeInstituicoes.add(a);
-		}
+//		while(rst.next()) {
+//			Instituicao a = new Instituicao(rst.getString("cnpj"), rst.getString("nome_contato"), rst.getString("email"), rst.getString("telefone_1"), rst.getString("telefone_2"), rst.getString("razao_social"), rst.getString("tipo_instituicao"));
+//			listaDeInstituicoes.add(a);
+//		}
 		return listaDeInstituicoes;
 		
 	}

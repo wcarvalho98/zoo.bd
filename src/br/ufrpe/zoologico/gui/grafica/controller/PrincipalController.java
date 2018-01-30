@@ -22,7 +22,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 public class PrincipalController implements Initializable {

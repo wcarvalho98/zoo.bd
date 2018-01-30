@@ -6,16 +6,16 @@
  */
 package br.ufrpe.zoologico.negocio.beans;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Consulta {
 	private Veterinario veterinario;
 	private Animal animal;
 	private int id_consulta;
-	private LocalDate data;
+	private LocalDateTime data;
 	private String obs;
 	
-	public Consulta(Veterinario vet, Animal animal, LocalDate data, String obs){
+	public Consulta(Veterinario vet, Animal animal, LocalDateTime data, String obs){
 		this.veterinario = vet;
 		this.animal = animal;
 		this.data = data;
@@ -46,11 +46,11 @@ public class Consulta {
 		this.id_consulta = id_consulta;
 	}
 
-	public LocalDate getData() {
+	public LocalDateTime getData() {
 		return data;
 	}
 
-	public void setData(LocalDate data) {
+	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
 

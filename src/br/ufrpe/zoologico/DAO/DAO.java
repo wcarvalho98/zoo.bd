@@ -31,12 +31,8 @@ public abstract class DAO<T> {
 	}
 	
 	public void preparar(String sql) throws Exception{
-		try {
 			conectar();
 			stmt = con.prepareStatement(sql);
-		} catch(SQLException e) {
-			throw new SQLException(e);
-		}
 	}
 	
 	public abstract void inserir(T o) throws Exception;

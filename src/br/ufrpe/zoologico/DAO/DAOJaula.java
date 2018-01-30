@@ -11,7 +11,8 @@ import java.util.ArrayList;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
 
 public class DAOJaula extends DAO<Jaula> {
-
+	
+	
 	@Override
 	public void inserir(Jaula o) throws Exception {
 		String sql = "insert into Jaula ( `stats`, `tipo`, `dt_ultima_inspecao`, "

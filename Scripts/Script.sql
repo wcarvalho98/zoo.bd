@@ -57,15 +57,6 @@ end
 $$
 
 delimiter $$
-create trigger atualiza_estoque after update on `item_estoque`
-for each row
-begin
-	update `produto_ref` set `qtd_total_estoque` = new.qtd, `preco_ult_compra` = new.vl_compra
-    where cod = new.cod_prod_ref;
-end
-$$
-
-delimiter $$
 create trigger atualiza_pedido before update on `pedido_servico`
 for each row
 begin

@@ -14,7 +14,7 @@ public class DAOConsultas extends DAO<Consulta>{
 
 	@Override
 	public void inserir(Consulta o) throws Exception {
-		String sql = "insert into Consulta values (" + o.getId_consulta() + ", " + o.getData()
+		//String sql = "insert into Consulta values (" + o.getId_consulta() + ", " + o.getData()
 	}
 
 	@Override

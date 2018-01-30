@@ -33,11 +33,6 @@ public class DAOInstituicoes extends DAO<Instituicao> {
 	}
 
 	@Override
-	public Instituicao buscar(int id) throws Exception {
-		return null;
-	}
-
-	@Override
 	public ArrayList<Instituicao> listarTodos() throws Exception {
 		String sql = "select * from Instituicao";
 		ResultSet rst;

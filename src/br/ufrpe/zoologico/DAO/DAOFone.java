@@ -35,11 +35,6 @@ public class DAOFone extends DAO<Fones>{
 	}
 
 	@Override
-	public Fones buscar(int id) throws Exception {
-		return null;
-	}
-
-	@Override
 	public ArrayList<Fones> listarTodos() throws Exception {
 		return null;
 	}

@@ -3,12 +3,14 @@ package br.ufrpe.zoologico.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.util.ConFactory;
 
+@SuppressWarnings("unused")
 public abstract class DAO<T> {
-	private final String URL = "jdbc:mysql://localhost/zoologico", NOME = "root", SENHA = "123456";
+	private final String URL = "jdbc:mysql://localhost:3306/zoologico", NOME = "root", SENHA = "";
 	private Connection con;
 	private PreparedStatement stmt;
 	
@@ -24,6 +26,10 @@ public abstract class DAO<T> {
 		con.close();
 	}
 	
+	public void fecharStmt() throws SQLException {
+		stmt.close();
+	}
+	
 	public void preparar(String sql) throws Exception{
 		try {
 			conectar();
@@ -31,9 +37,6 @@ public abstract class DAO<T> {
 		} catch(SQLException e) {
 			throw new SQLException(e);
 		}
-		finally {
-			fechar();
-		}	
 	}
 	
 	public abstract void inserir(T o) throws Exception;
@@ -41,8 +44,6 @@ public abstract class DAO<T> {
 	public abstract void remover(T o) throws Exception;
 	
 	public abstract void alterar(T o) throws Exception;
-	
-	public abstract T buscar(int id) throws Exception;
 	
 	public abstract ArrayList<T> listarTodos() throws Exception;
 	

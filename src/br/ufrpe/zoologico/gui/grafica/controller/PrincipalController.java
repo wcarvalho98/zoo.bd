@@ -9,11 +9,15 @@ package br.ufrpe.zoologico.gui.grafica.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import br.ufrpe.zoologico.DAO.DAOAdmin;
+import br.ufrpe.zoologico.negocio.beans.Administrador;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
@@ -40,6 +44,7 @@ public class PrincipalController implements Initializable {
 	public void validaLogin() {
 		String usuario = loginId.getText();
 		String senha = senhaId.getText();
+		DAOAdmin adm = new DAOAdmin();
 		
 		if (usuario.isEmpty())
 			tooltipLogin.show(t.getCena().get(0).getWindow());
@@ -50,12 +55,33 @@ public class PrincipalController implements Initializable {
 		else
 			tooltipSenha.hide();
 		if (!senha.isEmpty() && !usuario.isEmpty()) {
-			progressId.setVisible(true);
-			loginId.setEditable(false);
-			senhaId.setEditable(false);
-			t.fecharTelaDialogo();
-			t.setCena(new Scene((Parent) t.carregarFXML("Admin")));
-			t.abrirTela();
+			Administrador o = null;
+			try {
+				o = adm.buscar(usuario);
+			} catch (Exception e) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Erro!");
+				alert.setHeaderText(null);
+				alert.setContentText("Usuário inexistente!");
+
+				alert.showAndWait();
+			}
+			if (o.getLogin().equals(usuario) && o.getSenha_de_acesso().equals(senha)) {
+				progressId.setVisible(true);
+				loginId.setEditable(false);
+				senhaId.setEditable(false);
+				t.fecharTelaDialogo();
+				t.setCena(new Scene((Parent) t.carregarFXML("Admin")));
+				t.abrirTela();
+			} else {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Erro!");
+				alert.setHeaderText(null);
+				alert.setContentText("Senha incorreta!");
+
+				alert.showAndWait();
+			}
+			
 		}
 			
 	}

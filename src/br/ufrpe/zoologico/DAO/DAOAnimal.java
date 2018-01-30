@@ -26,11 +26,6 @@ public class DAOAnimal extends DAO<Animal>{
 	}
 
 	@Override
-	public Animal buscar(int id) throws Exception {
-		return null;
-	}
-
-	@Override
 	public ArrayList<Animal> listarTodos() throws Exception {
 		return null;
 	}

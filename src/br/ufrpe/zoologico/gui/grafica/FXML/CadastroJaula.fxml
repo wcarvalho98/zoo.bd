@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.zoologico.gui.grafica.controller.CadastroJaulaController">
    <children>
-      <Label layoutX="454.0" layoutY="72.0" text="Cadastro de Jaula">
+      <Label layoutX="328.0" layoutY="64.0" text="Gerenciamento de Jaula">
          <font>
             <Font size="48.0" />
          </font>
@@ -20,7 +20,7 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <TextField layoutX="312.0" layoutY="162.0" prefHeight="8.0" prefWidth="71.0" promptText="ID">
+      <TextField fx:id="idZoo" layoutX="312.0" layoutY="162.0" prefHeight="8.0" prefWidth="71.0" promptText="ID">
          <font>
             <Font size="25.0" />
          </font>
@@ -30,7 +30,7 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <TextField layoutX="312.0" layoutY="230.0" prefHeight="45.0" prefWidth="180.0" promptText="CPF">
+      <TextField fx:id="tratador" layoutX="312.0" layoutY="230.0" prefHeight="45.0" prefWidth="180.0" promptText="CPF">
          <font>
             <Font size="25.0" />
          </font>
@@ -40,7 +40,7 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <TextField layoutX="312.0" layoutY="291.0" prefHeight="54.0" prefWidth="87.0" promptText="MAX">
+      <TextField fx:id="max" layoutX="312.0" layoutY="291.0" prefHeight="54.0" prefWidth="87.0" promptText="MAX">
          <font>
             <Font size="25.0" />
          </font>
@@ -50,19 +50,19 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <TextArea layoutX="312.0" layoutY="360.0" prefHeight="131.0" prefWidth="180.0" promptText="OBS." />
+      <TextArea fx:id="obs" layoutX="312.0" layoutY="360.0" prefHeight="131.0" prefWidth="180.0" promptText="OBS." />
       <Label layoutX="523.0" layoutY="166.0" prefHeight="45.0" prefWidth="250.0" text="Data da insperção:">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <DatePicker layoutX="792.0" layoutY="165.0" prefHeight="45.0" prefWidth="174.0" />
+      <DatePicker fx:id="dtInsp" layoutX="792.0" layoutY="165.0" prefHeight="45.0" prefWidth="174.0" />
       <Label layoutX="523.0" layoutY="235.0" prefHeight="45.0" prefWidth="290.0" text="Período da insperção:">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <TextField layoutX="827.0" layoutY="231.0" prefHeight="54.0" prefWidth="87.0" promptText="DIAS">
+      <TextField fx:id="dias" layoutX="827.0" layoutY="231.0" prefHeight="54.0" prefWidth="87.0" promptText="DIAS">
          <font>
             <Font size="25.0" />
          </font>
@@ -72,7 +72,7 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <TextField layoutX="744.0" layoutY="296.0" prefHeight="54.0" prefWidth="96.0" promptText="Altura">
+      <TextField fx:id="altura" layoutX="744.0" layoutY="296.0" prefHeight="54.0" prefWidth="96.0" promptText="Altura">
          <font>
             <Font size="25.0" />
          </font>
@@ -87,22 +87,62 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <TextField layoutX="744.0" layoutY="356.0" prefHeight="54.0" prefWidth="96.0" promptText="Larg">
+      <TextField fx:id="larg" layoutX="744.0" layoutY="356.0" prefHeight="54.0" prefWidth="96.0" promptText="Larg">
          <font>
             <Font size="25.0" />
          </font>
       </TextField>
-      <TextField layoutX="744.0" layoutY="427.0" prefHeight="54.0" prefWidth="96.0" promptText="Comp">
+      <TextField fx:id="comp" layoutX="744.0" layoutY="427.0" prefHeight="54.0" prefWidth="96.0" promptText="Comp">
          <font>
             <Font size="25.0" />
          </font>
       </TextField>
-      <Button layoutX="845.0" layoutY="565.0" mnemonicParsing="false" onAction="#confirmarCadastro" text="Confirmar Cadastro">
+      <Button layoutX="1104.0" layoutY="606.0" mnemonicParsing="false" onAction="#enter" text="Enter">
          <font>
             <Font size="36.0" />
          </font>
       </Button>
       <Button layoutX="1063.0" layoutY="60.0" mnemonicParsing="false" onAction="#voltar" text="Voltar">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Button>
+      <Label layoutX="50.0" layoutY="510.0" prefHeight="45.0" prefWidth="236.0" text="Id da Jaula:">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <TextField fx:id="idJaula" layoutX="292.0" layoutY="506.0" prefHeight="8.0" prefWidth="71.0" promptText="ID">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </TextField>
+      <Button layoutX="932.0" layoutY="356.0" mnemonicParsing="false" onAction="#passar" prefHeight="77.0" prefWidth="118.0" text="&gt;">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Button>
+      <Button layoutX="1076.0" layoutY="356.0" mnemonicParsing="false" onAction="#retornar" prefHeight="77.0" prefWidth="118.0" text="&lt;">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Button>
+      <Button layoutX="737.0" layoutY="606.0" mnemonicParsing="false" onAction="#alterar" prefHeight="77.0" prefWidth="180.0" text="Alterar">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Button>
+      <Button layoutX="520.0" layoutY="606.0" mnemonicParsing="false" onAction="#buscar" prefHeight="77.0" prefWidth="180.0" text="Buscar">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Button>
+      <Button layoutX="256.0" layoutY="606.0" mnemonicParsing="false" onAction="#remover" prefHeight="77.0" prefWidth="236.0" text="Remover">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Button>
+      <Button layoutX="38.0" layoutY="606.0" mnemonicParsing="false" onAction="#inserir" prefHeight="77.0" prefWidth="180.0" text="Inserir">
          <font>
             <Font size="36.0" />
          </font>

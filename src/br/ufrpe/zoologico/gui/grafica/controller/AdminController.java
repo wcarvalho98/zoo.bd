@@ -103,6 +103,11 @@ public class AdminController implements Initializable {
 	
 	@FXML
 	public void cadastrar() {
+		t.setScene(new Scene((Parent) t.carregarFXML("CadastroJaula")));
+		t.setDialogStage(new Stage());
+		t.getDialogStage().initModality(Modality.WINDOW_MODAL);
+		t.getDialogStage().initOwner(t.getStage());
+		t.abrirTelaDialogo();
 		
 	}
 	

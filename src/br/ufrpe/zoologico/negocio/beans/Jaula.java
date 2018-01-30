@@ -6,19 +6,22 @@
  */
 package br.ufrpe.zoologico.negocio.beans;
 
-import java.time.LocalDate;
+import java.sql.Date;
+
 
 public class Jaula {
 	private boolean stats;
-	private LocalDate dt_ultima_inspecao;
+	private Date dt_ultima_inspecao;
 	private int populacao_max;
 	private String obs;
 	private int perid_insp_dias;
 	private double altura;
 	private double largura;
 	private double profundidade;
-	private Zoo zoo;
-	private Tratador tratador;
+	private int zoo;
+	private String tratador;
+	private String tipo;
+	
 	
 	/**
 	 * @param stats
@@ -33,8 +36,8 @@ public class Jaula {
 	 * @param tratador
 	 * @param id_jaula
 	 */
-	public Jaula(boolean stats, LocalDate dt_ultima_inspecao, int populacao_max, String obs, int perid_insp_dias,
-			double altura, double largura, double profundidade, Zoo zoo, Tratador tratador, int id_jaula) {
+	public Jaula(boolean stats, Date dt_ultima_inspecao, int populacao_max, String obs, int perid_insp_dias,
+			double altura, double largura, double profundidade, int zoo, String tratador, int id_jaula, String tipo) {
 		super();
 		this.stats = stats;
 		this.dt_ultima_inspecao = dt_ultima_inspecao;
@@ -47,6 +50,7 @@ public class Jaula {
 		this.zoo = zoo;
 		this.tratador = tratador;
 		this.id_jaula = id_jaula;
+		this.setTipo(tipo);
 	}
 
 	private int id_jaula;
@@ -82,14 +86,14 @@ public class Jaula {
 	 * Metodo: getDt_ultima_inspecao
 	 * @return dt_ultima_inspecao
 	 */
-	public LocalDate getDt_ultima_inspecao() {
+	public Date getDt_ultima_inspecao() {
 		return dt_ultima_inspecao;
 	}
 	/**
 	 * Metodo: setDt_ultima_inspecao
 	 * @param dt_ultima_inspecao the dt_ultima_inspecao to set
 	 */
-	public void setDt_ultima_inspecao(LocalDate dt_ultima_inspecao) {
+	public void setDt_ultima_inspecao(Date dt_ultima_inspecao) {
 		this.dt_ultima_inspecao = dt_ultima_inspecao;
 	}
 	/**
@@ -180,32 +184,67 @@ public class Jaula {
 	 * Metodo: getZoo
 	 * @return zoo
 	 */
-	public Zoo getZoo() {
+	public int getZoo() {
 		return zoo;
 	}
 	/**
 	 * Metodo: setZoo
 	 * @param zoo the zoo to set
 	 */
-	public void setZoo(Zoo zoo) {
+	public void setZoo(int zoo) {
 		this.zoo = zoo;
 	}
 	/**
 	 * Metodo: getTratador
 	 * @return tratador
 	 */
-	public Tratador getTratador() {
+	public String getTratador() {
 		return tratador;
 	}
 	/**
 	 * Metodo: setTratador
 	 * @param tratador the tratador to set
 	 */
-	public void setTratador(Tratador tratador) {
+	public void setTratador(String tratador) {
 		this.tratador = tratador;
 	}
-	
-	public boolean equals(){
-		return false;
+	/**
+	 * Metodo: getTipo
+	 * @return tipo
+	 */
+	public String getTipo() {
+		return tipo;
 	}
+	/**
+	 * Metodo: setTipo
+	 * @param tipo the tipo to set
+	 */
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id_jaula;
+		result = prime * result + zoo;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Jaula other = (Jaula) obj;
+		if (id_jaula != other.id_jaula)
+			return false;
+		if (zoo != other.zoo)
+			return false;
+		return true;
+	}
+	
+	
 }

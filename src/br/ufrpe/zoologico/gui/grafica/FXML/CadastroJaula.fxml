@@ -117,12 +117,12 @@
             <Font size="25.0" />
          </font>
       </TextField>
-      <Button layoutX="932.0" layoutY="356.0" mnemonicParsing="false" onAction="#passar" prefHeight="77.0" prefWidth="118.0" text="&gt;">
+      <Button layoutX="700.0" layoutY="510.0" mnemonicParsing="false" onAction="#passar" prefHeight="77.0" prefWidth="118.0" text="&gt;">
          <font>
             <Font size="36.0" />
          </font>
       </Button>
-      <Button layoutX="1076.0" layoutY="356.0" mnemonicParsing="false" onAction="#retornar" prefHeight="77.0" prefWidth="118.0" text="&lt;">
+      <Button layoutX="551.0" layoutY="510.0" mnemonicParsing="false" onAction="#retornar" prefHeight="77.0" prefWidth="118.0" text="&lt;">
          <font>
             <Font size="36.0" />
          </font>

@@ -6,6 +6,8 @@
  */
 package br.ufrpe.zoologico.negocio.gerenciamento;
 
-public class gerenciamentoJaula {
+import br.ufrpe.zoologico.DAO.DAOJaula;
 
+public class gerenciamentoJaula {
+	private DAOJaula jaula;
 }

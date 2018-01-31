@@ -36,8 +36,8 @@ public class Jaula {
 	 * @param tratador
 	 * @param id_jaula
 	 */
-	public Jaula(boolean stats, Date dt_ultima_inspecao, int populacao_max, String obs, int perid_insp_dias,
-			double altura, double largura, double profundidade, int zoo, String tratador, int id_jaula, String tipo) {
+	public Jaula(int id_jaula, boolean stats, Date dt_ultima_inspecao, int populacao_max, String obs, int perid_insp_dias,
+			double altura, double largura, double profundidade, int zoo, String tratador, String tipo) {
 		super();
 		this.stats = stats;
 		this.dt_ultima_inspecao = dt_ultima_inspecao;

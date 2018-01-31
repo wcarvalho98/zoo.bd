@@ -6,12 +6,27 @@
  */
 package br.ufrpe.zoologico.DAO;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.Jaula;
 
 public class DAOJaula extends DAO<Jaula> {
 	
+	
+	private DAOJaula instance;
+	private ArrayList<Jaula> r;
+	private Jaula j;
+	
+	public DAOJaula(){
+		r = new ArrayList<>();
+	}
+	private DAOJaula getInstance(){
+		if(instance == null){
+			instance = new DAOJaula();
+		}
+		return instance;
+	}
 	
 	@Override
 	public void inserir(Jaula o) throws Exception {
@@ -50,15 +65,36 @@ public class DAOJaula extends DAO<Jaula> {
 
 	@Override
 	public void alterar(Jaula o) throws Exception {
+		String sql =  "update Jaula set";
+		preparar(sql);
+		getStmt().execute();
+		fecharStmt();
+		fechar();
 	}
 
 	@Override
 	public ArrayList<Jaula> listarTodos() throws Exception {
-		return null;
+		String sql = "slect * from Jaula";
+		preparar(sql);
+		ResultSet result = getStmt().executeQuery();
+		while(result.next()){
+			j = new Jaula();
+			r.add(j);
+		}
+		fecharStmt();
+		fechar();
+		return r;
 	}
 	
-/*	public Jaula buscar(int id) throws Exception{
-		String sql = "Select ";
+	public Jaula buscar(int id) throws Exception{
+		String sql = "Select * from Jaula Where `id_Jaula` = ?";
+		preparar(sql);
+		ResultSet result = getStmt().executeQuery();
+		j = new Jaula();
+		result.close();
+		fecharStmt();
+		fechar();
+		return j;
 	}
-*/
+
 }

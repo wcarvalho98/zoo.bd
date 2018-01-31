@@ -69,9 +69,10 @@ public class PrincipalController implements Initializable {
 				progressId.setVisible(true);
 				loginId.setEditable(false);
 				senhaId.setEditable(false);
-				t.fecharTelaDialogo();
-				t.setCena(new Scene((Parent) t.carregarFXML("Admin")));
-				t.abrirTela();
+//				t.fecharTelaDialogo();
+//				t.setCena(new Scene((Parent) t.carregarFXML("Admin")));
+//				t.abrirTela();
+				ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin());
 			} else {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Erro!");
@@ -87,16 +88,16 @@ public class PrincipalController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		t = Telas.getInstance();
-		t.getDialogStage().setResizable(false);
-		t.getDialogStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
-
-			@Override
-			public void handle(WindowEvent arg0) {
-				t.sairDoSistema();
-			}
-
-		});
+//		t = Telas.getInstance();
+//		t.getDialogStage().setResizable(false);
+//		t.getDialogStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
+//
+//			@Override
+//			public void handle(WindowEvent arg0) {
+//				t.sairDoSistema();
+//			}
+//
+//		});
 	}
 
 }

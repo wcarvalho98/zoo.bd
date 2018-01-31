@@ -173,7 +173,7 @@ public class Telas {
 			root = f.load();
 			
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.err.println("root é null, não foi possíel carregar a cena");
 		}
 
 		return root;

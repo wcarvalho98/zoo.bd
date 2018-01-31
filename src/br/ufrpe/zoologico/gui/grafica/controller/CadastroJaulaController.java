@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -21,6 +22,7 @@ public class CadastroJaulaController  implements Initializable{
 	@FXML private TextField idZoo, tratador, max, comp, larg, altura, dias, idJaula;
 	@FXML private TextArea obs;
 	@FXML private DatePicker dtInsp;
+	@FXML private Button cadas; 
 	
 	private Fachada f;
 	private int id;
@@ -35,17 +37,21 @@ public class CadastroJaulaController  implements Initializable{
 	
 	@FXML
 	public void voltar(){
-		
+	
 	}
 	
 	@FXML 
 	public void passar(){
-		
+		id++;
+		preencher(id);
 	}
 	
 	@FXML
 	public void retornar(){
-		
+		id--;
+		if(id<0)
+			id = 0;
+		preencher(id);
 	}
 	
 	@FXML 
@@ -57,6 +63,7 @@ public class CadastroJaulaController  implements Initializable{
 	public void remover(){
 		allDisable();
 		idJaula.setDisable(true);
+		
 	}
 	
 	@FXML
@@ -70,13 +77,21 @@ public class CadastroJaulaController  implements Initializable{
 		allNull();
 		allNotDisable();
 		idJaula.setDisable(true);
-		
+		cadas.setDisable(false);
+		cadas.setVisible(true);
 	}
 	
 	@FXML
 	public void buscar(){
 		allDisable();
 		idJaula.setDisable(false);
+	}
+	
+	@FXML
+	public void cadastrar(){
+		// TODO FAZER O DAOZoo E DEPOIS VOLTAR E TERMINAR CADASTRAR JAULA
+		Jaula j;
+		int idZoologico = (int) Integer.valueOf(idZoo.getText());
 	}
 	
 	private void allNotDisable(){
@@ -121,6 +136,7 @@ public class CadastroJaulaController  implements Initializable{
 		dtInsp.setUserData(null);
 		dias.setText(null);
 		dias.setPromptText("DIAS");
+		dtInsp.setValue(null);
 		idJaula.setText(null);
 		idJaula.setPromptText("ID");
 		obs.setText(null);

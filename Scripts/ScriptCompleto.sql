@@ -385,7 +385,7 @@ create table if not exists Produto_Ref(
 
 create table if not exists Item_Estoque(
 	cod_prod_ref int not null,
-    id int not null, 
+    id int not NULL auto_increment, 
     qtd int, 
     data_entrada date, 
     vl_compra double, 
@@ -398,14 +398,14 @@ create table if not exists Item_Estoque(
 );
 
 create table if not exists Servico(
-	id int,
+	id int auto_increment,
     descr varchar(200),
     valor double(8,2),
 	primary key(id)
 );
 
 create table if not exists Pedido_Servico(
-	id int,
+	id int auto_increment,
     status_pedido boolean,
     dt_execucao date,
     vl_total double(8,2),

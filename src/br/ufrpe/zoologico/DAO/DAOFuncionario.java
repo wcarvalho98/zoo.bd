@@ -14,6 +14,20 @@ import br.ufrpe.zoologico.negocio.beans.Funcionario;
 
 public class DAOFuncionario extends DAO<Funcionario> {
 
+	private static DAOFuncionario instance;
+	private ArrayList<Funcionario> r;
+	
+	private DAOFuncionario() {
+		r = new ArrayList<Funcionario>();
+	}
+	
+	public static DAOFuncionario getInstance() {
+		if (instance == null) {
+			instance = new DAOFuncionario();
+		}
+		return instance;
+	}
+	
 	@Override
 	public void inserir(Funcionario o) throws Exception {
 		String sql = "INSERT INTO `funcionario` (`CPF`,`Nome`,`especializacao`,`fone_1`,`fone_2`,`data_de_contratacao`,"
@@ -85,7 +99,6 @@ public class DAOFuncionario extends DAO<Funcionario> {
 
 	@Override
 	public ArrayList<Funcionario> listarTodos() throws Exception {
-		ArrayList<Funcionario> list = new ArrayList<Funcionario>();
 		String sql = "SELECT * FROM `funcionario`";
 		preparar(sql);
 		ResultSet rs = getStmt().executeQuery();
@@ -94,12 +107,12 @@ public class DAOFuncionario extends DAO<Funcionario> {
 				rs.getString(3), rs.getString(4), rs.getString(5),
 				rs.getDate(6).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
 				rs.getDouble(7), rs.getString(8), rs.getInt(9), rs.getInt(10));
-			list.add(o);
+			r.add(o);
 		}
 		rs.close();
 		fecharStmt();
 		fechar();
-		return list;
+		return r;
 		
 	}
 

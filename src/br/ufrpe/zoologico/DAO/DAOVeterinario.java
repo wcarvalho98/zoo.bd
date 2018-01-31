@@ -6,26 +6,107 @@
  */
 package br.ufrpe.zoologico.DAO;
 
+import java.sql.ResultSet;
+import java.time.ZoneId;
 import java.util.ArrayList;
+
+import br.ufrpe.zoologico.negocio.beans.Funcionario;
 import br.ufrpe.zoologico.negocio.beans.Veterinario;
 
 public class DAOVeterinario extends DAO<Veterinario> {
 
+	private static DAOVeterinario instance;
+	private ArrayList<Veterinario> r;
+	
+	private DAOVeterinario() {
+		r = new ArrayList<Veterinario>();
+	}
+	
+	public static DAOVeterinario getInstance() {
+		if (instance == null) {
+			instance = new DAOVeterinario();
+		}
+		return instance;
+	}
+	
 	@Override
 	public void inserir(Veterinario o) throws Exception {
+		Funcionario f = new Funcionario(o.getCpf(), o.getNome(),
+				o.getFone_1(), o.getFone_2(), o.getEspecializacao(), o.getData_de_contratacao(),
+				o.getSalario(), o.getEndereco(), o.getJornada_trabalho(), o.getId_zoo());
+		DAOFuncionario.getInstance().inserir(f);
+		String sql = "INSERT INTO `veterinario` (`CPF`,`estado`,`CRMV`) VALUES (?,?,?)";
+		preparar(sql);
+		getStmt().setString(1, o.getCpf());
+		getStmt().setString(2, o.getEstado());
+		getStmt().setString(3, o.getCrmv());
+		getStmt().execute();
+		fecharStmt();
+		fechar();
 	}
 
 	@Override
 	public void remover(Veterinario o) throws Exception {
+		Funcionario f = new Funcionario(o.getCpf(), o.getNome(),
+				o.getFone_1(), o.getFone_2(), o.getEspecializacao(), o.getData_de_contratacao(),
+				o.getSalario(), o.getEndereco(), o.getJornada_trabalho(), o.getId_zoo());
+		DAOFuncionario.getInstance().remover(f);
+		String sql = "DELETE FROM `veterinario` WHERE `CPF` = ?";
+		preparar(sql);
+		getStmt().setString(1, o.getCpf());
+		getStmt().execute();
+		fecharStmt();
+		fechar();
 	}
 
 	@Override
 	public void alterar(Veterinario o) throws Exception {
+		Funcionario f = new Funcionario(o.getCpf(), o.getNome(),
+				o.getFone_1(), o.getFone_2(), o.getEspecializacao(), o.getData_de_contratacao(),
+				o.getSalario(), o.getEndereco(), o.getJornada_trabalho(), o.getId_zoo());
+		DAOFuncionario.getInstance().alterar(f);
+		String sql = "UPDATE `veterinario` SET `estado` = ?,`CRMV` = ? WHERE `CPF` = ?";
+		preparar(sql);
+		getStmt().setString(1, o.getEstado());
+		getStmt().setString(2, o.getCrmv());
+		getStmt().setString(3, o.getCpf());
+		getStmt().execute();
+		fecharStmt();
+		fechar();
+	}
+	
+	public Veterinario buscar(String cpf) throws Exception {
+		String sql = "SELECT * FROM `veterinario` WHERE `CPF` = ?";
+		preparar(sql);
+		getStmt().setString(1, cpf);
+		ResultSet rs = getStmt().executeQuery();
+		rs.next();
+		Veterinario o = new Veterinario(rs.getString(1), rs.getString(2),
+				rs.getString(3), rs.getString(4), rs.getString(5),
+				rs.getDate(6).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+				rs.getDouble(7), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getString(11), rs.getString(12));
+		rs.close();
+		fecharStmt();
+		fechar();
+		return o;
 	}
 
 	@Override
 	public ArrayList<Veterinario> listarTodos() throws Exception {
-		return null;
+		String sql = "SELECT * FROM `veterinario`";
+		preparar(sql);
+		ResultSet rs = getStmt().executeQuery();
+		while(rs.next()) {
+			Veterinario o = new Veterinario(rs.getString(1), rs.getString(2),
+				rs.getString(3), rs.getString(4), rs.getString(5),
+				rs.getDate(6).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+				rs.getDouble(7), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getString(11), rs.getString(12));
+			r.add(o);
+		}
+		rs.close();
+		fecharStmt();
+		fechar();
+		return r;
 	}
 
 }

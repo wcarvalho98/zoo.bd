@@ -14,7 +14,7 @@ import br.ufrpe.zoologico.negocio.beans.Jaula;
 public class DAOJaula extends DAO<Jaula> {
 	
 	
-	private DAOJaula instance;
+	private static DAOJaula instance;
 	private ArrayList<Jaula> r;
 	private Jaula j;
 	
@@ -22,7 +22,7 @@ public class DAOJaula extends DAO<Jaula> {
 		r = new ArrayList<Jaula>();
 	}
 	
-	public DAOJaula getInstance(){
+	public static DAOJaula getInstance(){
 		if(instance == null){
 			instance = new DAOJaula();
 		}

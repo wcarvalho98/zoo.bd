@@ -18,6 +18,7 @@ public class Principal extends Application {
 	public void start(Stage primaryStage) {
 
 		Telas t = Telas.getInstance();
+		
 		t.setStage(primaryStage);
 		t.setP(new Principal());
 

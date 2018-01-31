@@ -21,10 +21,13 @@ public class CadastroJaulaController  implements Initializable{
 	@FXML private TextArea obs;
 	@FXML private DatePicker dtInsp;
 	
+	private Fachada f;
+	
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		allDisable();
+		f = Fachada.getInstance();
 	}
 	
 	@FXML
@@ -100,15 +103,24 @@ public class CadastroJaulaController  implements Initializable{
 	}
 	
 	private void allNull(){
+		idZoo.setText(null);
 		idZoo.setPromptText("ID");
+		tratador.setText(null);
 		tratador.setPromptText("CPF");
+		max.setText(null);
 		max.setPromptText("MAX");
+		comp.setText(null);
 		comp.setPromptText("Comp");
+		larg.setText(null);
 		larg.setPromptText("Larg");
+		altura.setText(null);
 		altura.setPromptText("Altura");
 		dtInsp.setUserData(null);
+		dias.setText(null);
 		dias.setPromptText("DIAS");
+		idJaula.setText(null);
 		idJaula.setPromptText("ID");
+		obs.setText(null);
 		obs.setPromptText("Observação");
 	}
 }

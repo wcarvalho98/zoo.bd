@@ -15,9 +15,10 @@ public class Consulta {
 	private LocalDateTime data;
 	private String obs;
 	
-	public Consulta(Veterinario vet, Animal animal, LocalDateTime data, String obs){
+	public Consulta(Veterinario vet, Animal animal, int id_consulta, LocalDateTime data, String obs){
 		this.veterinario = vet;
 		this.animal = animal;
+		this.id_consulta = id_consulta;
 		this.data = data;
 		this.obs = obs;
 	}

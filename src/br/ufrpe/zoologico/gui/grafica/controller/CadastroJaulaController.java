@@ -23,22 +23,14 @@ public class CadastroJaulaController  implements Initializable{
 	@FXML private DatePicker dtInsp;
 	
 	private Fachada f;
+	private int id;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		allDisable();
 		f = Fachada.getInstance();
-		Jaula inicio = f.listarJaulas().get(0);
-		idZoo.setText(String.valueOf(inicio.getZoo()));
-		tratador.setText(inicio.getTratador());
-		max.setText(String.valueOf(inicio.getPopulacao_max()));
-		comp.setText(String.valueOf(inicio.getProfundidade()));
-		larg.setText(String.valueOf(inicio.getLargura()));
-		altura.setText(String.valueOf(inicio.getAltura()));
-		dias.setText(String.valueOf(inicio.getPerid_insp_dias()));
-		idJaula.setText(String.valueOf(inicio.getId_jaula()));
-		obs.setText(inicio.getObs());
-		dtInsp.setValue(inicio.getDt_ultima_inspecao());;
+		id = 0;
+		preencher(id);
 	}
 	
 	@FXML
@@ -133,5 +125,19 @@ public class CadastroJaulaController  implements Initializable{
 		idJaula.setPromptText("ID");
 		obs.setText(null);
 		obs.setPromptText("Observação");
+	}
+	
+	private  void preencher(int id){
+		Jaula inicio = f.listarJaulas().get(id);
+		idZoo.setText(String.valueOf(inicio.getZoo()));
+		tratador.setText(inicio.getTratador());
+		max.setText(String.valueOf(inicio.getPopulacao_max()));
+		comp.setText(String.valueOf(inicio.getProfundidade()));
+		larg.setText(String.valueOf(inicio.getLargura()));
+		altura.setText(String.valueOf(inicio.getAltura()));
+		dias.setText(String.valueOf(inicio.getPerid_insp_dias()));
+		idJaula.setText(String.valueOf(inicio.getId_jaula()));
+		obs.setText(inicio.getObs());
+		dtInsp.setValue(inicio.getDt_ultima_inspecao());;
 	}
 }

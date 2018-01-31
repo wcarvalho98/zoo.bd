@@ -40,9 +40,9 @@ public class AdminController implements Initializable {
 	@FXML
 	private Button btnRemover;
 	@FXML
-	private TableColumn clmPrincipal;
+	private TableColumn<?, ?> clmPrincipal;
 	@FXML
-	private TableColumn clmSecundaria;
+	private TableColumn<?, ?> clmSecundaria;
 	@FXML
 	private Label lblTabela;
 	
@@ -103,6 +103,11 @@ public class AdminController implements Initializable {
 	
 	@FXML
 	public void cadastrar() {
+		t.setScene(new Scene((Parent) t.carregarFXML("CadastroJaula")));
+		t.setDialogStage(new Stage());
+		t.getDialogStage().initModality(Modality.WINDOW_MODAL);
+		t.getDialogStage().initOwner(t.getStage());
+		t.abrirTelaDialogo();
 		
 	}
 	

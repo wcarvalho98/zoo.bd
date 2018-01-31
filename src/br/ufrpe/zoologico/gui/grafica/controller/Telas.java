@@ -193,7 +193,7 @@ public class Telas {
 	 */
 	public void sairDoSistema() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Confirmação");
+		alert.setTitle("Confirmaï¿½ï¿½o");
 		alert.setHeaderText("Sair");
 		alert.setContentText("Deseja fechar o programa?");
 
@@ -204,6 +204,9 @@ public class Telas {
 			alert.close();
 		}
 	}
-
 	
+	public void setScene(Scene s) {
+		this.cena.add(s);
+	}
+
 }

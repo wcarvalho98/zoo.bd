@@ -6,8 +6,6 @@
  */
 package br.ufrpe.zoologico.negocio.beans;
 
-import java.time.LocalDate;
-
 public class ProdutoRef {
 	private int cod;
 	private String descr;

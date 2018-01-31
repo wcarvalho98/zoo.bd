@@ -6,8 +6,6 @@
  */
 package br.ufrpe.zoologico.negocio.beans;
 
-import java.time.LocalDateTime;
-
 public class Medicamento {
 	private int id;
 	private String nome;

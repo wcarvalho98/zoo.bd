@@ -82,6 +82,30 @@ begin
 end
 $$
 
+delimiter $$
+create procedure checkCate (in idS int, in idC int, out retorno bool)
+begin 
+	declare `val` int;
+	select categ into val from sub_categoria where cod = `idS`;
+    if (`val` = `idC`) then
+		set `retorno` = true;
+	else
+		set `retorno` = false;
+	end if;
+end
+$$
+
+delimiter $$
+create trigger checkCateSub before insert on `Produto_ref`
+for each row
+begin
+	declare `retorno` bool;
+	call checkCate (new.subcat, new.categ, `retorno`);
+    if (`retorno` = 0) then
+		signal sqlstate '45000' set message_text = 'Subcategoria de produto não pertence a essa Categoria', MYSQL_ERRNO = 1000; 
+    end if;
+end
+$$
 
 
 

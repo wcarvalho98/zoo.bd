@@ -7,7 +7,6 @@
 package br.ufrpe.zoologico.negocio.beans;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class Tratamento {
 	private int id;

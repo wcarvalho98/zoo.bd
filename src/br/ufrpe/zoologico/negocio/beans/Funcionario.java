@@ -17,9 +17,11 @@ public class Funcionario {
 	private LocalDate data_de_contratacao;
 	private double salario;
 	private String endereco;
+	private int jornada_trabalho;
+	private int id_zoo;
 
 	public Funcionario(String cpf, String nome, String fone1, String fone2, String especializacao,
-			LocalDate data_de_contratacao, double salario, String endereco) {
+			LocalDate data_de_contratacao, double salario, String endereco, int jornada_trabalho, int id_zoo) {
 		this.cpf = cpf;
 		this.Nome = nome;
 		this.fone_1 = fone1;
@@ -28,6 +30,8 @@ public class Funcionario {
 		this.data_de_contratacao = data_de_contratacao;
 		this.salario = salario;
 		this.endereco = endereco;
+		this.setJornada_trabalho(jornada_trabalho);
+		this.setId_zoo(id_zoo);
 	}
 
 	public String getCpf() {
@@ -92,6 +96,22 @@ public class Funcionario {
 
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
+	}
+
+	public int getJornada_trabalho() {
+		return jornada_trabalho;
+	}
+
+	public void setJornada_trabalho(int jornada_trabalho) {
+		this.jornada_trabalho = jornada_trabalho;
+	}
+
+	public int getId_zoo() {
+		return id_zoo;
+	}
+
+	public void setId_zoo(int id_zoo) {
+		this.id_zoo = id_zoo;
 	}
 	
 	

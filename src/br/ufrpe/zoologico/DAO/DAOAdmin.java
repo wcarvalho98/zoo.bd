@@ -38,7 +38,7 @@ public class DAOAdmin extends DAO<Administrador>{
 
 	@Override
 	public void alterar(Administrador o) throws Exception {
-		String sql = "UPDATE administrador SET `senha_de_acesso` = ?, `login` = ? WHERE `idZoo` = ?, `cpf` = ?";
+		String sql = "UPDATE administrador SET `senha_de_acesso` = ?, `login` = ?, `idZoo` = ? WHERE `cpf` = ?";
 		preparar(sql);
 		getStmt().setString(1, o.getSenha_de_acesso());
 		getStmt().setString(2, o.getLogin());

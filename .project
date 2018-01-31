@@ -19,7 +19,7 @@
 		<link>
 			<name>src/br/ufrpe/zoologico/gui/grafica/imagens/images.png</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Desktop/images.png</locationURI>
+			<locationURI>PROJECT_LOC/src/br/ufrpe/zoologico/gui/grafica/imagens/Zoo%20logo.jpg</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

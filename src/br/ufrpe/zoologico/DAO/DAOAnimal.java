@@ -8,14 +8,26 @@ package br.ufrpe.zoologico.DAO;
 
 import java.sql.Date;
 import java.sql.ResultSet;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
-
 import br.ufrpe.zoologico.negocio.beans.Animal;
 
 public class DAOAnimal extends DAO<Animal>{
 
+	private static DAOAnimal instance;
+	private ArrayList<Animal> r;
+	
+	private DAOAnimal() {
+		r = new ArrayList<Animal>();
+	}
+	
+	public static DAOAnimal getInstance() {
+		if (instance == null) {
+			instance = new DAOAnimal();
+		}
+		return instance;
+	}
+	
 	@Override
 	public void inserir(Animal o) throws Exception {
 		String sql = "INSERT INTO animal (`nome`,`vivo`,`dt_nasc`,`dt_falecimento`,"
@@ -94,7 +106,6 @@ public class DAOAnimal extends DAO<Animal>{
 
 	@Override
 	public ArrayList<Animal> listarTodos() throws Exception {
-		ArrayList<Animal> list = new ArrayList<Animal>();
 		String sql = "SELECT * FROM animal";
 		preparar(sql);
 		ResultSet rs = getStmt().executeQuery();
@@ -104,12 +115,12 @@ public class DAOAnimal extends DAO<Animal>{
 					rs.getDate(5).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
 					rs.getInt(6), rs.getString(7), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getInt(11),
 					rs.getInt(12), rs.getInt(13));
-			list.add(o);
+			r.add(o);
 		}
 		rs.close();
 		fecharStmt();
 		fechar();
-		return list;
+		return r;
 	}
 
 }

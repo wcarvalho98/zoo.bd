@@ -31,10 +31,14 @@ public class DAOFatura extends DAO<Fatura> {
 	
 	@Override
 	public void inserir(Fatura o) throws Exception {
-		String sql = "CALL gera_fatura(?,?)";
+		String sql = "CALL gera_fatura(?,?,?)";
 		preparar(sql);
 		getStmt().setDouble(1, o.getValor());
 		getStmt().setString(2, o.getTp_fatura());
+		if(o.getId_ped_serv() == 0)
+			getStmt().setNull(3, java.sql.Types.NULL);
+		else
+			getStmt().setInt(3, o.getId_ped_serv());
 		getStmt().execute();
 		fecharStmt();
 		fechar();

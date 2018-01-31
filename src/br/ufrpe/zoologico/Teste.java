@@ -11,10 +11,12 @@ import java.time.LocalDateTime;
 
 import br.ufrpe.zoologico.DAO.DAOAnimal;
 import br.ufrpe.zoologico.DAO.DAOConsultas;
+import br.ufrpe.zoologico.DAO.DAOFatura;
 import br.ufrpe.zoologico.DAO.DAOJaula;
 import br.ufrpe.zoologico.DAO.DAOVeterinario;
 import br.ufrpe.zoologico.negocio.beans.Animal;
 import br.ufrpe.zoologico.negocio.beans.Consulta;
+import br.ufrpe.zoologico.negocio.beans.Fatura;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
 import br.ufrpe.zoologico.negocio.beans.Veterinario;
 
@@ -26,6 +28,7 @@ public class Teste {
 	 * @return void
 	 */
 	public static void main(String[] args) {
+		/*
 		//Buscando uma consulta do banco
 		Consulta a = null;
 		try {
@@ -60,6 +63,12 @@ public class Teste {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		Fatura fat = new Fatura(0, 780, null, null, 0, null, "Débito", 0); //0 em ped_serv é o valor NULL
+		try {
+			DAOFatura.getInstance().inserir(fat);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}*/
 	}
 
 }

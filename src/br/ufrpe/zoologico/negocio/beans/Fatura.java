@@ -17,6 +17,7 @@ public class Fatura {
 	private String stats;
 	private String tp_fatura;
 	private int id_ped_serv;
+	
 	/**
 	 * @param idFatura
 	 * @param valor
@@ -38,6 +39,7 @@ public class Fatura {
 		this.tp_fatura = tp_fatura;
 		this.id_ped_serv = id_ped_serv;
 	}
+	
 	/**
 	 * Metodo: getIdFatura
 	 * @return idFatura

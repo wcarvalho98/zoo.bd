@@ -90,12 +90,12 @@ public class DAOJaula extends DAO<Jaula> {
 
 	@Override
 	public ArrayList<Jaula> listarTodos() throws Exception {
-		String sql = "slect * from Jaula";
+		String sql = "select * from Jaula";
 		preparar(sql);
 		ResultSet result = getStmt().executeQuery();
 		while(result.next()){
-			j = new Jaula(result.getInt(1), result.getBoolean(2), result.getDate(3), result.getInt(4), result.getString(5), 
-					result.getInt(6), result.getDouble(7), result.getDouble(8), result.getDouble(9), result.getInt(10), result.getString(11), result.getString(12));
+			j = new Jaula(result.getInt(1), result.getBoolean(2), result.getString(3), result.getDate(4).toLocalDate(), result.getInt(5), result.getString(6), 
+					result.getInt(7), result.getDouble(8), result.getDouble(9), result.getDouble(10), result.getInt(11), result.getString(12));
 			r.add(j);
 		}
 		fecharStmt();
@@ -105,11 +105,12 @@ public class DAOJaula extends DAO<Jaula> {
 	
 	public Jaula buscar(int id) throws Exception{
 		String sql = "Select * from Jaula Where `id_Jaula` = ?";
-		getStmt().setInt(1, id);
 		preparar(sql);
+		getStmt().setInt(1, id);
 		ResultSet result = getStmt().executeQuery();
-		j = new Jaula(result.getInt(1), result.getBoolean(2), result.getDate(3), result.getInt(4), result.getString(5), 
-				result.getInt(6), result.getDouble(7), result.getDouble(8), result.getDouble(9), result.getInt(10), result.getString(11), result.getString(12));
+		result.next();
+		j = new Jaula(result.getInt(1), result.getBoolean(2), result.getString(3), result.getDate(4).toLocalDate(), result.getInt(5), result.getString(6), 
+				result.getInt(7), result.getDouble(8), result.getDouble(9), result.getDouble(10), result.getInt(11), result.getString(12));
 		result.close();
 		fecharStmt();
 		fechar();

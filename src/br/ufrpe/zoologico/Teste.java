@@ -6,7 +6,7 @@
  */
 package br.ufrpe.zoologico;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import br.ufrpe.zoologico.DAO.DAOConsultas;
 import br.ufrpe.zoologico.DAO.DAOJaula;
@@ -32,9 +32,8 @@ public class Teste {
 		System.out.println("Obs: " + a.getObs());
 		System.out.println("Veterinario: " + a.getVeterinario().getCpf());
 		System.out.println("Animal: " + a.getAnimal().getId());
-		Date d = null;
-		d.setDate(10); d.setMonth(01); d.setYear(2018);
-		Jaula b = new Jaula(1,true,d,10,"",1,10.2,12,13,1,"12345678909","Foo");
+		LocalDate day = LocalDate.of(2018, 01, 10);
+		Jaula b = new Jaula(1,true,"Foo",day,10,"",1,10.2,12,13,1,"00011122233");
 		
 		try {
 			DAOJaula.getInstance().inserir(b);

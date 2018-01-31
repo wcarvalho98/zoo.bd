@@ -51,5 +51,12 @@ public class GerenciamentoConsultas {
 			return new ArrayList<Consulta>();
 		}
 	}
+	public void alterarConsulta(Consulta o) {
+		try {
+			consultas.alterar(o);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 }

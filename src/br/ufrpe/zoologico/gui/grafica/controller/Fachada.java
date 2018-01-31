@@ -47,6 +47,10 @@ public class Fachada {
 	public ArrayList<Consulta> listarConsultas(){
 		return consultas.listarConsultas();
 	}
+
+	public void alterarConsulta(Consulta o) {
+		consultas.alterarConsulta(o);
+	}
 	
 	public void cadastrarJaula(Jaula o){
 		jaulas.cadastrar(o);
@@ -63,5 +67,4 @@ public class Fachada {
 	public ArrayList<Instituicao> listarInstituicoes(){
 		return instituicoes.listarInstituicoes();
 	}
-	
 }

@@ -9,17 +9,21 @@ package br.ufrpe.zoologico.gui.grafica.controller;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.Consulta;
+import br.ufrpe.zoologico.negocio.beans.Instituicao;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoConsultas;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoInstituicao;
 import br.ufrpe.zoologico.negocio.gerenciamento.gerenciamentoJaula;
 
 public class Fachada {
 	private static Fachada instance = null;
 	private GerenciamentoConsultas consultas;
 	private gerenciamentoJaula jaulas;
+	private GerenciamentoInstituicao instituicoes;
 	private Fachada() {
 		consultas = new GerenciamentoConsultas();
 		jaulas = new gerenciamentoJaula();
+		instituicoes = new GerenciamentoInstituicao();
 	}
 	public static Fachada getInstance() {
 		if (instance == null) {
@@ -43,9 +47,24 @@ public class Fachada {
 	public ArrayList<Consulta> listarConsultas(){
 		return consultas.listarConsultas();
 	}
+
+	public void alterarConsulta(Consulta o) {
+		consultas.alterarConsulta(o);
+	}
 	
 	public void cadastrarJaula(Jaula o){
 		jaulas.cadastrar(o);
 	}
 	
+	public void cadastrarInstituicao(Instituicao o) {
+		instituicoes.cadastrarInstituicao(o);
+	}
+	
+	public void removerInstituicao(Instituicao o) {
+		instituicoes.removerInstituicao(o);
+	}
+	
+	public ArrayList<Instituicao> listarInstituicoes(){
+		return instituicoes.listarInstituicoes();
+	}
 }

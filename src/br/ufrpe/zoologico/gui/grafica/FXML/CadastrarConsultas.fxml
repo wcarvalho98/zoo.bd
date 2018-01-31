@@ -11,10 +11,122 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.zoologico.gui.grafica.controller.GerenciarConsultasController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.zoologico.gui.grafica.controller.GerenciarConsultasController">
    <children>
       <TabPane prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
+            <Tab text="Gerenciar">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="152.0" layoutY="217.0" text="Médico:">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="154.0" layoutY="271.0" text="Animal:">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="152.0" layoutY="321.0" text="Horário:">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="163.0" layoutY="379.0" text="Obs:">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="149.0" layoutY="163.0" text="ID Consulta:">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="idConsultaLabel" layoutX="303.0" layoutY="163.0" text="-">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="nomeMedicoLabel" layoutX="260.0" layoutY="220.0" text="-">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="nomeAnimalLabel" layoutX="254.0" layoutY="269.0" text="-">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="horarioLabel" layoutX="258.0" layoutY="319.0" text="-">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="obsLabel" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="234.0" layoutY="379.0" prefHeight="157.0" prefWidth="216.0" text="-" wrapText="true">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="391.0" layoutY="583.0" mnemonicParsing="false" onAction="#proximo" text="Próximo">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="103.0" layoutY="582.0" mnemonicParsing="false" onAction="#anterior" text="Anterior">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="265.0" layoutY="581.0" mnemonicParsing="false" onAction="#editar" text="Editar">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Button>
+                        <TableView fx:id="tabelaAnimais1" layoutX="584.0" layoutY="89.0" onMouseClicked="#selecionarAnimal1" prefHeight="145.0" prefWidth="289.0">
+                           <columns>
+                              <TableColumn fx:id="colunaNomeAnimal1" prefWidth="143.4897003173828" text="Nome" />
+                              <TableColumn fx:id="colunaIdAnimal1" prefWidth="144.51031494140625" text="ID" />
+                           </columns>
+                        </TableView>
+                        <TableView fx:id="tabelaVeterinarios1" layoutX="589.0" layoutY="312.0" onMouseClicked="#selecionarVeterinario1" prefHeight="145.0" prefWidth="289.0">
+                           <columns>
+                              <TableColumn fx:id="colunaNomeVeterinario1" prefWidth="143.4897003173828" text="Nome" />
+                              <TableColumn fx:id="colunaCpfVeterinario1" prefWidth="144.51031494140625" text="CPF" />
+                           </columns>
+                        </TableView>
+                        <DatePicker fx:id="dataDaConsultaDatePicker1" layoutX="967.0" layoutY="173.0" prefHeight="41.0" prefWidth="219.0" />
+                        <Label layoutX="933.0" layoutY="102.0" text="Data da Consulta">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="976.0" layoutY="265.0" text="Observação:">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="observacoesTextField1" layoutX="906.0" layoutY="327.0" prefHeight="109.0" prefWidth="354.0" wrapText="true" />
+                        <Label layoutX="638.0" layoutY="257.0" text="Veterinários">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="666.0" layoutY="31.0" text="Animais">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="854.0" layoutY="529.0" mnemonicParsing="false" onAction="#salvar" text="Salvar">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
           <Tab text="Cadastro">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="720.0" prefWidth="1280.0">
@@ -22,7 +134,7 @@
                         <TableView fx:id="tabelaVeterinarios" layoutX="451.0" layoutY="195.0" onMouseClicked="#selecionarVeterinario" prefHeight="431.0" prefWidth="289.0">
                           <columns>
                             <TableColumn fx:id="colunaNomeVeterinario" prefWidth="143.4897003173828" text="Nome" />
-                            <TableColumn fx:id="colunaCrmVeterinario" prefWidth="144.51031494140625" text="CRM" />
+                            <TableColumn fx:id="colunaCpfVeterinario" prefWidth="144.51031494140625" text="CPF" />
                           </columns>
                         </TableView>
                         <TableView fx:id="tabelaAnimais" layoutX="112.0" layoutY="193.0" onMouseClicked="#selecionarAnimal" prefHeight="431.0" prefWidth="289.0">

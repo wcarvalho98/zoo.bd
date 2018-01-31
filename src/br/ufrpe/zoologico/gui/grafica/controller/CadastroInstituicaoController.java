@@ -7,7 +7,10 @@
 
 package br.ufrpe.zoologico.gui.grafica.controller;
 
+import br.ufrpe.zoologico.negocio.beans.Instituicao;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 
@@ -44,13 +47,13 @@ public class CadastroInstituicaoController {
     			!telefone1TextField.getText().equals("") &&
     			!telefone2TextField.getText().equals("") ){
     		if(escolaRadioButton.isSelected()){
-    			// TODO Chamar construtor de escola
+    			Fachada.getInstance().cadastrarInstituicao(new Instituicao(cnpjTextField.getText(), nomeUsualTextField.getText(), emailTextField.getText(), telefone1TextField.getText(), telefone2TextField.getText(), razaoSocialTextField.getText(), "Escola"));
         		esvaziarCampos();
     		} else if(empresaRadioButton.isSelected()){
-    			//TODO chamar construtor de empresa
+    			Fachada.getInstance().cadastrarInstituicao(new Instituicao(cnpjTextField.getText(), nomeUsualTextField.getText(), emailTextField.getText(), telefone1TextField.getText(), telefone2TextField.getText(), razaoSocialTextField.getText(), "Empresa"));
         		esvaziarCampos();
     		} else{
-    			// Não cadastrar nada
+    			System.err.println("Nenhum campo Escola ou Empresa selecionado");
     		}
     	}
     }
@@ -69,7 +72,8 @@ public class CadastroInstituicaoController {
 
     @FXML
     void voltar() {
-    	// TODO voltar para tela anterior
+		Telas.getInstance().setCena(new Scene((Parent) Telas.getInstance().carregarFXML("Principal")));
+		Telas.getInstance().abrirTelaDialogo();
     }
     
     private void esvaziarCampos(){

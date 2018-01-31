@@ -22,6 +22,9 @@ public class Consulta {
 		this.data = data;
 		this.obs = obs;
 	}
+	public Consulta() {
+		
+	}
 
 	public Veterinario getVeterinario() {
 		return veterinario;

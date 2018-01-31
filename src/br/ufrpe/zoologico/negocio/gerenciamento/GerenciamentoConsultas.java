@@ -16,25 +16,29 @@ public class GerenciamentoConsultas {
 	
 	public void cadastrarConsulta(Consulta o) {
 		try {
-			consultas.inserir(o);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			if (o != null) {
+				consultas.inserir(o);
+			} else {
+				System.err.println("A consulta que passado como parâmetro é null");
+			}
+		} catch (Exception e) {System.err.println("O comando consultas.inserir() falhou em GerenciamentoConsultas.java");}
 	}
 	
 	public void removerConsullta(Consulta o) {
 		try {
-			consultas.remover(o);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			if (o != null) {
+				consultas.remover(o);
+			} else {
+				System.err.println("A consulta que passado como parâmetro é null");
+			}
+		} catch (Exception e) {System.err.println("O comando consultas.remover() falhou em GerenciamentoConsultas.java");}
 	}
 	
 	public Consulta buscarConsulta(int id) {
 		try {
 			return consultas.buscar(id);
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.err.println("O comando consultas.buscar(id) falhou em GerenciamentoConsultas.java");
 			return null;
 		}
 	}
@@ -43,8 +47,15 @@ public class GerenciamentoConsultas {
 		try {
 			return consultas.listarTodos();
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.err.println("O comando consultas.listarTodos() falhou em GerenciamentoConsultas.java");
 			return new ArrayList<Consulta>();
+		}
+	}
+	public void alterarConsulta(Consulta o) {
+		try {
+			consultas.alterar(o);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	

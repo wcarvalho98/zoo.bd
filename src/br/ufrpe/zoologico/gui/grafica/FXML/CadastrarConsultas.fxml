@@ -84,13 +84,13 @@
                               <Font size="24.0" />
                            </font>
                         </Button>
-                        <TableView fx:id="tabelaAnimais1" layoutX="584.0" layoutY="89.0" onMouseClicked="#selecionarAnimal" prefHeight="145.0" prefWidth="289.0">
+                        <TableView fx:id="tabelaAnimais1" layoutX="584.0" layoutY="89.0" onMouseClicked="#selecionarAnimal1" prefHeight="145.0" prefWidth="289.0">
                            <columns>
                               <TableColumn fx:id="colunaNomeAnimal1" prefWidth="143.4897003173828" text="Nome" />
                               <TableColumn fx:id="colunaIdAnimal1" prefWidth="144.51031494140625" text="ID" />
                            </columns>
                         </TableView>
-                        <TableView fx:id="tabelaVeterinarios1" layoutX="589.0" layoutY="312.0" onMouseClicked="#selecionarVeterinario" prefHeight="145.0" prefWidth="289.0">
+                        <TableView fx:id="tabelaVeterinarios1" layoutX="589.0" layoutY="312.0" onMouseClicked="#selecionarVeterinario1" prefHeight="145.0" prefWidth="289.0">
                            <columns>
                               <TableColumn fx:id="colunaNomeVeterinario1" prefWidth="143.4897003173828" text="Nome" />
                               <TableColumn fx:id="colunaCpfVeterinario1" prefWidth="144.51031494140625" text="CPF" />

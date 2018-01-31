@@ -9,6 +9,8 @@ package br.ufrpe.zoologico.gui.grafica.controller;
 import java.awt.Label;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -24,6 +26,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.util.Callback;
 
@@ -110,21 +113,45 @@ public class GerenciarConsultasController implements Initializable {
 	@FXML
 	private TextArea observacoesTextField1;
 
+	@FXML
+	private TextField minutoTextField;
+	@FXML
+	private TextField minutoTextField1;
+	@FXML
+	private TextField horaTextField;
+	@FXML
+	private TextField horaTextField1;
+
 	private Consulta aRemover;
 	private Animal animalSelecionado;
 	private Veterinario veterinarioSelecionado;
+	private Animal animalSelecionado1;
+	private Veterinario veterinarioSelecionado1;
 	private int idAtual = 0;
 	private Consulta consultaAtual;
 
 	@FXML
 	void salvar() {
-		
+		LocalDateTime aux = LocalDateTime.of(dataDaConsultaDatePicker1.getValue(),
+				LocalTime.of(Integer.parseInt(horaTextField1.getText()), Integer.parseInt(minutoTextField1.getText())));
+		if (veterinarioSelecionado1 != null && animalSelecionado1 != null && aux.isAfter(LocalDateTime.now())) {
+			consultaAtual.setAnimal(animalSelecionado1);
+			consultaAtual.setVeterinario(veterinarioSelecionado1);
+			consultaAtual.setData(aux);
+			consultaAtual.setObs(observacoesTextField1.getText());
+			Fachada.getInstance().alterarConsulta(consultaAtual);
+			preencherCamposVisao();
+			despreencherTabelas1();
+			dataDaConsultaDatePicker1.setValue(LocalDate.now());
+			horaTextField1.setText("");
+			minutoTextField1.setText("");
+		}
 	}
 
 	@FXML
 	void anterior() {
 		this.idAtual += -1;
-		ArrayList<Consulta> aux =  Fachada.getInstance().listarConsultas();
+		ArrayList<Consulta> aux = Fachada.getInstance().listarConsultas();
 		if (this.idAtual == -1) {
 			this.idAtual = aux.size() - 1;
 		}
@@ -134,13 +161,16 @@ public class GerenciarConsultasController implements Initializable {
 
 	@FXML
 	void editar() {
-
+		preencherTabelas1();
+		dataDaConsultaDatePicker1.setValue(consultaAtual.getData().toLocalDate());
+		horaTextField1.setText(consultaAtual.getData().getHour() + "");
+		minutoTextField1.setText(consultaAtual.getData().getMinute() + "");
 	}
 
 	@FXML
 	void proximo() {
 		this.idAtual += 1;
-		ArrayList<Consulta> aux =  Fachada.getInstance().listarConsultas();
+		ArrayList<Consulta> aux = Fachada.getInstance().listarConsultas();
 		if (this.idAtual == aux.size()) {
 			this.idAtual = 0;
 		}
@@ -150,10 +180,15 @@ public class GerenciarConsultasController implements Initializable {
 
 	@FXML
 	void cadastrarConsulta() {
-		if (animalSelecionado != null && veterinarioSelecionado != null
-				&& dataDaConsultaDatePicker.getValue().isAfter(LocalDate.now())) {
-			// cadastrarConsulta new Consulta(veterinarioSelecionado, animalSelecionado,
-			// dataDaConsultaDatePicker.getValue(), observacoesTextField.getText());
+		LocalDateTime aux = LocalDateTime.of(dataDaConsultaDatePicker.getValue(),
+				LocalTime.of(Integer.parseInt(horaTextField.getText()), Integer.parseInt(minutoTextField.getText())));
+		if (animalSelecionado != null && veterinarioSelecionado != null && aux.isAfter(LocalDateTime.now())) {
+			Consulta nova = new Consulta();
+			nova.setAnimal(animalSelecionado);
+			nova.setVeterinario(veterinarioSelecionado);
+			nova.setObs(observacoesTextField.getText());
+			nova.setData(aux);
+			Fachada.getInstance().cadastrarConsulta(nova);
 			animalSelecionado = null;
 			veterinarioSelecionado = null;
 		}
@@ -162,7 +197,7 @@ public class GerenciarConsultasController implements Initializable {
 	@FXML
 	void removerConsulta() {
 		if (aRemover != null) {
-			// TODO removerConsulta(aRemover)
+			Fachada.getInstance().removerConsullta(aRemover);
 		}
 	}
 
@@ -179,6 +214,16 @@ public class GerenciarConsultasController implements Initializable {
 	@FXML
 	void selecionarVeterinario() {
 		veterinarioSelecionado = tabelaVeterinarios.getSelectionModel().getSelectedItem();
+	}
+
+	@FXML
+	void selecionarVeterinario1() {
+		veterinarioSelecionado1 = tabelaVeterinarios1.getSelectionModel().getSelectedItem();
+	}
+
+	@FXML
+	void selecionarAnimal1() {
+		animalSelecionado1 = tabelaAnimais1.getSelectionModel().getSelectedItem();
 	}
 
 	@FXML
@@ -272,7 +317,7 @@ public class GerenciarConsultasController implements Initializable {
 		tabelaConsultasRemover.refresh();
 
 	}
-	
+
 	public void preencherCamposVisao() {
 		idConsultaLabel.setText(consultaAtual.getId_consulta() + "");
 		nomeMedicoLabel.setText(consultaAtual.getVeterinario().getNome());
@@ -287,7 +332,60 @@ public class GerenciarConsultasController implements Initializable {
 		consultaAtual = Fachada.getInstance().listarConsultas().get(idAtual);
 		if (consultaAtual != null) {
 			preencherCamposVisao();
-		} 
+		}
+	}
+
+	private void preencherTabelas1() {
+		ArrayList<Animal> listaDeAnimais = new ArrayList<Animal>(); // TODO listarTodosOsAnimais();
+		ArrayList<Veterinario> listaDeVeterinarios = new ArrayList<Veterinario>(); // TODO listarTodosOsVeterinarios();
+
+		colunaNomeAnimal1
+				.setCellValueFactory(new Callback<CellDataFeatures<Animal, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Animal, String> todosOsAnimais) {
+						return new SimpleStringProperty(todosOsAnimais.getValue().getNome());
+					}
+				});
+
+		colunaIdAnimal1.setCellValueFactory(new Callback<CellDataFeatures<Animal, String>, ObservableValue<String>>() {
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Animal, String> todosOsAnimais) {
+				return new SimpleStringProperty(Integer.valueOf(todosOsAnimais.getValue().getId()).toString());
+			}
+		});
+
+		colunaNomeVeterinario1
+				.setCellValueFactory(new Callback<CellDataFeatures<Veterinario, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Veterinario, String> todosOsVeterinarios) {
+						return new SimpleStringProperty(todosOsVeterinarios.getValue().getNome());
+					}
+				});
+		colunaCpfVeterinario1
+				.setCellValueFactory(new Callback<CellDataFeatures<Veterinario, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Veterinario, String> todosOsVeterinarios) {
+						return new SimpleStringProperty(todosOsVeterinarios.getValue().getCpf());
+					}
+				});
+
+		tabelaAnimais1.setItems(FXCollections.observableArrayList(listaDeAnimais));
+		tabelaAnimais1.refresh();
+
+		tabelaVeterinarios1.setItems(FXCollections.observableArrayList(listaDeVeterinarios));
+		tabelaVeterinarios1.refresh();
+
+	}
+	
+	private void despreencherTabelas1() {
+		ArrayList<Animal> listaDeAnimais = new ArrayList<Animal>();
+		ArrayList<Veterinario> listaDeVeterinarios = new ArrayList<Veterinario>();
+		
+		tabelaAnimais1.setItems(FXCollections.observableArrayList(listaDeAnimais));
+		tabelaAnimais1.refresh();
+
+		tabelaVeterinarios1.setItems(FXCollections.observableArrayList(listaDeVeterinarios));
+		tabelaVeterinarios1.refresh();
 	}
 
 }

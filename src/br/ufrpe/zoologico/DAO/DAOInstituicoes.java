@@ -60,7 +60,7 @@ public class DAOInstituicoes extends DAO<Instituicao> {
 
 	@Override
 	public ArrayList<Instituicao> listarTodos() throws Exception {
-		String sql = "select * from Instituicao";
+		String sql = "SELECT * FROM `Instituicao`";
 		ResultSet rst;
 		rst = getStmt().executeQuery(sql);
 		ArrayList<Instituicao> listaDeInstituicoes = new ArrayList<Instituicao>();

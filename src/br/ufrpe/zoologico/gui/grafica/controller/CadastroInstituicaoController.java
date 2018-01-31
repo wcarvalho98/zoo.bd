@@ -44,7 +44,7 @@ public class CadastroInstituicaoController {
     			!telefone1TextField.getText().equals("") &&
     			!telefone2TextField.getText().equals("") ){
     		if(escolaRadioButton.isSelected()){
-    			// TODO Chamar construtor de escola
+    			Fachada.getInstance().cadas
         		esvaziarCampos();
     		} else if(empresaRadioButton.isSelected()){
     			//TODO chamar construtor de empresa

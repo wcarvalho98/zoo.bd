@@ -50,16 +50,16 @@ public class AdminController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		t = Telas.getInstance();
-		t.getDialogStage().setResizable(false);
-		t.getDialogStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
-
-			@Override
-			public void handle(WindowEvent arg0) {
-				t.sairDoSistema();
-			}
-
-		});
+//		t = Telas.getInstance();
+//		t.getDialogStage().setResizable(false);
+//		t.getDialogStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
+//
+//			@Override
+//			public void handle(WindowEvent arg0) {
+//				t.sairDoSistema();
+//			}
+//
+//		});
 		clmPrincipal.setText(null);
 		clmSecundaria.setText(null);
 		tbvPrincipal.setDisable(true);
@@ -103,11 +103,7 @@ public class AdminController implements Initializable {
 	
 	@FXML
 	public void cadastrar() {
-		t.setScene(new Scene((Parent) t.carregarFXML("CadastroJaula")));
-		t.setDialogStage(new Stage());
-		t.getDialogStage().initModality(Modality.WINDOW_MODAL);
-		t.getDialogStage().initOwner(t.getStage());
-		t.abrirTelaDialogo();
+		ScreenManager.setScene(ScreenManager.getInstance().getTelaJaula());
 		
 	}
 	

@@ -85,6 +85,7 @@ public class DAOAdmin extends DAO<Administrador>{
 			Administrador o = new Administrador(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4));
 			list.add(o);
 		}
+		rs.close();
 		fecharStmt();
 		fechar();
 		return list;

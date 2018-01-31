@@ -12,6 +12,7 @@ public class Fatura {
 	private int idFatura;
 	private double valor;
 	private LocalDate dataDaFatura;
+	private LocalDate dt_paga;
 	private double vl_multa;
 	private String stats;
 	private String tp_fatura;
@@ -25,12 +26,13 @@ public class Fatura {
 	 * @param tp_fatura
 	 * @param id_ped_serv
 	 */
-	public Fatura(int idFatura, double valor, LocalDate dataDaFatura, double vl_multa, String stats, String tp_fatura,
+	public Fatura(int idFatura, double valor, LocalDate dataDaFatura, LocalDate dt_paga, double vl_multa, String stats, String tp_fatura,
 			int id_ped_serv) {
 		super();
 		this.idFatura = idFatura;
 		this.valor = valor;
 		this.dataDaFatura = dataDaFatura;
+		this.setDt_paga(dt_paga);
 		this.vl_multa = vl_multa;
 		this.stats = stats;
 		this.tp_fatura = tp_fatura;
@@ -133,6 +135,12 @@ public class Fatura {
 	 */
 	public void setId_ped_serv(int id_ped_serv) {
 		this.id_ped_serv = id_ped_serv;
+	}
+	public LocalDate getDt_paga() {
+		return dt_paga;
+	}
+	public void setDt_paga(LocalDate dt_paga) {
+		this.dt_paga = dt_paga;
 	}
 	@Override
 	public int hashCode() {

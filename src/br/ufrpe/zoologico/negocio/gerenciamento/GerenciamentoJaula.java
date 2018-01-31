@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import br.ufrpe.zoologico.DAO.DAOJaula;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
 
-public class gerenciamentoJaula {
+public class GerenciamentoJaula {
 	private DAOJaula jaula;
 	
-	public gerenciamentoJaula(){
+	public GerenciamentoJaula(){
 		jaula = new DAOJaula();
 	}
 	

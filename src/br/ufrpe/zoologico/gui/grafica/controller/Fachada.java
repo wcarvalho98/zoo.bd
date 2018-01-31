@@ -19,12 +19,12 @@ import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoConsultas;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoFuncionario;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoInstituicao;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoVeterinario;
-import br.ufrpe.zoologico.negocio.gerenciamento.gerenciamentoJaula;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoJaula;
 
 public class Fachada {
 	private static Fachada instance = null;
 	private GerenciamentoConsultas consultas;
-	private gerenciamentoJaula jaulas;
+	private GerenciamentoJaula jaulas;
 	private GerenciamentoInstituicao instituicoes;
 	private GerenciamentoAnimal animal;
 	private GerenciamentoVeterinario veterinarios;
@@ -32,7 +32,7 @@ public class Fachada {
 	
 	private Fachada() {
 		consultas = new GerenciamentoConsultas();
-		jaulas = new gerenciamentoJaula();
+		jaulas = new GerenciamentoJaula();
 		instituicoes = new GerenciamentoInstituicao();
 		animal = new GerenciamentoAnimal();
 		veterinarios = new GerenciamentoVeterinario();

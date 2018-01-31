@@ -18,10 +18,11 @@ public class DAOJaula extends DAO<Jaula> {
 	private ArrayList<Jaula> r;
 	private Jaula j;
 	
-	public DAOJaula(){
-		r = new ArrayList<>();
+	private DAOJaula(){
+		r = new ArrayList<Jaula>();
 	}
-	private DAOJaula getInstance(){
+	
+	public DAOJaula getInstance(){
 		if(instance == null){
 			instance = new DAOJaula();
 		}

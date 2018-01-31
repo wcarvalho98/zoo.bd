@@ -33,7 +33,7 @@ public class DAOConsultas extends DAO<Consulta>{
 
 	@Override
 	public void remover(Consulta o) throws Exception {
-		String sql = "DELETE FROM `consulta`s WHERE `id_consulta` = ?";
+		String sql = "DELETE FROM `consulta` WHERE `id_consulta` = ?";
 		preparar(sql);
 		getStmt().setInt(1, o.getId_consulta());
 		getStmt().execute();

@@ -156,7 +156,12 @@ public class GerenciarConsultasController implements Initializable {
 			this.idAtual = aux.size() - 1;
 		}
 		consultaAtual = aux.get(idAtual);
+		
+		horaTextField1.setText("");
+		minutoTextField1.setText("");
+		observacoesTextField1.setText("");
 		preencherCamposVisao();
+		despreencherTabelas1();
 	}
 
 	@FXML
@@ -165,6 +170,7 @@ public class GerenciarConsultasController implements Initializable {
 		dataDaConsultaDatePicker1.setValue(consultaAtual.getData().toLocalDate());
 		horaTextField1.setText(consultaAtual.getData().getHour() + "");
 		minutoTextField1.setText(consultaAtual.getData().getMinute() + "");
+		observacoesTextField1.setText(consultaAtual.getObs());
 	}
 
 	@FXML
@@ -175,7 +181,11 @@ public class GerenciarConsultasController implements Initializable {
 			this.idAtual = 0;
 		}
 		consultaAtual = aux.get(idAtual);
+		horaTextField1.setText("");
+		minutoTextField1.setText("");
+		observacoesTextField1.setText("");
 		preencherCamposVisao();
+		despreencherTabelas1();
 	}
 
 	@FXML
@@ -204,6 +214,9 @@ public class GerenciarConsultasController implements Initializable {
 	void removerConsulta() {
 		if (aRemover != null) {
 			Fachada.getInstance().removerConsullta(aRemover);
+			preencherTabelas();
+			preencherTabelas1();
+			preencherCamposVisao();
 		}
 	}
 
@@ -324,7 +337,7 @@ public class GerenciarConsultasController implements Initializable {
 
 	}
 
-	public void preencherCamposVisao() {
+	private void preencherCamposVisao() {
 		idConsultaLabel.setText(consultaAtual.getId_consulta() + "");
 		nomeMedicoLabel.setText(consultaAtual.getVeterinario().getNome() + "\nCPF: " + consultaAtual.getVeterinario().getCpf());
 		nomeAnimalLabel.setText(consultaAtual.getAnimal().getNome() + " ID: " + consultaAtual.getAnimal().getId());

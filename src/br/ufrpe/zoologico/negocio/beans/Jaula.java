@@ -6,12 +6,14 @@
  */
 package br.ufrpe.zoologico.negocio.beans;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 
 public class Jaula {
+	private int id_jaula;
 	private boolean stats;
-	private Date dt_ultima_inspecao;
+	private String tipo;
+	private LocalDate dt_ultima_inspecao;
 	private int populacao_max;
 	private String obs;
 	private int perid_insp_dias;
@@ -20,7 +22,6 @@ public class Jaula {
 	private double profundidade;
 	private int zoo;
 	private String tratador;
-	private String tipo;
 	
 	
 	/**
@@ -36,10 +37,12 @@ public class Jaula {
 	 * @param tratador
 	 * @param id_jaula
 	 */
-	public Jaula(int id_jaula, boolean stats, Date dt_ultima_inspecao, int populacao_max, String obs, int perid_insp_dias,
-			double altura, double largura, double profundidade, int zoo, String tratador, String tipo) {
+	public Jaula(int id_jaula, boolean stats, String tipo, LocalDate dt_ultima_inspecao, int populacao_max, String obs, int perid_insp_dias,
+			double altura, double largura, double profundidade, int zoo, String tratador) {
 		super();
+		this.id_jaula = id_jaula;
 		this.stats = stats;
+		this.tipo = tipo;
 		this.dt_ultima_inspecao = dt_ultima_inspecao;
 		this.populacao_max = populacao_max;
 		this.obs = obs;
@@ -49,11 +52,8 @@ public class Jaula {
 		this.profundidade = profundidade;
 		this.zoo = zoo;
 		this.tratador = tratador;
-		this.id_jaula = id_jaula;
-		this.setTipo(tipo);
 	}
 
-	private int id_jaula;
 	/**
 	 * Metodo: getId_jaula
 	 * @return id_jaula
@@ -86,14 +86,14 @@ public class Jaula {
 	 * Metodo: getDt_ultima_inspecao
 	 * @return dt_ultima_inspecao
 	 */
-	public Date getDt_ultima_inspecao() {
+	public LocalDate getDt_ultima_inspecao() {
 		return dt_ultima_inspecao;
 	}
 	/**
 	 * Metodo: setDt_ultima_inspecao
 	 * @param dt_ultima_inspecao the dt_ultima_inspecao to set
 	 */
-	public void setDt_ultima_inspecao(Date dt_ultima_inspecao) {
+	public void setDt_ultima_inspecao(LocalDate dt_ultima_inspecao) {
 		this.dt_ultima_inspecao = dt_ultima_inspecao;
 	}
 	/**

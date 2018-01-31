@@ -40,6 +40,10 @@ public class Fachada {
 		consultas.removerConsullta(o);
 	}
 	
+	public void alterarConsulta(Consulta o) {
+		consultas.alterarConsulta(o);
+	}
+	
 	public Consulta buscarConsulta(int id) {
 		return consultas.buscarConsulta(id);
 	}
@@ -47,13 +51,25 @@ public class Fachada {
 	public ArrayList<Consulta> listarConsultas(){
 		return consultas.listarConsultas();
 	}
-
-	public void alterarConsulta(Consulta o) {
-		consultas.alterarConsulta(o);
-	}
 	
 	public void cadastrarJaula(Jaula o){
 		jaulas.cadastrar(o);
+	}
+	
+	public void removerJaula(Jaula o) {
+		jaulas.remover(o);
+	}
+	
+	public void alterarJaula(Jaula o) {
+		jaulas.atualizar(o);
+	}
+	
+	public Jaula buscarJaula(int id) {
+		return jaulas.buscar(id);
+	}
+	
+	public ArrayList<Jaula> listarJaulas() {
+		return jaulas.listarTodos();
 	}
 	
 	public void cadastrarInstituicao(Instituicao o) {

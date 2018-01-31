@@ -43,12 +43,14 @@ public class gerenciamentoJaula {
 		}
 	}
 	
-	public void buscar(int id){
+	public Jaula buscar(int id){
+		Jaula result = null;
 		try {
-			jaula.buscar(id);
+			result = jaula.buscar(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return result;
 	}
 	
 	public ArrayList<Jaula> listarTodos(){

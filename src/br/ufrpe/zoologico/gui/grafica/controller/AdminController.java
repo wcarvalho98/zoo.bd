@@ -87,7 +87,7 @@ public class AdminController implements Initializable {
 	
 	@FXML
 	public void populaTabelaVeterinario() {
-		lblTabela.setText("Veterin�rio");
+		lblTabela.setText("Veterinário");
 		
 	}
 	
@@ -98,7 +98,7 @@ public class AdminController implements Initializable {
 	
 	@FXML
 	public void populaTabelaFuncionario() {
-		lblTabela.setText("Funcion�rio");
+		lblTabela.setText("Funcionário");
 	}
 	
 	@FXML

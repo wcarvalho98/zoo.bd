@@ -9,6 +9,7 @@ package br.ufrpe.zoologico.gui.grafica.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import br.ufrpe.zoologico.negocio.beans.Jaula;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
@@ -23,11 +24,21 @@ public class CadastroJaulaController  implements Initializable{
 	
 	private Fachada f;
 	
-	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		allDisable();
 		f = Fachada.getInstance();
+		Jaula inicio = f.listarJaulas().get(0);
+		idZoo.setText(String.valueOf(inicio.getZoo()));
+		tratador.setText(inicio.getTratador());
+		max.setText(String.valueOf(inicio.getPopulacao_max()));
+		comp.setText(String.valueOf(inicio.getProfundidade()));
+		larg.setText(String.valueOf(inicio.getLargura()));
+		altura.setText(String.valueOf(inicio.getAltura()));
+		dias.setText(String.valueOf(inicio.getPerid_insp_dias()));
+		idJaula.setText(String.valueOf(inicio.getId_jaula()));
+		obs.setText(inicio.getObs());
+		dtInsp.setValue(inicio.getDt_ultima_inspecao());;
 	}
 	
 	@FXML

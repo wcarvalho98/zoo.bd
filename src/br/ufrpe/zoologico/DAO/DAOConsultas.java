@@ -31,7 +31,7 @@ public class DAOConsultas extends DAO<Consulta>{
 
 	@Override
 	public void inserir(Consulta o) throws Exception {
-		String sql = "INSERT INTO `consulta` VALUES (`dat_consulta`, `obs`, `id_veterinario`, `id_animal`) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO `consulta` (`dat_consulta`, `obs`, `id_veterinario`, `id_animal`) VALUES (?, ?, ?, ?)";
 		preparar(sql);
 		Timestamp t = Timestamp.valueOf(o.getData());
 		getStmt().setTimestamp(1, t);

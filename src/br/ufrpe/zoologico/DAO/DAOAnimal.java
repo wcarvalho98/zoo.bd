@@ -8,7 +8,7 @@ package br.ufrpe.zoologico.DAO;
 
 import java.sql.Date;
 import java.sql.ResultSet;
-import java.time.ZoneId;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import br.ufrpe.zoologico.negocio.beans.Animal;
 
@@ -93,9 +93,15 @@ public class DAOAnimal extends DAO<Animal>{
 		getStmt().setInt(1, id);
 		ResultSet rs = getStmt().executeQuery();
 		rs.next();
+		LocalDate dt_nasc = null;
+		if (rs.getDate(4) != null)
+			dt_nasc = rs.getDate(4).toLocalDate();
+		LocalDate dt_falecimento = null;
+		if (rs.getDate(5) != null)
+			dt_falecimento = rs.getDate(5).toLocalDate();
 		Animal o = new Animal(rs.getInt(1), rs.getString(2), rs.getBoolean(3),
-				rs.getDate(4).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-				rs.getDate(5).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+				dt_nasc,
+				dt_falecimento,
 				rs.getInt(6), rs.getString(7), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getInt(11),
 				rs.getInt(12), rs.getInt(13));
 		rs.close();
@@ -109,10 +115,18 @@ public class DAOAnimal extends DAO<Animal>{
 		String sql = "SELECT * FROM animal";
 		preparar(sql);
 		ResultSet rs = getStmt().executeQuery();
+		LocalDate dt_nasc;
+		LocalDate dt_falecimento;
 		while(rs.next()) {
+			dt_nasc = null;
+			dt_falecimento = null;
+			if (rs.getDate(4) != null)
+				dt_nasc = rs.getDate(4).toLocalDate();
+			if (rs.getDate(5) != null)
+				dt_falecimento = rs.getDate(5).toLocalDate();
 			Animal o = new Animal(rs.getInt(1), rs.getString(2), rs.getBoolean(3),
-					rs.getDate(4).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-					rs.getDate(5).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+					dt_nasc,
+					dt_falecimento,
 					rs.getInt(6), rs.getString(7), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getInt(11),
 					rs.getInt(12), rs.getInt(13));
 			r.add(o);

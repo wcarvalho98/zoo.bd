@@ -64,8 +64,4 @@ public class Genero {
 	public void setOrdem(Ordem ordem) {
 		this.ordem = ordem;
 	}
-	
-	private boolean equals(){
-		return false;
-	}
 }

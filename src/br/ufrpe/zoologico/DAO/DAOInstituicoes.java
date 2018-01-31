@@ -8,8 +8,6 @@ package br.ufrpe.zoologico.DAO;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
-import br.ufrpe.zoologico.negocio.beans.Administrador;
 import br.ufrpe.zoologico.negocio.beans.Instituicao;
 
 public class DAOInstituicoes extends DAO<Instituicao> {

@@ -19,7 +19,7 @@ public class Teste {
 	public static void main(String[] args) {
 		Consulta a = null;
 		try {
-			a = DAOConsultas.getInstance().buscar(1);
+			a = DAOConsultas.getInstance().buscar(9);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

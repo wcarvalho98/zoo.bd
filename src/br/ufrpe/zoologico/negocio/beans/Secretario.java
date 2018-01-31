@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 public class Secretario extends Funcionario{
 	public Secretario(String cpf, String nome, String fone1, String fone2, String especializacao,
-			LocalDate data_de_contratacao, double salario, String endereco){
-		super(cpf, nome, fone1, fone2, especializacao, data_de_contratacao, salario, endereco);
+			LocalDate data_de_contratacao, double salario, String endereco, int jornada_trabalho, int id_zoo){
+		super(cpf, nome, fone1, fone2, especializacao, data_de_contratacao, salario, endereco, jornada_trabalho, id_zoo);
 	}
 }

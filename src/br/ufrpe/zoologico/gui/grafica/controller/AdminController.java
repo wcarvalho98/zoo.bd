@@ -40,9 +40,9 @@ public class AdminController implements Initializable {
 	@FXML
 	private Button btnRemover;
 	@FXML
-	private TableColumn clmPrincipal;
+	private TableColumn<?, ?> clmPrincipal;
 	@FXML
-	private TableColumn clmSecundaria;
+	private TableColumn<?, ?> clmSecundaria;
 	@FXML
 	private Label lblTabela;
 	

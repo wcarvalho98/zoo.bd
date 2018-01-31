@@ -9,5 +9,6 @@ package br.ufrpe.zoologico.negocio.gerenciamento;
 import br.ufrpe.zoologico.DAO.DAOJaula;
 
 public class gerenciamentoJaula {
+	@SuppressWarnings("unused")
 	private DAOJaula jaula;
 }

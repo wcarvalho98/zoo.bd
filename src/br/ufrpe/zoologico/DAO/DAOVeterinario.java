@@ -76,16 +76,22 @@ public class DAOVeterinario extends DAO<Veterinario> {
 	}
 	
 	public Veterinario buscar(String cpf) throws Exception {
-		String sql = "SELECT * FROM `veterinario` WHERE `CPF` = ?";
-		preparar(sql);
+		String sqlFunc = "SELECT * FROM `funcionario` WHERE `CPF` = ?";
+		String sqlVet = "SELECT * FROM `veterinario` WHERE `CPF` = ?";
+		preparar(sqlFunc);
 		getStmt().setString(1, cpf);
 		ResultSet rs = getStmt().executeQuery();
+		preparar(sqlVet);
+		getStmt().setString(1, cpf);
+		ResultSet rt = getStmt().executeQuery();
 		rs.next();
+		rt.next();
 		Veterinario o = new Veterinario(rs.getString(1), rs.getString(2),
 				rs.getString(3), rs.getString(4), rs.getString(5),
-				rs.getDate(6).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-				rs.getDouble(7), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getString(11), rs.getString(12));
+				rs.getDate(6).toLocalDate(),
+				rs.getDouble(7), rs.getString(8), rs.getInt(9), rs.getInt(10), rt.getString(2), rt.getString(3));
 		rs.close();
+		rt.close();
 		fecharStmt();
 		fechar();
 		return o;
@@ -93,17 +99,24 @@ public class DAOVeterinario extends DAO<Veterinario> {
 
 	@Override
 	public ArrayList<Veterinario> listarTodos() throws Exception {
-		String sql = "SELECT * FROM `veterinario`";
-		preparar(sql);
-		ResultSet rs = getStmt().executeQuery();
-		while(rs.next()) {
+		String sqlFunc = "SELECT * FROM `funcionario` WHERE `CPF` = ?";
+		String sqlVet = "SELECT * FROM `veterinario`";
+		preparar(sqlVet);
+		ResultSet rt = getStmt().executeQuery();
+		preparar(sqlFunc);
+		ResultSet rs = null;
+		while(rt.next()) {
+			getStmt().setString(1, rt.getString(1));
+			rs = getStmt().executeQuery();
+			rs.next();
 			Veterinario o = new Veterinario(rs.getString(1), rs.getString(2),
 				rs.getString(3), rs.getString(4), rs.getString(5),
 				rs.getDate(6).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-				rs.getDouble(7), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getString(11), rs.getString(12));
+				rs.getDouble(7), rs.getString(8), rs.getInt(9), rs.getInt(10), rt.getString(2), rt.getString(3));
 			r.add(o);
 		}
 		rs.close();
+		rt.close();
 		fecharStmt();
 		fechar();
 		return r;

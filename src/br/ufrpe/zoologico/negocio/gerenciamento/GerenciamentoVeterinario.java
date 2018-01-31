@@ -12,7 +12,11 @@ import br.ufrpe.zoologico.DAO.DAOVeterinario;
 import br.ufrpe.zoologico.negocio.beans.Veterinario;
 
 public class GerenciamentoVeterinario {
-	private DAOVeterinario veterinario = DAOVeterinario.getInstance();
+	private DAOVeterinario veterinario;
+	
+	public GerenciamentoVeterinario() {
+		this.veterinario = new DAOVeterinario();
+	}
 	
 	public void cadastrarVeterinario(Veterinario o) {
 		try {

@@ -12,7 +12,11 @@ import br.ufrpe.zoologico.DAO.DAOAnimal;
 import br.ufrpe.zoologico.negocio.beans.Animal;
 
 public class GerenciamentoAnimal {
-	private DAOAnimal animal = DAOAnimal.getInstance();
+	private DAOAnimal animal;
+	
+	public GerenciamentoAnimal() {
+		this.animal = new DAOAnimal();
+	}
 	
 	public void cadastrarAnimal(Animal o) {
 		try {

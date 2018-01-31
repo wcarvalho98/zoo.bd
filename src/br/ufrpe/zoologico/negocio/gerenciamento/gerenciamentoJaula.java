@@ -14,9 +14,8 @@ import br.ufrpe.zoologico.negocio.beans.Jaula;
 public class gerenciamentoJaula {
 	private DAOJaula jaula;
 	
-	
 	public gerenciamentoJaula(){
-		jaula = DAOJaula.getInstance();
+		jaula = new DAOJaula();
 	}
 	
 	public void cadastrar(Jaula o){

@@ -12,7 +12,11 @@ import br.ufrpe.zoologico.DAO.DAOConsultas;
 import br.ufrpe.zoologico.negocio.beans.Consulta;
 
 public class GerenciamentoConsultas {
-	private DAOConsultas consultas = DAOConsultas.getInstance();
+	private DAOConsultas consultas;
+	
+	public GerenciamentoConsultas() {
+		this.consultas = new DAOConsultas();
+	}
 	
 	public void cadastrarConsulta(Consulta o) {
 		try {

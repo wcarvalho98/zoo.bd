@@ -9,31 +9,18 @@ package br.ufrpe.zoologico.DAO;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import br.ufrpe.zoologico.gui.grafica.controller.Fachada;
 import br.ufrpe.zoologico.negocio.beans.Funcionario;
 import br.ufrpe.zoologico.negocio.beans.Veterinario;
 
 public class DAOVeterinario extends DAO<Veterinario> {
-
-	private static DAOVeterinario instance;
-	private ArrayList<Veterinario> r;
-	
-	private DAOVeterinario() {
-		r = new ArrayList<Veterinario>();
-	}
-	
-	public static DAOVeterinario getInstance() {
-		if (instance == null) {
-			instance = new DAOVeterinario();
-		}
-		return instance;
-	}
 	
 	@Override
 	public void inserir(Veterinario o) throws Exception {
 		Funcionario f = new Funcionario(o.getCpf(), o.getNome(),
 				o.getFone_1(), o.getFone_2(), o.getEspecializacao(), o.getData_de_contratacao(),
 				o.getSalario(), o.getEndereco(), o.getJornada_trabalho(), o.getId_zoo());
-		DAOFuncionario.getInstance().inserir(f);
+		Fachada.getInstance().cadastrarFuncionario(f);
 		String sql = "INSERT INTO `veterinario` (`CPF`,`estado`,`CRMV`) VALUES (?,?,?)";
 		preparar(sql);
 		getStmt().setString(1, o.getCpf());
@@ -49,7 +36,7 @@ public class DAOVeterinario extends DAO<Veterinario> {
 		Funcionario f = new Funcionario(o.getCpf(), o.getNome(),
 				o.getFone_1(), o.getFone_2(), o.getEspecializacao(), o.getData_de_contratacao(),
 				o.getSalario(), o.getEndereco(), o.getJornada_trabalho(), o.getId_zoo());
-		DAOFuncionario.getInstance().remover(f);
+		Fachada.getInstance().removerFuncionario(f);
 		String sql = "DELETE FROM `veterinario` WHERE `CPF` = ?";
 		preparar(sql);
 		getStmt().setString(1, o.getCpf());
@@ -63,7 +50,7 @@ public class DAOVeterinario extends DAO<Veterinario> {
 		Funcionario f = new Funcionario(o.getCpf(), o.getNome(),
 				o.getFone_1(), o.getFone_2(), o.getEspecializacao(), o.getData_de_contratacao(),
 				o.getSalario(), o.getEndereco(), o.getJornada_trabalho(), o.getId_zoo());
-		DAOFuncionario.getInstance().alterar(f);
+		Fachada.getInstance().alterarFuncionario(f);
 		String sql = "UPDATE `veterinario` SET `estado` = ?,`CRMV` = ? WHERE `CPF` = ?";
 		preparar(sql);
 		getStmt().setString(1, o.getEstado());
@@ -98,6 +85,7 @@ public class DAOVeterinario extends DAO<Veterinario> {
 
 	@Override
 	public ArrayList<Veterinario> listarTodos() throws Exception {
+		ArrayList<Veterinario> r = new ArrayList<Veterinario>();
 		String sqlFunc = "SELECT * FROM `funcionario` WHERE `CPF` = ?";
 		String sqlVet = "SELECT * FROM `veterinario`";
 		preparar(sqlVet);

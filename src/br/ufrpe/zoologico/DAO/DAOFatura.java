@@ -12,22 +12,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.Fatura;
+import br.ufrpe.zoologico.negocio.beans.Jaula;
 
 public class DAOFatura extends DAO<Fatura> {
-
-	private static DAOFatura instance;
-	private ArrayList<Fatura> r;
-	
-	private DAOFatura() {
-		r = new ArrayList<Fatura>();
-	}
-	
-	public static DAOFatura getInstance() {
-		if (instance == null) {
-			instance = new DAOFatura();
-		}
-		return instance;
-	}
 	
 	@Override
 	public void inserir(Fatura o) throws Exception {
@@ -94,6 +81,7 @@ public class DAOFatura extends DAO<Fatura> {
 
 	@Override
 	public ArrayList<Fatura> listarTodos() throws Exception {
+		ArrayList<Fatura> r = new  ArrayList<Fatura>();
 		String sql = "SELECT * FROM fatura";
 		preparar(sql);
 		ResultSet rs = getStmt().executeQuery();

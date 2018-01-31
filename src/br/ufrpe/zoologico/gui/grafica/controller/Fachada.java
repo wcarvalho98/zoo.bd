@@ -10,11 +10,13 @@ import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.Animal;
 import br.ufrpe.zoologico.negocio.beans.Consulta;
+import br.ufrpe.zoologico.negocio.beans.Funcionario;
 import br.ufrpe.zoologico.negocio.beans.Instituicao;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
 import br.ufrpe.zoologico.negocio.beans.Veterinario;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoAnimal;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoConsultas;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoFuncionario;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoInstituicao;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoVeterinario;
 import br.ufrpe.zoologico.negocio.gerenciamento.gerenciamentoJaula;
@@ -26,6 +28,7 @@ public class Fachada {
 	private GerenciamentoInstituicao instituicoes;
 	private GerenciamentoAnimal animal;
 	private GerenciamentoVeterinario veterinarios;
+	private GerenciamentoFuncionario funcionarios;
 	
 	private Fachada() {
 		consultas = new GerenciamentoConsultas();
@@ -34,6 +37,7 @@ public class Fachada {
 		animal = new GerenciamentoAnimal();
 		veterinarios = new GerenciamentoVeterinario();
 	}
+	
 	public static Fachada getInstance() {
 		if (instance == null) {
 			instance = new Fachada();
@@ -105,7 +109,7 @@ public class Fachada {
 		animal.alterarAnimal(o);
 	}
 	
-	public Animal buscar(int id) {
+	public Animal buscarAnimal(int id) {
 		return animal.buscar(id);
 	}
 	
@@ -131,4 +135,25 @@ public class Fachada {
 	public ArrayList<Veterinario> listarVeterinarios(){
 		return veterinarios.listarVeterinarios();
 	}
+	
+	public void cadastrarFuncionario(Funcionario o) {
+		funcionarios.cadastrarFuncionario(o);
+	}
+	
+	public void removerFuncionario(Funcionario o) {
+		funcionarios.removerFuncionario(o);
+	}
+	
+	public void alterarFuncionario(Funcionario o) {
+		funcionarios.alterarFuncionario(o);
+	}
+	
+	public Funcionario buscarFuncionario(String cpf) {
+		return funcionarios.buscarFuncionario(cpf);
+	}
+	
+	public ArrayList<Funcionario> listarFuncionarios(){
+		return funcionarios.listarFuncionarios();
+	}
+	
 }

@@ -12,20 +12,6 @@ import java.util.ArrayList;
 import br.ufrpe.zoologico.negocio.beans.Servico;
 
 public class DAOServico extends DAO<Servico> {
-
-	private static DAOServico instance;
-	private ArrayList<Servico> r;
-	
-	private DAOServico() {
-		r = new ArrayList<Servico>();
-	}
-	
-	public static DAOServico getInstance() {
-		if (instance == null) {
-			instance = new DAOServico();
-		}
-		return instance;
-	}
 	
 	@Override
 	public void inserir(Servico o) throws Exception {
@@ -75,6 +61,7 @@ public class DAOServico extends DAO<Servico> {
 
 	@Override
 	public ArrayList<Servico> listarTodos() throws Exception {
+		ArrayList<Servico> r = new ArrayList<Servico>();
 		String sql = "SELECT * FROM servico";
 		preparar(sql);
 		ResultSet rs = getStmt().executeQuery();

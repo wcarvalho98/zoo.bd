@@ -13,22 +13,6 @@ import br.ufrpe.zoologico.negocio.beans.Jaula;
 
 public class DAOJaula extends DAO<Jaula> {
 	
-	
-	private static DAOJaula instance;
-	private ArrayList<Jaula> r;
-	private Jaula j;
-	
-	private DAOJaula(){
-		r = new ArrayList<Jaula>();
-	}
-	
-	public static DAOJaula getInstance(){
-		if(instance == null){
-			instance = new DAOJaula();
-		}
-		return instance;
-	}
-	
 	@Override
 	public void inserir(Jaula o) throws Exception {
 		String sql = "insert into Jaula ( `stats`, `tipo`, `dt_ultima_inspecao`, "
@@ -87,21 +71,6 @@ public class DAOJaula extends DAO<Jaula> {
 		fecharStmt();
 		fechar();
 	}
-
-	@Override
-	public ArrayList<Jaula> listarTodos() throws Exception {
-		String sql = "select * from Jaula";
-		preparar(sql);
-		ResultSet result = getStmt().executeQuery();
-		while(result.next()){
-			j = new Jaula(result.getInt(1), result.getBoolean(2), result.getString(3), result.getDate(4).toLocalDate(), result.getInt(5), result.getString(6), 
-					result.getInt(7), result.getDouble(8), result.getDouble(9), result.getDouble(10), result.getInt(11), result.getString(12));
-			r.add(j);
-		}
-		fecharStmt();
-		fechar();
-		return r;
-	}
 	
 	public Jaula buscar(int id) throws Exception{
 		String sql = "Select * from Jaula Where `id_Jaula` = ?";
@@ -109,12 +78,28 @@ public class DAOJaula extends DAO<Jaula> {
 		getStmt().setInt(1, id);
 		ResultSet result = getStmt().executeQuery();
 		result.next();
-		j = new Jaula(result.getInt(1), result.getBoolean(2), result.getString(3), result.getDate(4).toLocalDate(), result.getInt(5), result.getString(6), 
+		Jaula j = new Jaula(result.getInt(1), result.getBoolean(2), result.getString(3), result.getDate(4).toLocalDate(), result.getInt(5), result.getString(6), 
 				result.getInt(7), result.getDouble(8), result.getDouble(9), result.getDouble(10), result.getInt(11), result.getString(12));
 		result.close();
 		fecharStmt();
 		fechar();
 		return j;
+	}
+	
+	@Override
+	public ArrayList<Jaula> listarTodos() throws Exception {
+		ArrayList<Jaula> r = new  ArrayList<Jaula>();
+		String sql = "select * from Jaula";
+		preparar(sql);
+		ResultSet result = getStmt().executeQuery();
+		while(result.next()){
+			Jaula j = new Jaula(result.getInt(1), result.getBoolean(2), result.getString(3), result.getDate(4).toLocalDate(), result.getInt(5), result.getString(6), 
+					result.getInt(7), result.getDouble(8), result.getDouble(9), result.getDouble(10), result.getInt(11), result.getString(12));
+			r.add(j);
+		}
+		fecharStmt();
+		fechar();
+		return r;
 	}
 
 }

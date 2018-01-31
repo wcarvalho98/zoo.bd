@@ -7,7 +7,6 @@
 package br.ufrpe.zoologico.DAO;
 
 import java.sql.ResultSet;
-import java.time.ZoneId;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.Funcionario;
@@ -111,7 +110,7 @@ public class DAOVeterinario extends DAO<Veterinario> {
 			rs.next();
 			Veterinario o = new Veterinario(rs.getString(1), rs.getString(2),
 				rs.getString(3), rs.getString(4), rs.getString(5),
-				rs.getDate(6).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+				rs.getDate(6).toLocalDate(),
 				rs.getDouble(7), rs.getString(8), rs.getInt(9), rs.getInt(10), rt.getString(2), rt.getString(3));
 			r.add(o);
 		}

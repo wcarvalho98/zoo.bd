@@ -6,7 +6,6 @@
  */
 package br.ufrpe.zoologico.gui.grafica.controller;
 
-import java.awt.Label;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -23,6 +22,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -232,7 +232,7 @@ public class GerenciarConsultasController implements Initializable {
 	}
 
 	private void preencherTabelas() {
-		ArrayList<Animal> listaDeAnimais = new ArrayList<Animal>(); // TODO listarTodosOsAnimais();
+		ArrayList<Animal> listaDeAnimais = Fachada.getInstance().listarAnimais();
 		ArrayList<Veterinario> listaDeVeterinarios = new ArrayList<Veterinario>(); // TODO listarTodosOsVeterinarios();
 		ArrayList<Consulta> listaDeConsultas = Fachada.getInstance().listarConsultas();
 
@@ -322,7 +322,7 @@ public class GerenciarConsultasController implements Initializable {
 		idConsultaLabel.setText(consultaAtual.getId_consulta() + "");
 		nomeMedicoLabel.setText(consultaAtual.getVeterinario().getNome());
 		nomeAnimalLabel.setText(consultaAtual.getAnimal().getNome());
-		horarioLabel.setText(consultaAtual.getData().toString());
+		horarioLabel.setText(ScreenManager.formatarLocalDateTime(consultaAtual.getData()));
 		obsLabel.setText(consultaAtual.getObs());
 	}
 
@@ -336,7 +336,7 @@ public class GerenciarConsultasController implements Initializable {
 	}
 
 	private void preencherTabelas1() {
-		ArrayList<Animal> listaDeAnimais = new ArrayList<Animal>(); // TODO listarTodosOsAnimais();
+		ArrayList<Animal> listaDeAnimais = Fachada.getInstance().listarAnimais();
 		ArrayList<Veterinario> listaDeVeterinarios = new ArrayList<Veterinario>(); // TODO listarTodosOsVeterinarios();
 
 		colunaNomeAnimal1

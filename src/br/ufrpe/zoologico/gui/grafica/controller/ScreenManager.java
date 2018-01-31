@@ -21,8 +21,6 @@ public class ScreenManager {
 	private Scene telaAdmin;
 	private Scene telaJaula;
 
-	
-
 	private static Stage mainStage;
 
 	private static ScreenManager instance;
@@ -47,7 +45,7 @@ public class ScreenManager {
 	}
 
 	public static String formatarLocalDateTime(LocalDateTime a) {
-		return formatarLocalDate(a.toLocalDate()) + " às " + formatarLocalTime(a.toLocalTime());
+		return formatarLocalDate(a.toLocalDate()) + " as " + formatarLocalTime(a.toLocalTime());
 	}
 
 	public static String formatarDayOfWeek(DayOfWeek a) {
@@ -112,6 +110,17 @@ public class ScreenManager {
 			e.printStackTrace();
 		}
 		return telaJaula;
+	}
+
+	public Scene getTelaCadastrarConsultas() {
+		try {
+			telaCadastrarConsultas = new Scene(
+					FXMLLoader.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/CadastrarConsultas.fxml")));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return telaCadastrarConsultas;
 	}
 
 }

@@ -7,7 +7,6 @@
 package br.ufrpe.zoologico.gui.grafica.controller;
 
 
-import javafx.animation.Animation.Status;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.Transition;
@@ -34,9 +33,6 @@ public class FabricaTransicao {
 		t = fadeTransition;
 		t.play();
 		return t;
-		//while (fadeTransition.getStatus().equals(Status.RUNNING)) {
-		//	System.out.println("123");
-		//}
 	}
 	
 }

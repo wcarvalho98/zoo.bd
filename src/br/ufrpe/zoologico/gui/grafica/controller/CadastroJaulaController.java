@@ -45,31 +45,26 @@ public class CadastroJaulaController  implements Initializable{
 	}
 	
 	@FXML 
-	public void passar(){
+	public void passar() throws Exception{
 		//TODO ajeitar
 		id++;
-		try {
-			if(id > f.listarJaulas().size() - 1)
-				id = 0;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		if(id > f.listarJaulas().size() - 1)
+			id = 0;
 		preencher(id);
 		allDisable();
 	}
 	
 	@FXML
-	public void retornar(){
+	public void retornar() throws Exception{
 		//TODO ajeitar
 		id--;
 		if(id<0)
-			try {
-				id = f.listarJaulas().size() - 1;
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			id = f.listarJaulas().size() - 1;
+			
 		preencher(id);
 		allDisable();
+		
+			
 	}
 	
 	@FXML 
@@ -97,6 +92,7 @@ public class CadastroJaulaController  implements Initializable{
 			
 			j = new Jaula(i,true,tp,dat,maximo,obs1,p,alt,largura,comprimento,idZoologico,cpfTratador);
 			f.removerJaula(j);
+			allNull();
 			
 		}  catch (NumberFormatException e1){
 			Alert a = new Alert(AlertType.ERROR);
@@ -112,8 +108,6 @@ public class CadastroJaulaController  implements Initializable{
 			a.setContentText(e.getMessage());
 			a.showAndWait();
 		}
-
-		
 	}
 	
 	@FXML

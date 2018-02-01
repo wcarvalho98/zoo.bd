@@ -152,7 +152,7 @@ public class AdminController implements Initializable {
 	
 	@FXML
 	public void cadastrar() {
-		ScreenManager.setScene(ScreenManager.getInstance().getTelaGerenciarAnimal());
+		ScreenManager.setScene(ScreenManager.getInstance().getTelaJaula());
 		
 	}
 	

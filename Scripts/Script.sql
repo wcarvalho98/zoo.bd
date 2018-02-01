@@ -30,9 +30,9 @@ create function disponivel_espaco (`id_espaco` int) returns date
 $$
 -- procedure
 delimiter $$
-create procedure gera_fatura(in `valor_fatura` double, in `tp_fatura` varchar(50))
+create procedure gera_fatura(in `valor_fatura` double, in `tp_fatura` varchar(50), in `id_ped_serv` int)
 	begin
-		INSERT INTO `fatura` (`valor`,`dataDaFatura`, `vl_multa`,`stats`, `tp_fatura`) VALUES (`valor_fatura`, curdate(), 0, 'Em andamento', `tp_fatura`);
+		INSERT INTO `fatura` (`valor`,`dataDaFatura`, `vl_multa`,`stats`, `tp_fatura`, `id_ped_serv`) VALUES (`valor_fatura`, curdate(), 0, 'Em andamento', `tp_fatura`, `id_ped_serv`);
     end
 $$
 
@@ -57,24 +57,13 @@ end
 $$
 
 delimiter $$
-create trigger atualiza_pedido before update on `pedido_servico`
-for each row
-begin
-	if new.dt_execucao <= curdate() then
-		set new.status_pedido = 1;
-    end if;
-end
-$$
-
-
-delimiter $$
 	create procedure retorna_idade(in anos int, out b int)
 		begin select year(now()) - anos into b;
 	end;
 $$
 
 delimiter $$
-create trigger idade_em_anos before update on `animal`
+create trigger idade_em_anos before insert on `animal`
 for each row
 begin
 	call retorna_idade(year(new.dt_nasc), @idad);

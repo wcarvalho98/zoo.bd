@@ -6,7 +6,6 @@
  */
 package br.ufrpe.zoologico.gui.grafica.controller;
 
-import java.awt.Label;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -23,6 +22,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -156,7 +156,12 @@ public class GerenciarConsultasController implements Initializable {
 			this.idAtual = aux.size() - 1;
 		}
 		consultaAtual = aux.get(idAtual);
+		
+		horaTextField1.setText("");
+		minutoTextField1.setText("");
+		observacoesTextField1.setText("");
 		preencherCamposVisao();
+		despreencherTabelas1();
 	}
 
 	@FXML
@@ -165,6 +170,7 @@ public class GerenciarConsultasController implements Initializable {
 		dataDaConsultaDatePicker1.setValue(consultaAtual.getData().toLocalDate());
 		horaTextField1.setText(consultaAtual.getData().getHour() + "");
 		minutoTextField1.setText(consultaAtual.getData().getMinute() + "");
+		observacoesTextField1.setText(consultaAtual.getObs());
 	}
 
 	@FXML
@@ -175,7 +181,11 @@ public class GerenciarConsultasController implements Initializable {
 			this.idAtual = 0;
 		}
 		consultaAtual = aux.get(idAtual);
+		horaTextField1.setText("");
+		minutoTextField1.setText("");
+		observacoesTextField1.setText("");
 		preencherCamposVisao();
+		despreencherTabelas1();
 	}
 
 	@FXML
@@ -189,15 +199,24 @@ public class GerenciarConsultasController implements Initializable {
 			nova.setObs(observacoesTextField.getText());
 			nova.setData(aux);
 			Fachada.getInstance().cadastrarConsulta(nova);
+			preencherTabelas();
+			preencherTabelas1();
+			
+			horaTextField.setText("");
+			minutoTextField.setText("");
+			observacoesTextField.setText("");
 			animalSelecionado = null;
 			veterinarioSelecionado = null;
-		}
+		} 
 	}
 
 	@FXML
 	void removerConsulta() {
 		if (aRemover != null) {
 			Fachada.getInstance().removerConsullta(aRemover);
+			preencherTabelas();
+			preencherTabelas1();
+			preencherCamposVisao();
 		}
 	}
 
@@ -232,8 +251,8 @@ public class GerenciarConsultasController implements Initializable {
 	}
 
 	private void preencherTabelas() {
-		ArrayList<Animal> listaDeAnimais = new ArrayList<Animal>(); // TODO listarTodosOsAnimais();
-		ArrayList<Veterinario> listaDeVeterinarios = new ArrayList<Veterinario>(); // TODO listarTodosOsVeterinarios();
+		ArrayList<Animal> listaDeAnimais = Fachada.getInstance().listarAnimais();
+		ArrayList<Veterinario> listaDeVeterinarios = Fachada.getInstance().listarVeterinarios();
 		ArrayList<Consulta> listaDeConsultas = Fachada.getInstance().listarConsultas();
 
 		colunaNomeAnimal.setCellValueFactory(new Callback<CellDataFeatures<Animal, String>, ObservableValue<String>>() {
@@ -318,11 +337,11 @@ public class GerenciarConsultasController implements Initializable {
 
 	}
 
-	public void preencherCamposVisao() {
+	private void preencherCamposVisao() {
 		idConsultaLabel.setText(consultaAtual.getId_consulta() + "");
-		nomeMedicoLabel.setText(consultaAtual.getVeterinario().getNome());
-		nomeAnimalLabel.setText(consultaAtual.getAnimal().getNome());
-		horarioLabel.setText(consultaAtual.getData().toString());
+		nomeMedicoLabel.setText(consultaAtual.getVeterinario().getNome() + "\nCPF: " + consultaAtual.getVeterinario().getCpf());
+		nomeAnimalLabel.setText(consultaAtual.getAnimal().getNome() + " ID: " + consultaAtual.getAnimal().getId());
+		horarioLabel.setText(ScreenManager.formatarLocalDateTime(consultaAtual.getData()));
 		obsLabel.setText(consultaAtual.getObs());
 	}
 
@@ -336,8 +355,8 @@ public class GerenciarConsultasController implements Initializable {
 	}
 
 	private void preencherTabelas1() {
-		ArrayList<Animal> listaDeAnimais = new ArrayList<Animal>(); // TODO listarTodosOsAnimais();
-		ArrayList<Veterinario> listaDeVeterinarios = new ArrayList<Veterinario>(); // TODO listarTodosOsVeterinarios();
+		ArrayList<Animal> listaDeAnimais = Fachada.getInstance().listarAnimais();
+		ArrayList<Veterinario> listaDeVeterinarios = Fachada.getInstance().listarVeterinarios();
 
 		colunaNomeAnimal1
 				.setCellValueFactory(new Callback<CellDataFeatures<Animal, String>, ObservableValue<String>>() {

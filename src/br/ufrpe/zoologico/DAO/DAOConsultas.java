@@ -9,26 +9,14 @@ package br.ufrpe.zoologico.DAO;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+
+import br.ufrpe.zoologico.gui.grafica.controller.Fachada;
 import br.ufrpe.zoologico.negocio.beans.Animal;
 import br.ufrpe.zoologico.negocio.beans.Consulta;
 import br.ufrpe.zoologico.negocio.beans.Veterinario;
 
 public class DAOConsultas extends DAO<Consulta>{
 	
-	private static DAOConsultas instance;
-	private ArrayList<Consulta> r;
-	
-	private DAOConsultas() {
-		r = new ArrayList<Consulta>();
-	}
-	
-	public static DAOConsultas getInstance() {
-		if (instance == null) {
-			instance = new DAOConsultas();
-		}
-		return instance;
-	}
-
 	@Override
 	public void inserir(Consulta o) throws Exception {
 		String sql = "INSERT INTO `consulta` (`dat_consulta`, `obs`, `id_veterinario`, `id_animal`) VALUES (?, ?, ?, ?)";
@@ -45,7 +33,7 @@ public class DAOConsultas extends DAO<Consulta>{
 
 	@Override
 	public void remover(Consulta o) throws Exception {
-		String sql = "DELETE FROM `consulta`s WHERE `id_consulta` = ?";
+		String sql = "DELETE FROM `consulta` WHERE `id_consulta` = ?";
 		preparar(sql);
 		getStmt().setInt(1, o.getId_consulta());
 		getStmt().execute();
@@ -75,8 +63,8 @@ public class DAOConsultas extends DAO<Consulta>{
 		getStmt().setInt(1, id);
 		ResultSet rs = getStmt().executeQuery();
 		rs.next();
-		Veterinario vet = DAOVeterinario.getInstance().buscar(rs.getString(4));
-		Animal ani = DAOAnimal.getInstance().buscar(rs.getInt(5));
+		Veterinario vet = Fachada.getInstance().buscarVeterinario(rs.getString(4));
+		Animal ani = Fachada.getInstance().buscarAnimal(rs.getInt(5));
 		Consulta o = new Consulta(vet, ani, rs.getInt(1), rs.getTimestamp(2).toLocalDateTime(), rs.getString(3));
 		rs.close();
 		fecharStmt();
@@ -86,12 +74,13 @@ public class DAOConsultas extends DAO<Consulta>{
 
 	@Override
 	public ArrayList<Consulta> listarTodos() throws Exception {
+		ArrayList<Consulta> r = new  ArrayList<Consulta>();
 		String sql = "SELECT * FROM `consulta`";
 		preparar(sql);
 		ResultSet rs = getStmt().executeQuery();
 		while(rs.next()) {
-			Veterinario vet = DAOVeterinario.getInstance().buscar(rs.getString(4));
-			Animal ani = DAOAnimal.getInstance().buscar(rs.getInt(5));
+			Veterinario vet = Fachada.getInstance().buscarVeterinario(rs.getString(4));
+			Animal ani = Fachada.getInstance().buscarAnimal(rs.getInt(5));
 			Consulta o = new Consulta(vet, ani, rs.getInt(1), rs.getTimestamp(2).toLocalDateTime(), rs.getString(3));
 			r.add(o);
 		}

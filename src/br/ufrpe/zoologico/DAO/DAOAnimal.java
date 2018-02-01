@@ -11,22 +11,9 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import br.ufrpe.zoologico.negocio.beans.Animal;
+import br.ufrpe.zoologico.negocio.beans.Jaula;
 
 public class DAOAnimal extends DAO<Animal>{
-
-	private static DAOAnimal instance;
-	private ArrayList<Animal> r;
-	
-	private DAOAnimal() {
-		r = new ArrayList<Animal>();
-	}
-	
-	public static DAOAnimal getInstance() {
-		if (instance == null) {
-			instance = new DAOAnimal();
-		}
-		return instance;
-	}
 	
 	@Override
 	public void inserir(Animal o) throws Exception {
@@ -112,6 +99,7 @@ public class DAOAnimal extends DAO<Animal>{
 
 	@Override
 	public ArrayList<Animal> listarTodos() throws Exception {
+		ArrayList<Animal> r = new  ArrayList<Animal>();
 		String sql = "SELECT * FROM animal";
 		preparar(sql);
 		ResultSet rs = getStmt().executeQuery();

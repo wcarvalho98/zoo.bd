@@ -112,7 +112,7 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <TextField fx:id="idJaula" layoutX="292.0" layoutY="506.0" prefHeight="8.0" prefWidth="71.0" promptText="ID">
+      <TextField fx:id="idJaula" layoutX="292.0" layoutY="506.0" onAction="#fetch" prefHeight="8.0" prefWidth="71.0" promptText="ID">
          <font>
             <Font size="25.0" />
          </font>
@@ -147,5 +147,15 @@
             <Font size="36.0" />
          </font>
       </Button>
+      <Button fx:id="cadas" disable="true" layoutX="1036.0" layoutY="318.0" mnemonicParsing="false" onAction="#cadastrar" text="Cadastrar" visible="false">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Button>
+      <TextField fx:id="tipo" layoutX="876.0" layoutY="427.0" prefHeight="45.0" prefWidth="180.0" promptText="Tipo">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>

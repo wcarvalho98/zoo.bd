@@ -173,7 +173,7 @@ public class Telas {
 			root = f.load();
 			
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.err.println("root é null, não foi possíel carregar a cena");
 		}
 
 		return root;
@@ -198,7 +198,7 @@ public class Telas {
 		alert.setContentText("Deseja fechar o programa?");
 
 		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == ButtonType.OK) {
+		if (result.get().equals(ButtonType.OK)) {
 			System.exit(0);
 		} else {
 			alert.close();

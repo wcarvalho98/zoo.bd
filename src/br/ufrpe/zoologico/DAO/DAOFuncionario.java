@@ -11,22 +11,9 @@ import java.sql.ResultSet;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import br.ufrpe.zoologico.negocio.beans.Funcionario;
+import br.ufrpe.zoologico.negocio.beans.Jaula;
 
 public class DAOFuncionario extends DAO<Funcionario> {
-
-	private static DAOFuncionario instance;
-	private ArrayList<Funcionario> r;
-	
-	private DAOFuncionario() {
-		r = new ArrayList<Funcionario>();
-	}
-	
-	public static DAOFuncionario getInstance() {
-		if (instance == null) {
-			instance = new DAOFuncionario();
-		}
-		return instance;
-	}
 	
 	@Override
 	public void inserir(Funcionario o) throws Exception {
@@ -99,6 +86,7 @@ public class DAOFuncionario extends DAO<Funcionario> {
 
 	@Override
 	public ArrayList<Funcionario> listarTodos() throws Exception {
+		ArrayList<Funcionario> r = new  ArrayList<Funcionario>();
 		String sql = "SELECT * FROM `funcionario`";
 		preparar(sql);
 		ResultSet rs = getStmt().executeQuery();

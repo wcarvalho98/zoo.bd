@@ -8,7 +8,6 @@ package br.ufrpe.zoologico.gui.grafica.controller;
 
 import java.util.ArrayList;
 
-import br.ufrpe.zoologico.DAO.DAOFatura;
 import br.ufrpe.zoologico.negocio.beans.Administrador;
 import br.ufrpe.zoologico.negocio.beans.Animal;
 import br.ufrpe.zoologico.negocio.beans.Consulta;
@@ -30,11 +29,11 @@ import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoFaturas;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoFuncionario;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoGenero;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoInstituicao;
-import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoVeterinario;
-import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoZoo;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoJaula;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoOrdem;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoServicos;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoVeterinario;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoZoo;
 
 public class Fachada {
 	private static Fachada instance = null;
@@ -240,7 +239,6 @@ public class Fachada {
 	
 	
 	public ArrayList<Jaula> listarJaulas() throws Exception {
-	public ArrayList<Jaula> listarJaulas() {
 		return jaulas.listarTodos();
 	}
 	
@@ -275,6 +273,4 @@ public class Fachada {
 	public ArrayList<Administrador> listarAdministradores() {
 		return admin.listarAdministradores();
 	}
-	
-	
 }

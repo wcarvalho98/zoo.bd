@@ -12,6 +12,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Optional;
 
+import javafx.animation.Transition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -94,13 +97,23 @@ public class ScreenManager {
 	}
 
 	public static void setScene(Scene a) {
-		if (mainStage.getScene()!= null)
-			FabricaTransicao.fazerTransicao(0.5, mainStage.getScene().getRoot(), false);
-		else
-			a.getRoot().setOpacity(0);
-		mainStage.setScene(a);
-		mainStage.show();
-		FabricaTransicao.fazerTransicao(0.5, a.getRoot(), true);
+		a.getRoot().setOpacity(0);
+		if (mainStage.getScene() != null) {
+			Transition t = FabricaTransicao.fazerTransicao(0.5, mainStage.getScene().getRoot(), false);
+			t.setOnFinished(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					mainStage.setScene(a);
+					mainStage.show();
+					FabricaTransicao.fazerTransicao(0.5, a.getRoot(), true);
+				}
+			});
+		}
+		else {
+			mainStage.setScene(a);
+			mainStage.show();
+			FabricaTransicao.fazerTransicao(0.5, a.getRoot(), true);
+		}
 	}
 
 	public static Stage getMainStage() {

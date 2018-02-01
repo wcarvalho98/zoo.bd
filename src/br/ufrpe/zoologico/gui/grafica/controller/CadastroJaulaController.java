@@ -7,6 +7,7 @@
 package br.ufrpe.zoologico.gui.grafica.controller;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import br.ufrpe.zoologico.negocio.beans.Jaula;
@@ -19,7 +20,7 @@ import javafx.scene.control.TextField;
 
 public class CadastroJaulaController  implements Initializable{
 	
-	@FXML private TextField idZoo, tratador, max, comp, larg, altura, dias, idJaula;
+	@FXML private TextField idZoo, tratador, max, comp, larg, altura, dias, idJaula, tipo;
 	@FXML private TextArea obs;
 	@FXML private DatePicker dtInsp;
 	@FXML private Button cadas; 
@@ -43,15 +44,19 @@ public class CadastroJaulaController  implements Initializable{
 	@FXML 
 	public void passar(){
 		id++;
+		if(id > f.listarJaulas().size() - 1)
+			id = 0;
 		preencher(id);
+		allDisable();
 	}
 	
 	@FXML
 	public void retornar(){
 		id--;
 		if(id<0)
-			id = 0;
+			id = f.listarJaulas().size() - 1;
 		preencher(id);
+		allDisable();
 	}
 	
 	@FXML 
@@ -88,10 +93,27 @@ public class CadastroJaulaController  implements Initializable{
 	}
 	
 	@FXML
+	public void fetch() {
+		preencherBusca((int) Integer.valueOf(idJaula.getText()));
+		idJaula.setDisable(true);
+	}
+	
+	@FXML
 	public void cadastrar(){
-		// TODO FAZER O DAOZoo E DEPOIS VOLTAR E TERMINAR CADASTRAR JAULA
+		// TODO Colocar o Date correto
 		Jaula j;
 		int idZoologico = (int) Integer.valueOf(idZoo.getText());
+		String cpfTratador = tratador.getText();
+		int maximo = (int) Integer.valueOf(max.getText());
+		int comprimento = (int) Integer.valueOf(comp.getText());
+		int alt = (int) Integer.valueOf(altura.getText());
+		int largura = (int) Integer.valueOf(larg.getText());
+		String obs1 = obs.getText();
+		String tp = tipo.getText();
+		
+		j = new Jaula(0,true,tp,LocalDate.now(),maximo,obs1,0,alt,largura,comprimento,idZoologico,cpfTratador);
+		
+		f.cadastrarJaula(j);
 	}
 	
 	private void allNotDisable(){
@@ -141,6 +163,23 @@ public class CadastroJaulaController  implements Initializable{
 		idJaula.setPromptText("ID");
 		obs.setText(null);
 		obs.setPromptText("Observação");
+	}
+	
+	private void preencherBusca(int id) {
+		// TODO retornar exceção caso jaula não exista
+		Jaula inicio = f.buscarJaula(id);
+		this.id = f.listarJaulas().indexOf(inicio);
+		idZoo.setText(String.valueOf(inicio.getZoo()));
+		tratador.setText(inicio.getTratador());
+		max.setText(String.valueOf(inicio.getPopulacao_max()));
+		comp.setText(String.valueOf(inicio.getProfundidade()));
+		larg.setText(String.valueOf(inicio.getLargura()));
+		altura.setText(String.valueOf(inicio.getAltura()));
+		dias.setText(String.valueOf(inicio.getPerid_insp_dias()));
+		idJaula.setText(String.valueOf(inicio.getId_jaula()));
+		obs.setText(inicio.getObs());
+		dtInsp.setValue(inicio.getDt_ultima_inspecao());;
+
 	}
 	
 	private  void preencher(int id){

@@ -45,7 +45,7 @@ public class GerenciamentoAnimal {
 		}
 	}
 	
-	public Animal buscar(int id) {
+	public Animal buscarAnimal(int id) {
 		try {
 			return animal.buscar(id);
 		} catch (Exception e) {
@@ -54,7 +54,7 @@ public class GerenciamentoAnimal {
 		}
 	}
 	
-	public ArrayList<Animal> listarTodos(){
+	public ArrayList<Animal> listarAnimais(){
 		try {
 			return animal.listarTodos();
 		} catch (Exception e) {

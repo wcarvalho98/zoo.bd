@@ -9,6 +9,7 @@ package br.ufrpe.zoologico.gui.grafica.controller;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.DAO.DAOFatura;
+import br.ufrpe.zoologico.negocio.beans.Administrador;
 import br.ufrpe.zoologico.negocio.beans.Animal;
 import br.ufrpe.zoologico.negocio.beans.Consulta;
 import br.ufrpe.zoologico.negocio.beans.Especie;
@@ -21,6 +22,7 @@ import br.ufrpe.zoologico.negocio.beans.Ordem;
 import br.ufrpe.zoologico.negocio.beans.Servico;
 import br.ufrpe.zoologico.negocio.beans.Veterinario;
 import br.ufrpe.zoologico.negocio.beans.Zoo;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoAdmin;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoAnimal;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoConsultas;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoEspecie;
@@ -48,6 +50,7 @@ public class Fachada {
 	private GerenciamentoOrdem ordem;
 	private GerenciamentoGenero genero;
 	private GerenciamentoZoo zoo;
+	private GerenciamentoAdmin admin;
 	
 	private Fachada() {
 		consultas = new GerenciamentoConsultas();
@@ -55,12 +58,14 @@ public class Fachada {
 		instituicoes = new GerenciamentoInstituicao();
 		animal = new GerenciamentoAnimal();
 		veterinarios = new GerenciamentoVeterinario();
+		funcionarios = new GerenciamentoFuncionario();
 		servicos = new GerenciamentoServicos();
 		faturas = new GerenciamentoFaturas();
 		especie = new GerenciamentoEspecie();
 		ordem = new GerenciamentoOrdem();
 		genero = new GerenciamentoGenero();
 		zoo = new GerenciamentoZoo();
+		admin = new GerenciamentoAdmin();
 	}
 	
 	public static Fachada getInstance() {
@@ -74,12 +79,13 @@ public class Fachada {
 		return zoo.listar();
 	}
 	
+	/** CONSULTA */
 	public void cadastrarConsulta(Consulta o) {
 		consultas.cadastrarConsulta(o);
 	}
 	
 	public void removerConsullta(Consulta o) {
-		consultas.removerConsullta(o);
+		consultas.removerConsulta(o);
 	}
 	
 	public void alterarConsulta(Consulta o) {
@@ -94,7 +100,7 @@ public class Fachada {
 		return consultas.listarConsultas();
 	}
 	
-	
+	/** INSTITUICAO */
 	public void cadastrarInstituicao(Instituicao o) {
 		instituicoes.cadastrarInstituicao(o);
 	}
@@ -107,6 +113,7 @@ public class Fachada {
 		return instituicoes.listarInstituicoes();
 	}
 	
+	/** ANIMAL */
 	public void cadastrarAnimal(Animal o) {
 		animal.cadastrarAnimal(o);
 	}
@@ -120,13 +127,14 @@ public class Fachada {
 	}
 	
 	public Animal buscarAnimal(int id) {
-		return animal.buscar(id);
+		return animal.buscarAnimal(id);
 	}
 	
 	public ArrayList<Animal> listarAnimais(){
-		return animal.listarTodos();
+		return animal.listarAnimais();
 	}
 	
+	/** VETERINARIO */
 	public void cadastrarVeterinario(Veterinario o) {
 		veterinarios.cadastrarVeterinario(o);
 	}
@@ -146,6 +154,7 @@ public class Fachada {
 		return veterinarios.listarVeterinarios();
 	}
 	
+	/** FUNCIONARIO */
 	public void cadastrarFuncionario(Funcionario o) {
 		funcionarios.cadastrarFuncionario(o);
 	}
@@ -166,6 +175,7 @@ public class Fachada {
 		return funcionarios.listarFuncionarios();
 	}
 	
+	/** SERVICO */
 	public void cadastrarServico(Servico o) {
 		servicos.cadastrarServico(o);
 	}
@@ -190,20 +200,20 @@ public class Fachada {
 		return servicos.faturasDoServico(o);
 	}
 	
-	
+	/** FATURA */
 	public void cadastrarFatura(Fatura o) {
 		faturas.cadastrarFatura(o);
 	}
 
-	public void remover(Fatura o) {
+	public void removerFatura(Fatura o) {
 		faturas.remover(o);
 	}
 
-	public void alterar(Fatura o) {
+	public void alterarFatura(Fatura o) {
 		faturas.alterar(o);
 	}
 	
-	public Fatura buscar(int id) {
+	public Fatura buscarFatura(int id) {
 		return faturas.buscar(id);
 	}
 
@@ -211,7 +221,7 @@ public class Fachada {
 		return faturas.listarTodos();
 	}
 	
-	//JAULA
+	/** JAULA */
 	public void cadastrarJaula(Jaula o) throws Exception{
 		jaulas.cadastrar(o);
 	}
@@ -230,11 +240,16 @@ public class Fachada {
 	
 	
 	public ArrayList<Jaula> listarJaulas() throws Exception {
+	public ArrayList<Jaula> listarJaulas() {
 		return jaulas.listarTodos();
 	}
 	
 	public ArrayList<Ordem> listarOrdem() throws Exception{
 		return ordem.listarTodos();
+	}
+	/** ADMINISTRADOR */
+	public void cadastrarAdministrador(Administrador o) throws Exception{
+		admin.cadastrarAdministrador(o);
 	}
 	
 	public ArrayList<Especie> listarEspecie() throws Exception{
@@ -244,4 +259,22 @@ public class Fachada {
 	public ArrayList<Genero> listarGenero() throws Exception{
 		return genero.listarTodos();
 	}
+	public void removerAdministrador(Administrador o) throws Exception  {
+		admin.removerAdministrador(o);
+	}
+	
+	public void alterarAdministrador(Administrador o) {
+		admin.alterarAdministrador(o);
+	}
+	
+	public Administrador buscarAdministrador(String login)  throws Exception  {
+		return admin.buscarAdministrador(login);
+	}
+	
+	
+	public ArrayList<Administrador> listarAdministradores() {
+		return admin.listarAdministradores();
+	}
+	
+	
 }

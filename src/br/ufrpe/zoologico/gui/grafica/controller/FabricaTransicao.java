@@ -7,17 +7,20 @@
 package br.ufrpe.zoologico.gui.grafica.controller;
 
 
+import javafx.animation.Animation.Status;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
+import javafx.animation.Transition;
 import javafx.scene.Node;
 import javafx.util.Duration;
 
 public class FabricaTransicao {
 
-	public static void fazerTransicao(double duracaoSegundos, Node stage, boolean ligar) {
+	public static Transition fazerTransicao(double duracaoSegundos, Node stage, boolean ligar) {
 		Duration duracao = new Duration(duracaoSegundos * 1000);
 		int x = 0;
 		int y = 1;
+		Transition t = null;
 		FadeTransition fadeTransition = new FadeTransition();
 		fadeTransition.setDuration(duracao);
 		fadeTransition.setNode(stage);
@@ -28,10 +31,12 @@ public class FabricaTransicao {
 		fadeTransition.setFromValue(x);
 		fadeTransition.setToValue(y);
 		fadeTransition.setInterpolator(Interpolator.LINEAR);;
-		fadeTransition.play();
-		while (!fadeTransition.getCurrentTime().equals(Duration.ZERO)) {
-			
-		}
+		t = fadeTransition;
+		t.play();
+		return t;
+		//while (fadeTransition.getStatus().equals(Status.RUNNING)) {
+		//	System.out.println("123");
+		//}
 	}
 	
 }

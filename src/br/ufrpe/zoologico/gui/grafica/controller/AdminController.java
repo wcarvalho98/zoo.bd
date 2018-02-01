@@ -7,10 +7,17 @@
 package br.ufrpe.zoologico.gui.grafica.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import br.ufrpe.zoologico.negocio.beans.Animal;
 import br.ufrpe.zoologico.negocio.beans.Funcionario;
+import br.ufrpe.zoologico.negocio.beans.Veterinario;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,15 +29,20 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import javafx.util.Callback;
 
 public class AdminController implements Initializable {
 
 	@FXML
-	private TableView<Funcionario> tbvPrincipal;
+	private TableView<Veterinario> tbvPrincipal;
+	@FXML
+	private TableView<Funcionario> tbvFunc;
 	@FXML
 	private Button btnCuidador;
 	@FXML
@@ -44,17 +56,20 @@ public class AdminController implements Initializable {
 	@FXML
 	private Button btnRemover;
 	@FXML
-	private TableColumn<?, ?> clmPrincipal;
+	private TableColumn<Veterinario, String> clmNomeVet;
 	@FXML
-	private TableColumn<?, ?> clmSecundaria;
+	private TableColumn<Veterinario, String> clmCpfVet;
+	@FXML
+	private TableColumn<Funcionario, String> clmNomeFunc;
+	@FXML
+	private TableColumn<Funcionario, String> clmCpfFunc;
 	@FXML
 	private Label lblTabela;
 	
+
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		clmPrincipal.setText(null);
-		clmSecundaria.setText(null);
-		tbvPrincipal.setDisable(true);
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		tbvPrincipal.setVisible(true);
 	}
 	
 	@FXML
@@ -79,18 +94,60 @@ public class AdminController implements Initializable {
 	
 	@FXML
 	public void populaTabelaVeterinario() {
+		tbvFunc.setDisable(true);
+		tbvFunc.setVisible(false);
 		lblTabela.setText("Veterinário");
+		ArrayList<Veterinario> listaDeVeterinarios = Fachada.getInstance().listarVeterinarios();
 		
-	}
-	
-	@FXML
-	public void populaTabelaCuidador() {
-		lblTabela.setText("Cuidador");
+		clmNomeVet
+		.setCellValueFactory(new Callback<CellDataFeatures<Veterinario, String>, ObservableValue<String>>() {
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Veterinario, String> todosOsVeterinarios) {
+				return new SimpleStringProperty(todosOsVeterinarios.getValue().getNome());
+			}
+		});
+		
+		clmCpfVet
+		.setCellValueFactory(new Callback<CellDataFeatures<Veterinario, String>, ObservableValue<String>>() {
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Veterinario, String> todosOsVeterinarios) {
+				return new SimpleStringProperty(todosOsVeterinarios.getValue().getCpf());
+			}
+		});
+		
+		tbvPrincipal.setItems(FXCollections.observableArrayList(listaDeVeterinarios));
+		tbvPrincipal.refresh();
+		tbvPrincipal.setDisable(false);
+		tbvPrincipal.setVisible(true);
 	}
 	
 	@FXML
 	public void populaTabelaFuncionario() {
+		tbvPrincipal.setDisable(true);
+		tbvPrincipal.setVisible(false);
 		lblTabela.setText("Funcionário");
+		ArrayList<Funcionario> listaDeFuncionarios = Fachada.getInstance().listarFuncionarios();
+		
+		clmNomeFunc
+		.setCellValueFactory(new Callback<CellDataFeatures<Funcionario, String>, ObservableValue<String>>() {
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Funcionario, String> todosOsFuncionarios) {
+				return new SimpleStringProperty(todosOsFuncionarios.getValue().getNome());
+			}
+		});
+		
+		clmCpfFunc
+		.setCellValueFactory(new Callback<CellDataFeatures<Funcionario, String>, ObservableValue<String>>() {
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Funcionario, String> todosOsFuncionarios) {
+				return new SimpleStringProperty(todosOsFuncionarios.getValue().getCpf());
+			}
+		});
+		
+		tbvFunc.setItems(FXCollections.observableArrayList(listaDeFuncionarios));
+		tbvFunc.refresh();
+		tbvFunc.setDisable(false);
+		tbvFunc.setVisible(true);
 	}
 	
 	@FXML

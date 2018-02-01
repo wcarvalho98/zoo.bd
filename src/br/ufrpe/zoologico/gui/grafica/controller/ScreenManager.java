@@ -20,6 +20,7 @@ public class ScreenManager {
 	private Scene telaLogin;
 	private Scene telaAdmin;
 	private Scene telaJaula;
+	private Scene telaCadastrarInstituicao;
 
 	private static Stage mainStage;
 
@@ -121,6 +122,17 @@ public class ScreenManager {
 			e.printStackTrace();
 		}
 		return telaCadastrarConsultas;
+	}
+
+	public Scene getTelaCadastrarInstituicao() {
+		try {
+			telaCadastrarInstituicao = new Scene(
+					FXMLLoader.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/CadastroInstituicoes.fxml")));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return telaCadastrarInstituicao;
 	}
 
 }

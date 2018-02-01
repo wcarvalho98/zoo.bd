@@ -8,18 +8,23 @@ package br.ufrpe.zoologico.gui.grafica.controller;
 
 import java.util.ArrayList;
 
+import br.ufrpe.zoologico.DAO.DAOFatura;
 import br.ufrpe.zoologico.negocio.beans.Animal;
 import br.ufrpe.zoologico.negocio.beans.Consulta;
+import br.ufrpe.zoologico.negocio.beans.Fatura;
 import br.ufrpe.zoologico.negocio.beans.Funcionario;
 import br.ufrpe.zoologico.negocio.beans.Instituicao;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
+import br.ufrpe.zoologico.negocio.beans.Servico;
 import br.ufrpe.zoologico.negocio.beans.Veterinario;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoAnimal;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoConsultas;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoFaturas;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoFuncionario;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoInstituicao;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoVeterinario;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoJaula;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoServicos;
 
 public class Fachada {
 	private static Fachada instance = null;
@@ -29,6 +34,8 @@ public class Fachada {
 	private GerenciamentoAnimal animal;
 	private GerenciamentoVeterinario veterinarios;
 	private GerenciamentoFuncionario funcionarios;
+	private GerenciamentoServicos servicos;
+	private GerenciamentoFaturas faturas;
 	
 	private Fachada() {
 		consultas = new GerenciamentoConsultas();
@@ -36,6 +43,8 @@ public class Fachada {
 		instituicoes = new GerenciamentoInstituicao();
 		animal = new GerenciamentoAnimal();
 		veterinarios = new GerenciamentoVeterinario();
+		servicos = new GerenciamentoServicos();
+		faturas = new GerenciamentoFaturas();
 	}
 	
 	public static Fachada getInstance() {
@@ -154,6 +163,51 @@ public class Fachada {
 	
 	public ArrayList<Funcionario> listarFuncionarios(){
 		return funcionarios.listarFuncionarios();
+	}
+	
+	public void cadastrarServico(Servico o) {
+		servicos.cadastrarServico(o);
+	}
+
+	public void removerServico(Servico o) {
+		servicos.removerServico(o);
+	}
+
+	public void alterarServico(Servico o) {
+		servicos.alterarServico(o);
+	}
+	
+	public Servico buscarServico(int id) {
+		return servicos.buscarServico(id);
+	}
+	
+	public ArrayList<Servico> listarServicos(){
+		return servicos.listarServicos();
+	}
+	
+	public ArrayList<Fatura> faturasDoServico(Servico o){
+		return servicos.faturasDoServico(o);
+	}
+	
+	
+	public void cadastrarFatura(Fatura o) {
+		faturas.cadastrarFatura(o);
+	}
+
+	public void remover(Fatura o) {
+		faturas.remover(o);
+	}
+
+	public void alterar(Fatura o) {
+		faturas.alterar(o);
+	}
+	
+	public Fatura buscar(int id) {
+		return faturas.buscar(id);
+	}
+
+	public ArrayList<Fatura> listarFaturas(){
+		return faturas.listarTodos();
 	}
 	
 }

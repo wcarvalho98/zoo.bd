@@ -46,6 +46,7 @@ public class Fachada {
 		instituicoes = new GerenciamentoInstituicao();
 		animal = new GerenciamentoAnimal();
 		veterinarios = new GerenciamentoVeterinario();
+		funcionarios = new GerenciamentoFuncionario();
 		servicos = new GerenciamentoServicos();
 		faturas = new GerenciamentoFaturas();
 		admin = new GerenciamentoAdmin();

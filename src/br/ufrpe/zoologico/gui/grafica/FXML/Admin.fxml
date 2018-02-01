@@ -46,19 +46,18 @@
       </AnchorPane>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <HBox layoutX="525.0" layoutY="14.0" prefHeight="25.0" prefWidth="252.0">
+            <HBox layoutX="565.0" layoutY="14.0" prefHeight="25.0" prefWidth="176.0">
                <children>
                   <Button fx:id="btnVeterinario" mnemonicParsing="false" onAction="#populaTabelaVeterinario" prefWidth="80.0" text="Veterinário" textAlignment="CENTER" />
                   <Separator orientation="VERTICAL" prefHeight="200.0" />
-                  <Button fx:id="btnCuidador" mnemonicParsing="false" onAction="#populaTabelaCuidador" prefWidth="80.0" text="Cuidador" textAlignment="CENTER" />
                   <Separator orientation="VERTICAL" prefHeight="25.0" prefWidth="0.0" />
                   <Button fx:id="btnFuncionario" mnemonicParsing="false" onAction="#populaTabelaFuncionario" prefHeight="25.0" prefWidth="80.0" text="Funcionário" textAlignment="CENTER" />
                </children>
             </HBox>
-            <TableView fx:id="tbvPrincipal" layoutX="14.0" layoutY="83.0" prefHeight="600.0" prefWidth="700.0">
+            <TableView fx:id="tbvPrincipal" disable="true" layoutX="14.0" layoutY="83.0" prefHeight="600.0" prefWidth="700.0" visible="false">
               <columns>
-                <TableColumn fx:id="clmPrincipal" prefWidth="75.0" text="C1" />
-                <TableColumn fx:id="clmSecundaria" prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="clmNomeVet" prefWidth="351.0" text="Nome" />
+                <TableColumn fx:id="clmCpfVet" prefWidth="348.0" text="Cpf" />
               </columns>
             </TableView>
             <VBox layoutX="999.0" layoutY="83.0" prefHeight="530.0" prefWidth="100.0">
@@ -76,6 +75,12 @@
                   <Font size="14.0" />
                </font>
             </Label>
+            <TableView fx:id="tbvFunc" disable="true" layoutX="14.0" layoutY="83.0" prefHeight="600.0" prefWidth="700.0" visible="false">
+               <columns>
+                  <TableColumn fx:id="clmNomeFunc" prefWidth="351.0" text="Nome" />
+                  <TableColumn fx:id="clmCpfFunc" prefWidth="348.0" text="Cpf" />
+               </columns>
+            </TableView>
          </children>
     </AnchorPane>
   </children>

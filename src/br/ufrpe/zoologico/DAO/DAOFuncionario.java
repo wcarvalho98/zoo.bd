@@ -76,7 +76,7 @@ public class DAOFuncionario extends DAO<Funcionario> {
 		rs.next();
 		Funcionario o = new Funcionario(rs.getString(1), rs.getString(2),
 				rs.getString(3), rs.getString(4), rs.getString(5),
-				rs.getDate(6).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+				rs.getDate(6).toLocalDate(),
 				rs.getDouble(7), rs.getString(8), rs.getInt(9), rs.getInt(10));
 		rs.close();
 		fecharStmt();
@@ -93,7 +93,7 @@ public class DAOFuncionario extends DAO<Funcionario> {
 		while(rs.next()) {
 			Funcionario o = new Funcionario(rs.getString(1), rs.getString(2),
 				rs.getString(3), rs.getString(4), rs.getString(5),
-				rs.getDate(6).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+				rs.getDate(6).toLocalDate(),
 				rs.getDouble(7), rs.getString(8), rs.getInt(9), rs.getInt(10));
 			r.add(o);
 		}

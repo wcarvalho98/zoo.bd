@@ -36,27 +36,24 @@ public class PrincipalController implements Initializable {
 	private Tooltip tooltipLogin;
 	@FXML
 	private Tooltip tooltipSenha;
-
-	private Telas t;
 	
 	@FXML
 	public void validaLogin() {
 		String usuario = loginId.getText();
 		String senha = senhaId.getText();
-		DAOAdmin adm = new DAOAdmin();
 		
 		if (usuario.isEmpty())
-			tooltipLogin.show(t.getCena().get(0).getWindow());
+			tooltipLogin.show(ScreenManager.getMainStage().getOwner());
 		else
 			tooltipLogin.hide();
 		if (senha.isEmpty())
-			tooltipSenha.show(t.getCena().get(0).getWindow());
+			tooltipSenha.show(ScreenManager.getMainStage().getOwner());
 		else
 			tooltipSenha.hide();
 		if (!senha.isEmpty() && !usuario.isEmpty()) {
 			Administrador o = null;
 			try {
-				o = adm.buscar(usuario);
+				o = Fachada.getInstance().buscarAdministrador(usuario);
 			} catch (Exception e) {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Erro!");
@@ -69,9 +66,6 @@ public class PrincipalController implements Initializable {
 				progressId.setVisible(true);
 				loginId.setEditable(false);
 				senhaId.setEditable(false);
-//				t.fecharTelaDialogo();
-//				t.setCena(new Scene((Parent) t.carregarFXML("Admin")));
-//				t.abrirTela();
 				ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin());
 			} else {
 				Alert alert = new Alert(AlertType.ERROR);
@@ -88,16 +82,16 @@ public class PrincipalController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-//		t = Telas.getInstance();
-//		t.getDialogStage().setResizable(false);
-//		t.getDialogStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
-//
-//			@Override
-//			public void handle(WindowEvent arg0) {
-//				t.sairDoSistema();
-//			}
-//
-//		});
+		ScreenManager.getMainStage().setResizable(false);
+		ScreenManager.getMainStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
+
+			@Override
+			public void handle(WindowEvent arg0) {
+				if (!ScreenManager.sairDoSistema())
+					arg0.consume();
+			}
+
+		});
 	}
 
 }

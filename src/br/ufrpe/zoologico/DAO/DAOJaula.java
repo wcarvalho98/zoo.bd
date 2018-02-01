@@ -39,7 +39,7 @@ public class DAOJaula extends DAO<Jaula> {
 
 	@Override
 	public void remover(Jaula o) throws Exception {
-		String sql = "delete from Jaula where `idZoo` = ?, `id_Jaula` = ?";
+		String sql = "delete from Jaula where `idZoo` = ?, `id_jaula` = ?";
 		preparar(sql);
 		getStmt().setInt(1, o.getZoo());
 		getStmt().setInt(2, o.getId_jaula());

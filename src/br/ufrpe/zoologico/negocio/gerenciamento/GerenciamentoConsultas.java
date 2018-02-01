@@ -28,7 +28,7 @@ public class GerenciamentoConsultas {
 		} catch (Exception e) {System.err.println("O comando consultas.inserir() falhou em GerenciamentoConsultas.java");}
 	}
 	
-	public void removerConsullta(Consulta o) {
+	public void removerConsulta(Consulta o) {
 		try {
 			if (o != null) {
 				consultas.remover(o);
@@ -36,6 +36,14 @@ public class GerenciamentoConsultas {
 				System.err.println("A consulta que passado como parâmetro é null");
 			}
 		} catch (Exception e) {System.err.println("O comando consultas.remover() falhou em GerenciamentoConsultas.java");}
+	}
+
+	public void alterarConsulta(Consulta o) {
+		try {
+			consultas.alterar(o);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public Consulta buscarConsulta(int id) {
@@ -53,13 +61,6 @@ public class GerenciamentoConsultas {
 		} catch (Exception e) {
 			System.err.println("O comando consultas.listarTodos() falhou em GerenciamentoConsultas.java");
 			return new ArrayList<Consulta>();
-		}
-	}
-	public void alterarConsulta(Consulta o) {
-		try {
-			consultas.alterar(o);
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 	

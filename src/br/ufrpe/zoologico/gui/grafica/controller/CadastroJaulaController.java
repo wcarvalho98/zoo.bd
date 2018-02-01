@@ -10,13 +10,16 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import br.ufrpe.zoologico.exceptions.ObjetoNaoExisteException;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class CadastroJaulaController  implements Initializable{
 	
@@ -68,6 +71,38 @@ public class CadastroJaulaController  implements Initializable{
 	public void remover(){
 		allDisable();
 		idJaula.setDisable(true);
+		try {
+			Jaula j;
+			int idZoologico =  Integer.parseInt((idZoo.getText()));
+			String cpfTratador = tratador.getText();
+			int maximo =  Integer.parseInt((max.getText()));
+			double comprimento = Double.parseDouble((comp.getText()));
+			double alt =  Double.parseDouble(altura.getText());
+			double largura =  Double.parseDouble(larg.getText());
+			String obs1 = obs.getText();
+			String tp = tipo.getText();
+			LocalDate dat = dtInsp.getValue();
+			int p = Integer.parseInt(dias.getText());
+			int i = Integer.parseInt(idJaula.getText());
+			
+			j = new Jaula(i,true,tp,dat,maximo,obs1,p,alt,largura,comprimento,idZoologico,cpfTratador);
+			f.removerJaula(j);
+			
+		}  catch (NumberFormatException e1){
+			Alert a = new Alert(AlertType.ERROR);
+			a.setTitle("Erro");
+			a.setHeaderText(null);
+			a.setContentText(e1.getMessage());
+			a.showAndWait();
+
+		} catch (Exception e) {
+			Alert a = new Alert(AlertType.ERROR);
+			a.setTitle("Erro");
+			a.setHeaderText(null);
+			a.setContentText(e.getMessage());
+			a.showAndWait();
+		}
+
 		
 	}
 	
@@ -101,19 +136,36 @@ public class CadastroJaulaController  implements Initializable{
 	@FXML
 	public void cadastrar(){
 		// TODO Colocar o Date correto
-		Jaula j;
-		int idZoologico = (int) Integer.valueOf(idZoo.getText());
-		String cpfTratador = tratador.getText();
-		int maximo = (int) Integer.valueOf(max.getText());
-		int comprimento = (int) Integer.valueOf(comp.getText());
-		int alt = (int) Integer.valueOf(altura.getText());
-		int largura = (int) Integer.valueOf(larg.getText());
-		String obs1 = obs.getText();
-		String tp = tipo.getText();
-		
-		j = new Jaula(0,true,tp,LocalDate.now(),maximo,obs1,0,alt,largura,comprimento,idZoologico,cpfTratador);
-		
-		f.cadastrarJaula(j);
+		try {
+			Jaula j;
+			int idZoologico =  Integer.parseInt((idZoo.getText()));
+			String cpfTratador = tratador.getText();
+			int maximo =  Integer.parseInt((max.getText()));
+			double comprimento = Double.parseDouble((comp.getText()));
+			double alt =  Double.parseDouble(altura.getText());
+			double largura =  Double.parseDouble(larg.getText());
+			String obs1 = obs.getText();
+			String tp = tipo.getText();
+			LocalDate dat = dtInsp.getValue();
+			int p = Integer.parseInt(dias.getText());
+			
+			j = new Jaula(0,true,tp,dat,maximo,obs1,p,alt,largura,comprimento,idZoologico,cpfTratador);
+			f.cadastrarJaula(j);
+			
+		}  catch (NumberFormatException e1){
+			Alert a = new Alert(AlertType.ERROR);
+			a.setTitle("Erro");
+			a.setHeaderText(null);
+			a.setContentText(e1.getMessage());
+			a.showAndWait();
+
+		} catch (Exception e) {
+			Alert a = new Alert(AlertType.ERROR);
+			a.setTitle("Erro");
+			a.setHeaderText(null);
+			a.setContentText(e.getMessage());
+			a.showAndWait();
+		}
 	}
 	
 	private void allNotDisable(){
@@ -167,19 +219,30 @@ public class CadastroJaulaController  implements Initializable{
 	
 	private void preencherBusca(int id) {
 		// TODO retornar exceção caso jaula não exista
-		Jaula inicio = f.buscarJaula(id);
-		this.id = f.listarJaulas().indexOf(inicio);
-		idZoo.setText(String.valueOf(inicio.getZoo()));
-		tratador.setText(inicio.getTratador());
-		max.setText(String.valueOf(inicio.getPopulacao_max()));
-		comp.setText(String.valueOf(inicio.getProfundidade()));
-		larg.setText(String.valueOf(inicio.getLargura()));
-		altura.setText(String.valueOf(inicio.getAltura()));
-		dias.setText(String.valueOf(inicio.getPerid_insp_dias()));
-		idJaula.setText(String.valueOf(inicio.getId_jaula()));
-		obs.setText(inicio.getObs());
-		dtInsp.setValue(inicio.getDt_ultima_inspecao());;
+		try{
+			Jaula inicio = f.buscarJaula(id);
+			this.id = f.listarJaulas().indexOf(inicio);
+			idZoo.setText(String.valueOf(inicio.getZoo()));
+			tratador.setText(inicio.getTratador());
+			max.setText(String.valueOf(inicio.getPopulacao_max()));
+			comp.setText(String.valueOf(inicio.getProfundidade()));
+			larg.setText(String.valueOf(inicio.getLargura()));
+			altura.setText(String.valueOf(inicio.getAltura()));
+			dias.setText(String.valueOf(inicio.getPerid_insp_dias()));
+			idJaula.setText(String.valueOf(inicio.getId_jaula()));
+			obs.setText(inicio.getObs());
+			dtInsp.setValue(inicio.getDt_ultima_inspecao());;
 
+		}catch(Exception e){
+			Alert a = new Alert(AlertType.ERROR);
+			a.setTitle("Erro");
+			a.setHeaderText(null);
+			a.setContentText(e.getMessage());
+			a.showAndWait();
+			allNull();
+			allDisable();
+		}
+		
 	}
 	
 	private  void preencher(int id){
@@ -196,3 +259,4 @@ public class CadastroJaulaController  implements Initializable{
 		dtInsp.setValue(inicio.getDt_ultima_inspecao());;
 	}
 }
+

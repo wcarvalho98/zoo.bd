@@ -88,8 +88,13 @@ public class ScreenManager {
 	}
 
 	public static void setScene(Scene a) {
+		if (mainStage.getScene()!= null)
+			FabricaTransicao.fazerTransicao(0.5, mainStage.getScene().getRoot(), false);
+		else
+			a.getRoot().setOpacity(0);
 		mainStage.setScene(a);
 		mainStage.show();
+		FabricaTransicao.fazerTransicao(0.5, a.getRoot(), true);
 	}
 
 	public static Stage getMainStage() {

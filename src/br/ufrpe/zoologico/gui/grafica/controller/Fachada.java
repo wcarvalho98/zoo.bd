@@ -11,19 +11,27 @@ import java.util.ArrayList;
 import br.ufrpe.zoologico.DAO.DAOFatura;
 import br.ufrpe.zoologico.negocio.beans.Animal;
 import br.ufrpe.zoologico.negocio.beans.Consulta;
+import br.ufrpe.zoologico.negocio.beans.Especie;
 import br.ufrpe.zoologico.negocio.beans.Fatura;
 import br.ufrpe.zoologico.negocio.beans.Funcionario;
+import br.ufrpe.zoologico.negocio.beans.Genero;
 import br.ufrpe.zoologico.negocio.beans.Instituicao;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
+import br.ufrpe.zoologico.negocio.beans.Ordem;
 import br.ufrpe.zoologico.negocio.beans.Servico;
 import br.ufrpe.zoologico.negocio.beans.Veterinario;
+import br.ufrpe.zoologico.negocio.beans.Zoo;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoAnimal;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoConsultas;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoEspecie;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoFaturas;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoFuncionario;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoGenero;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoInstituicao;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoVeterinario;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoZoo;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoJaula;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoOrdem;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoServicos;
 
 public class Fachada {
@@ -36,6 +44,10 @@ public class Fachada {
 	private GerenciamentoFuncionario funcionarios;
 	private GerenciamentoServicos servicos;
 	private GerenciamentoFaturas faturas;
+	private GerenciamentoEspecie especie;
+	private GerenciamentoOrdem ordem;
+	private GerenciamentoGenero genero;
+	private GerenciamentoZoo zoo;
 	
 	private Fachada() {
 		consultas = new GerenciamentoConsultas();
@@ -45,6 +57,10 @@ public class Fachada {
 		veterinarios = new GerenciamentoVeterinario();
 		servicos = new GerenciamentoServicos();
 		faturas = new GerenciamentoFaturas();
+		especie = new GerenciamentoEspecie();
+		ordem = new GerenciamentoOrdem();
+		genero = new GerenciamentoGenero();
+		zoo = new GerenciamentoZoo();
 	}
 	
 	public static Fachada getInstance() {
@@ -52,6 +68,10 @@ public class Fachada {
 			instance = new Fachada();
 		}
 		return instance;
+	}
+	
+	public ArrayList<Zoo> listarZoo() throws Exception{
+		return zoo.listar();
 	}
 	
 	public void cadastrarConsulta(Consulta o) {
@@ -209,9 +229,19 @@ public class Fachada {
 	}
 	
 	
-	public ArrayList<Jaula> listarJaulas() {
+	public ArrayList<Jaula> listarJaulas() throws Exception {
 		return jaulas.listarTodos();
 	}
 	
+	public ArrayList<Ordem> listarOrdem() throws Exception{
+		return ordem.listarTodos();
+	}
 	
+	public ArrayList<Especie> listarEspecie() throws Exception{
+		return especie.listarTodos();
+	}
+	
+	public ArrayList<Genero> listarGenero() throws Exception{
+		return genero.listarTodos();
+	}
 }

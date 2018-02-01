@@ -9,7 +9,7 @@ package br.ufrpe.zoologico.negocio.beans;
 public class Especie {
 	private int seq;
 	private String nome;
-	private Genero genero;
+	private int genero;
 	
 	
 	@Override
@@ -21,7 +21,7 @@ public class Especie {
 	 * @param nome
 	 * @param genero
 	 */
-	public Especie(int seq, String nome, Genero genero) {
+	public Especie(int seq, String nome, int genero) {
 		super();
 		this.seq = seq;
 		this.nome = nome;
@@ -59,14 +59,14 @@ public class Especie {
 	 * Metodo: getGenero
 	 * @return genero
 	 */
-	public Genero getGenero() {
+	public int getGenero() {
 		return genero;
 	}
 	/**
 	 * Metodo: setGenero
 	 * @param genero the genero to set
 	 */
-	public void setGenero(Genero genero) {
+	public void setGenero(int genero) {
 		this.genero = genero;
 	}
 	

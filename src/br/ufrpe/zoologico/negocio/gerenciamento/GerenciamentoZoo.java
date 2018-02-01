@@ -43,13 +43,8 @@ public class GerenciamentoZoo {
 		}
 	}
 	
-	public ArrayList<Zoo> listar(){
-		try {
-			return z.listarTodos();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+	public ArrayList<Zoo> listar() throws Exception{
+		return z.listarTodos();
 	}
 	
 }

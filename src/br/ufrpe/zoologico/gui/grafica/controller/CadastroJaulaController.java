@@ -46,18 +46,28 @@ public class CadastroJaulaController  implements Initializable{
 	
 	@FXML 
 	public void passar(){
+		//TODO ajeitar
 		id++;
-		if(id > f.listarJaulas().size() - 1)
-			id = 0;
+		try {
+			if(id > f.listarJaulas().size() - 1)
+				id = 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		preencher(id);
 		allDisable();
 	}
 	
 	@FXML
 	public void retornar(){
+		//TODO ajeitar
 		id--;
 		if(id<0)
-			id = f.listarJaulas().size() - 1;
+			try {
+				id = f.listarJaulas().size() - 1;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		preencher(id);
 		allDisable();
 	}
@@ -246,17 +256,23 @@ public class CadastroJaulaController  implements Initializable{
 	}
 	
 	private  void preencher(int id){
-		Jaula inicio = f.listarJaulas().get(id);
-		idZoo.setText(String.valueOf(inicio.getZoo()));
-		tratador.setText(inicio.getTratador());
-		max.setText(String.valueOf(inicio.getPopulacao_max()));
-		comp.setText(String.valueOf(inicio.getProfundidade()));
-		larg.setText(String.valueOf(inicio.getLargura()));
-		altura.setText(String.valueOf(inicio.getAltura()));
-		dias.setText(String.valueOf(inicio.getPerid_insp_dias()));
-		idJaula.setText(String.valueOf(inicio.getId_jaula()));
-		obs.setText(inicio.getObs());
-		dtInsp.setValue(inicio.getDt_ultima_inspecao());;
+		Jaula inicio;
+		try {
+			inicio = f.listarJaulas().get(id);
+			idZoo.setText(String.valueOf(inicio.getZoo()));
+			tratador.setText(inicio.getTratador());
+			max.setText(String.valueOf(inicio.getPopulacao_max()));
+			comp.setText(String.valueOf(inicio.getProfundidade()));
+			larg.setText(String.valueOf(inicio.getLargura()));
+			altura.setText(String.valueOf(inicio.getAltura()));
+			dias.setText(String.valueOf(inicio.getPerid_insp_dias()));
+			idJaula.setText(String.valueOf(inicio.getId_jaula()));
+			obs.setText(inicio.getObs());
+			dtInsp.setValue(inicio.getDt_ultima_inspecao());;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
 

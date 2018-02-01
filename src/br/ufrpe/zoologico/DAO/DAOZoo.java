@@ -72,7 +72,7 @@ public class DAOZoo extends DAO<Zoo>{
 
 	@Override
 	public ArrayList<Zoo> listarTodos() throws Exception {
-		String sql = "SELECT * FROM administrador";
+		String sql = "SELECT * FROM Zoologico";
 		preparar(sql);
 		ResultSet result = getStmt().executeQuery(sql);
 		ArrayList<Zoo> list = new ArrayList<Zoo>();

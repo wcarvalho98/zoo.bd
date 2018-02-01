@@ -55,15 +55,8 @@ public class GerenciamentoJaula {
 		throw new ObjetoNaoExisteException("Jaula não existe");
 	}
 	
-	public ArrayList<Jaula> listarTodos(){
-		try {
-			return jaula.listarTodos();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ArrayList<Jaula>();
-		}
-		
-	
+	public ArrayList<Jaula> listarTodos() throws Exception{
+		return jaula.listarTodos();
 	}
 
 	

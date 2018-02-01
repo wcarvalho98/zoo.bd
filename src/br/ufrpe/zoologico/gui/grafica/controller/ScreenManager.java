@@ -25,6 +25,7 @@ public class ScreenManager {
 	private Scene telaAdmin;
 	private Scene telaJaula;
 	private Scene telaCadastrarInstituicao;
+	private Scene telaGerenciarServicos;
 
 	private static Stage mainStage;
 
@@ -58,7 +59,11 @@ public class ScreenManager {
 	}
 
 	public static String formatarLocalDate(LocalDate a) {
+		if (a != null) {
 		return a.getDayOfMonth() + "/" + a.getMonthValue() + "/" + a.getYear();
+		} else {
+			return "--/--/----";
+		}
 	}
 
 	public static String formatarLocalTime(LocalTime a) {
@@ -153,6 +158,17 @@ public class ScreenManager {
 			e.printStackTrace();
 		}
 		return telaCadastrarInstituicao;
+	}
+
+	public Scene getTelaGerenciarServicos() {
+		try {
+			telaGerenciarServicos = new Scene(
+					FXMLLoader.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/GerenciarServicos.fxml")));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return telaGerenciarServicos;
 	}
 
 }

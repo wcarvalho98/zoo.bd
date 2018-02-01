@@ -184,15 +184,15 @@ public class Fachada {
 		faturas.cadastrarFatura(o);
 	}
 
-	public void remover(Fatura o) {
+	public void removerFatura(Fatura o) {
 		faturas.remover(o);
 	}
 
-	public void alterar(Fatura o) {
+	public void alterarFatura(Fatura o) {
 		faturas.alterar(o);
 	}
 	
-	public Fatura buscar(int id) {
+	public Fatura buscarFatura(int id) {
 		return faturas.buscar(id);
 	}
 

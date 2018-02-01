@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.Fatura;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
+import javafx.fxml.FXML;
 
 public class DAOFatura extends DAO<Fatura> {
 	
@@ -43,8 +44,7 @@ public class DAOFatura extends DAO<Fatura> {
 
 	@Override
 	public void alterar(Fatura o) throws Exception {
-		String sql = "UPDATE fatura SET valor = ?, dataDaFatura = ?, dt_paga = ?, vl_muta = ?m"
-				+ " stats = ?, tp_fatura = ?, id_ped_serv = ? WHERE idFatura = ?";
+		String sql = "UPDATE fatura SET valor = ?, dataDaFatura = ?, dt_paga = ?, vl_multa = ?, stats = ?, tp_fatura = ?, id_ped_serv = ? WHERE idFatura = ?";
 		preparar(sql);
 		getStmt().setDouble(1, o.getValor());
 		getStmt().setDate(2, Date.valueOf(o.getDataDaFatura()));
@@ -102,6 +102,10 @@ public class DAOFatura extends DAO<Fatura> {
 		fecharStmt();
 		fechar();
 		return r;
+	}
+	
+	@FXML public void voltar() {
+		// TODO ScreenManager.setScene(ScreenManager.getInstance.);
 	}
 
 }

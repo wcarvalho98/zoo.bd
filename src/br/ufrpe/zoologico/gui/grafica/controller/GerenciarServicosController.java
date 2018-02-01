@@ -228,5 +228,9 @@ public class GerenciarServicosController implements Initializable {
 			tipoDeFaturaTextField.setText(a.getTp_fatura());
 		}
 	}
+	
+	@FXML public void voltar() {
+		// TODO
+	}
 
 }

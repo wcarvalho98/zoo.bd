@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <tabs>
+    <Tab text="Untitled Tab 1">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView layoutX="62.0" layoutY="81.0" prefHeight="472.0" prefWidth="326.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="ID Serviço" />
+                      <TableColumn prefWidth="183.0" text="Descrição" />
+                        <TableColumn prefWidth="67.0" text="Valor" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="182.0" layoutY="46.0" text="Serviços">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="590.0" layoutY="46.0" text="Faturas do Serviço selecionado">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <TableView editable="true" layoutX="540.0" layoutY="93.0" prefHeight="154.0" prefWidth="558.0">
+                    <columns>
+                      <TableColumn prefWidth="59.0" text="ID Fatura" />
+                      <TableColumn prefWidth="56.0" text="Valor" />
+                        <TableColumn prefWidth="68.0" text="Data" />
+                        <TableColumn prefWidth="68.0" text="DT_Paga" />
+                        <TableColumn prefWidth="76.0" text="Vl_Multa" />
+                        <TableColumn prefWidth="134.0" text="Stats" />
+                        <TableColumn prefWidth="96.0" text="Tipo fatura" />
+                    </columns>
+                  </TableView>
+                  <TextField alignment="CENTER" layoutX="518.0" layoutY="334.0" promptText="Valor da Fatura">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField alignment="CENTER" layoutX="518.0" layoutY="391.0" promptText="Valor da Multa">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <DatePicker layoutX="518.0" layoutY="448.0" prefHeight="38.0" prefWidth="224.0" />
+                  <DatePicker layoutX="1006.0" layoutY="333.0" prefHeight="38.0" prefWidth="224.0" />
+                  <TextField alignment="CENTER" layoutX="1006.0" layoutY="391.0" promptText="Status">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField alignment="CENTER" layoutX="1006.0" layoutY="446.0" promptText="Tipo de Fatura">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="438.0" layoutY="336.0" text="Valor:">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="438.0" layoutY="393.0" text="Multa:">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="441.0" layoutY="450.0" text="Data:">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="766.0" layoutY="335.0" text="Data do Pagamento:">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="912.0" layoutY="393.0" text="Status:">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="825.0" layoutY="448.0" text="Tipo de Fatura:">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="763.0" layoutY="272.0" mnemonicParsing="false" text="Editar Fatura">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="739.0" layoutY="533.0" mnemonicParsing="false" text="Salvar Alterações">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="Untitled Tab 2">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>

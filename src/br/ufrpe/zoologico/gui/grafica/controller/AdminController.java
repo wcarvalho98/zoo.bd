@@ -7,6 +7,7 @@
 package br.ufrpe.zoologico.gui.grafica.controller;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import br.ufrpe.zoologico.negocio.beans.Funcionario;
@@ -15,10 +16,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -46,20 +50,8 @@ public class AdminController implements Initializable {
 	@FXML
 	private Label lblTabela;
 	
-	private Telas t;
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-//		t = Telas.getInstance();
-//		t.getDialogStage().setResizable(false);
-//		t.getDialogStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
-//
-//			@Override
-//			public void handle(WindowEvent arg0) {
-//				t.sairDoSistema();
-//			}
-//
-//		});
 		clmPrincipal.setText(null);
 		clmSecundaria.setText(null);
 		tbvPrincipal.setDisable(true);
@@ -67,7 +59,7 @@ public class AdminController implements Initializable {
 	
 	@FXML
 	public void fechar() {
-		t.sairDoSistema();
+		ScreenManager.sairDoSistema();
 	}
 	
 	@FXML

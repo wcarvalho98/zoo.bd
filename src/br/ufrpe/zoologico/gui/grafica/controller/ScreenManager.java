@@ -41,7 +41,7 @@ public class ScreenManager {
 		return instance;
 	}
 	
-	public static void sairDoSistema() {
+	public static boolean sairDoSistema() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Desconectar");
 		alert.setHeaderText(null);
@@ -54,6 +54,7 @@ public class ScreenManager {
 		} else {
 			alert.close();
 		}
+		return false;
 	}
 
 	public static String formatarLocalDate(LocalDate a) {

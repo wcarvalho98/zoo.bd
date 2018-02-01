@@ -88,16 +88,16 @@ public class PrincipalController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-//		t = Telas.getInstance();
-//		t.getDialogStage().setResizable(false);
-//		t.getDialogStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
-//
-//			@Override
-//			public void handle(WindowEvent arg0) {
-//				t.sairDoSistema();
-//			}
-//
-//		});
+		ScreenManager.getMainStage().setResizable(false);
+		ScreenManager.getMainStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
+
+			@Override
+			public void handle(WindowEvent arg0) {
+				if (!ScreenManager.sairDoSistema())
+					arg0.consume();
+			}
+
+		});
 	}
 
 }

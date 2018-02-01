@@ -74,25 +74,6 @@ public class Fachada {
 		return consultas.listarConsultas();
 	}
 	
-	public void cadastrarJaula(Jaula o){
-		jaulas.cadastrar(o);
-	}
-	
-	public void removerJaula(Jaula o) {
-		jaulas.remover(o);
-	}
-	
-	public void alterarJaula(Jaula o) {
-		jaulas.atualizar(o);
-	}
-	
-	public Jaula buscarJaula(int id) {
-		return jaulas.buscar(id);
-	}
-	
-	public ArrayList<Jaula> listarJaulas() {
-		return jaulas.listarTodos();
-	}
 	
 	public void cadastrarInstituicao(Instituicao o) {
 		instituicoes.cadastrarInstituicao(o);
@@ -209,5 +190,28 @@ public class Fachada {
 	public ArrayList<Fatura> listarFaturas(){
 		return faturas.listarTodos();
 	}
+	
+	//JAULA
+	public void cadastrarJaula(Jaula o) throws Exception{
+		jaulas.cadastrar(o);
+	}
+	
+	public void removerJaula(Jaula o) throws Exception  {
+		jaulas.remover(o);
+	}
+	
+	public void alterarJaula(Jaula o) {
+		jaulas.atualizar(o);
+	}
+	
+	public Jaula buscarJaula(int id) throws Exception  {
+		return jaulas.buscar(id);
+	}
+	
+	
+	public ArrayList<Jaula> listarJaulas() {
+		return jaulas.listarTodos();
+	}
+	
 	
 }

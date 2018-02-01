@@ -222,14 +222,15 @@ public class Jaula {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id_jaula;
-		result = prime * result + zoo;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -241,10 +242,7 @@ public class Jaula {
 		Jaula other = (Jaula) obj;
 		if (id_jaula != other.id_jaula)
 			return false;
-		if (zoo != other.zoo)
-			return false;
 		return true;
 	}
-	
-	
+		
 }

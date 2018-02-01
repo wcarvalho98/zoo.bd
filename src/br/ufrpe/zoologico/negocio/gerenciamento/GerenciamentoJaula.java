@@ -9,6 +9,8 @@ package br.ufrpe.zoologico.negocio.gerenciamento;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.DAO.DAOJaula;
+import br.ufrpe.zoologico.exceptions.ObjetoExisteException;
+import br.ufrpe.zoologico.exceptions.ObjetoNaoExisteException;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
 
 public class GerenciamentoJaula {
@@ -17,21 +19,24 @@ public class GerenciamentoJaula {
 	public GerenciamentoJaula(){
 		jaula = new DAOJaula();
 	}
-	
-	public void cadastrar(Jaula o){
-		try {
-			jaula.inserir(o);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void cadastrar(Jaula o) throws Exception{
+		if(o != null){
+			if(this.listarTodos().contains(o))
+				throw new ObjetoExisteException("Objeto já cadastrado");
+			else
+				jaula.inserir(o);
+		}else
+			throw new IllegalArgumentException();
 	}
 	
-	public void remover(Jaula o){
-		try {
-			jaula.remover(o);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void remover(Jaula o) throws Exception{
+		if(o != null){
+			if(!this.listarTodos().contains(o))
+				throw new ObjetoNaoExisteException("Objeto não existe no banco");
+			else
+				jaula.remover(o);
+		}else
+			throw new IllegalArgumentException();
 	}
 	
 	public void atualizar(Jaula o){
@@ -42,14 +47,12 @@ public class GerenciamentoJaula {
 		}
 	}
 	
-	public Jaula buscar(int id){
-		Jaula result = null;
-		try {
-			result = jaula.buscar(id);
-		} catch (Exception e) {
-			e.printStackTrace();
+	public Jaula buscar(int id) throws Exception{
+		for (int i = 0; i < listarTodos().size(); i++){
+			if(listarTodos().get(i).getId_jaula() == id)
+				return jaula.buscar(id);
 		}
-		return result;
+		throw new ObjetoNaoExisteException("Jaula não existe");
 	}
 	
 	public ArrayList<Jaula> listarTodos(){
@@ -62,4 +65,7 @@ public class GerenciamentoJaula {
 		
 	
 	}
+
+	
+	
 }

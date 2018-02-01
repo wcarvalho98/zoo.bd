@@ -229,7 +229,7 @@ public class Fachada {
 		jaulas.remover(o);
 	}
 	
-	public void alterarJaula(Jaula o) {
+	public void alterarJaula(Jaula o) throws Exception {
 		jaulas.atualizar(o);
 	}
 	

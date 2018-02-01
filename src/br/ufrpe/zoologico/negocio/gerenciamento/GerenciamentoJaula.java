@@ -39,12 +39,8 @@ public class GerenciamentoJaula {
 			throw new IllegalArgumentException();
 	}
 	
-	public void atualizar(Jaula o){
-		try {
-			jaula.alterar(o);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void atualizar(Jaula o) throws Exception{
+		jaula.alterar(o);
 	}
 	
 	public Jaula buscar(int id) throws Exception{

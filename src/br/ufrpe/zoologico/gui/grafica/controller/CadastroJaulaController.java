@@ -26,7 +26,7 @@ public class CadastroJaulaController  implements Initializable{
 	@FXML private TextField idZoo, tratador, max, comp, larg, altura, dias, idJaula, tipo;
 	@FXML private TextArea obs;
 	@FXML private DatePicker dtInsp;
-	@FXML private Button cadas; 
+	@FXML private Button cadas, conAlt; 
 	
 	private Fachada f;
 	private int id;
@@ -52,6 +52,8 @@ public class CadastroJaulaController  implements Initializable{
 			id = 0;
 		preencher(id);
 		allDisable();
+		cadas.setDisable(true);
+		cadas.setVisible(false);
 	}
 	
 	@FXML
@@ -60,15 +62,46 @@ public class CadastroJaulaController  implements Initializable{
 		id--;
 		if(id<0)
 			id = f.listarJaulas().size() - 1;
-			
 		preencher(id);
 		allDisable();
-		
-			
+		cadas.setDisable(true);
+		cadas.setVisible(false);			
 	}
 	
 	@FXML 
-	public void enter(){
+	public void conAlt(){
+		try {
+			Jaula j;
+			int idZoologico =  Integer.parseInt((idZoo.getText()));
+			String cpfTratador = tratador.getText();
+			int maximo =  Integer.parseInt((max.getText()));
+			double comprimento = Double.parseDouble((comp.getText()));
+			double alt =  Double.parseDouble(altura.getText());
+			double largura =  Double.parseDouble(larg.getText());
+			String obs1 = obs.getText();
+			String tp = tipo.getText();
+			LocalDate dat = dtInsp.getValue();
+			int p = Integer.parseInt(dias.getText());
+			int i = Integer.parseInt(idJaula.getText());
+			
+			j = new Jaula(i,true,tp,dat,maximo,obs1,p,alt,largura,comprimento,idZoologico,cpfTratador);
+			
+			f.alterarJaula(j);
+			allNull();
+		} catch (NumberFormatException e1){
+			Alert a = new Alert(AlertType.ERROR);
+			a.setTitle("Erro");
+			a.setHeaderText(null);
+			a.setContentText(e1.getMessage());
+			a.showAndWait();
+
+		} catch (Exception e) {
+			Alert a = new Alert(AlertType.ERROR);
+			a.setTitle("Erro");
+			a.setHeaderText(null);
+			a.setContentText(e.getMessage());
+			a.showAndWait();
+		}
 		
 	}
 	
@@ -114,6 +147,10 @@ public class CadastroJaulaController  implements Initializable{
 	public void alterar(){
 		allNotDisable();
 		idJaula.setDisable(true);
+		conAlt.setDisable(false);
+		conAlt.setVisible(true);
+		cadas.setDisable(true);
+		cadas.setVisible(false);
 	}
 	
 	@FXML
@@ -129,6 +166,8 @@ public class CadastroJaulaController  implements Initializable{
 	public void buscar(){
 		allDisable();
 		idJaula.setDisable(false);
+		cadas.setDisable(true);
+		cadas.setVisible(false);
 	}
 	
 	@FXML
@@ -183,6 +222,7 @@ public class CadastroJaulaController  implements Initializable{
 		dias.setDisable(false);
 		idJaula.setDisable(false);
 		obs.setDisable(false);
+		tipo.setDisable(false);
 	}
 	
 	private void allDisable(){
@@ -196,6 +236,7 @@ public class CadastroJaulaController  implements Initializable{
 		dias.setDisable(true);
 		idJaula.setDisable(true);
 		obs.setDisable(true);
+		tipo.setDisable(true);
 	}
 	
 	private void allNull(){
@@ -219,6 +260,8 @@ public class CadastroJaulaController  implements Initializable{
 		idJaula.setPromptText("ID");
 		obs.setText(null);
 		obs.setPromptText("Observação");
+		tipo.setText(null);
+		tipo.setPromptText("Tipo");
 	}
 	
 	private void preencherBusca(int id) {
@@ -236,7 +279,7 @@ public class CadastroJaulaController  implements Initializable{
 			idJaula.setText(String.valueOf(inicio.getId_jaula()));
 			obs.setText(inicio.getObs());
 			dtInsp.setValue(inicio.getDt_ultima_inspecao());;
-
+			tipo.setText(inicio.getTipo());
 		}catch(Exception e){
 			Alert a = new Alert(AlertType.ERROR);
 			a.setTitle("Erro");
@@ -263,7 +306,7 @@ public class CadastroJaulaController  implements Initializable{
 			idJaula.setText(String.valueOf(inicio.getId_jaula()));
 			obs.setText(inicio.getObs());
 			dtInsp.setValue(inicio.getDt_ultima_inspecao());;
-
+			tipo.setText(inicio.getTipo());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

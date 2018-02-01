@@ -69,7 +69,7 @@ public class AdminController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		tbvPrincipal.setVisible(true);
+		populaTabelaVeterinario();
 	}
 	
 	@FXML

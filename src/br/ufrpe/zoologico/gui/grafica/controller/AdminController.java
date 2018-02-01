@@ -46,20 +46,17 @@ public class AdminController implements Initializable {
 	@FXML
 	private Label lblTabela;
 	
-	private Telas t;
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-//		t = Telas.getInstance();
-//		t.getDialogStage().setResizable(false);
-//		t.getDialogStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
-//
-//			@Override
-//			public void handle(WindowEvent arg0) {
-//				t.sairDoSistema();
-//			}
-//
-//		});
+		ScreenManager.getMainStage().setResizable(false);
+		ScreenManager.getMainStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
+
+			@Override
+			public void handle(WindowEvent arg0) {
+				ScreenManager.sairDoSistema();
+			}
+
+		});
 		clmPrincipal.setText(null);
 		clmSecundaria.setText(null);
 		tbvPrincipal.setDisable(true);
@@ -67,7 +64,7 @@ public class AdminController implements Initializable {
 	
 	@FXML
 	public void fechar() {
-		t.sairDoSistema();
+		ScreenManager.sairDoSistema();
 	}
 	
 	@FXML

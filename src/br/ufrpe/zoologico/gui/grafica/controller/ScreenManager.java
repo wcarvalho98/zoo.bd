@@ -10,9 +10,13 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Optional;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class ScreenManager {
@@ -35,6 +39,21 @@ public class ScreenManager {
 			instance = new ScreenManager();
 		}
 		return instance;
+	}
+	
+	public static void sairDoSistema() {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Desconectar");
+		alert.setHeaderText(null);
+		alert.setContentText("Deseja fechar o programa?");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		
+		if (result.get().equals(ButtonType.OK)) {
+			System.exit(0);
+		} else {
+			alert.close();
+		}
 	}
 
 	public static String formatarLocalDate(LocalDate a) {

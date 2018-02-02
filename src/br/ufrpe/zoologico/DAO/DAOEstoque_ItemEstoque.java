@@ -107,6 +107,7 @@ public class DAOEstoque_ItemEstoque extends DAO<Estoque>{
 		getStmt().setDate(4, Date.valueOf(o.getData_entrada()));
 		getStmt().setDouble(5, o.getVl_compra());
 		getStmt().setDate(6, Date.valueOf(o.getData_validade())); 
+		getStmt().setInt(7, o.getAnimal_consome());
 		try {
 			getStmt().execute();
 			getCon().commit();
@@ -120,14 +121,63 @@ public class DAOEstoque_ItemEstoque extends DAO<Estoque>{
 
 	
 	public void removerItem(ItemEstoque o) throws Exception {
+		String sql = "delete item_estoque where id = ? and cod_prod_ref = ?";
+		preparar(sql);
+		getStmt().setInt(2,o.getCod_prod_ref());
+		getStmt().setInt(1,o.getIdEstoque());
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}	
 	}
 
 	
 	public void alterarItem(ItemEstoque o) throws Exception {
+		String sql = "update table item_estoque set qtd = ?, data_entrada = ?, vl_compra = ?, data_validade = ?, id_animal = ? where id = ? and cod_prod_ref = ?";
+		preparar(sql);
+		getStmt().setInt(1,o.getQtd());
+		getStmt().setDate(2, Date.valueOf(o.getData_entrada()));
+		getStmt().setDouble(3, o.getVl_compra());
+		getStmt().setDate(4, Date.valueOf(o.getData_validade()));
+		getStmt().setInt(5, o.getAnimal_consome());
+		getStmt().setInt(6, o.getIdEstoque());
+		getStmt().setInt(7, o.getCod_prod_ref());
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}	
 	}
 
 	public ArrayList<ItemEstoque> listarItens() throws Exception {
-		return null;
+		ArrayList<ItemEstoque> r = new ArrayList<ItemEstoque>();
+		String sql = "SELECT * FROM estoque";
+		preparar(sql);
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
+		while(rs.next()) {
+			//ItemEstoque o = new ItemEstoque()
+			//r.add(o);
+		}
+		rs.close();
+		fecharStmt();
+		return r;
 	}
 
 }

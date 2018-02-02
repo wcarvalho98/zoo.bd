@@ -72,7 +72,7 @@ public class DAOGenero extends DAO<Genero>{
 	}
 	
 	public boolean pertence(int idGenero, int idOrdem) throws Exception{
-		String sql = "SELECT zoologico.generoPertenceOrdem(?, ?)";
+		String sql = "SELECT zoologico.generoPertenceOrdem(?, ?);";
 		preparar(sql);
 		getStmt().setInt(1,idGenero);
 		getStmt().setInt(2, idOrdem);

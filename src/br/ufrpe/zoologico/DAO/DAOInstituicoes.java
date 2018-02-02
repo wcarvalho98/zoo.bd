@@ -30,7 +30,7 @@ public class DAOInstituicoes extends DAO<Instituicao> {
 
 	@Override
 	public void remover(Instituicao o) throws Exception {
-		String sql = "delete from Instituicao where cnpj = ?";
+		String sql = "delete from `Instituicao` where `cnpj` = ?";
 		preparar(sql);
 		getStmt().setString(1, o.getCnpj());
 		getStmt().execute();
@@ -41,7 +41,17 @@ public class DAOInstituicoes extends DAO<Instituicao> {
 
 	@Override
 	public void alterar(Instituicao o) throws Exception {
-		// String sql = "";
+		String sql = "update `instituicao` set `telefone_1` = ?, `telefone_2` = ?, `razao_social` = ?, `nome_contato` = ?, `email` = ? where `cnpj` = ?";
+		preparar(sql);
+		getStmt().setString(1, o.getTelefone1());
+		getStmt().setString(2, o.getTelefone2());
+		getStmt().setString(3, o.getRazao_social());
+		getStmt().setString(4, o.getNome_contato());
+		getStmt().setString(5, o.getEmail());
+		getStmt().setString(6, o.getCnpj());
+		getStmt().execute();
+		fecharStmt();
+		fechar();
 	}
 
 	public Instituicao buscar(String cnpj) throws Exception {

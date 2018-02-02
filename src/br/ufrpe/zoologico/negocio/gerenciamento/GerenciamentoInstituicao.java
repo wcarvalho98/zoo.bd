@@ -30,8 +30,8 @@ public class GerenciamentoInstituicao {
 			if (o != null) {
 				instituicoes.remover(o);
 			}
-		} catch (Exception e) {System.err.println("O comando de instituicoes.remover() falhou em GerenciamentoInstituicao.java");}
-	}
+		} catch (Exception e) {e.printStackTrace();}
+		}
 	
 	public ArrayList<Instituicao> listarInstituicoes() {
 		try {
@@ -40,6 +40,14 @@ public class GerenciamentoInstituicao {
 			//System.err.println("O comando de instituicoes.listarTodos() falhou em GerenciamentoInstituicao.java");
 			e.printStackTrace();
 			return new ArrayList<Instituicao>();
+		}
+	}
+	
+	public void alterarInstituicao(Instituicao o) {
+		try {
+			instituicoes.alterar(o);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

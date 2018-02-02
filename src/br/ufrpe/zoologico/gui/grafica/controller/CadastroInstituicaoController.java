@@ -86,7 +86,7 @@ public class CadastroInstituicaoController implements Initializable{
 
     @FXML
     void editarInstituicao() {
-    	if (instituicaoSelecionada != null) {
+    	if (instituicaoSelecionada != null && !nomeUsualTextField1.getText().equals("")) {
 			preencherCampos1(instituicaoSelecionada);
 		}
     }
@@ -95,6 +95,7 @@ public class CadastroInstituicaoController implements Initializable{
     void removerInstituicao() {
     	if (instituicaoSelecionada != null) {
 			Fachada.getInstance().removerInstituicao(instituicaoSelecionada);
+			preencherTabela();
 		}
     }
 
@@ -106,7 +107,9 @@ public class CadastroInstituicaoController implements Initializable{
     	instituicaoSelecionada.setNome_contato(nomeUsualTextField1.getText());
     	instituicaoSelecionada.setRazao_social(razaoSocialTextField1.getText());
     	
-    	//Fachada.getInstance().alter
+    	Fachada.getInstance().alterarInstituicao(instituicaoSelecionada);
+    	preencherTabela();
+    	preencherCampos1(null);
     }
 
     @FXML
@@ -132,6 +135,7 @@ public class CadastroInstituicaoController implements Initializable{
     		} else{
     			System.err.println("Nenhum campo Escola ou Empresa selecionado");
     		}
+    		preencherTabela();
     	}
     }
 
@@ -149,8 +153,7 @@ public class CadastroInstituicaoController implements Initializable{
 
     @FXML
     void voltar() {
-		Telas.getInstance().setCena(new Scene((Parent) Telas.getInstance().carregarFXML("Principal")));
-		Telas.getInstance().abrirTelaDialogo();
+		//TODO
     }
     
     private void esvaziarCampos(){

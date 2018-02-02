@@ -167,12 +167,20 @@ public class Fachada {
 		return genero.listarTodos();
 	}
 	
+	public boolean generoPertenceOrdem(int idGenero, int idOrdem) throws Exception{
+		return genero.pertence(idGenero, idOrdem);
+	}
+	
 	public Genero buscarGenero(int genero2) throws Exception{
 		return genero.buscaGenero(genero2);
 	}
 	
 	public Especie buscarEspecie(int especie2) throws Exception {
 		return especie.buscar(especie2);
+	}
+	
+	public boolean especiePertenceGenero(int idEspecie, int idGenero) throws Exception{
+		return especie.pertence(idEspecie, idGenero);
 	}
 	
 	/** VETERINARIO */

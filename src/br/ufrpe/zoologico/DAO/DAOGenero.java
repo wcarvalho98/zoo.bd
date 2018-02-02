@@ -56,5 +56,19 @@ public class DAOGenero extends DAO<Genero>{
 		fechar();
 		return o;
 	}
+	
+	public boolean pertence(int idGenero, int idOrdem) throws Exception{
+		String sql = "select zoologico.generoPertenceOrdem(?, ?)";
+		preparar(sql);
+		getStmt().setInt(1,idGenero);
+		getStmt().setInt(2, idOrdem);
+		ResultSet rs = getStmt().executeQuery();
+		rs.next();
+		boolean resp = rs.getBoolean(1);
+		rs.close();
+		fecharStmt();
+		fechar();
+		return resp;
+	}
 
 }

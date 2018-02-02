@@ -45,5 +45,9 @@ public class GerenciamentoEspecie {
 	public Especie buscar(int especie2) throws Exception {
 		return especie.buscar(especie2);
 	}
+	
+	public boolean pertence(int idEspecie, int idGenero) throws Exception{
+		return especie.pertence(idEspecie, idGenero);
+	}
 
 }

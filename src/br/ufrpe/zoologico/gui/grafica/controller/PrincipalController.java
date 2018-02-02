@@ -39,10 +39,10 @@ public class PrincipalController implements Initializable {
 	
 	@FXML
 	public void validaLogin() {
-		String usuario = loginId.getText();
+		String nome = loginId.getText();
 		String senha = senhaId.getText();
 		
-		if (usuario.isEmpty())
+		if (nome.isEmpty())
 			tooltipLogin.show(ScreenManager.getMainStage().getOwner());
 		else
 			tooltipLogin.hide();
@@ -50,10 +50,12 @@ public class PrincipalController implements Initializable {
 			tooltipSenha.show(ScreenManager.getMainStage().getOwner());
 		else
 			tooltipSenha.hide();
-		if (!senha.isEmpty() && !usuario.isEmpty()) {
+		if (!senha.isEmpty() && !nome.isEmpty()) {
+			Fachada.getInstance().fazerLogin(nome, senha);
+			/**
 			Administrador o = null;
 			try {
-				o = Fachada.getInstance().buscarAdministrador(usuario);
+				o = Fachada.getInstance().buscarAdministrador(nome);
 			} catch (Exception e) {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Erro!");
@@ -74,7 +76,7 @@ public class PrincipalController implements Initializable {
 				alert.setContentText("Senha incorreta!");
 
 				alert.showAndWait();
-			}
+			}*/
 			
 		}
 			

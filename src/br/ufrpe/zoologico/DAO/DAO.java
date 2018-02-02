@@ -10,6 +10,7 @@ import br.ufrpe.zoologico.util.ConFactory;
 
 @SuppressWarnings("unused")
 public abstract class DAO<T> {
+	
 	private final String URL = "jdbc:mysql://localhost:3306/zoologico", NOME = "root", SENHA = "";
 	private Connection con;
 	private PreparedStatement stmt;
@@ -18,7 +19,7 @@ public abstract class DAO<T> {
 		return stmt;
 	}
 	
-	public void conectar() throws ClassNotFoundException, SQLException{
+	private void conectar() throws ClassNotFoundException, SQLException{
 		con = ConFactory.conexao(URL, NOME, SENHA);  
 	}
 	

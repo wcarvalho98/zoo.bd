@@ -153,8 +153,8 @@ public class CadastroInstituicaoController implements Initializable{
 
     @FXML
     void voltar() {
-		//TODO
-    }
+		ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin()); 
+	}
     
     private void esvaziarCampos(){
     	nomeUsualTextField.setText("");

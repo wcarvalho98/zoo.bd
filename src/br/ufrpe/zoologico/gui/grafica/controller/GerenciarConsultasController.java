@@ -247,7 +247,7 @@ public class GerenciarConsultasController implements Initializable {
 
 	@FXML
 	void voltar() {
-		// TODO Voltar
+		ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin()); 
 	}
 
 	private void preencherTabelas() {

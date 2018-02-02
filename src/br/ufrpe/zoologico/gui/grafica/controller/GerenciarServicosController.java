@@ -245,7 +245,7 @@ public class GerenciarServicosController implements Initializable {
 
 	@FXML
 	public void voltar() {
-		// TODO
+		ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin()); 
 	}
 
 }

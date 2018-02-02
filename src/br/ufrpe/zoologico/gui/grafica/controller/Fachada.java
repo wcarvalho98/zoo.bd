@@ -273,4 +273,8 @@ public class Fachada {
 	public ArrayList<Administrador> listarAdministradores() {
 		return admin.listarAdministradores();
 	}
+	
+	public void alterarInstituicao(Instituicao o) {
+		instituicoes.alterarInstituicao(o);
+	}
 }

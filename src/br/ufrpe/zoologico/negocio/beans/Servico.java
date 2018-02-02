@@ -92,5 +92,4 @@ public class Servico {
 		return "Servico [id=" + id + ", descr=" + descr + ", valor=" + valor + "]";
 	}
 	
-	
 }

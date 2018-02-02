@@ -43,7 +43,7 @@ public class AdminController {
 
     @FXML
     void abrirTelaJaula() {
-
+    	ScreenManager.setScene(ScreenManager.getInstance().getTelaJaula());
     }
 
     @FXML

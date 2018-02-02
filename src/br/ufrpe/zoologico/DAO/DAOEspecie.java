@@ -7,11 +7,10 @@
 package br.ufrpe.zoologico.DAO;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.Especie;
-import br.ufrpe.zoologico.negocio.beans.Genero;
-import br.ufrpe.zoologico.negocio.beans.Ordem;
 
 public class DAOEspecie extends DAO<Especie> {
 
@@ -21,9 +20,15 @@ public class DAOEspecie extends DAO<Especie> {
 		preparar(sql);
 		getStmt().setString(1, o.getNome());
 		getStmt().setInt(2, o.getGenero());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 
 	@Override
@@ -31,9 +36,15 @@ public class DAOEspecie extends DAO<Especie> {
 		String sql = "DELETE FROM especie WHERE `seq` = ?";
 		preparar(sql);
 		getStmt().setInt(1, o.getSeq());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 
 	@Override
@@ -43,21 +54,34 @@ public class DAOEspecie extends DAO<Especie> {
 		getStmt().setString(1, o.getNome());
 		getStmt().setInt(2, o.getGenero());
 		getStmt().setInt(3, o.getSeq());
-		getStmt().execute();
-		fecharStmt();
-		fechar();		
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}	
 	}
 	
 	public Especie buscar(int id) throws Exception {
 		String sql = "SELECT * FROM especie WHERE `seq` = ?";
 		preparar(sql);
 		getStmt().setInt(1, id);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		rs.next();
 		Especie o = new Especie(rs.getInt(1), rs.getString(2), rs.getInt(3));
 		rs.close();
 		fecharStmt();
-		fechar();
 		return o;
 	}
 
@@ -66,14 +90,21 @@ public class DAOEspecie extends DAO<Especie> {
 		ArrayList<Especie> list = new ArrayList<>();
 		String sql = "SELECT * FROM especie";
 		preparar(sql);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		while (rs.next()) {
 			Especie o = new Especie(rs.getInt(1), rs.getString(2), rs.getInt(3));
 			list.add(o);
 		}
 		rs.close();
 		fecharStmt();
-		fechar();
 		return list;
 	}
 	
@@ -82,12 +113,19 @@ public class DAOEspecie extends DAO<Especie> {
 		preparar(sql);
 		getStmt().setInt(1,idEspecie);
 		getStmt().setInt(2, idGenero);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		rs.next();
 		boolean resp = rs.getBoolean(1);
 		rs.close();
 		fecharStmt();
-		fechar();
 		return resp;
 	}
 

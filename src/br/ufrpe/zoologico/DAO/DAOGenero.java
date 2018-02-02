@@ -7,10 +7,10 @@
 package br.ufrpe.zoologico.DAO;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.Genero;
-import br.ufrpe.zoologico.negocio.beans.Ordem;
 
 public class DAOGenero extends DAO<Genero>{
 
@@ -33,14 +33,21 @@ public class DAOGenero extends DAO<Genero>{
 		ArrayList<Genero> list = new ArrayList<>();
 		String sql = "SELECT * from Genero";
 		preparar(sql);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		while (rs.next()) {
 			Genero o = new Genero(rs.getInt(1), rs.getString(2), rs.getInt(3));
 			list.add(o);
 		}
 		rs.close();
 		fecharStmt();
-		fechar();
 		return list;
 	}
 	
@@ -48,12 +55,19 @@ public class DAOGenero extends DAO<Genero>{
 		String sql = "SELECT * FROM genero WHERE `seq` = ?";
 		preparar(sql);
 		getStmt().setInt(1, id);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		rs.next();
 		Genero o = new Genero(rs.getInt(1), rs.getString(2), rs.getInt(3));
 		rs.close();
 		fecharStmt();
-		fechar();
 		return o;
 	}
 	
@@ -62,12 +76,19 @@ public class DAOGenero extends DAO<Genero>{
 		preparar(sql);
 		getStmt().setInt(1,idGenero);
 		getStmt().setInt(2, idOrdem);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		rs.next();
 		boolean resp = rs.getBoolean(1);
 		rs.close();
 		fecharStmt();
-		fechar();
 		return resp;
 	}
 

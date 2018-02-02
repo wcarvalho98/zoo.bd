@@ -61,7 +61,7 @@ public class PrincipalController implements Initializable {
 					case "tratador":
 						break;
 				}
-			} catch (ClassNotFoundException | SQLException e) {
+			} catch (Exception e) {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Erro!");
 				alert.setHeaderText(null);
@@ -77,6 +77,7 @@ public class PrincipalController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
 		ScreenManager.getMainStage().setResizable(false);
 		ScreenManager.getMainStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
 

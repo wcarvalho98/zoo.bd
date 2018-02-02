@@ -6,6 +6,7 @@
  */
 package br.ufrpe.zoologico.negocio.gerenciamento;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 import br.ufrpe.zoologico.DAO.DAOLogin;
@@ -22,8 +23,12 @@ public class GerenciamentoLogin {
 		login.fechar();
 	}
 	
-	public void fazerLogin(String nome, String senha) throws ClassNotFoundException, SQLException {
+	public void fazerLogin(String nome, String senha) throws Exception {
 		login.fazerLogin(nome, senha);
+	}
+	
+	public Connection getConnection() {
+		return login.getConnection();
 	}
 
 }

@@ -8,10 +8,9 @@ package br.ufrpe.zoologico.DAO;
 
 import java.sql.Date;
 import java.sql.ResultSet;
-import java.time.ZoneId;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import br.ufrpe.zoologico.negocio.beans.Funcionario;
-import br.ufrpe.zoologico.negocio.beans.Jaula;
 
 public class DAOFuncionario extends DAO<Funcionario> {
 	
@@ -31,9 +30,15 @@ public class DAOFuncionario extends DAO<Funcionario> {
 		getStmt().setString(8, o.getEndereco());
 		getStmt().setInt(9, o.getJornada_trabalho());
 		getStmt().setInt(10, o.getId_zoo());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 
 	@Override
@@ -41,9 +46,15 @@ public class DAOFuncionario extends DAO<Funcionario> {
 		String sql = "DELETE FROM funcionario WHERE `CPF` = ?";
 		preparar(sql);
 		getStmt().setString(1, o.getCpf());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 
 	@Override
@@ -63,16 +74,30 @@ public class DAOFuncionario extends DAO<Funcionario> {
 		getStmt().setInt(8, o.getJornada_trabalho());
 		getStmt().setInt(9, o.getId_zoo());
 		getStmt().setString(10, o.getCpf());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 	
 	public Funcionario buscar(String cpf) throws Exception {
 		String sql = "SELECT * FROM `funcionario` WHERE `CPF` = ?";
 		preparar(sql);
 		getStmt().setString(1, cpf);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		rs.next();
 		Funcionario o = new Funcionario(rs.getString(1), rs.getString(2),
 				rs.getString(3), rs.getString(4), rs.getString(5),
@@ -80,7 +105,6 @@ public class DAOFuncionario extends DAO<Funcionario> {
 				rs.getDouble(7), rs.getString(8), rs.getInt(9), rs.getInt(10));
 		rs.close();
 		fecharStmt();
-		fechar();
 		return o;
 	}
 
@@ -89,7 +113,15 @@ public class DAOFuncionario extends DAO<Funcionario> {
 		ArrayList<Funcionario> r = new  ArrayList<Funcionario>();
 		String sql = "SELECT * FROM `funcionario`";
 		preparar(sql);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		while(rs.next()) {
 			Funcionario o = new Funcionario(rs.getString(1), rs.getString(2),
 				rs.getString(3), rs.getString(4), rs.getString(5),
@@ -99,7 +131,6 @@ public class DAOFuncionario extends DAO<Funcionario> {
 		}
 		rs.close();
 		fecharStmt();
-		fechar();
 		return r;
 		
 	}

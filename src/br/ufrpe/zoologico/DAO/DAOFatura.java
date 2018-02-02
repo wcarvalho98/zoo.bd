@@ -8,11 +8,11 @@ package br.ufrpe.zoologico.DAO;
 
 import java.sql.Date;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.Fatura;
-import br.ufrpe.zoologico.negocio.beans.Jaula;
 import javafx.fxml.FXML;
 
 public class DAOFatura extends DAO<Fatura> {
@@ -27,9 +27,15 @@ public class DAOFatura extends DAO<Fatura> {
 			getStmt().setNull(3, java.sql.Types.NULL);
 		else
 			getStmt().setInt(3, o.getId_ped_serv());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 
 	@Override
@@ -37,9 +43,15 @@ public class DAOFatura extends DAO<Fatura> {
 		String sql = "REMOVE FROM fatura WHERE idFatura = ?";
 		preparar(sql);
 		getStmt().setInt(1, o.getIdFatura());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 
 	@Override
@@ -54,16 +66,30 @@ public class DAOFatura extends DAO<Fatura> {
 		getStmt().setString(6, o.getTp_fatura());
 		getStmt().setInt(7, o.getId_ped_serv());
 		getStmt().setInt(8, o.getIdFatura());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 	
 	public Fatura buscar(int id) throws Exception {
 		String sql = "SELECT * FROM fatura WHERE idFatura = ?";
 		preparar(sql);
 		getStmt().setInt(1, id);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		rs.next();
 		LocalDate dataDaFatura = null;
 		if (rs.getDate(3) != null)
@@ -75,7 +101,6 @@ public class DAOFatura extends DAO<Fatura> {
 				rs.getDouble(5), rs.getString(6), rs.getString(7), rs.getInt(8));
 		rs.close();
 		fecharStmt();
-		fechar();
 		return o;
 	}
 
@@ -84,7 +109,15 @@ public class DAOFatura extends DAO<Fatura> {
 		ArrayList<Fatura> r = new  ArrayList<Fatura>();
 		String sql = "SELECT * FROM fatura";
 		preparar(sql);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		LocalDate dataDaFatura;
 		LocalDate dt_paga;
 		while(rs.next()) {
@@ -100,7 +133,6 @@ public class DAOFatura extends DAO<Fatura> {
 		}		
 		rs.close();
 		fecharStmt();
-		fechar();
 		return r;
 	}
 	

@@ -8,6 +8,7 @@ package br.ufrpe.zoologico.DAO;
 
 import java.sql.Date;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -33,9 +34,15 @@ public class DAOReserva extends DAO<Reserva> {
 		getStmt().setString(10, o.getTp_evento());
 		getStmt().setString(11, o.getCnpj());
 		getStmt().setInt(12, o.getId());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 
 	@Override
@@ -44,27 +51,45 @@ public class DAOReserva extends DAO<Reserva> {
 		preparar(sql);
 		getStmt().setString(1, o.getCnpj());
 		getStmt().setInt(2, o.getId());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 	
 	public void remover(String cnpj) throws Exception {
 		String sql = "DELETE FROM reserva WHERE cnpj = ?";
 		preparar(sql);
 		getStmt().setString(1, cnpj);
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 	
 	public void remover(int id_espaco) throws Exception {
 		String sql = "DELETE FROM reserva WHERE id_espaco = ?";
 		preparar(sql);
 		getStmt().setInt(1, id_espaco);
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 
 	@Override
@@ -85,9 +110,15 @@ public class DAOReserva extends DAO<Reserva> {
 		getStmt().setString(10, o.getTp_evento());
 		getStmt().setString(11, o.getCnpj());
 		getStmt().setInt(12, o.getId());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 	
 	public Reserva buscar(String cnpj, int id_espaco) throws Exception {
@@ -95,7 +126,16 @@ public class DAOReserva extends DAO<Reserva> {
 		preparar(sql);
 		getStmt().setString(1, cnpj);
 		getStmt().setInt(2, id_espaco);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
+		
 		rs.next();
 		
 		LocalDate dt_validade = null;
@@ -121,7 +161,6 @@ public class DAOReserva extends DAO<Reserva> {
 		
 		rs.close();
 		fecharStmt();
-		fechar();
 		return o;
 	}
 
@@ -130,12 +169,22 @@ public class DAOReserva extends DAO<Reserva> {
 		ArrayList<Reserva> r = new ArrayList<Reserva>();
 		String sql = "SELECT * FROM reserva";
 		preparar(sql);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
+		
 		LocalDate dt_validade;
 		LocalTime horario;
 		LocalDate dt_reserva;
 		LocalTime hr_inicio_reser;
 		LocalTime hr_final_reser;
+		
 		while(rs.next()) {
 			dt_validade = null;
 			horario = null;
@@ -159,7 +208,6 @@ public class DAOReserva extends DAO<Reserva> {
 		}
 		rs.close();
 		fecharStmt();
-		fechar();
 		return r;
 	}
 

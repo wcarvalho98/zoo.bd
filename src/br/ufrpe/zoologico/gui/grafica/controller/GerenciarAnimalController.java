@@ -92,6 +92,11 @@ public class GerenciarAnimalController implements Initializable{
 		}
 	}
 	
+	@FXML
+	public void voltar() {
+		ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin());
+	}
+	
 	@FXML 
 	public void passar() throws Exception{
 		i++;

@@ -175,7 +175,6 @@ public class ScreenManager {
 		return telaAnimal;
 	}
 
-
 	public Scene getTelaCadastrarConsultas() {
 		try {
 			telaCadastrarConsultas = new Scene(
@@ -209,7 +208,6 @@ public class ScreenManager {
 		return telaGerenciarServicos;
 	}
 
-	
 	public Scene getTelaFuncionarios() {
 		try {
 			telaFuncionarios = new Scene(

@@ -15,10 +15,12 @@ import br.ufrpe.zoologico.negocio.beans.Animal;
 import br.ufrpe.zoologico.negocio.beans.Consulta;
 import br.ufrpe.zoologico.negocio.beans.Diagnostico;
 import br.ufrpe.zoologico.negocio.beans.Especie;
+import br.ufrpe.zoologico.negocio.beans.Estoque;
 import br.ufrpe.zoologico.negocio.beans.Fatura;
 import br.ufrpe.zoologico.negocio.beans.Funcionario;
 import br.ufrpe.zoologico.negocio.beans.Genero;
 import br.ufrpe.zoologico.negocio.beans.Instituicao;
+import br.ufrpe.zoologico.negocio.beans.ItemEstoque;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
 import br.ufrpe.zoologico.negocio.beans.JornadaTrabalho;
 import br.ufrpe.zoologico.negocio.beans.Ordem;
@@ -29,6 +31,7 @@ import br.ufrpe.zoologico.negocio.beans.Zoo;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoAdmin;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoAnimal;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoConsultas;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoDAOEstoque_ItemEstoque;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoDiagnostico;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoEspecie;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoFaturas;
@@ -63,6 +66,7 @@ public class Fachada {
 	private GerenciamentoJornadaDeTrabalho jornada;
 	private GerenciamentoLogin login;
 	private GerenciamentoDiagnostico diagnostico;
+	private GerenciamentoDAOEstoque_ItemEstoque estoque;
 	
 	private Fachada() {
 		consultas = new GerenciamentoConsultas();
@@ -82,6 +86,7 @@ public class Fachada {
 		jornada = new GerenciamentoJornadaDeTrabalho();
 		login = new GerenciamentoLogin();
 		diagnostico = new GerenciamentoDiagnostico();
+		estoque = new GerenciamentoDAOEstoque_ItemEstoque();
 	}
 	
 	public static Fachada getInstance() {
@@ -418,6 +423,7 @@ public class Fachada {
 		diagnostico.alterar(o);
 	}
 	
+	/** ZOOLOGICO */
 	public void cadastrarZoo(Zoo o) throws Exception {
 		zoo.inserir(o);
 	}
@@ -429,4 +435,38 @@ public class Fachada {
 	public void alterarZoo(Zoo o) throws Exception{
 		zoo.alterarZoo(o);
 	}
+	
+	/** ESTOQUE_ITEMESTOQUE */	
+	public void inserir(Estoque o) throws Exception {
+		estoque.inserir(o);
+	}
+	
+	public void remover(Estoque o) throws Exception {
+		estoque.remover(o);
+	}
+	
+	public void alterar(Estoque o) throws Exception {
+		estoque.alterar(o);
+	}
+	
+	public ArrayList<Estoque> listarTodos() throws Exception {
+		return estoque.listarTodos();
+	}
+	
+	public void inserirItem(ItemEstoque o) throws Exception {
+		estoque.inserirItem(o);
+	}
+	
+	public void removerItem(ItemEstoque o) throws Exception {
+		
+	}
+	
+	public void alterarItem(ItemEstoque o) throws Exception {
+		
+	}
+
+	public ArrayList<ItemEstoque> listarItens() throws Exception {
+		return null;
+	}
+	
 }

@@ -80,6 +80,7 @@ public class GerenciarAnimalController implements Initializable{
 		f = Fachada.getInstance();
 		allDisable();
 		select();
+		
 		i = 0;
 		try {
 			preencherAnimal(i);
@@ -117,19 +118,24 @@ public class GerenciarAnimalController implements Initializable{
 	
 	@FXML
 	public void cadastrar(){
+		LocalDate val5 = dtFale.getValue();
 		try {
+			System.out.println(generoAtual.toString());
+			System.out.println(ordemAtual.toString());
+			System.out.println(jaulaAtual.toString());
+			System.out.println(especieAtual.toString());
 			int val0 = Integer.valueOf(idAnimal.getText());
 			int val1 = Integer.valueOf(idade.getText());
 			String val2 = obs.getText();
 			String val3 = nome.getText();
 			LocalDate val4 = dtNas.getValue();
-			LocalDate val5 = dtFale.getValue();
+			/*
 			if(f.generoPertenceOrdem(generoAtual.getId(), ordemAtual.getId()))
 				if(f.especiePertenceGenero(especieAtual.getSeq(), generoAtual.getId())){
 					Animal a = new Animal(val0,val3,true,val4,val5,val1,val3,val2,zooAtual.getIdZoo(),
 							jaulaAtual.getId_jaula(),ordemAtual.getId(),generoAtual.getId(),especieAtual.getSeq());
 					f.cadastrarAnimal(a);
-				}
+				}*/
 		}  catch (NumberFormatException e1){
 			Alert a = new Alert(AlertType.ERROR);
 			a.setTitle("Erro");

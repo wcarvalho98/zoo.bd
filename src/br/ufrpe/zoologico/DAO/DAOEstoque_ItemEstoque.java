@@ -41,7 +41,7 @@ public class DAOEstoque_ItemEstoque extends DAO<Estoque>{
 
 	@Override
 	public void remover(Estoque o) throws Exception {
-		String sql = " DELETE estoque where id = ?";
+		String sql = " DELETE FROM estoque WHERE id = ?";
 		preparar(sql);
 		getStmt().setInt(1, o.getId());
 		try {
@@ -57,7 +57,7 @@ public class DAOEstoque_ItemEstoque extends DAO<Estoque>{
 
 	@Override
 	public void alterar(Estoque o) throws Exception {
-		String sql = "Update table estoque set descr = ?, localizacao = ? where id = ?";
+		String sql = "UPDATE estoque SET descr = ?, localizacao = ? WHERE id = ?";
 		preparar(sql);
 		getStmt().setString(1, o.getDescr());
 		getStmt().setString(2, o.getLocalizacao());
@@ -76,7 +76,7 @@ public class DAOEstoque_ItemEstoque extends DAO<Estoque>{
 	@Override
 	public ArrayList<Estoque> listarTodos() throws Exception {
 		ArrayList<Estoque> r = new ArrayList<Estoque>();
-		String sql = "SELECT * from estoque";
+		String sql = "SELECT * FROM estoque";
 		preparar(sql);
 		ResultSet rs = null;
 		try {
@@ -98,7 +98,8 @@ public class DAOEstoque_ItemEstoque extends DAO<Estoque>{
 	
 	
 	public void inserirItem(ItemEstoque o) throws Exception {
-		String sql = "INSERT INTO item_estoque (`cod_prod_ref`,`id`,`qtd`,`data_entrada`,`vl_compra`,`data_validade`,`id_animal`) VALUES (?, ?, ?,?, ?, ?, ?)";
+		String sql = "INSERT INTO item_estoque (`cod_prod_ref`,`id`,`qtd`,`data_entrada`,`vl_compra`,`data_validade`,`id_animal`)"
+				+ " VALUES (?, ?, ?, ?, ?, ?, ?)";
 		preparar(sql);
 		getStmt().setInt(1,o.getCod_prod_ref());
 		getStmt().setInt(2,o.getIdEstoque());
@@ -125,7 +126,6 @@ public class DAOEstoque_ItemEstoque extends DAO<Estoque>{
 	public void alterarItem(ItemEstoque o) throws Exception {
 	}
 
-	
 	public ArrayList<ItemEstoque> listarItens() throws Exception {
 		return null;
 	}

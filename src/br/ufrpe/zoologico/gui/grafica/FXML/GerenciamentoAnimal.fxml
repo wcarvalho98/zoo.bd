@@ -89,7 +89,7 @@
             <Font size="36.0" />
          </font>
       </Button>
-      <Button layoutX="1030.0" layoutY="593.0" mnemonicParsing="false" text="Salvar">
+      <Button fx:id="cadastrar" disable="true" layoutX="1030.0" layoutY="593.0" mnemonicParsing="false" onAction="#cadastrar" text="Salvar" visible="false">
          <font>
             <Font size="36.0" />
          </font>
@@ -119,7 +119,7 @@
             <Font size="36.0" />
          </font>
       </Button>
-      <Button layoutX="55.0" layoutY="593.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="180.0" text="Inserir">
+      <Button layoutX="55.0" layoutY="593.0" mnemonicParsing="false" onAction="#inserir" prefHeight="77.0" prefWidth="180.0" text="Inserir">
          <font>
             <Font size="36.0" />
          </font>

@@ -34,6 +34,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn.CellDataFeatures;
@@ -70,12 +71,14 @@ public class GerenciarAnimalController implements Initializable{
 	@FXML private TextArea obs;
 	@FXML private DatePicker dtNas, dtFale;
  	
+	@FXML private Button cadastrar;
 	private Fachada f;
 	private int i;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		f = Fachada.getInstance();
+		allDisable();
 		i = 0;
 		try {
 			preencherAnimal(i);
@@ -93,6 +96,7 @@ public class GerenciarAnimalController implements Initializable{
 		i++;
 		if(i > f.listarAnimais().size() - 1)
 			i = 0;
+		allDisable();
 		preencherAnimal(i);
 	}
 	
@@ -101,11 +105,36 @@ public class GerenciarAnimalController implements Initializable{
 		i--;
 		if(i < 0)
 			i = f.listarAnimais().size() - 1;
+		allDisable();
 		preencherAnimal(i);
 	}
 	
+	@FXML
+	public void cadastrar(){
+		
+	}
 	
-	
+	@FXML
+	public void inserir(){
+		try {
+			preencherTabelaEspecie(f.listarEspecie());
+			preencherTabelaGenero(f.listarGenero());
+			preencherTabelaJaula(f.listarJaulas());
+			preencherTabelaOrdem(f.listarOrdem());
+			preencherTabelaZoo(f.listarZoo());
+			allNull();
+			allNotDisable();
+			idAnimal.setDisable(true);
+			cadastrar.setVisible(true);
+			cadastrar.setDisable(false);
+		} catch (Exception e) {
+			Alert a = new Alert(AlertType.ERROR);
+			a.setTitle("Erro");
+			a.setHeaderText(null);
+			a.setContentText(e.getMessage());
+			a.showAndWait();
+		}
+	}
 	
 	
 	

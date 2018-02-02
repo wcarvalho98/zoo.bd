@@ -5,16 +5,12 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.zoologico.gui.grafica.controller.AdminController">
+<VBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.zoologico.gui.grafica.controller.AdminController">
   <children>
       <AnchorPane>
          <children>
@@ -22,7 +18,6 @@
                <menus>
                   <Menu mnemonicParsing="false" text="Home">
                     <items>
-                      <MenuItem fx:id="mniVoltar" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
                         <MenuItem mnemonicParsing="false" onAction="#inicio" text="Início" />
                     </items>
                   </Menu>
@@ -46,41 +41,71 @@
       </AnchorPane>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <HBox layoutX="565.0" layoutY="14.0" prefHeight="25.0" prefWidth="176.0">
-               <children>
-                  <Button fx:id="btnVeterinario" mnemonicParsing="false" onAction="#populaTabelaVeterinario" prefWidth="80.0" text="Veterinário" textAlignment="CENTER" />
-                  <Separator orientation="VERTICAL" prefHeight="200.0" />
-                  <Separator orientation="VERTICAL" prefHeight="25.0" prefWidth="0.0" />
-                  <Button fx:id="btnFuncionario" mnemonicParsing="false" onAction="#populaTabelaFuncionario" prefHeight="25.0" prefWidth="80.0" text="Funcionário" textAlignment="CENTER" />
-               </children>
-            </HBox>
-            <TableView fx:id="tbvPrincipal" disable="true" layoutX="14.0" layoutY="83.0" prefHeight="600.0" prefWidth="700.0" visible="false">
-              <columns>
-                <TableColumn fx:id="clmNomeVet" prefWidth="351.0" text="Nome" />
-                <TableColumn fx:id="clmCpfVet" prefWidth="348.0" text="Cpf" />
-              </columns>
-            </TableView>
-            <VBox layoutX="999.0" layoutY="83.0" prefHeight="530.0" prefWidth="100.0">
-               <children>
-                  <Separator prefHeight="160.0" prefWidth="200.0" />
-                  <Button fx:id="btnCadastrar" mnemonicParsing="false" onAction="#cadastrar" prefHeight="25.0" prefWidth="100.0" text="Cadastrar" />
-                  <Separator blendMode="MULTIPLY" prefHeight="20.0" prefWidth="100.0" />
-                  <Button fx:id="btnEditar" disable="true" mnemonicParsing="false" onAction="#editar" prefHeight="25.0" prefWidth="100.0" text="Editar" />
-                  <Separator blendMode="MULTIPLY" prefHeight="20.0" prefWidth="100.0" />
-                  <Button fx:id="btnRemover" disable="true" mnemonicParsing="false" onAction="#remover" prefHeight="25.0" prefWidth="100.0" text="Remover" />
-               </children>
-            </VBox>
             <Label fx:id="lblTabela" layoutX="14.0" layoutY="63.0" prefHeight="20.0" textAlignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TableView fx:id="tbvFunc" disable="true" layoutX="14.0" layoutY="83.0" prefHeight="600.0" prefWidth="700.0" visible="false">
-               <columns>
-                  <TableColumn fx:id="clmNomeFunc" prefWidth="351.0" text="Nome" />
-                  <TableColumn fx:id="clmCpfFunc" prefWidth="348.0" text="Cpf" />
-               </columns>
-            </TableView>
+            <Button layoutX="325.0" layoutY="213.0" mnemonicParsing="false" onAction="#abrirTelaInstituicoes" text="Instituição">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="315.0" layoutY="278.0" mnemonicParsing="false" onAction="#abrirTelaFuncionario" text="Funcionário">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="340.0" layoutY="356.0" mnemonicParsing="false" onAction="#abrirTelaJaula" text="Jaula">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="329.0" layoutY="419.0" mnemonicParsing="false" onAction="#abrirTelaProduto" text="Produto">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="572.0" layoutY="213.0" mnemonicParsing="false" onAction="#abrirZoologico" text="Zoológico">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="585.0" layoutY="280.0" mnemonicParsing="false" onAction="#abrirTelaAnimal" text="Animal">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="577.0" layoutY="354.0" mnemonicParsing="false" onAction="#abrirTelaConsulta" text="Consulta">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="580.0" layoutY="422.0" mnemonicParsing="false" onAction="#abrirTelaReserva" text="Reserva">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="821.0" layoutY="212.0" mnemonicParsing="false" onAction="#abrirTelaAnimal_Item" text="Animal-Item">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="819.0" layoutY="282.0" mnemonicParsing="false" onAction="#abrirTelaJaula_Animal" text="Jaula-Animal">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="811.0" layoutY="352.0" mnemonicParsing="false" onAction="#abrirTelaServico_Faturas" text="Serviço-Faturas">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="838.0" layoutY="424.0" mnemonicParsing="false" onAction="#abrirTelaEstoque" text="Estoque">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
          </children>
     </AnchorPane>
   </children>

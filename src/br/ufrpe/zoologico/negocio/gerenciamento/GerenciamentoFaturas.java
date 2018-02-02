@@ -6,9 +6,6 @@
  */
 package br.ufrpe.zoologico.negocio.gerenciamento;
 
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.DAO.DAOFatura;
@@ -16,7 +13,12 @@ import br.ufrpe.zoologico.negocio.beans.Fatura;
 
 public class GerenciamentoFaturas {
 	
-	private DAOFatura fatura = new DAOFatura();
+	private DAOFatura fatura;
+	
+	public GerenciamentoFaturas() {
+		this.fatura = new DAOFatura();
+	}
+	
 	public void cadastrarFatura(Fatura o) {
 		try {
 			if (o!= null) {

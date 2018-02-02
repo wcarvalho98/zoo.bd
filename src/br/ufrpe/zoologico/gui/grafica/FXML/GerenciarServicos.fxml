@@ -20,8 +20,7 @@
                   <TableView fx:id="tabelaServicos" layoutX="62.0" layoutY="81.0" onMouseClicked="#selecionarServico" prefHeight="472.0" prefWidth="326.0">
                     <columns>
                       <TableColumn fx:id="colunaIdServico" prefWidth="75.0" text="ID Serviço" />
-                      <TableColumn fx:id="colunaDescricao" prefWidth="183.0" text="Descrição" />
-                        <TableColumn fx:id="colunaValorServico" prefWidth="67.0" text="Valor" />
+                      <TableColumn fx:id="colunaDescricao" prefWidth="250.0" text="Descrição" />
                     </columns>
                   </TableView>
                   <Label layoutX="182.0" layoutY="46.0" text="Serviços">
@@ -112,8 +111,56 @@
                         <Font size="24.0" />
                      </font>
                   </Button>
+                  <Button layoutX="147.0" layoutY="572.0" mnemonicParsing="false" onAction="#removerServico" text="Remover Serviço">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
                </children></AnchorPane>
       </content>
     </Tab>
+      <Tab text="Cadastrar">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="valorServiçoTextField" layoutX="644.0" layoutY="352.0" promptText="Valor">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="descricaoServiçoTextField" layoutX="644.0" layoutY="282.0" promptText="Descrição">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="413.0" layoutY="282.0" text="Descrição do serviço:">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="575.0" layoutY="354.0" text="Valor:">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="511.0" layoutY="73.0" text="Cadastro Serviços">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="567.0" layoutY="464.0" mnemonicParsing="false" onAction="#cadastrarServico" text="Cadastrar Serviço">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="1136.0" layoutY="31.0" mnemonicParsing="false" onAction="#voltar" text="Voltar">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
   </tabs>
 </TabPane>

@@ -7,6 +7,7 @@
 package br.ufrpe.zoologico.DAO;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.Fones;
@@ -19,8 +20,15 @@ public class DAOFone extends DAO<Fones>{
 		preparar(sql);
 		getStmt().setInt(1, o.getIdZoo());
 		getStmt().setString(2, o.getFone());
-		getStmt().execute();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 
 	@Override
@@ -29,6 +37,15 @@ public class DAOFone extends DAO<Fones>{
 		preparar(sql);
 		getStmt().setInt(1, o.getIdZoo());
 		getStmt().setString(2, o.getFone());
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 
 	@Override
@@ -37,16 +54,30 @@ public class DAOFone extends DAO<Fones>{
 		preparar(sql);
 		getStmt().setInt(1, o.getIdZoo());
 		getStmt().setString(2, o.getFone());
-		getStmt().execute();
-		fecharStmt();
-		fechar();		
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}	
 	}
 
 	@Override
 	public ArrayList<Fones> listarTodos() throws Exception {
 		String sql = "SELECT * from fones";
 		preparar(sql);
-		ResultSet rs = getStmt().executeQuery(sql);
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		ArrayList<Fones> list = new ArrayList<>();
 		while (rs.next()){
 			Fones f = new Fones(rs.getString(2),rs.getInt(1));
@@ -54,7 +85,6 @@ public class DAOFone extends DAO<Fones>{
 		}
 		rs.close();
 		fecharStmt();
-		fechar();
 		return list;
 	}
 

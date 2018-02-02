@@ -7,15 +7,12 @@
 package br.ufrpe.zoologico.gui.grafica.controller;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import br.ufrpe.zoologico.DAO.DAOAdmin;
-import br.ufrpe.zoologico.negocio.beans.Administrador;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
@@ -39,10 +36,10 @@ public class PrincipalController implements Initializable {
 	
 	@FXML
 	public void validaLogin() {
-		String usuario = loginId.getText();
+		String nome = loginId.getText();
 		String senha = senhaId.getText();
 		
-		if (usuario.isEmpty())
+		if (nome.isEmpty())
 			tooltipLogin.show(ScreenManager.getMainStage().getOwner());
 		else
 			tooltipLogin.hide();
@@ -50,30 +47,28 @@ public class PrincipalController implements Initializable {
 			tooltipSenha.show(ScreenManager.getMainStage().getOwner());
 		else
 			tooltipSenha.hide();
-		if (!senha.isEmpty() && !usuario.isEmpty()) {
-			Administrador o = null;
+		if (!senha.isEmpty() && !nome.isEmpty()) {
 			try {
-				o = Fachada.getInstance().buscarAdministrador(usuario);
+				Fachada.getInstance().fazerLogin(nome, senha);
+				switch (nome) {
+					case "admin":
+						ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin());
+						break;
+					case "veterinario":
+						break;
+					case "secretario":
+						break;
+					case "tratador":
+						break;
+				}
 			} catch (Exception e) {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Erro!");
 				alert.setHeaderText(null);
-				alert.setContentText("Usuário inexistente!");
+				alert.setContentText(e.getMessage());
 
 				alert.showAndWait();
-			}
-			if (o.getLogin().equals(usuario) && o.getSenha_de_acesso().equals(senha)) {
-				progressId.setVisible(true);
-				loginId.setEditable(false);
-				senhaId.setEditable(false);
-				ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin());
-			} else {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Erro!");
-				alert.setHeaderText(null);
-				alert.setContentText("Senha incorreta!");
-
-				alert.showAndWait();
+				e.printStackTrace();
 			}
 			
 		}
@@ -82,6 +77,7 @@ public class PrincipalController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
 		ScreenManager.getMainStage().setResizable(false);
 		ScreenManager.getMainStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
 
@@ -92,8 +88,6 @@ public class PrincipalController implements Initializable {
 			}
 
 		});
-		
-		//FabricaTransicao.fazerTransicao(1, ScreenManager.getMainStage(), true);
 	}
 
 }

@@ -12,11 +12,13 @@ import br.ufrpe.zoologico.DAO.DAOInstituicoes;
 import br.ufrpe.zoologico.negocio.beans.Instituicao;
 
 public class GerenciamentoInstituicao {
+	
 	private DAOInstituicoes instituicoes;
 	
 	public GerenciamentoInstituicao(){
-		instituicoes = new DAOInstituicoes();
+		this.instituicoes = new DAOInstituicoes();
 	}
+	
 	public void cadastrarInstituicao(Instituicao o) {
 		try {
 			if (o != null) {
@@ -30,15 +32,24 @@ public class GerenciamentoInstituicao {
 			if (o != null) {
 				instituicoes.remover(o);
 			}
-		} catch (Exception e) {System.err.println("O comando de instituicoes.remover() falhou em GerenciamentoInstituicao.java");}
-	}
+		} catch (Exception e) {
+			e.printStackTrace();}
+		}
 	
 	public ArrayList<Instituicao> listarInstituicoes() {
 		try {
 			return instituicoes.listarTodos();
 		} catch (Exception e) {
-			System.err.println("O comando de instituicoes.listarTodos() falhou em GerenciamentoInstituicao.java");;
+			e.printStackTrace();
 			return new ArrayList<Instituicao>();
+		}
+	}
+	
+	public void alterarInstituicao(Instituicao o) {
+		try {
+			instituicoes.alterar(o);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

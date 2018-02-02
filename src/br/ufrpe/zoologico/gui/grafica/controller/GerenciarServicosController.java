@@ -12,6 +12,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -29,9 +30,6 @@ public class GerenciarServicosController implements Initializable {
 
 	@FXML
 	private TableColumn<Servico, String> colunaDescricao;
-
-	@FXML
-	private TableColumn<Servico, String> colunaValorServico;
 
 	@FXML
 	private TableView<Fatura> tabelaFatura;
@@ -74,14 +72,46 @@ public class GerenciarServicosController implements Initializable {
 
 	@FXML
 	private TextField tipoDeFaturaTextField;
+	@FXML
+	private TextField valorServiçoTextField;
+
+	@FXML
+	private TextField descricaoServiçoTextField;
 
 	private Servico servicoSelecionado;
 	private Fatura faturaSelecionada;
 
+
+	@FXML
+	void cadastrarServico() {
+		if (!descricaoServiçoTextField.getText().equals("")
+				&& !valorServiçoTextField.getText().equals("")) {
+			Servico a = new Servico();
+			a.setDescr(descricaoServiçoTextField.getText());
+			a.setValor(Double.parseDouble(valorServiçoTextField.getText()));
+			Fachada.getInstance().cadastrarServico(a);
+			preencherTabelaServicos();
+			descricaoServiçoTextField.setText("");
+			valorServiçoTextField.setText("");
+			ScreenManager.getInstance().alertaInformativo("Servico cadastrado com sucesso!");
+		}
+		else
+			ScreenManager.getInstance().alertaInformativo("Por favor entre com os dados nos campos!");
+	}
+
 	@FXML
 	void editarFatura() {
 		if (faturaSelecionada != null) {
+			ableAll();
 			preencherCamposEdicao(faturaSelecionada);
+		}
+	}
+	
+	@FXML public void removerServico() {
+		if (servicoSelecionado != null) {
+			Fachada.getInstance().removerServico(servicoSelecionado);
+			preencherTabelaServicos();
+			ScreenManager.getInstance().alertaInformativo("Servico removido com sucesso!");
 		}
 	}
 
@@ -97,7 +127,9 @@ public class GerenciarServicosController implements Initializable {
 			faturaSelecionada.setTp_fatura(tipoDeFaturaTextField.getText());
 			Fachada.getInstance().alterarFatura(faturaSelecionada);
 			preencherCamposEdicao(null);
+			disableAll();
 			preencherTabelaFaturas();
+			ScreenManager.getInstance().alertaInformativo("Dados alterados com sucesso!");
 		}
 	}
 
@@ -119,6 +151,26 @@ public class GerenciarServicosController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		preencherTabelaServicos();
+		disableAll();
+		
+	}
+	
+	private void disableAll() {
+		valorDaFaturaTextField.setDisable(true);
+		valorDaMultaTextField.setDisable(true);
+		dataDaFaturaDatePicker.setDisable(true);
+		dstaDePagamentoDatePicker.setDisable(true);
+		statusTextField.setDisable(true);
+		tipoDeFaturaTextField.setDisable(true);
+	}
+	
+	private void ableAll() {
+		valorDaFaturaTextField.setDisable(false);
+		valorDaMultaTextField.setDisable(false);
+		dataDaFaturaDatePicker.setDisable(false);
+		dstaDePagamentoDatePicker.setDisable(false);
+		statusTextField.setDisable(false);
+		tipoDeFaturaTextField.setDisable(false);
 	}
 
 	private void preencherTabelaServicos() {
@@ -137,14 +189,6 @@ public class GerenciarServicosController implements Initializable {
 				return new SimpleStringProperty(todosOsServicos.getValue().getDescr());
 			}
 		});
-
-		colunaValorServico
-				.setCellValueFactory(new Callback<CellDataFeatures<Servico, String>, ObservableValue<String>>() {
-					@Override
-					public ObservableValue<String> call(CellDataFeatures<Servico, String> todosOsServicos) {
-						return new SimpleStringProperty(todosOsServicos.getValue().getValor() + "");
-					}
-				});
 
 		tabelaServicos.setItems(FXCollections.observableArrayList(servicos));
 		tabelaServicos.refresh();
@@ -227,6 +271,11 @@ public class GerenciarServicosController implements Initializable {
 			statusTextField.setText(a.getStats());
 			tipoDeFaturaTextField.setText(a.getTp_fatura());
 		}
+	}
+
+	@FXML
+	public void voltar() {
+		ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin()); 
 	}
 
 }

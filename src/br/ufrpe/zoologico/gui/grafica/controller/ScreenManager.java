@@ -12,6 +12,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Optional;
 
+import javafx.animation.Transition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -25,7 +28,9 @@ public class ScreenManager {
 	private Scene telaAdmin;
 	private Scene telaJaula;
 	private Scene telaCadastrarInstituicao;
+	private Scene telaAnimal;
 	private Scene telaGerenciarServicos;
+	private Scene telaFuncionarios;
 
 	private static Stage mainStage;
 
@@ -51,7 +56,13 @@ public class ScreenManager {
 		Optional<ButtonType> result = alert.showAndWait();
 		
 		if (result.get().equals(ButtonType.OK)) {
-			System.exit(0);
+			Transition t = FabricaTransicao.fazerTransicao(0.5, mainStage.getScene().getRoot(), false);
+			t.setOnFinished(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					System.exit(0);
+				}
+			});
 		} else {
 			alert.close();
 		}
@@ -93,13 +104,23 @@ public class ScreenManager {
 	}
 
 	public static void setScene(Scene a) {
-		if (mainStage.getScene()!= null)
-			FabricaTransicao.fazerTransicao(0.5, mainStage.getScene().getRoot(), false);
-		else
-			a.getRoot().setOpacity(0);
-		mainStage.setScene(a);
-		mainStage.show();
-		FabricaTransicao.fazerTransicao(0.5, a.getRoot(), true);
+		a.getRoot().setOpacity(0);
+		if (mainStage.getScene() != null) {
+			Transition t = FabricaTransicao.fazerTransicao(0.5, mainStage.getScene().getRoot(), false);
+			t.setOnFinished(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					mainStage.setScene(a);
+					mainStage.show();
+					FabricaTransicao.fazerTransicao(0.5, a.getRoot(), true);
+				}
+			});
+		}
+		else {
+			mainStage.setScene(a);
+			mainStage.show();
+			FabricaTransicao.fazerTransicao(0.5, a.getRoot(), true);
+		}
 	}
 
 	public static Stage getMainStage() {
@@ -142,6 +163,17 @@ public class ScreenManager {
 		}
 		return telaJaula;
 	}
+	
+	public Scene getTelaGerenciarAnimal() {
+		try {
+			telaAnimal = new Scene(
+					FXMLLoader.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/GerenciamentoAnimal.fxml")));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return telaAnimal;
+	}
 
 	public Scene getTelaCadastrarConsultas() {
 		try {
@@ -174,6 +206,35 @@ public class ScreenManager {
 			e.printStackTrace();
 		}
 		return telaGerenciarServicos;
+	}
+
+	public Scene getTelaFuncionarios() {
+		try {
+			telaFuncionarios = new Scene(
+					FXMLLoader.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/GerenciarFuncionarios.fxml")));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return telaFuncionarios;
+	}
+	
+	public static void alertaInformativo(String informacao) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Caixa de Alerta");
+		alert.setHeaderText(null);
+		alert.setContentText(informacao);
+
+		alert.showAndWait();
+	}
+	
+	public static void alertaErro(String informacao) {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Erro!");
+		alert.setHeaderText(null);
+		alert.setContentText(informacao);
+
+		alert.showAndWait();
 	}
 
 }

@@ -7,6 +7,7 @@
 package br.ufrpe.zoologico.DAO;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
@@ -26,9 +27,15 @@ public class DAOConsultas extends DAO<Consulta>{
 		getStmt().setString(2, o.getObs());
 		getStmt().setString(3, o.getVeterinario().getCpf());
 		getStmt().setInt(4, o.getAnimal().getId());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}	
 	}
 
 	@Override
@@ -36,15 +43,36 @@ public class DAOConsultas extends DAO<Consulta>{
 		String sql = "DELETE FROM `consulta` WHERE `id_consulta` = ?";
 		preparar(sql);
 		getStmt().setInt(1, o.getId_consulta());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}	
+	}
+	
+	public void remover(String id_veterinario) throws Exception {
+		String sql = "DELETE FROM `consulta` WHERE `id_veterinario` = ?";
+		preparar(sql);
+		getStmt().setString(1, id_veterinario);
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}	
 	}
 
 	@Override
 	public void alterar(Consulta o) throws Exception {
 		String sql = "UPDATE `consulta` SET `dat_consulta` = ?, `obs` = ?, `id_veterinario` = ?, `id_animal` = ?"
-				+ "WHERE `id_consulta` = ?";
+				+ " WHERE `id_consulta` = ?";
 		preparar(sql);
 		Timestamp t = Timestamp.valueOf(o.getData());
 		getStmt().setTimestamp(1, t);
@@ -52,23 +80,36 @@ public class DAOConsultas extends DAO<Consulta>{
 		getStmt().setString(3, o.getVeterinario().getCpf());
 		getStmt().setInt(4, o.getAnimal().getId());
 		getStmt().setInt(5, o.getId_consulta());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}	
 	}
 
 	public Consulta buscar(int id) throws Exception {
 		String sql = "SELECT * FROM `consulta` WHERE `id_consulta` = ?";
 		preparar(sql);
 		getStmt().setInt(1, id);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		rs.next();
 		Veterinario vet = Fachada.getInstance().buscarVeterinario(rs.getString(4));
 		Animal ani = Fachada.getInstance().buscarAnimal(rs.getInt(5));
 		Consulta o = new Consulta(vet, ani, rs.getInt(1), rs.getTimestamp(2).toLocalDateTime(), rs.getString(3));
 		rs.close();
 		fecharStmt();
-		fechar();
 		return o;
 	}
 
@@ -77,7 +118,15 @@ public class DAOConsultas extends DAO<Consulta>{
 		ArrayList<Consulta> r = new  ArrayList<Consulta>();
 		String sql = "SELECT * FROM `consulta`";
 		preparar(sql);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		while(rs.next()) {
 			Veterinario vet = Fachada.getInstance().buscarVeterinario(rs.getString(4));
 			Animal ani = Fachada.getInstance().buscarAnimal(rs.getInt(5));
@@ -86,7 +135,6 @@ public class DAOConsultas extends DAO<Consulta>{
 		}
 		rs.close();
 		fecharStmt();
-		fechar();
 		return r;
 	}
 

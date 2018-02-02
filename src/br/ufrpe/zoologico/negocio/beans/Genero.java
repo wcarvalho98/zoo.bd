@@ -9,14 +9,14 @@ package br.ufrpe.zoologico.negocio.beans;
 public class Genero {
 	private int id;
 	private String nome;
-	private Ordem ordem;
+	private int ordem;
 	
 	/**
 	 * @param id
 	 * @param nome
 	 * @param ordem
 	 */
-	public Genero(int id, String nome, Ordem ordem) {
+	public Genero(int id, String nome, int ordem) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -54,14 +54,14 @@ public class Genero {
 	 * Metodo: getOrdem
 	 * @return ordem
 	 */
-	public Ordem getOrdem() {
+	public int getOrdem() {
 		return ordem;
 	}
 	/**
 	 * Metodo: setOrdem
 	 * @param ordem the ordem to set
 	 */
-	public void setOrdem(Ordem ordem) {
+	public void setOrdem(int ordem) {
 		this.ordem = ordem;
 	}
 }

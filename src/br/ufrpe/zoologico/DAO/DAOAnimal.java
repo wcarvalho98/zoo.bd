@@ -8,10 +8,10 @@ package br.ufrpe.zoologico.DAO;
 
 import java.sql.Date;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import br.ufrpe.zoologico.negocio.beans.Animal;
-import br.ufrpe.zoologico.negocio.beans.Jaula;
 
 public class DAOAnimal extends DAO<Animal>{
 	
@@ -33,9 +33,15 @@ public class DAOAnimal extends DAO<Animal>{
 		getStmt().setInt(10, o.getOrdem());
 		getStmt().setInt(11, o.getGenero());
 		getStmt().setInt(12, o.getEspecie());
-		getStmt().execute();
-		fecharStmt();
-		fechar();		
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}			
 	}
 
 	@Override
@@ -43,9 +49,15 @@ public class DAOAnimal extends DAO<Animal>{
 		String sql = "DELETE FROM animal WHERE `id` = ?";
 		preparar(sql);
 		getStmt().setInt(1, o.getId());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}	
 	}
 
 	@Override
@@ -69,16 +81,30 @@ public class DAOAnimal extends DAO<Animal>{
 		getStmt().setInt(11, o.getGenero());
 		getStmt().setInt(12, o.getEspecie());
 		getStmt().setInt(13, o.getId());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}	
 	}
 	
 	public Animal buscar(int id) throws Exception {
 		String sql = "SELECT * FROM animal WHERE `id` = ?";
 		preparar(sql);
 		getStmt().setInt(1, id);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		rs.next();
 		LocalDate dt_nasc = null;
 		if (rs.getDate(4) != null)
@@ -93,7 +119,6 @@ public class DAOAnimal extends DAO<Animal>{
 				rs.getInt(12), rs.getInt(13));
 		rs.close();
 		fecharStmt();
-		fechar();
 		return o;
 	}
 
@@ -102,7 +127,15 @@ public class DAOAnimal extends DAO<Animal>{
 		ArrayList<Animal> r = new  ArrayList<Animal>();
 		String sql = "SELECT * FROM animal";
 		preparar(sql);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		LocalDate dt_nasc;
 		LocalDate dt_falecimento;
 		while(rs.next()) {
@@ -121,8 +154,11 @@ public class DAOAnimal extends DAO<Animal>{
 		}
 		rs.close();
 		fecharStmt();
-		fechar();
 		return r;
+	}
+	
+	public int calcularIdade(){
+		return 0;
 	}
 
 }

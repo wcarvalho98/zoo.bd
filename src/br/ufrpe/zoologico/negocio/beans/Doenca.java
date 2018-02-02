@@ -7,57 +7,35 @@
 package br.ufrpe.zoologico.negocio.beans;
 
 public class Doenca {
-	private int idZoo;
-	private String arq;
-	private int idDoc;
+	
+	private String id_doenca;
+	private String descricao;
 	
 	
-	public Doenca(int idZoo, String arq, int idDoc){
-		this.setIdZoo(idZoo);
-		this.setArq(arq);
-		this.setIdDoc(idDoc);
+	public Doenca(String id_doenca, String descricao){
+		this.setId_doenca(id_doenca);
+		this.setDescricao(descricao);
+	}
+
+
+	public String getId_doenca() {
+		return id_doenca;
+	}
+
+
+	public void setId_doenca(String id_doenca) {
+		this.id_doenca = id_doenca;
+	}
+
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	
-	/**
-	 * Metodo: getIdZoo
-	 * @return idZoo
-	 */
-	public int getIdZoo() {
-		return idZoo;
-	}
-	/**
-	 * Metodo: setIdZoo
-	 * @param idZoo the idZoo to set
-	 */
-	public void setIdZoo(int idZoo) {
-		this.idZoo = idZoo;
-	}
-	/**
-	 * Metodo: getArq
-	 * @return arq
-	 */
-	public String getArq() {
-		return arq;
-	}
-	/**
-	 * Metodo: setArq
-	 * @param arq the arq to set
-	 */
-	public void setArq(String arq) {
-		this.arq = arq;
-	}
-	/**
-	 * Metodo: getIdDoc
-	 * @return idDoc
-	 */
-	public int getIdDoc() {
-		return idDoc;
-	}
-	/**
-	 * Metodo: setIdDoc
-	 * @param idDoc the idDoc to set
-	 */
-	public void setIdDoc(int idDoc) {
-		this.idDoc = idDoc;
-	}
+	
 }

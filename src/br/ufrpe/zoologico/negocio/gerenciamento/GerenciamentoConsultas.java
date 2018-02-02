@@ -12,6 +12,7 @@ import br.ufrpe.zoologico.DAO.DAOConsultas;
 import br.ufrpe.zoologico.negocio.beans.Consulta;
 
 public class GerenciamentoConsultas {
+	
 	private DAOConsultas consultas;
 	
 	public GerenciamentoConsultas() {
@@ -36,6 +37,10 @@ public class GerenciamentoConsultas {
 				System.err.println("A consulta que passado como parâmetro é null");
 			}
 		} catch (Exception e) {System.err.println("O comando consultas.remover() falhou em GerenciamentoConsultas.java");}
+	}
+	
+	public void remover(String id_veterinario) throws Exception {
+		consultas.remover(id_veterinario);
 	}
 
 	public void alterarConsulta(Consulta o) {

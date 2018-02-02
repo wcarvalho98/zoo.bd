@@ -6,29 +6,45 @@
  */
 package br.ufrpe.zoologico.gui.grafica.controller;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
-import br.ufrpe.zoologico.DAO.DAOFatura;
 import br.ufrpe.zoologico.negocio.beans.Administrador;
 import br.ufrpe.zoologico.negocio.beans.Animal;
 import br.ufrpe.zoologico.negocio.beans.Consulta;
+import br.ufrpe.zoologico.negocio.beans.Diagnostico;
+import br.ufrpe.zoologico.negocio.beans.Especie;
 import br.ufrpe.zoologico.negocio.beans.Fatura;
 import br.ufrpe.zoologico.negocio.beans.Funcionario;
+import br.ufrpe.zoologico.negocio.beans.Genero;
 import br.ufrpe.zoologico.negocio.beans.Instituicao;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
+import br.ufrpe.zoologico.negocio.beans.JornadaTrabalho;
+import br.ufrpe.zoologico.negocio.beans.Ordem;
+import br.ufrpe.zoologico.negocio.beans.Reserva;
 import br.ufrpe.zoologico.negocio.beans.Servico;
 import br.ufrpe.zoologico.negocio.beans.Veterinario;
+import br.ufrpe.zoologico.negocio.beans.Zoo;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoAdmin;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoAnimal;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoConsultas;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoDiagnostico;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoEspecie;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoFaturas;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoFuncionario;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoGenero;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoInstituicao;
-import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoVeterinario;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoJaula;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoLogin;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoOrdem;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoReserva;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoServicos;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoVeterinario;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoZoo;
 
 public class Fachada {
+	
 	private static Fachada instance = null;
 	private GerenciamentoConsultas consultas;
 	private GerenciamentoJaula jaulas;
@@ -38,7 +54,15 @@ public class Fachada {
 	private GerenciamentoFuncionario funcionarios;
 	private GerenciamentoServicos servicos;
 	private GerenciamentoFaturas faturas;
+	private GerenciamentoEspecie especie;
+	private GerenciamentoOrdem ordem;
+	private GerenciamentoGenero genero;
+	private GerenciamentoZoo zoo;
 	private GerenciamentoAdmin admin;
+	private GerenciamentoReserva reserva;
+	private GerenciamentoJornadaDeTrabalho jornada;
+	private GerenciamentoLogin login;
+	private GerenciamentoDiagnostico diagnostico;
 	
 	private Fachada() {
 		consultas = new GerenciamentoConsultas();
@@ -49,7 +73,15 @@ public class Fachada {
 		funcionarios = new GerenciamentoFuncionario();
 		servicos = new GerenciamentoServicos();
 		faturas = new GerenciamentoFaturas();
+		especie = new GerenciamentoEspecie();
+		ordem = new GerenciamentoOrdem();
+		genero = new GerenciamentoGenero();
+		zoo = new GerenciamentoZoo();
 		admin = new GerenciamentoAdmin();
+		reserva = new GerenciamentoReserva();
+		jornada = new GerenciamentoJornadaDeTrabalho();
+		login = new GerenciamentoLogin();
+		diagnostico = new GerenciamentoDiagnostico();
 	}
 	
 	public static Fachada getInstance() {
@@ -59,13 +91,21 @@ public class Fachada {
 		return instance;
 	}
 	
+	public ArrayList<Zoo> listarZoo() throws Exception{
+		return zoo.listar();
+	}
+	
 	/** CONSULTA */
 	public void cadastrarConsulta(Consulta o) {
 		consultas.cadastrarConsulta(o);
 	}
 	
-	public void removerConsullta(Consulta o) {
+	public void removerConsulta(Consulta o) {
 		consultas.removerConsulta(o);
+	}
+	
+	public void removerConsulta(String id_veterinario) throws Exception {
+		consultas.remover(id_veterinario);
 	}
 	
 	public void alterarConsulta(Consulta o) {
@@ -87,6 +127,14 @@ public class Fachada {
 	
 	public void removerInstituicao(Instituicao o) {
 		instituicoes.removerInstituicao(o);
+	}
+
+	public void alterarInstituicao(Instituicao o) {
+		instituicoes.alterarInstituicao(o);
+	}
+	
+	public Instituicao buscarInstituicao(String cnpj) {
+		return null;
 	}
 	
 	public ArrayList<Instituicao> listarInstituicoes(){
@@ -112,6 +160,36 @@ public class Fachada {
 	
 	public ArrayList<Animal> listarAnimais(){
 		return animal.listarAnimais();
+	}
+	
+	public Ordem buscarOrdem(int id) throws Exception{
+		return ordem.buscar(id);
+	}
+	public ArrayList<Especie> listarEspecie() throws Exception{
+		return especie.listarTodos();
+	}
+	public ArrayList<Ordem> listarOrdem() throws Exception{
+		return ordem.listarTodos();
+	}
+	
+	public ArrayList<Genero> listarGenero() throws Exception{
+		return genero.listarTodos();
+	}
+	
+	public boolean generoPertenceOrdem(int idGenero, int idOrdem) throws Exception{
+		return genero.pertence(idGenero, idOrdem);
+	}
+	
+	public Genero buscarGenero(int genero2) throws Exception{
+		return genero.buscaGenero(genero2);
+	}
+	
+	public Especie buscarEspecie(int especie2) throws Exception {
+		return especie.buscar(especie2);
+	}
+	
+	public boolean especiePertenceGenero(int idEspecie, int idGenero) throws Exception{
+		return especie.pertence(idEspecie, idGenero);
 	}
 	
 	/** VETERINARIO */
@@ -202,11 +280,11 @@ public class Fachada {
 	}
 	
 	/** JAULA */
-	public void cadastrarJaula(Jaula o) throws Exception{
+	public void cadastrarJaula(Jaula o) {
 		jaulas.cadastrar(o);
 	}
 	
-	public void removerJaula(Jaula o) throws Exception  {
+	public void removerJaula(Jaula o) {
 		jaulas.remover(o);
 	}
 	
@@ -214,20 +292,22 @@ public class Fachada {
 		jaulas.atualizar(o);
 	}
 	
-	public Jaula buscarJaula(int id) throws Exception  {
+	public Jaula buscarJaula(int id) {
 		return jaulas.buscar(id);
 	}
+	
 	
 	public ArrayList<Jaula> listarJaulas() {
 		return jaulas.listarTodos();
 	}
 	
+	
 	/** ADMINISTRADOR */
-	public void cadastrarAdministrador(Administrador o) throws Exception{
+	public void cadastrarAdministrador(Administrador o) {
 		admin.cadastrarAdministrador(o);
 	}
 	
-	public void removerAdministrador(Administrador o) throws Exception  {
+	public void removerAdministrador(Administrador o) {
 		admin.removerAdministrador(o);
 	}
 	
@@ -235,13 +315,107 @@ public class Fachada {
 		admin.alterarAdministrador(o);
 	}
 	
-	public Administrador buscarAdministrador(String login)  throws Exception  {
+	public Administrador buscarAdministrador(String login) {
 		return admin.buscarAdministrador(login);
 	}
 	
-	
 	public ArrayList<Administrador> listarAdministradores() {
 		return admin.listarAdministradores();
+	}
+
+	/** RESERVA */
+	public void cadastrarReserva(Reserva o) {
+		reserva.inserir(o);
+	}
+	
+	public void removerReserva(Reserva o) {
+		reserva.remover(o);
+	}
+	
+	public void removerReserva(String cnpj) {
+		reserva.remover(cnpj);
+	}
+	
+	public void removerReserva(int id) {
+		reserva.remover(id);
+	}
+	
+	public void alterarReserva(Reserva o) {
+		reserva.alterar(o);
+	}
+	
+	public Reserva buscarReserva(String cnpj, int id_espaco) {
+		return reserva.buscar(cnpj, id_espaco);
+	}
+	
+	public ArrayList<Reserva> listarReservas() {
+		return reserva.listarTodos();
+	}
+	
+	/** JORNADA_DE_TRABALHO */
+	public void cadastrarJornada(JornadaTrabalho o) {
+		jornada.inserir(o);
+	}
+	
+	public void removerJornada(JornadaTrabalho o) {
+		jornada.remover(o);
+	}
+	
+	public void alterarJornada(JornadaTrabalho o) {
+		jornada.alterar(o);
+	}
+	
+	public JornadaTrabalho buscarJornada(int id) {
+		return jornada.buscar(id);
+	}
+	
+	public ArrayList<JornadaTrabalho> listarJornada() {
+		return jornada.listarTodos();
+	}
+
+	/** 
+	 * Metodo: buscarZoo
+	 * @param id_zoo
+	 * @return
+	 * @return Zoo
+	 */
+	public Zoo buscarZoo(int id_zoo) {
+		return zoo.buscar(id_zoo);
+	}
+
+	
+	/** LOGIN */
+	public void fecharConexao() throws SQLException {
+		login.fecharConexao();
+	}
+	
+	public void fazerLogin(String nome, String senha) throws Exception {
+		login.fazerLogin(nome, senha);
+	}
+	
+	public Connection getConnection() {
+		return login.getConnection();
+	}
+	
+	/** DIAGNOSTICO */
+	public void inserirDiagnostico(Diagnostico o) throws Exception {
+		diagnostico.inserir(o);
+	}
+	
+	public void removerDiagnostico(Diagnostico o) throws Exception {
+		diagnostico.remover(o);
+	}
+	
+	public void removerDiagnostico(int id_consulta) throws Exception {
+		diagnostico.remover(id_consulta);
+	}
+	
+	public void removerDiagnostico(String id_doenca) throws Exception {
+		diagnostico.remover(id_doenca);
+	}
+	
+	public void alterarDiagnostico(Diagnostico o) throws Exception {
+		diagnostico.alterar(o);
 	}
 	
 	

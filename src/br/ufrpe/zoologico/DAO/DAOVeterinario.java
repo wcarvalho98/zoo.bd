@@ -7,6 +7,7 @@
 package br.ufrpe.zoologico.DAO;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.gui.grafica.controller.Fachada;
@@ -26,9 +27,15 @@ public class DAOVeterinario extends DAO<Veterinario> {
 		getStmt().setString(1, o.getCpf());
 		getStmt().setString(2, o.getEstado());
 		getStmt().setString(3, o.getCrmv());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 
 	@Override
@@ -40,9 +47,15 @@ public class DAOVeterinario extends DAO<Veterinario> {
 		String sql = "DELETE FROM `veterinario` WHERE `CPF` = ?";
 		preparar(sql);
 		getStmt().setString(1, o.getCpf());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 
 	@Override
@@ -56,9 +69,15 @@ public class DAOVeterinario extends DAO<Veterinario> {
 		getStmt().setString(1, o.getEstado());
 		getStmt().setString(2, o.getCrmv());
 		getStmt().setString(3, o.getCpf());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 	
 	public Veterinario buscar(String cpf) throws Exception {
@@ -66,10 +85,26 @@ public class DAOVeterinario extends DAO<Veterinario> {
 		String sqlVet = "SELECT * FROM `veterinario` WHERE `CPF` = ?";
 		preparar(sqlFunc);
 		getStmt().setString(1, cpf);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		preparar(sqlVet);
 		getStmt().setString(1, cpf);
-		ResultSet rt = getStmt().executeQuery();
+		ResultSet rt = null;
+		try {
+			rt = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		rs.next();
 		rt.next();
 		Veterinario o = new Veterinario(rs.getString(1), rs.getString(2),
@@ -79,7 +114,6 @@ public class DAOVeterinario extends DAO<Veterinario> {
 		rs.close();
 		rt.close();
 		fecharStmt();
-		fechar();
 		return o;
 	}
 
@@ -89,12 +123,27 @@ public class DAOVeterinario extends DAO<Veterinario> {
 		String sqlFunc = "SELECT * FROM `funcionario` WHERE `CPF` = ?";
 		String sqlVet = "SELECT * FROM `veterinario`";
 		preparar(sqlVet);
-		ResultSet rt = getStmt().executeQuery();
+		ResultSet rt = null;
+		try {
+			rt = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		preparar(sqlFunc);
 		ResultSet rs = null;
 		while(rt.next()) {
 			getStmt().setString(1, rt.getString(1));
-			rs = getStmt().executeQuery();
+			try {
+				rs = getStmt().executeQuery();
+				getCon().commit();
+			} catch (SQLException e) {
+				getCon().rollback();
+				fecharStmt();
+				e.printStackTrace();
+			}
 			rs.next();
 			Veterinario o = new Veterinario(rs.getString(1), rs.getString(2),
 				rs.getString(3), rs.getString(4), rs.getString(5),
@@ -102,10 +151,10 @@ public class DAOVeterinario extends DAO<Veterinario> {
 				rs.getDouble(7), rs.getString(8), rs.getInt(9), rs.getInt(10), rt.getString(2), rt.getString(3));
 			r.add(o);
 		}
-		rs.close();
+		if (rs != null)
+			rs.close();
 		rt.close();
 		fecharStmt();
-		fechar();
 		return r;
 	}
 

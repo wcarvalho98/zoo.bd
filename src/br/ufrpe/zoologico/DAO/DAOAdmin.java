@@ -7,7 +7,9 @@
 package br.ufrpe.zoologico.DAO;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
 import br.ufrpe.zoologico.negocio.beans.Administrador;
 
 public class DAOAdmin extends DAO<Administrador>{
@@ -20,9 +22,15 @@ public class DAOAdmin extends DAO<Administrador>{
 		getStmt().setString(2, o.getSenha_de_acesso());
 		getStmt().setInt(3, o.getIdZoo());
 		getStmt().setString(4, o.getLogin());
-		getStmt().execute();
-		fecharStmt();
-		fechar();		
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}		
 	}
 
 	@Override
@@ -31,9 +39,15 @@ public class DAOAdmin extends DAO<Administrador>{
 		preparar(sql);
 		getStmt().setInt(1, o.getIdZoo());
 		getStmt().setString(2, o.getCpf());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}	
 	}
 
 	@Override
@@ -44,21 +58,34 @@ public class DAOAdmin extends DAO<Administrador>{
 		getStmt().setString(2, o.getLogin());
 		getStmt().setInt(3, o.getIdZoo());
 		getStmt().setString(4, o.getCpf());
-		getStmt().execute();
-		fecharStmt();
-		fechar();		
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}		
 	}
 
 	public Administrador buscar(String login) throws Exception {
 		String sql = "SELECT * FROM administrador WHERE `login` = ?";
 		preparar(sql);
 		getStmt().setString(1, login);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		rs.next();
 		Administrador o = new Administrador(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4));
 		rs.close();
 		fecharStmt();
-		fechar();
 		return o;
 	}
 	
@@ -67,19 +94,34 @@ public class DAOAdmin extends DAO<Administrador>{
 		preparar(sql);
 		getStmt().setInt(1, idZoo);
 		getStmt().setString(2, cpf);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		Administrador o = new Administrador(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4));
 		rs.close();
 		fecharStmt();
-		fechar();
 		return o;
 	}
 
 	@Override
 	public ArrayList<Administrador> listarTodos() throws Exception {
-		String sql = "SELECT * FROM administrador";
+		String sql = "SELECT * FROM administrador;";
 		preparar(sql);
-		ResultSet rs = getStmt().executeQuery(sql);
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		ArrayList<Administrador> list = new ArrayList<Administrador>();
 		while (rs.next()) {
 			Administrador o = new Administrador(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4));
@@ -87,7 +129,6 @@ public class DAOAdmin extends DAO<Administrador>{
 		}
 		rs.close();
 		fecharStmt();
-		fechar();
 		return list;
 	}
 

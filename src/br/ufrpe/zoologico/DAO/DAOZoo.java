@@ -7,10 +7,10 @@
 package br.ufrpe.zoologico.DAO;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 
-import br.ufrpe.zoologico.negocio.beans.Administrador;
 import br.ufrpe.zoologico.negocio.beans.Zoo;
 
 public class DAOZoo extends DAO<Zoo>{
@@ -24,9 +24,15 @@ public class DAOZoo extends DAO<Zoo>{
 		getStmt().setString(3, o.getRazao_social());
 		getStmt().setTime(4, Time.valueOf(o.getHr_inic_func()));
 		getStmt().setTime(5, Time.valueOf(o.getHr_fim()));
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 
 	@Override
@@ -34,9 +40,15 @@ public class DAOZoo extends DAO<Zoo>{
 		String sql = "DELETE FROM Zoologico WHERE `idZoo` = ?";
 		preparar(sql);
 		getStmt().setInt(1, o.getIdZoo());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 
 	@Override
@@ -49,22 +61,35 @@ public class DAOZoo extends DAO<Zoo>{
 		getStmt().setTime(4, Time.valueOf(o.getHr_inic_func()));
 		getStmt().setTime(5, Time.valueOf(o.getHr_fim()));
 		getStmt().setInt(6, o.getIdZoo());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 	
 	public Zoo buscar(int id) throws Exception{
 		String sql = "SELECT * FROM Zoologico WHERE `idZoo` = ?";
 		preparar(sql);
 		getStmt().setInt(1, id);
-		ResultSet result = getStmt().executeQuery();
-		result.next();
-		
-		Zoo j = new Zoo(result.getInt(1),result.getString(2),result.getString(3), result.getString(4),result.getTime(5).toLocalTime(),result.getTime(6).toLocalTime());
-		result.close();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
+		rs.next();
+		Zoo j = new Zoo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getTime(5).toLocalTime(),
+			rs.getTime(6).toLocalTime());
+		rs.close();
 		fecharStmt();
-		fechar();
 		return j;
 		
 		
@@ -72,17 +97,25 @@ public class DAOZoo extends DAO<Zoo>{
 
 	@Override
 	public ArrayList<Zoo> listarTodos() throws Exception {
-		String sql = "SELECT * FROM administrador";
+		String sql = "SELECT * FROM Zoologico";
 		preparar(sql);
-		ResultSet result = getStmt().executeQuery(sql);
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		ArrayList<Zoo> list = new ArrayList<Zoo>();
-		while (result.next()) {
-			Zoo o = new Zoo(result.getInt(1),result.getString(2),result.getString(3), result.getString(4),result.getTime(5).toLocalTime(),result.getTime(6).toLocalTime());
+		while (rs.next()) {
+			Zoo o = new Zoo(rs.getInt(1), rs.getString(2) ,rs.getString(3), 
+					rs.getString(4), rs.getTime(5).toLocalTime(), rs.getTime(6).toLocalTime());
 			list.add(o);
 		}
-		result.close();
+		rs.close();
 		fecharStmt();
-		fechar();
 		return list;
 	}
 

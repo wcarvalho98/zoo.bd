@@ -10,13 +10,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import br.ufrpe.zoologico.DAO.DAOAdmin;
-import br.ufrpe.zoologico.negocio.beans.Administrador;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
@@ -74,32 +70,6 @@ public class PrincipalController implements Initializable {
 				alert.showAndWait();
 				e.printStackTrace();
 			}
-			
-			/**
-			Administrador o = null;
-			try {
-				o = Fachada.getInstance().buscarAdministrador(nome);
-			} catch (Exception e) {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Erro!");
-				alert.setHeaderText(null);
-				alert.setContentText("Usuário inexistente!");
-
-				alert.showAndWait();
-			}
-			if (o.getLogin().equals(usuario) && o.getSenha_de_acesso().equals(senha)) {
-				progressId.setVisible(true);
-				loginId.setEditable(false);
-				senhaId.setEditable(false);
-				ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin());
-			} else {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Erro!");
-				alert.setHeaderText(null);
-				alert.setContentText("Senha incorreta!");
-
-				alert.showAndWait();
-			}*/
 			
 		}
 			

@@ -21,5 +21,15 @@ public class GerenciamentoGenero {
 	public ArrayList<Genero> listarTodos() throws Exception{
 		return genero.listarTodos();
 	}
+
+	/** 
+	 * Metodo: buscaGenero
+	 * @param genero2 
+	 * @return
+	 * @return Genero
+	 */
+	public Genero buscaGenero(int genero2) throws Exception{
+		return genero.busca(genero2);
+	}
 	
 }

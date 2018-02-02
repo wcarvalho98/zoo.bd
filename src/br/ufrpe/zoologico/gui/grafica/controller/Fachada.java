@@ -133,6 +133,30 @@ public class Fachada {
 		return animal.listarAnimais();
 	}
 	
+	public ArrayList<Ordem> listarOrdem() throws Exception{
+		return ordem.listarTodos();
+	}
+	public Ordem buscarOrdem(int id) throws Exception{
+		return ordem.buscar(id);
+	}
+	public ArrayList<Especie> listarEspecie() throws Exception{
+		return especie.listarTodos();
+	}
+	
+	public ArrayList<Genero> listarGenero() throws Exception{
+		return genero.listarTodos();
+	}
+	
+	public Genero buscarGenero(int genero2) throws Exception{
+		return genero.buscaGenero(genero2);
+	}
+	
+	public Especie buscarEspecie(int especie2) throws Exception {
+		return especie.buscar(especie2);
+	}
+
+	
+	
 	/** VETERINARIO */
 	public void cadastrarVeterinario(Veterinario o) {
 		veterinarios.cadastrarVeterinario(o);
@@ -242,21 +266,11 @@ public class Fachada {
 		return jaulas.listarTodos();
 	}
 	
-	public ArrayList<Ordem> listarOrdem() throws Exception{
-		return ordem.listarTodos();
-	}
 	/** ADMINISTRADOR */
 	public void cadastrarAdministrador(Administrador o) throws Exception{
 		admin.cadastrarAdministrador(o);
 	}
 	
-	public ArrayList<Especie> listarEspecie() throws Exception{
-		return especie.listarTodos();
-	}
-	
-	public ArrayList<Genero> listarGenero() throws Exception{
-		return genero.listarTodos();
-	}
 	public void removerAdministrador(Administrador o) throws Exception  {
 		admin.removerAdministrador(o);
 	}
@@ -274,7 +288,8 @@ public class Fachada {
 		return admin.listarAdministradores();
 	}
 	
-	public void alterarInstituicao(Instituicao o) {
-		instituicoes.alterarInstituicao(o);
+	public Zoo buscarZoo(int id_zoo) {
+		return zoo.buscar(id_zoo);
 	}
+
 }

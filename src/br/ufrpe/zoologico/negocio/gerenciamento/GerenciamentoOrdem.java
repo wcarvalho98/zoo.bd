@@ -21,4 +21,8 @@ public class GerenciamentoOrdem {
 	public ArrayList<Ordem> listarTodos() throws Exception{
 		return ordem.listarTodos();
 	}
+	
+	public Ordem buscar(int id) throws Exception{
+		return ordem.buscar(id);
+	}
 }

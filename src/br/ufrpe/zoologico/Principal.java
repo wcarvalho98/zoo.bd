@@ -21,7 +21,7 @@ public class Principal extends Application {
 		ScreenManager.getInstance().setMainStage(primaryStage);
 		ScreenManager.getMainStage().setTitle("Zoológico");
 		ScreenManager.getMainStage().setResizable(false);
-		ScreenManager.setScene(ScreenManager.getInstance().getTelaCadastrarInstituicao());
+		ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin());
 	}
 
 	public static void main(String[] args) {

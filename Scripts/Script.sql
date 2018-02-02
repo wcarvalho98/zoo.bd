@@ -1,4 +1,19 @@
 -- Functions
+delimiter &&
+create procedure diasComTratador(in cpfin varchar(11))
+begin 
+	select dia.descr as Dia
+		FROM zoologico.tem join zoologico.jornada_de_trabalho 
+			join zoologico.dia join zoologico.turno 
+            join zoologico.funcionario 
+            where tem.cod = turno.cod and tem.seq = dia.seq and 
+            tem.id = jornada_de_trabalho.id and 
+            funcionario.jornada_trabalho = jornada_de_trabalho.id
+            and funcionario.especializacao = "Tratador" and funcionario.cpf = cpfin
+            group by Dia;
+end 
+&&
+
 delimiter $$
 create function oferta (idServico int, prazo date) returns bool
  begin
@@ -10,6 +25,19 @@ create function oferta (idServico int, prazo date) returns bool
 		return false;
 	end if;
  end
+$$
+
+delimiter $$
+create function espePertenceGenero (idEsp int, idGenero int) returns bool
+ begin
+	declare `val1` int;
+    SELECT genero into val1 from Especie where seq = idEsp;
+    if val1 = idGenero then
+		return true;
+	else
+		return false;
+	end if;
+end
 $$
 
 delimiter $$

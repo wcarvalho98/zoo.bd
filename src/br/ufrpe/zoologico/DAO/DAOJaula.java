@@ -7,6 +7,7 @@
 package br.ufrpe.zoologico.DAO;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.Jaula;
@@ -15,7 +16,7 @@ public class DAOJaula extends DAO<Jaula> {
 	
 	@Override
 	public void inserir(Jaula o) throws Exception {
-		String sql = "insert into Jaula ( `stats`, `tipo`, `dt_ultima_inspecao`, "
+		String sql = "INSERT INTO jaula ( `stats`, `tipo`, `dt_ultima_inspecao`, "
 				   + "`populacao_max`, `obs`, `perid_insp_dias`, "
 				   + "`altura`, `largura`, `profundidade`, `idZoo`, `cpf_tratador`) "
 				   + "VALUES (?, ?, ?,?, ?, ?, ?, ?, ?,?, ?)";
@@ -31,28 +32,40 @@ public class DAOJaula extends DAO<Jaula> {
 		getStmt().setDouble(9, o.getProfundidade());
 		getStmt().setInt(10, o.getZoo());
 		getStmt().setString(11, o.getTratador());
-		getStmt().execute();
-		fecharStmt();
-		fechar();		
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}	
 
 	}
 
 	@Override
 	public void remover(Jaula o) throws Exception {
-		String sql = "delete from Jaula where `id_Jaula` = ?";
+		String sql = "DELETE FROM jaula WHERE `id_Jaula` = ?";
 		preparar(sql);
 		getStmt().setInt(1, o.getId_jaula());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 
 	@Override
 	public void alterar(Jaula o) throws Exception {
-		String sql =  "update Jaula set `stats` = ?, `tipo` = ?, `dt_ultima_inspecao` = ?, "
+		String sql =  "UPDATE jaula SET `stats` = ?, `tipo` = ?, `dt_ultima_inspecao` = ?, "
 				   + "`populacao_max` = ?, `obs` = ?, `perid_insp_dias` = ?, "
 				   + "`altura` = ?, `largura` = ?, `profundidade` = ?, `idZoo` = ?, `cpf_tratador` = ?"
-				   + "  where `id_Jaula` = ?";
+				   + "  WHERE `id_Jaula` = ?";
 		preparar(sql);
 		getStmt().setBoolean(1,o.isStats());
 		getStmt().setString(2, o.getTipo());
@@ -66,22 +79,35 @@ public class DAOJaula extends DAO<Jaula> {
 		getStmt().setInt(10, o.getZoo());
 		getStmt().setString(11, o.getTratador());
 		getStmt().setInt(12, o.getId_jaula());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}	
 	}
 	
 	public Jaula buscar(int id) throws Exception{
-		String sql = "Select * from Jaula Where `id_Jaula` = ?";
+		String sql = "SELECT * FROM jaula WHERE `id_Jaula` = ?";
 		preparar(sql);
 		getStmt().setInt(1, id);
-		ResultSet result = getStmt().executeQuery();
-		result.next();
-		Jaula j = new Jaula(result.getInt(1), result.getBoolean(2), result.getString(3), result.getDate(4).toLocalDate(), result.getInt(5), result.getString(6), 
-				result.getInt(7), result.getDouble(8), result.getDouble(9), result.getDouble(10), result.getInt(11), result.getString(12));
-		result.close();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
+		rs.next();
+		Jaula j = new Jaula(rs.getInt(1), rs.getBoolean(2), rs.getString(3), rs.getDate(4).toLocalDate(), rs.getInt(5), rs.getString(6), 
+				rs.getInt(7), rs.getDouble(8), rs.getDouble(9), rs.getDouble(10), rs.getInt(11), rs.getString(12));
+		rs.close();
 		fecharStmt();
-		fechar();
 		return j;
 	}
 	
@@ -90,14 +116,21 @@ public class DAOJaula extends DAO<Jaula> {
 		ArrayList<Jaula> r = new  ArrayList<Jaula>();
 		String sql = "select * from Jaula";
 		preparar(sql);
-		ResultSet result = getStmt().executeQuery();
-		while(result.next()){
-			Jaula j = new Jaula(result.getInt(1), result.getBoolean(2), result.getString(3), result.getDate(4).toLocalDate(), result.getInt(5), result.getString(6), 
-					result.getInt(7), result.getDouble(8), result.getDouble(9), result.getDouble(10), result.getInt(11), result.getString(12));
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
+		while(rs.next()){
+			Jaula j = new Jaula(rs.getInt(1), rs.getBoolean(2), rs.getString(3), rs.getDate(4).toLocalDate(), rs.getInt(5), rs.getString(6), 
+					rs.getInt(7), rs.getDouble(8), rs.getDouble(9), rs.getDouble(10), rs.getInt(11), rs.getString(12));
 			r.add(j);
 		}
 		fecharStmt();
-		fechar();
 		return r;
 	}
 

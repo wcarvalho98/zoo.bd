@@ -6,12 +6,12 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import br.ufrpe.zoologico.gui.grafica.controller.Fachada;
 import br.ufrpe.zoologico.util.ConFactory;
 
 @SuppressWarnings("unused")
 public abstract class DAO<T> {
 	
-	private final String URL = "jdbc:mysql://localhost:3306/zoologico", NOME = "root", SENHA = "";
 	private Connection con;
 	private PreparedStatement stmt;
 	
@@ -19,12 +19,8 @@ public abstract class DAO<T> {
 		return stmt;
 	}
 	
-	private void conectar() throws ClassNotFoundException, SQLException{
-		con = ConFactory.conexao(URL, NOME, SENHA);  
-	}
-	
-	public void fechar() throws SQLException{  
-		con.close();
+	public Connection getCon() {
+		return con;
 	}
 	
 	public void fecharStmt() throws SQLException {
@@ -32,8 +28,8 @@ public abstract class DAO<T> {
 	}
 	
 	public void preparar(String sql) throws Exception{
-			conectar();
-			stmt = con.prepareStatement(sql);
+		con = Fachada.getInstance().getConnection();
+		stmt = con.prepareStatement(sql);
 	}
 	
 	public abstract void inserir(T o) throws Exception;

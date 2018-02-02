@@ -14,7 +14,9 @@ import br.ufrpe.zoologico.util.ConFactory;
 public class DAOLogin {
 	
 	private final String URL = "jdbc:mysql://localhost:3306/zoologico";
+	@SuppressWarnings("unused")
 	private String nome;
+	@SuppressWarnings("unused")
 	private String senha;
 	private Connection con;
 
@@ -22,10 +24,15 @@ public class DAOLogin {
 		con.close();
 	}
 	
-	public void fazerLogin(String nome, String senha) throws ClassNotFoundException, SQLException {
+	public void fazerLogin(String nome, String senha) throws Exception {
 		setNome(nome);
 		setSenha(senha);
 		con = ConFactory.conexao(URL, nome, senha);
+		con.setAutoCommit(false);
+	}
+	
+	public Connection getConnection() {
+		return this.con;
 	}
 
 	private void setNome(String nome) {

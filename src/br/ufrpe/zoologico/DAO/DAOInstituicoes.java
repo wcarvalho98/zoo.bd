@@ -7,6 +7,7 @@
 package br.ufrpe.zoologico.DAO;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import br.ufrpe.zoologico.negocio.beans.Instituicao;
 
@@ -14,7 +15,8 @@ public class DAOInstituicoes extends DAO<Instituicao> {
 
 	@Override
 	public void inserir(Instituicao o) throws Exception {
-		String sql = "INSERT INTO Instituicao (`cnpj`, `nome_contato`, `email`, `telefone_1`, `telefone_2`, `razao_social`, `tipo_instituicao`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO Instituicao (`cnpj`, `nome_contato`, `email`, `telefone_1`, "
+				+ "`telefone_2`, `razao_social`, `tipo_instituicao`) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		preparar(sql);
 		getStmt().setString(1, o.getCnpj());
 		getStmt().setString(2, o.getNome_contato());
@@ -23,9 +25,15 @@ public class DAOInstituicoes extends DAO<Instituicao> {
 		getStmt().setString(5, o.getTelefone2());
 		getStmt().setString(6, o.getRazao_social());
 		getStmt().setString(7, o.getTipo_instituicao());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 
 	@Override
@@ -33,9 +41,15 @@ public class DAOInstituicoes extends DAO<Instituicao> {
 		String sql = "delete from `Instituicao` where `cnpj` = ?";
 		preparar(sql);
 		getStmt().setString(1, o.getCnpj());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 
 	}
 
@@ -49,22 +63,35 @@ public class DAOInstituicoes extends DAO<Instituicao> {
 		getStmt().setString(4, o.getNome_contato());
 		getStmt().setString(5, o.getEmail());
 		getStmt().setString(6, o.getCnpj());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 
 	public Instituicao buscar(String cnpj) throws Exception {
 		String sql = "SELECT * FROM Instituicao WHERE `cnpj` = ?";
 		preparar(sql);
 		getStmt().setString(1, cnpj);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		rs.next();
 		Instituicao o = new Instituicao(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
 				rs.getString(5), rs.getString(6), rs.getString(7));
 		rs.close();
 		fecharStmt();
-		fechar();
 		return o;
 	}
 
@@ -72,16 +99,23 @@ public class DAOInstituicoes extends DAO<Instituicao> {
 	public ArrayList<Instituicao> listarTodos() throws Exception {
 		String sql = "SELECT * FROM `Instituicao`";
 		preparar(sql);
-		ResultSet rst;
-		rst = getStmt().executeQuery();
+		ResultSet rs;
+		rs= null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		ArrayList<Instituicao> listaDeInstituicoes = new ArrayList<Instituicao>();
-		while (rst.next()) {
-			Instituicao a = new Instituicao(rst.getString(1), rst.getString(2), rst.getString(3), rst.getString(4),
-					rst.getString(5), rst.getString(6), rst.getString(7));
+		while (rs.next()) {
+			Instituicao a = new Instituicao(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+					rs.getString(5), rs.getString(6), rs.getString(7));
 			listaDeInstituicoes.add(a);
 		}
 		fecharStmt();
-		fechar();
 		return listaDeInstituicoes;
 
 	}

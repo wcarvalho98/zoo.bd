@@ -7,11 +7,9 @@
 package br.ufrpe.zoologico.DAO;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.mysql.fabric.xmlrpc.base.Array;
-
-import br.ufrpe.zoologico.negocio.beans.Administrador;
 import br.ufrpe.zoologico.negocio.beans.Ordem;
 
 public class DAOOrdem extends DAO<Ordem>{
@@ -32,12 +30,19 @@ public class DAOOrdem extends DAO<Ordem>{
 		String sql = "SELECT * FROM Ordem WHERE `id` = ?";
 		preparar(sql);
 		getStmt().setInt(1, id);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		rs.next();
 		Ordem o = new Ordem(rs.getInt(1), rs.getString(2));
 		rs.close();
 		fecharStmt();
-		fechar();
 		return o;
 	}
 	
@@ -46,14 +51,21 @@ public class DAOOrdem extends DAO<Ordem>{
 		ArrayList<Ordem> list = new ArrayList<>();
 		String sql = "SELECT * from Ordem";
 		preparar(sql);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		while (rs.next()) {
 			Ordem o = new Ordem(rs.getInt(1), rs.getString(2));
 			list.add(o);
 		}
 		rs.close();
 		fecharStmt();
-		fechar();
 		return list;
 	}
 

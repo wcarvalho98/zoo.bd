@@ -20,9 +20,15 @@ public class DAOJornadaDeTrabalho extends DAO<JornadaTrabalho> {
 		preparar(sql);
 		getStmt().setBoolean(1, o.isTrabalha_sabado());
 		getStmt().setString(2, o.getDesc());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 
 	@Override
@@ -30,9 +36,15 @@ public class DAOJornadaDeTrabalho extends DAO<JornadaTrabalho> {
 		String sql = "DELETE FROM jornada_de_trabalho WHERE id = ?";
 		preparar(sql);
 		getStmt().setInt(1, o.getId());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 
 	@Override
@@ -43,21 +55,34 @@ public class DAOJornadaDeTrabalho extends DAO<JornadaTrabalho> {
 		getStmt().setBoolean(1, o.isTrabalha_sabado());
 		getStmt().setString(2, o.getDesc());
 		getStmt().setInt(3, o.getId());
-		getStmt().execute();
-		fecharStmt();
-		fechar();
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
 	}
 	
 	public JornadaTrabalho buscar(int id) throws Exception {
 		String sql = "SELECT * FROM jornada_de_trabalho WHERE id = ?";
 		preparar(sql);
 		getStmt().setInt(1, id);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		rs.next();
 		JornadaTrabalho o = new JornadaTrabalho(rs.getInt(1), rs.getBoolean(2), rs.getString(3));
 		rs.close();
 		fecharStmt();
-		fechar();
 		return o;
 	}
 
@@ -66,14 +91,21 @@ public class DAOJornadaDeTrabalho extends DAO<JornadaTrabalho> {
 		ArrayList<JornadaTrabalho> r = new ArrayList<JornadaTrabalho>();
 		String sql = "SELECT * FROM jornada_de_trabalho";
 		preparar(sql);
-		ResultSet rs = getStmt().executeQuery();
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
 		while(rs.next()) {
 			JornadaTrabalho o = new JornadaTrabalho(rs.getInt(1), rs.getBoolean(2), rs.getString(3));
 			r.add(o);
 		}
 		rs.close();
 		fecharStmt();
-		fechar();
 		return r;
 	}
 

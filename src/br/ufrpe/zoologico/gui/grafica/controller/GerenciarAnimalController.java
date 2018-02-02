@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.ResourceBundle;
 
+import br.ufrpe.zoologico.negocio.beans.Animal;
 import br.ufrpe.zoologico.negocio.beans.Especie;
 import br.ufrpe.zoologico.negocio.beans.Genero;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
@@ -78,9 +79,26 @@ public class GerenciarAnimalController implements Initializable{
 		preencherTabelaJaula();
 		preencherTabelaZoo();
 		preencherTabelaOrdem();
+		int i = 0;
+		preencherAnimal(i);
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	private void preencherAnimal(int i){
+		Animal a = f.listarAnimais().get(i);
+		idAnimal.setText(Integer.valueOf(a.getId()).toString());
+		idade.setText(Integer.valueOf(a.getIdade()).toString());
+		obs.setText(a.getObs());
+		nome.setText(a.getNome());
+		dtNas.setValue(a.getDt_nasc());
+		dtFale.setValue(a.getDt_falecimento());
+	}	
 	private void preencherTabelaGenero(){
 		try {
 			ArrayList<Genero> g = f.listarGenero();
@@ -261,7 +279,4 @@ public class GerenciarAnimalController implements Initializable{
 		dtNas.setValue(null);
 		dtFale.setValue(null);
 	}
-	
-	
-
 }

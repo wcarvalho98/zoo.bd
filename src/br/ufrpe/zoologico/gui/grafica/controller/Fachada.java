@@ -17,6 +17,7 @@ import br.ufrpe.zoologico.negocio.beans.Funcionario;
 import br.ufrpe.zoologico.negocio.beans.Genero;
 import br.ufrpe.zoologico.negocio.beans.Instituicao;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
+import br.ufrpe.zoologico.negocio.beans.JornadaTrabalho;
 import br.ufrpe.zoologico.negocio.beans.Ordem;
 import br.ufrpe.zoologico.negocio.beans.Reserva;
 import br.ufrpe.zoologico.negocio.beans.Servico;
@@ -54,6 +55,7 @@ public class Fachada {
 	private GerenciamentoZoo zoo;
 	private GerenciamentoAdmin admin;
 	private GerenciamentoReserva reserva;
+	private GerenciamentoJornadaDeTrabalho jornada;
 	
 	private Fachada() {
 		consultas = new GerenciamentoConsultas();
@@ -70,6 +72,7 @@ public class Fachada {
 		zoo = new GerenciamentoZoo();
 		admin = new GerenciamentoAdmin();
 		reserva = new GerenciamentoReserva();
+		jornada = new GerenciamentoJornadaDeTrabalho();
 	}
 	
 	public static Fachada getInstance() {
@@ -334,6 +337,27 @@ public class Fachada {
 	
 	public ArrayList<Reserva> listarReservas() {
 		return reserva.listarTodos();
+	}
+	
+	/** JORNADA_DE_TRABALHO */
+	public void cadastrarJornada(JornadaTrabalho o) {
+		jornada.inserir(o);
+	}
+	
+	public void removerJornada(JornadaTrabalho o) {
+		jornada.remover(o);
+	}
+	
+	public void alterarJornada(JornadaTrabalho o) {
+		jornada.alterar(o);
+	}
+	
+	public JornadaTrabalho buscarJornada(int id) {
+		return jornada.buscar(id);
+	}
+	
+	public ArrayList<JornadaTrabalho> listarJornada() {
+		return jornada.listarTodos();
 	}
 	
 }

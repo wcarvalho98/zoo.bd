@@ -11,9 +11,10 @@ public class JornadaTrabalho {
 	private String desc;
 	private boolean trabalha_sabado;
 	
-	public JornadaTrabalho(String desc, boolean trabalha_sabado){
-		this.desc = desc;
+	public JornadaTrabalho(int id, boolean trabalha_sabado, String desc) {
+		this.id = id;
 		this.trabalha_sabado = trabalha_sabado;
+		this.desc = desc;
 	}
 
 	public int getId() {

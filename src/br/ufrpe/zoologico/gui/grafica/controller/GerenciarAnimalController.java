@@ -11,7 +11,8 @@ import java.util.ArrayList;import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.ResourceBundle;
+import java.util.ResourceBundle;import javax.swing.text.TabExpander;
+import javax.swing.text.TabableView;
 
 import br.ufrpe.zoologico.negocio.beans.Animal;
 import br.ufrpe.zoologico.negocio.beans.Especie;
@@ -34,6 +35,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.util.Callback;
 
@@ -69,32 +71,75 @@ public class GerenciarAnimalController implements Initializable{
 	@FXML private DatePicker dtNas, dtFale;
  	
 	private Fachada f;
+	private int i;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		f = Fachada.getInstance();
-		preencherTabelaGenero();
-		preencherTabelaEspecie();
-		preencherTabelaJaula();
-		preencherTabelaZoo();
-		preencherTabelaOrdem();
-		int i = 0;
+		i = 0;
+		try {
+			preencherAnimal(i);
+		} catch (Exception e) {
+			Alert a = new Alert(AlertType.ERROR);
+			a.setTitle("Erro");
+			a.setHeaderText(null);
+			a.setContentText(e.getMessage());
+			a.showAndWait();
+		}
+	}
+	
+	@FXML 
+	public void passar() throws Exception{
+		i++;
+		if(i > f.listarAnimais().size() - 1)
+			i = 0;
 		preencherAnimal(i);
 	}
 	
-	private void preencherAnimal(int i){
+	@FXML
+	public void retornar() throws Exception{
+		i--;
+		if(i < 0)
+			i = f.listarAnimais().size() - 1;
+		preencherAnimal(i);
+	}
+	
+	
+	
+	
+	
+	
+	private void preencherAnimal(int i) throws Exception{
 		Animal a = f.listarAnimais().get(i);
+		
+		Ordem val = f.buscarOrdem(a.getOrdem());
+		Genero val1 = f.buscarGenero(a.getGenero());
+		Especie val2 = f.buscarEspecie(a.getEspecie());
+		Zoo val3 = f.buscarZoo(a.getId_zoo());
+		Jaula val4 = f.buscarJaula(a.getId_jaula());
+		
+		ArrayList<Ordem> b = new ArrayList<Ordem>();b.add(val);
+		ArrayList<Jaula> c = new ArrayList<Jaula>();c.add(val4);
+		ArrayList<Genero> d = new ArrayList<Genero>(); d.add(val1);
+		ArrayList<Especie> e = new ArrayList<Especie>(); e.add(val2);
+		ArrayList<Zoo> f = new ArrayList<Zoo>(); f.add(val3);
+		
 		idAnimal.setText(Integer.valueOf(a.getId()).toString());
 		idade.setText(Integer.valueOf(a.getIdade()).toString());
 		obs.setText(a.getObs());
 		nome.setText(a.getNome());
 		dtNas.setValue(a.getDt_nasc());
 		dtFale.setValue(a.getDt_falecimento());
-	}
-	
-	private void preencherTabelaGenero(){
+		
+		preencherTabelaOrdem(b);
+		preencherTabelaJaula(c);
+		preencherTabelaEspecie(e);
+		preencherTabelaZoo(f);
+		preencherTabelaGenero(d);
+		
+	}	
+	private void preencherTabelaGenero(ArrayList<Genero> g){
 		try {
-			ArrayList<Genero> g = f.listarGenero();
 			tcIdGenero.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Genero,String>, ObservableValue<String>>() {
 				
 				@Override
@@ -121,9 +166,9 @@ public class GerenciarAnimalController implements Initializable{
 		}
 	}
 	
-	private void preencherTabelaEspecie(){
+	private void preencherTabelaEspecie(ArrayList<Especie> e){
 		try {
-			ArrayList<Especie> e = f.listarEspecies();
+			
 			tcIdEspecie.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Especie,String>, ObservableValue<String>>() {
 
 				@Override
@@ -141,18 +186,17 @@ public class GerenciarAnimalController implements Initializable{
 			});
 			
 			tbEspecie.setItems(FXCollections.observableArrayList(e));
-		} catch (Exception e) {
+		} catch (Exception e2) {
 			Alert a = new Alert(AlertType.ERROR);
 			a.setTitle("Erro");
 			a.setHeaderText(null);
-			a.setContentText(e.getMessage());
+			a.setContentText(e2.getMessage());
 			a.showAndWait();
 		}
 	}
 	
-	private void preencherTabelaJaula(){
+	private void preencherTabelaJaula(ArrayList<Jaula> j){
 		try {
-			ArrayList<Jaula> j = f.listarJaulas();
 			tcIdJaula.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Jaula,String>, ObservableValue<String>>() {
 
 				@Override
@@ -179,9 +223,8 @@ public class GerenciarAnimalController implements Initializable{
 		}
 	}
 	
-	private void preencherTabelaZoo(){
+	private void preencherTabelaZoo(ArrayList<Zoo> z){
 		try {
-			ArrayList<Zoo> z = f.listarZoo();
 			tcIdZoo.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Zoo,String>, ObservableValue<String>>() {
 
 				@Override
@@ -212,9 +255,8 @@ public class GerenciarAnimalController implements Initializable{
 	 * Metodo: preencherTabelaOrdem
 	 * @return void
 	 */
-	private void preencherTabelaOrdem() {
+	private void preencherTabelaOrdem(ArrayList<Ordem> o) {
 		try {
-			ArrayList<Ordem> o = f.listarOrdem();
 			tcIdOrdem.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Ordem,String>, ObservableValue<String>>() {
 
 				@Override

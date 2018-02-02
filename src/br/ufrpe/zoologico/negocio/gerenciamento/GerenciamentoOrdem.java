@@ -27,4 +27,8 @@ public class GerenciamentoOrdem {
 			return new ArrayList<Ordem>();
 		}
 	}
+	
+	public Ordem buscar(int id) throws Exception{
+		return ordem.buscar(id);
+	}
 }

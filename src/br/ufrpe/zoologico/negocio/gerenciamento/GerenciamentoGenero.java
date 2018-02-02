@@ -27,5 +27,15 @@ public class GerenciamentoGenero {
 			return new ArrayList<Genero>();
 		}
 	}
+
+	/** 
+	 * Metodo: buscaGenero
+	 * @param genero2 
+	 * @return
+	 * @return Genero
+	 */
+	public Genero buscaGenero(int genero2) throws Exception{
+		return genero.busca(genero2);
+	}
 	
 }

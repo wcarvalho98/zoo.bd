@@ -60,4 +60,15 @@ public class GerenciamentoEspecie {
 			return new ArrayList<Especie>();
 		}
 	}
+
+	/** 
+	 * Metodo: buscar
+	 * @param especie2
+	 * @return
+	 * @return Especie
+	 */
+	public Especie buscar(int especie2) throws Exception {
+		return esp.buscar(especie2);
+	}
+
 }

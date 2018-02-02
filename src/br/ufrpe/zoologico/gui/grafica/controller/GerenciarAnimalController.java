@@ -70,7 +70,6 @@ public class GerenciarAnimalController implements Initializable{
  	
 	private Fachada f;
 	
-	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		f = Fachada.getInstance();
@@ -83,13 +82,6 @@ public class GerenciarAnimalController implements Initializable{
 		preencherAnimal(i);
 	}
 	
-	
-	
-	
-	
-	
-	
-	
 	private void preencherAnimal(int i){
 		Animal a = f.listarAnimais().get(i);
 		idAnimal.setText(Integer.valueOf(a.getId()).toString());
@@ -98,7 +90,8 @@ public class GerenciarAnimalController implements Initializable{
 		nome.setText(a.getNome());
 		dtNas.setValue(a.getDt_nasc());
 		dtFale.setValue(a.getDt_falecimento());
-	}	
+	}
+	
 	private void preencherTabelaGenero(){
 		try {
 			ArrayList<Genero> g = f.listarGenero();
@@ -130,7 +123,7 @@ public class GerenciarAnimalController implements Initializable{
 	
 	private void preencherTabelaEspecie(){
 		try {
-			ArrayList<Especie> e = f.listarEspecie();
+			ArrayList<Especie> e = f.listarEspecies();
 			tcIdEspecie.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Especie,String>, ObservableValue<String>>() {
 
 				@Override

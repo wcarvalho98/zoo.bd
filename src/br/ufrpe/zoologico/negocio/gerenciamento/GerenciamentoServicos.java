@@ -13,7 +13,12 @@ import br.ufrpe.zoologico.negocio.beans.Fatura;
 import br.ufrpe.zoologico.negocio.beans.Servico;
 
 public class GerenciamentoServicos {
-	private DAOServico servicos = new DAOServico();
+	
+	private DAOServico servicos;
+	
+	public GerenciamentoServicos() {
+		this.servicos = new DAOServico();
+	}
 	
 	public void cadastrarServico(Servico o) {
 		try {

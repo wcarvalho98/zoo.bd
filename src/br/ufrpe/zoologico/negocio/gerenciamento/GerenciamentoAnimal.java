@@ -12,6 +12,7 @@ import br.ufrpe.zoologico.DAO.DAOAnimal;
 import br.ufrpe.zoologico.negocio.beans.Animal;
 
 public class GerenciamentoAnimal {
+	
 	private DAOAnimal animal;
 	
 	public GerenciamentoAnimal() {

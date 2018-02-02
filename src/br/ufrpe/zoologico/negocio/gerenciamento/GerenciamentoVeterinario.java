@@ -12,6 +12,7 @@ import br.ufrpe.zoologico.DAO.DAOVeterinario;
 import br.ufrpe.zoologico.negocio.beans.Veterinario;
 
 public class GerenciamentoVeterinario {
+	
 	private DAOVeterinario veterinario;
 	
 	public GerenciamentoVeterinario() {

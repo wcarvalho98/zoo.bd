@@ -12,15 +12,16 @@ import br.ufrpe.zoologico.DAO.DAOZoo;
 import br.ufrpe.zoologico.negocio.beans.Zoo;
 
 public class GerenciamentoZoo {
-	private DAOZoo z;
+	
+	private DAOZoo zoo;
 	
 	public GerenciamentoZoo(){
-		z = new DAOZoo();
+		this.zoo = new DAOZoo();
 	}
 	
 	public void inserir(Zoo o){
 		try {
-			z.inserir(o);
+			zoo.inserir(o);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -28,7 +29,7 @@ public class GerenciamentoZoo {
 	
 	public void remover(Zoo o){
 		try {
-			z.remover(o);
+			zoo.remover(o);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -36,7 +37,7 @@ public class GerenciamentoZoo {
 	
 	public Zoo buscar(int id){
 		try {
-			return z.buscar(id);
+			return zoo.buscar(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -44,7 +45,7 @@ public class GerenciamentoZoo {
 	}
 	
 	public ArrayList<Zoo> listar() throws Exception{
-		return z.listarTodos();
+		return zoo.listarTodos();
 	}
 	
 }

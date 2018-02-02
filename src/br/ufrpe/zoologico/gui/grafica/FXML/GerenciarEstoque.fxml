@@ -11,18 +11,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.zoologico.gui.grafica.controller.GerenciarEstoque">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.zoologico.gui.grafica.controller.GerenciarEstoque">
   <tabs>
     <Tab text="Listar/Editar/Remover">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView layoutX="94.0" layoutY="75.0" onMouseClicked="#selecionarEstoque" prefHeight="184.0" prefWidth="485.0">
+                  <TableView fx:id="tabelaEstoque" layoutX="94.0" layoutY="75.0" onMouseClicked="#selecionarEstoque" prefHeight="184.0" prefWidth="485.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="ID" />
-                      <TableColumn prefWidth="98.0" text="ID Zoologico" />
-                        <TableColumn prefWidth="152.00003051757812" text="Descrição" />
-                        <TableColumn prefWidth="158.0" text="Localização" />
+                      <TableColumn fx:id="colunaIdEstoqueEstoque" prefWidth="75.0" text="ID" />
+                      <TableColumn fx:id="colunaIdZoo" prefWidth="98.0" text="ID Zoologico" />
+                        <TableColumn fx:id="colunaDescricao" prefWidth="152.00003051757812" text="Descrição" />
+                        <TableColumn fx:id="colunaLocalizacao" prefWidth="158.0" text="Localização" />
                     </columns>
                   </TableView>
                   <Label layoutX="576.0" layoutY="15.0" text="Estoque">
@@ -50,15 +50,15 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <TableView layoutX="630.0" layoutY="75.0" onMouseClicked="#selecionarEstoqueItem" prefHeight="184.0" prefWidth="594.0">
+                  <TableView fx:id="tabelaItemEstoque" layoutX="630.0" layoutY="75.0" onMouseClicked="#selecionarEstoqueItem" prefHeight="184.0" prefWidth="594.0">
                      <columns>
-                        <TableColumn prefWidth="67.66668701171875" text="Cod_Prod" />
-                        <TableColumn minWidth="0.0" prefWidth="35.33331298828125" text="ID" />
-                        <TableColumn prefWidth="89.6666259765625" text="Quantidade" />
-                        <TableColumn prefWidth="125.0" text="Dt_entrada" />
-                        <TableColumn prefWidth="69.33331298828125" text="Vl_compra" />
-                        <TableColumn prefWidth="125.0" text="Dt_validade" />
-                        <TableColumn prefWidth="79.0" text="ID_animal" />
+                        <TableColumn fx:id="colunaCodProd" prefWidth="67.66668701171875" text="Cod_Prod" />
+                        <TableColumn fx:id="colunaIdEstoqueItem" minWidth="0.0" prefWidth="35.33331298828125" text="ID" />
+                        <TableColumn fx:id="colunaQtd" prefWidth="89.6666259765625" text="Quantidade" />
+                        <TableColumn fx:id="colunaDtEntrada" prefWidth="125.0" text="Dt_entrada" />
+                        <TableColumn fx:id="colunaVlCompra" prefWidth="69.33331298828125" text="Vl_compra" />
+                        <TableColumn fx:id="colunaDtValidade" prefWidth="125.0" text="Dt_validade" />
+                        <TableColumn fx:id="colunaIdAnimal" prefWidth="79.0" text="ID_animal" />
                      </columns>
                   </TableView>
                   <Button layoutX="650.0" layoutY="290.0" mnemonicParsing="false" onAction="#editarEstoqueItem" text="Editar Estoque">

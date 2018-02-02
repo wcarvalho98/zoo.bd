@@ -7,6 +7,7 @@
 package br.ufrpe.zoologico.gui.grafica.controller;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -118,43 +119,43 @@ public class GerenciarAnimalController implements Initializable{
 	
 	@FXML
 	public void cadastrar(){
+		
 		LocalDate val5 = dtFale.getValue();
+		String val2 = obs.getText();
+		String val3 = nome.getText();
+		LocalDate val4 = dtNas.getValue();
+	
 		try {
-			System.out.println(generoAtual.toString());
-			System.out.println(ordemAtual.toString());
-			System.out.println(jaulaAtual.toString());
-			System.out.println(especieAtual.toString());
-			int val0 = Integer.valueOf(idAnimal.getText());
-			int val1 = Integer.valueOf(idade.getText());
-			String val2 = obs.getText();
-			String val3 = nome.getText();
-			LocalDate val4 = dtNas.getValue();
-			/*
-			if(f.generoPertenceOrdem(generoAtual.getId(), ordemAtual.getId()))
+			if(f.generoPertenceOrdem(generoAtual.getId(),ordemAtual.getId()))
 				if(f.especiePertenceGenero(especieAtual.getSeq(), generoAtual.getId())){
-					Animal a = new Animal(val0,val3,true,val4,val5,val1,val3,val2,zooAtual.getIdZoo(),
-							jaulaAtual.getId_jaula(),ordemAtual.getId(),generoAtual.getId(),especieAtual.getSeq());
-					f.cadastrarAnimal(a);
-				}*/
-		}  catch (NumberFormatException e1){
-			Alert a = new Alert(AlertType.ERROR);
-			a.setTitle("Erro");
-			a.setHeaderText(null);
-			a.setContentText(e1.getMessage());
-			a.showAndWait();
-
+					Animal b = new Animal(0,val3,true,val4,val5,0,val3,val2,zooAtual.getIdZoo(),
+					jaulaAtual.getId_jaula(),ordemAtual.getId(),generoAtual.getId(),especieAtual.getSeq());
+					try {
+						f.cadastrarAnimal(b);
+					} catch (Exception e) {
+						Alert a = new Alert(AlertType.ERROR);
+						a.setTitle("Erro");
+						a.setHeaderText(null);
+						a.setContentText(e.getMessage());
+						a.showAndWait();
+					}
+				}
 		} catch (Exception e) {
 			Alert a = new Alert(AlertType.ERROR);
 			a.setTitle("Erro");
 			a.setHeaderText(null);
-			a.setContentText(e.getMessage());
+			a.setContentText("Banana");
 			a.showAndWait();
 		}
-		
+		allNull();
+		allDisable();
+		cadastrar.setVisible(false);
+		cadastrar.setDisable(true);
+
 	}
 	
 	@FXML
-	public void inserir(){
+	public void inserir() throws SQLException{
 		try {
 			preencherTabelaEspecie(f.listarEspecie());
 			preencherTabelaGenero(f.listarGenero());
@@ -163,6 +164,7 @@ public class GerenciarAnimalController implements Initializable{
 			preencherTabelaZoo(f.listarZoo());
 			allNull();
 			allNotDisable();
+			idade.setDisable(true);
 			idAnimal.setDisable(true);
 			cadastrar.setVisible(true);
 			cadastrar.setDisable(false);

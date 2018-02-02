@@ -31,9 +31,9 @@ import br.ufrpe.zoologico.negocio.beans.Zoo;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoAdmin;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoAnimal;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoConsultas;
-import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoDAOEstoque_ItemEstoque;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoDiagnostico;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoEspecie;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoEstoque;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoFaturas;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoFuncionario;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoGenero;
@@ -66,7 +66,7 @@ public class Fachada {
 	private GerenciamentoJornadaDeTrabalho jornada;
 	private GerenciamentoLogin login;
 	private GerenciamentoDiagnostico diagnostico;
-	private GerenciamentoDAOEstoque_ItemEstoque estoque;
+	private GerenciamentoEstoque estoque;
 	
 	private Fachada() {
 		consultas = new GerenciamentoConsultas();
@@ -86,7 +86,7 @@ public class Fachada {
 		jornada = new GerenciamentoJornadaDeTrabalho();
 		login = new GerenciamentoLogin();
 		diagnostico = new GerenciamentoDiagnostico();
-		estoque = new GerenciamentoDAOEstoque_ItemEstoque();
+		estoque = new GerenciamentoEstoque();
 	}
 	
 	public static Fachada getInstance() {
@@ -146,8 +146,9 @@ public class Fachada {
 		return instituicoes.listarInstituicoes();
 	}
 	
-	/** ANIMAL */
-	public void cadastrarAnimal(Animal o) {
+	/** ANIMAL 
+	 * @throws Exception */
+	public void cadastrarAnimal(Animal o) throws Exception {
 		animal.cadastrarAnimal(o);
 	}
 	
@@ -437,20 +438,20 @@ public class Fachada {
 	}
 	
 	/** ESTOQUE_ITEMESTOQUE */	
-	public void inserir(Estoque o) throws Exception {
-		estoque.inserir(o);
+	public void inserirEstoque(Estoque o) throws Exception {
+		estoque.inserirEstoque(o);
 	}
 	
-	public void remover(Estoque o) throws Exception {
-		estoque.remover(o);
+	public void removerEstoque(Estoque o) throws Exception {
+		estoque.removerEstoque(o);
 	}
 	
-	public void alterar(Estoque o) throws Exception {
-		estoque.alterar(o);
+	public void alterarEstoque(Estoque o) throws Exception {
+		estoque.alterarEstoque(o);
 	}
 	
-	public ArrayList<Estoque> listarTodos() throws Exception {
-		return estoque.listarTodos();
+	public ArrayList<Estoque> listarEstoque() throws Exception {
+		return estoque.listarEstoque();
 	}
 	
 	public void inserirItem(ItemEstoque o) throws Exception {
@@ -458,15 +459,15 @@ public class Fachada {
 	}
 	
 	public void removerItem(ItemEstoque o) throws Exception {
-		
+		estoque.removerItem(o);
 	}
 	
 	public void alterarItem(ItemEstoque o) throws Exception {
-		
+		estoque.alterarItem(o);
 	}
 
 	public ArrayList<ItemEstoque> listarItens() throws Exception {
-		return null;
+		return estoque.listarItens();
 	}
 	
 }

@@ -28,7 +28,7 @@ public class AdminController {
 
     @FXML
     void abrirTelaEstoque() {
-
+    	ScreenManager.setScene(ScreenManager.getInstance().getTelaEstoque());
     }
 
     @FXML

@@ -37,7 +37,8 @@ public class GerenciamentoInstituicao {
 		try {
 			return instituicoes.listarTodos();
 		} catch (Exception e) {
-			System.err.println("O comando de instituicoes.listarTodos() falhou em GerenciamentoInstituicao.java");;
+			//System.err.println("O comando de instituicoes.listarTodos() falhou em GerenciamentoInstituicao.java");
+			e.printStackTrace();
 			return new ArrayList<Instituicao>();
 		}
 	}

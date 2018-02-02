@@ -87,8 +87,6 @@ public class PrincipalController implements Initializable {
 			}
 
 		});
-		
-		//FabricaTransicao.fazerTransicao(1, ScreenManager.getMainStage(), true);
 	}
 
 }

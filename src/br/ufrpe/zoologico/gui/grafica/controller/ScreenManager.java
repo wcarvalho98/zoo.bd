@@ -219,9 +219,18 @@ public class ScreenManager {
 		return telaFuncionarios;
 	}
 	
-	public void alertaInformativo(String informacao) {
+	public static void alertaInformativo(String informacao) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Caixa de Alerta");
+		alert.setHeaderText(null);
+		alert.setContentText(informacao);
+
+		alert.showAndWait();
+	}
+	
+	public static void alertaErro(String informacao) {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Erro!");
 		alert.setHeaderText(null);
 		alert.setContentText(informacao);
 

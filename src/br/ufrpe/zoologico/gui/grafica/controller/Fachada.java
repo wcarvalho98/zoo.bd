@@ -32,6 +32,7 @@ import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoFuncionario;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoGenero;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoInstituicao;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoJaula;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoLogin;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoOrdem;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoReserva;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoServicos;
@@ -56,6 +57,7 @@ public class Fachada {
 	private GerenciamentoAdmin admin;
 	private GerenciamentoReserva reserva;
 	private GerenciamentoJornadaDeTrabalho jornada;
+	private GerenciamentoLogin login;
 	
 	private Fachada() {
 		consultas = new GerenciamentoConsultas();
@@ -73,6 +75,7 @@ public class Fachada {
 		admin = new GerenciamentoAdmin();
 		reserva = new GerenciamentoReserva();
 		jornada = new GerenciamentoJornadaDeTrabalho();
+		login = new GerenciamentoLogin();
 	}
 	
 	public static Fachada getInstance() {
@@ -362,5 +365,14 @@ public class Fachada {
 		return zoo.buscar(id_zoo);
 	}
 
+	
+	/** LOGIN */
+	public void fecharConexao() {
+		login.fecharConexao();
+	}
+	
+	public void fazerLogin(String nome, String senha) {
+		login.fazerLogin(nome, senha);
+	}
 	
 }

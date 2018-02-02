@@ -61,7 +61,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button layoutX="329.0" layoutY="419.0" mnemonicParsing="false" onAction="#abrirTelaProduto" text="Produto">
+            <Button disable="true" layoutX="329.0" layoutY="419.0" mnemonicParsing="false" onAction="#abrirTelaProduto" text="Produto">
                <font>
                   <Font size="18.0" />
                </font>
@@ -81,17 +81,17 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button layoutX="580.0" layoutY="422.0" mnemonicParsing="false" onAction="#abrirTelaReserva" text="Reserva">
+            <Button disable="true" layoutX="580.0" layoutY="422.0" mnemonicParsing="false" onAction="#abrirTelaReserva" text="Reserva">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button layoutX="821.0" layoutY="212.0" mnemonicParsing="false" onAction="#abrirTelaAnimal_Item" text="Animal-Item">
+            <Button disable="true" layoutX="821.0" layoutY="212.0" mnemonicParsing="false" onAction="#abrirTelaAnimal_Item" text="Animal-Item">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button layoutX="819.0" layoutY="282.0" mnemonicParsing="false" onAction="#abrirTelaJaula_Animal" text="Jaula-Animal">
+            <Button disable="true" layoutX="819.0" layoutY="282.0" mnemonicParsing="false" onAction="#abrirTelaJaula_Animal" text="Jaula-Animal">
                <font>
                   <Font size="18.0" />
                </font>

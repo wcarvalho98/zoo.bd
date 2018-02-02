@@ -8,6 +8,8 @@ package br.ufrpe.zoologico.negocio.gerenciamento;
 
 import java.util.ArrayList;
 
+import com.mysql.fabric.xmlrpc.base.Array;
+
 import br.ufrpe.zoologico.DAO.DAOEstoque_ItemEstoque;
 import br.ufrpe.zoologico.negocio.beans.Estoque;
 import br.ufrpe.zoologico.negocio.beans.ItemEstoque;
@@ -52,6 +54,17 @@ public class GerenciamentoEstoque {
 
 	public ArrayList<ItemEstoque> listarItens() throws Exception {
 		return estoque.listarItens();
+	}
+	
+	public ArrayList<ItemEstoque> listarItensDoEstoque(Estoque a) throws Exception{
+		ArrayList<ItemEstoque> saida = new ArrayList<ItemEstoque>();
+		ArrayList<ItemEstoque> todos = listarItens();
+		for (int i = 0; i < todos.size(); i++) {
+			if (todos.get(i).getIdEstoque() == a.getId()) {
+				saida.add(todos.get(i));
+			}
+		}
+		return saida;
 	}
 	
 }

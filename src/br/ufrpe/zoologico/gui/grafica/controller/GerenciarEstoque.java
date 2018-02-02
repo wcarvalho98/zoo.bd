@@ -71,7 +71,13 @@ public class GerenciarEstoque {
 
 	@FXML
 	private URL location;
+	
+	@FXML
+	private TextField codProdTextField;
 
+	@FXML
+	private TextField idEstoqueTextField;
+	
 	@FXML
 	private TextField descricaoTextField;
 
@@ -113,55 +119,127 @@ public class GerenciarEstoque {
 
 	@FXML
 	private DatePicker dtEntradaDatePicker1;
+	
+	private Estoque estoqueSelecionado;
+	
+	private ItemEstoque itemSelecionado;
 
 	@FXML
 	void cadastrarEstoque() {
-
+		try {
+			Estoque a = new Estoque();
+			a.setDescr(descricaoTextField1.getText());
+			a.setLocalizacao(localizacaoTextField1.getText());
+			Fachada.getInstance().inserirEstoque(a);
+			preencherTabelaEstoque();
+			preencherCamposEstoque1(null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
 	void cadastrarItemEstoque() {
-
+		try {
+			if (Integer.parseInt(codProdTextField.getText()) >= 0 &&
+					Integer.parseInt(idEstoqueTextField.getText()) >= 0 &&
+					Integer.parseInt(idAnimalTextField1.getText()) >= 0) {
+				ItemEstoque a = new ItemEstoque();
+				a.setAnimal_consome(Integer.parseInt(idAnimalTextField1.getText()));
+				a.setVl_compra(Double.parseDouble(vlCompraTextField1.getText()));
+				a.setData_entrada(dtEntradaDatePicker1.getValue());
+				a.setData_validade(dtValidadeDatePicker1.getValue());
+				a.setIdEstoque(Integer.parseInt(idEstoqueTextField.getText()));
+				a.setCod_prod_ref(Integer.parseInt(codProdTextField.getText()));
+				Fachada.getInstance().inserirItem(a);
+				preencherCamposItem1(null);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
 	void editarEstoque() {
-
+		preencherCamposEstoque(estoqueSelecionado);
+		preencherCamposItem(null);
 	}
 
 	@FXML
 	void editarEstoqueItem() {
-
+		preencherCamposEstoque(null);
+		preencherCamposItem(itemSelecionado);
 	}
 
 	@FXML
 	void removerEstoque() {
-
+		try {
+			if (estoqueSelecionado != null) {
+				Fachada.getInstance().removerEstoque(estoqueSelecionado);
+				estoqueSelecionado = null;
+				preencherTabelaEstoque();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
 	void removerEstoqueItem() {
-
+		try {
+			if (itemSelecionado != null) {
+				Fachada.getInstance().removerItem(itemSelecionado);
+				itemSelecionado = null;
+				preencherTabelaItem();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
 	void salvarAlteracoesEstoque() {
-
+		try {
+			if (estoqueSelecionado != null) {
+				estoqueSelecionado.setDescr(descricaoTextField.getText());
+				estoqueSelecionado.setLocalizacao(localizacaoTextField.getText());
+				Fachada.getInstance().alterarEstoque(estoqueSelecionado);
+				preencherTabelaEstoque();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
 	void salvarAlteracoesItemEstoque() {
-
+		try {
+			if (itemSelecionado != null && Integer.parseInt(idAnimalTextField.getText()) >= 0) {
+				itemSelecionado.setData_entrada(dtEntradaDatePicker.getValue());
+				itemSelecionado.setData_validade(dtValidadeDatePicker.getValue());
+				itemSelecionado.setAnimal_consome(Integer.parseInt(idAnimalTextField.getText()));
+				itemSelecionado.setQtd(Integer.parseInt(quantidadeTextField.getText()));
+				itemSelecionado.setVl_compra(Double.parseDouble(vlCompraTextField.getText()));
+				Fachada.getInstance().alterarItem(itemSelecionado);
+				preencherTabelaItem();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	@FXML
-	void selecionarEstoque(MouseEvent event) {
-
+	void selecionarEstoque() {
+		estoqueSelecionado = tabelaEstoque.getSelectionModel().getSelectedItem();
+		if (estoqueSelecionado != null) {
+			preencherTabelaItem();
+		}
 	}
 
 	@FXML
-	void selecionarEstoqueItem(MouseEvent event) {
-
+	void selecionarEstoqueItem() {
+		itemSelecionado = tabelaItemEstoque.getSelectionModel().getSelectedItem();
 	}
 
 	@FXML
@@ -227,4 +305,120 @@ public class GerenciarEstoque {
 			e.printStackTrace();
 		}
     }
+	
+	private void preencherTabelaItem() {
+		try {
+			ArrayList<ItemEstoque> itens = Fachada.getInstance().listarItensDoEstoque(estoqueSelecionado);
+			
+			colunaCodProd.setCellValueFactory(new Callback<CellDataFeatures<ItemEstoque, String>, ObservableValue<String>>() {
+				@Override
+				public ObservableValue<String> call(CellDataFeatures<ItemEstoque, String> estoques) {
+					return new SimpleStringProperty(estoques.getValue().getCod_prod_ref() + "");
+				}
+			});
+			
+			colunaIdEstoqueItem.setCellValueFactory(new Callback<CellDataFeatures<ItemEstoque, String>, ObservableValue<String>>() {
+				@Override
+				public ObservableValue<String> call(CellDataFeatures<ItemEstoque, String> estoques) {
+					return new SimpleStringProperty(estoques.getValue().getIdEstoque() + "");
+				}
+			});
+			
+			colunaDtEntrada.setCellValueFactory(new Callback<CellDataFeatures<ItemEstoque, String>, ObservableValue<String>>() {
+				@Override
+				public ObservableValue<String> call(CellDataFeatures<ItemEstoque, String> estoques) {
+					return new SimpleStringProperty(ScreenManager.formatarLocalDate(estoques.getValue().getData_entrada()));
+				}
+			});
+			
+			colunaVlCompra.setCellValueFactory(new Callback<CellDataFeatures<ItemEstoque, String>, ObservableValue<String>>() {
+				@Override
+				public ObservableValue<String> call(CellDataFeatures<ItemEstoque, String> estoques) {
+					return new SimpleStringProperty(estoques.getValue().getVl_compra() + "");
+				}
+			});
+			
+			colunaDtValidade.setCellValueFactory(new Callback<CellDataFeatures<ItemEstoque, String>, ObservableValue<String>>() {
+				@Override
+				public ObservableValue<String> call(CellDataFeatures<ItemEstoque, String> estoques) {
+					return new SimpleStringProperty(ScreenManager.formatarLocalDate(estoques.getValue().getData_validade()));
+				}
+			});
+			
+			colunaIdAnimal.setCellValueFactory(new Callback<CellDataFeatures<ItemEstoque, String>, ObservableValue<String>>() {
+				@Override
+				public ObservableValue<String> call(CellDataFeatures<ItemEstoque, String> estoques) {
+					return new SimpleStringProperty(estoques.getValue().getAnimal_consome() + "");
+				}
+			});
+			
+			colunaQtd.setCellValueFactory(new Callback<CellDataFeatures<ItemEstoque, String>, ObservableValue<String>>() {
+				@Override
+				public ObservableValue<String> call(CellDataFeatures<ItemEstoque, String> estoques) {
+					return new SimpleStringProperty(estoques.getValue().getQtd() + "");
+				}
+			});
+			
+			tabelaItemEstoque.setItems(FXCollections.observableArrayList(itens));
+			tabelaItemEstoque.refresh();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	private void preencherCamposEstoque(Estoque a) {
+		if (a == null) {
+			descricaoTextField.setText("");
+			localizacaoTextField.setText("");
+		} else {
+			descricaoTextField.setText(a.getDescr());
+			localizacaoTextField.setText(a.getLocalizacao());
+		}
+	}
+	
+	private void preencherCamposEstoque1(Estoque a) {
+		if (a == null) {
+			descricaoTextField1.setText("");
+			localizacaoTextField1.setText("");
+		} else {
+			descricaoTextField1.setText(a.getDescr());
+			localizacaoTextField1.setText(a.getLocalizacao());
+		}
+	}
+	
+	private void preencherCamposItem(ItemEstoque a) {
+		if (a == null) {
+			quantidadeTextField.setText("");
+			vlCompraTextField.setText("");
+			idAnimalTextField.setText("");
+			dtEntradaDatePicker.setValue(null);
+			dtValidadeDatePicker.setValue(null);
+		} else {
+			quantidadeTextField.setText(a.getQtd() + "");
+			vlCompraTextField.setText(a.getVl_compra() + "");
+			idAnimalTextField.setText(a.getAnimal_consome() + "");
+			dtEntradaDatePicker.setValue(a.getData_entrada());
+			dtValidadeDatePicker.setValue(a.getData_validade());
+		}
+	}
+	
+	private void preencherCamposItem1(ItemEstoque a) {
+		if (a == null) {
+			quantidadeTextField1.setText("");
+			vlCompraTextField1.setText("");
+			idAnimalTextField1.setText("");
+			dtEntradaDatePicker1.setValue(null);
+			dtValidadeDatePicker1.setValue(null);
+			idEstoqueTextField.setText("");
+			codProdTextField.setText("");
+		} else {
+			quantidadeTextField1.setText(a.getQtd() + "");
+			vlCompraTextField1.setText(a.getVl_compra() + "");
+			idAnimalTextField1.setText(a.getAnimal_consome() + "");
+			dtEntradaDatePicker1.setValue(a.getData_entrada());
+			dtValidadeDatePicker1.setValue(a.getData_validade());
+		}
+	}
 }

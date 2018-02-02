@@ -35,6 +35,10 @@ public class ItemEstoque {
 		this.animal_consome = animal_consome;
 		this.idEstoque = idEstoque;
 	}
+	
+	public ItemEstoque() {
+		
+	}
 	/**
 	 * Metodo: getCod_prod_ref
 	 * @return cod_prod_ref

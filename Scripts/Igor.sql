@@ -1,3 +1,4 @@
+delimiter $$
 create function jaula_livre (idespecie int)
 	returns bool
 begin

@@ -15,10 +15,10 @@ end
 &&
 
 delimiter $$
-create function oferta (idServico int, prazo date) returns bool
+create function oferta (CNPJ varchar(14), idServico int, prazo date) returns bool
  begin
 	declare val1 date;
-	select dt_fim into val1 from presta where idServ = idServico;
+	select dt_fim into val1 from presta where idServ = idServico, CNPJempresaTerc = CNPJ;
     if prazo <= val1 then
 		return true;
 	else
@@ -39,7 +39,18 @@ create function espePertenceGenero (idEsp int, idGenero int) returns bool
 	end if;
 end
 $$
-
+delimiter $$
+CREATE FUNCTION `generoPertenceOrdem`(idGenero int, idOrdem int) RETURNS tinyint(1)
+begin
+	declare `val1` int;
+    SELECT ordem into val1 from genero where seq = idGenero;
+    if val1 = idOrdem then
+		return true;
+	else
+		return false;
+	end if;
+end
+$$
 delimiter $$
 create function disponivel_espaco (`id_espaco` int) returns date
  begin
@@ -167,3 +178,4 @@ begin
     end if;
 end
 $$
+

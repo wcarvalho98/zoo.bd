@@ -78,8 +78,9 @@ public class DAOEspecie extends DAO<Especie> {
 			fecharStmt();
 			e.printStackTrace();
 		}
-		rs.next();
-		Especie o = new Especie(rs.getInt(1), rs.getString(2), rs.getInt(3));
+		Especie o = null;
+		if (rs.next())
+			o = new Especie(rs.getInt(1), rs.getString(2), rs.getInt(3));
 		rs.close();
 		fecharStmt();
 		return o;

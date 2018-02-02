@@ -124,34 +124,60 @@ public class GerenciarAnimalController implements Initializable{
 		String val2 = obs.getText();
 		String val3 = nome.getText();
 		LocalDate val4 = dtNas.getValue();
+		Animal b = new Animal(0, val3, true, val4, val5, 0, val3, val2, zooAtual.getIdZoo(), 
+				jaulaAtual.getId_jaula(), ordemAtual.getId(), generoAtual.getId(), especieAtual.getSeq());
 	
 		try {
-			if(f.generoPertenceOrdem(generoAtual.getId(),ordemAtual.getId()))
+			if(f.generoPertenceOrdem(generoAtual.getId(),ordemAtual.getId())) {
 				if(f.especiePertenceGenero(especieAtual.getSeq(), generoAtual.getId())){
-					Animal b = new Animal(0,val3,true,val4,val5,0,val3,val2,zooAtual.getIdZoo(),
-					jaulaAtual.getId_jaula(),ordemAtual.getId(),generoAtual.getId(),especieAtual.getSeq());
 					try {
+						System.out.println(b.toString());
 						f.cadastrarAnimal(b);
+						ScreenManager.alertaInformativo("Cadastro realizado com sucesso!");
 					} catch (Exception e) {
 						Alert a = new Alert(AlertType.ERROR);
 						a.setTitle("Erro");
 						a.setHeaderText(null);
-						a.setContentText(e.getMessage());
+						a.setContentText("putz");
 						a.showAndWait();
 					}
 				}
+				else
+					ScreenManager.alertaErro("Espécie não pertence a gênero!");
+			}
+			else
+				ScreenManager.alertaErro("Genêro não pertence a ordem!");
 		} catch (Exception e) {
-			Alert a = new Alert(AlertType.ERROR);
-			a.setTitle("Erro");
-			a.setHeaderText(null);
-			a.setContentText("Banana");
-			a.showAndWait();
+			ScreenManager.alertaErro(e.getMessage());
 		}
 		allNull();
 		allDisable();
 		cadastrar.setVisible(false);
 		cadastrar.setDisable(true);
 
+	}
+	
+	@FXML 
+	public void remover() throws Exception{
+		Animal b = f.buscarAnimal(Integer.valueOf(idAnimal.getText()));
+		if(b == null)
+			ScreenManager.alertaErro("Animal não existe!");
+		else {
+			f.removerAnimal(b);
+			ScreenManager.alertaInformativo("Animal removido com sucesso!");
+			preencherAnimal(0);
+		}
+	}
+	
+	@FXML 
+	public void alterar(){
+		
+		
+	}
+	
+	@FXML
+	public void salvarAlteracao(){
+		
 	}
 	
 	@FXML
@@ -188,11 +214,16 @@ public class GerenciarAnimalController implements Initializable{
 		Zoo val3 = f.buscarZoo(a.getId_zoo());
 		Jaula val4 = f.buscarJaula(a.getId_jaula());
 		
-		ArrayList<Ordem> b = new ArrayList<Ordem>();b.add(val);
-		ArrayList<Jaula> c = new ArrayList<Jaula>();c.add(val4);
-		ArrayList<Genero> d = new ArrayList<Genero>(); d.add(val1);
-		ArrayList<Especie> e = new ArrayList<Especie>(); e.add(val2);
-		ArrayList<Zoo> f = new ArrayList<Zoo>(); f.add(val3);
+		ArrayList<Ordem> b = new ArrayList<Ordem>();
+		b.add(val);
+		ArrayList<Jaula> c = new ArrayList<Jaula>();
+		c.add(val4);
+		ArrayList<Genero> d = new ArrayList<Genero>();
+		d.add(val1);
+		ArrayList<Especie> e = new ArrayList<Especie>();
+		e.add(val2);
+		ArrayList<Zoo> z = new ArrayList<Zoo>();
+		z.add(val3);
 		
 		idAnimal.setText(Integer.valueOf(a.getId()).toString());
 		idade.setText(Integer.valueOf(a.getIdade()).toString());
@@ -204,7 +235,7 @@ public class GerenciarAnimalController implements Initializable{
 		preencherTabelaOrdem(b);
 		preencherTabelaJaula(c);
 		preencherTabelaEspecie(e);
-		preencherTabelaZoo(f);
+		preencherTabelaZoo(z);
 		preencherTabelaGenero(d);
 		
 	}	

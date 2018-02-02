@@ -24,7 +24,10 @@ public class DAOAnimal extends DAO<Animal>{
 		getStmt().setString(1, o.getNome());
 		getStmt().setBoolean(2, o.isVivo());
 		getStmt().setDate(3, Date.valueOf(o.getDt_nasc()));
-		getStmt().setDate(4, Date.valueOf(o.getDt_falecimento()));
+		if(o.getDt_falecimento() != null)
+			getStmt().setDate(4, Date.valueOf(o.getDt_falecimento()));
+		else
+			getStmt().setDate(4, null);
 		getStmt().setInt(5, o.getIdade());
 		getStmt().setString(6, o.getNome_vulgar());
 		getStmt().setString(7, o.getObs());
@@ -71,7 +74,11 @@ public class DAOAnimal extends DAO<Animal>{
 		getStmt().setString(1, o.getNome());
 		getStmt().setBoolean(2, o.isVivo());
 		getStmt().setDate(3, Date.valueOf(o.getDt_nasc()));
-		getStmt().setDate(4, Date.valueOf(o.getDt_falecimento()));
+		if(o.getDt_falecimento() != null)
+			getStmt().setDate(4, Date.valueOf(o.getDt_falecimento()));
+		else
+			getStmt().setDate(4, null);
+		
 		getStmt().setInt(5, o.getIdade());
 		getStmt().setString(6, o.getNome_vulgar());
 		getStmt().setString(7, o.getObs());

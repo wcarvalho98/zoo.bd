@@ -239,5 +239,29 @@ public class GerenciarAnimalController implements Initializable{
 		dtNas.setDisable(true);
 		dtFale.setDisable(true);
 	}
+	
+	private void allNotDisable(){
+		idAnimal.setDisable(false);
+		idade.setDisable(false);
+		obs.setDisable(false);
+		nome.setDisable(false);
+		dtNas.setDisable(false);
+		dtFale.setDisable(false);
+	}
+	
+	private void allNull(){
+		idAnimal.setText(null);
+		idAnimal.setPromptText("ID");
+		idade.setText(null);
+		idade.setPromptText("Idade");
+		obs.setText(null);
+		obs.setPromptText("OBS");
+		nome.setText(null);
+		nome.setPromptText("Nome");
+		dtNas.setValue(null);
+		dtFale.setValue(null);
+	}
+	
+	
 
 }

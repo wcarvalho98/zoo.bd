@@ -31,9 +31,6 @@ public class GerenciarServicosController implements Initializable {
 	private TableColumn<Servico, String> colunaDescricao;
 
 	@FXML
-	private TableColumn<Servico, String> colunaValorServico;
-
-	@FXML
 	private TableView<Fatura> tabelaFatura;
 
 	@FXML
@@ -137,14 +134,6 @@ public class GerenciarServicosController implements Initializable {
 				return new SimpleStringProperty(todosOsServicos.getValue().getDescr());
 			}
 		});
-
-		colunaValorServico
-				.setCellValueFactory(new Callback<CellDataFeatures<Servico, String>, ObservableValue<String>>() {
-					@Override
-					public ObservableValue<String> call(CellDataFeatures<Servico, String> todosOsServicos) {
-						return new SimpleStringProperty(todosOsServicos.getValue().getValor() + "");
-					}
-				});
 
 		tabelaServicos.setItems(FXCollections.observableArrayList(servicos));
 		tabelaServicos.refresh();

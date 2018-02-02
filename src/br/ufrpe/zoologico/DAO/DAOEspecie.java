@@ -76,6 +76,20 @@ public class DAOEspecie extends DAO<Especie> {
 		fechar();
 		return list;
 	}
+	
+	public boolean pertence(int idEspecie, int idGenero) throws Exception{
+		String sql = "select zoologico.espePertenceGenero(?, ?)";
+		preparar(sql);
+		getStmt().setInt(1,idEspecie);
+		getStmt().setInt(2, idGenero);
+		ResultSet rs = getStmt().executeQuery();
+		rs.next();
+		boolean resp = rs.getBoolean(1);
+		rs.close();
+		fecharStmt();
+		fechar();
+		return resp;
+	}
 
 
 }

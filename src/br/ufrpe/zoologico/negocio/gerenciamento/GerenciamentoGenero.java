@@ -38,4 +38,7 @@ public class GerenciamentoGenero {
 		return genero.busca(genero2);
 	}
 	
+	public boolean pertence(int idGenero, int idOrdem) throws Exception{
+		return genero.pertence(idGenero, idOrdem);
+	}
 }

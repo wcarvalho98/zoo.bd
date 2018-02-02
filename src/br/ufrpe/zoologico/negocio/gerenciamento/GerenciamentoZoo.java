@@ -19,20 +19,16 @@ public class GerenciamentoZoo {
 		this.zoo = new DAOZoo();
 	}
 	
-	public void inserir(Zoo o){
-		try {
+	public void inserir(Zoo o) throws Exception{
 			zoo.inserir(o);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 	
-	public void remover(Zoo o){
-		try {
+	public void remover(Zoo o) throws Exception{
 			zoo.remover(o);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
+	}
+	public void alterarZoo(Zoo o) throws Exception{
+		zoo.alterar(o);
 	}
 	
 	public Zoo buscar(int id){

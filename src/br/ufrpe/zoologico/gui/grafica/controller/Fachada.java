@@ -418,5 +418,15 @@ public class Fachada {
 		diagnostico.alterar(o);
 	}
 	
+	public void cadastrarZoo(Zoo o) throws Exception {
+		zoo.inserir(o);
+	}
 	
+	public void removerZoo(Zoo o) throws Exception {
+		zoo.remover(o);
+	}
+	
+	public void alterarZoo(Zoo o) throws Exception{
+		zoo.alterarZoo(o);
+	}
 }

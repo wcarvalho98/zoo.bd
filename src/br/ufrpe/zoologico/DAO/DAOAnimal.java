@@ -156,9 +156,4 @@ public class DAOAnimal extends DAO<Animal>{
 		fecharStmt();
 		return r;
 	}
-	
-	public int calcularIdade(){
-		return 0;
-	}
-
 }

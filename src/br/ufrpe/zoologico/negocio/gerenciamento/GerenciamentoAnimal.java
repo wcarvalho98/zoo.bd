@@ -19,14 +19,8 @@ public class GerenciamentoAnimal {
 		this.animal = new DAOAnimal();
 	}
 	
-	public void cadastrarAnimal(Animal o) {
-		try {
-			if (o != null) {
-				animal.inserir(o);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void cadastrarAnimal(Animal o) throws Exception {
+		animal.inserir(o);
 	}
 	public void removerAnimal(Animal o) {
 		try {

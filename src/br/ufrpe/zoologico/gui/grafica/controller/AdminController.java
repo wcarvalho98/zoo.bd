@@ -1,5 +1,7 @@
 package br.ufrpe.zoologico.gui.grafica.controller;
 
+import java.sql.SQLException;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -71,6 +73,11 @@ public class AdminController {
 
     @FXML
     void desconectar() {
+    	try {
+			Fachada.getInstance().fecharConexao();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
     	ScreenManager.setScene(ScreenManager.getInstance().getTelaLogin());
     }
 

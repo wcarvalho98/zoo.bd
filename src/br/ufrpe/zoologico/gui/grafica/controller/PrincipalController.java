@@ -51,7 +51,7 @@ public class PrincipalController implements Initializable {
 			try {
 				Fachada.getInstance().fazerLogin(nome, senha);
 				switch (nome) {
-					case "administrador":
+					case "admin":
 						ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin());
 						break;
 					case "veterinario":

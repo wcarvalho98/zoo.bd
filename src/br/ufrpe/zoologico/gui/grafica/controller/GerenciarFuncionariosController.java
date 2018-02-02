@@ -178,13 +178,7 @@ public class GerenciarFuncionariosController implements Initializable {
 	@FXML
 	void removerFuncionario() {
 		if (funcionarioSelecionado != null) {
-			try {
-				Fachada.getInstance().removerConsulta(funcionarioSelecionado.getCpf());
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				Fachada.getInstance().removerFuncionario(funcionarioSelecionado);
-			}
+			Fachada.getInstance().removerFuncionario(funcionarioSelecionado);
 			funcionarioSelecionado = null;
 		}
 		preencherTabelaFuncionarios();

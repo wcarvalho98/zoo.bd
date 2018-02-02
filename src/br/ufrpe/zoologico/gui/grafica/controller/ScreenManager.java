@@ -56,7 +56,13 @@ public class ScreenManager {
 		Optional<ButtonType> result = alert.showAndWait();
 		
 		if (result.get().equals(ButtonType.OK)) {
-			System.exit(0);
+			Transition t = FabricaTransicao.fazerTransicao(0.5, mainStage.getScene().getRoot(), false);
+			t.setOnFinished(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					System.exit(0);
+				}
+			});
 		} else {
 			alert.close();
 		}
@@ -213,6 +219,15 @@ public class ScreenManager {
 			e.printStackTrace();
 		}
 		return telaFuncionarios;
+	}
+	
+	public void alertaInformativo(String informacao) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Caixa de Alerta");
+		alert.setHeaderText(null);
+		alert.setContentText(informacao);
+
+		alert.showAndWait();
 	}
 
 }

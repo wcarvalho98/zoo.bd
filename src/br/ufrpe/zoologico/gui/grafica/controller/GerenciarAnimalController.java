@@ -144,7 +144,7 @@ public class GerenciarAnimalController implements Initializable{
 			Alert a = new Alert(AlertType.ERROR);
 			a.setTitle("Erro");
 			a.setHeaderText(null);
-			a.setContentText(e.getMessage());
+			a.setContentText("Banana");
 			a.showAndWait();
 		}
 		allNull();

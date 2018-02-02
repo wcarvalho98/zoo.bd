@@ -14,7 +14,7 @@ public class ItemEstoque {
 	private LocalDate data_entrada;
 	private double vl_compra;
 	private LocalDate data_validade;
-	private String animal_consome;
+	private int animal_consome;
 	private int idEstoque;
 	/**
 	 * @param cod_prod_ref
@@ -25,7 +25,7 @@ public class ItemEstoque {
 	 * @param animal_consome
 	 */
 	public ItemEstoque(int cod_prod_ref, int idEstoque, int qtd, LocalDate data_entrada, double vl_compra, LocalDate data_validade,
-			String animal_consome) {
+			int animal_consome) {
 		super();
 		this.cod_prod_ref = cod_prod_ref;
 		this.qtd = qtd;
@@ -109,21 +109,20 @@ public class ItemEstoque {
 	 * Metodo: getAnimal_consome
 	 * @return animal_consome
 	 */
-	public String getAnimal_consome() {
+	public int getAnimal_consome() {
 		return animal_consome;
 	}
 	/**
 	 * Metodo: setAnimal_consome
 	 * @param animal_consome the animal_consome to set
 	 */
-	public void setAnimal_consome(String animal_consome) {
+	public void setAnimal_consome(int animal_consome) {
 		this.animal_consome = animal_consome;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((animal_consome == null) ? 0 : animal_consome.hashCode());
 		result = prime * result + cod_prod_ref;
 		result = prime * result + ((data_entrada == null) ? 0 : data_entrada.hashCode());
 		result = prime * result + ((data_validade == null) ? 0 : data_validade.hashCode());
@@ -133,6 +132,9 @@ public class ItemEstoque {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
+	/**
+	 *
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -165,6 +167,7 @@ public class ItemEstoque {
 			return false;
 		return true;
 	}
+	 */
 	@Override
 	public String toString() {
 		return "ItemEstoque [cod_prod_ref=" + cod_prod_ref + ", qtd=" + qtd + ", data_entrada=" + data_entrada

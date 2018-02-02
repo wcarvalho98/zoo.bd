@@ -23,7 +23,6 @@ public class DAOLogin {
 	}
 	
 	public void fazerLogin(String nome, String senha) throws ClassNotFoundException, SQLException {
-		nome += "@localhost";
 		setNome(nome);
 		setSenha(senha);
 		con = ConFactory.conexao(URL, nome, senha);

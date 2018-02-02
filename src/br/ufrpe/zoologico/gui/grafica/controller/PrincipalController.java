@@ -7,6 +7,7 @@
 package br.ufrpe.zoologico.gui.grafica.controller;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import br.ufrpe.zoologico.DAO.DAOAdmin;
@@ -51,7 +52,29 @@ public class PrincipalController implements Initializable {
 		else
 			tooltipSenha.hide();
 		if (!senha.isEmpty() && !nome.isEmpty()) {
-			Fachada.getInstance().fazerLogin(nome, senha);
+			try {
+				Fachada.getInstance().fazerLogin(nome, senha);
+				switch (nome) {
+					case "administrador":
+						ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin());
+						break;
+					case "veterinario":
+						break;
+					case "secretario":
+						break;
+					case "tratador":
+						break;
+				}
+			} catch (ClassNotFoundException | SQLException e) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Erro!");
+				alert.setHeaderText(null);
+				alert.setContentText(e.getMessage());
+
+				alert.showAndWait();
+				e.printStackTrace();
+			}
+			
 			/**
 			Administrador o = null;
 			try {

@@ -6,6 +6,7 @@
  */
 package br.ufrpe.zoologico.gui.grafica.controller;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.Administrador;
@@ -366,12 +367,13 @@ public class Fachada {
 	}
 
 	
-	/** LOGIN */
-	public void fecharConexao() {
+	/** LOGIN 
+	 * @throws SQLException */
+	public void fecharConexao() throws SQLException {
 		login.fecharConexao();
 	}
 	
-	public void fazerLogin(String nome, String senha) {
+	public void fazerLogin(String nome, String senha) throws ClassNotFoundException, SQLException {
 		login.fazerLogin(nome, senha);
 	}
 	

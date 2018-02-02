@@ -72,7 +72,7 @@ public class DAOConsultas extends DAO<Consulta>{
 	@Override
 	public void alterar(Consulta o) throws Exception {
 		String sql = "UPDATE `consulta` SET `dat_consulta` = ?, `obs` = ?, `id_veterinario` = ?, `id_animal` = ?"
-				+ "WHERE `id_consulta` = ?";
+				+ " WHERE `id_consulta` = ?";
 		preparar(sql);
 		Timestamp t = Timestamp.valueOf(o.getData());
 		getStmt().setTimestamp(1, t);

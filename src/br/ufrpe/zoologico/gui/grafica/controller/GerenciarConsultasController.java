@@ -145,6 +145,7 @@ public class GerenciarConsultasController implements Initializable {
 			dataDaConsultaDatePicker1.setValue(LocalDate.now());
 			horaTextField1.setText("");
 			minutoTextField1.setText("");
+			preencherTabelas();
 		}
 	}
 
@@ -348,6 +349,7 @@ public class GerenciarConsultasController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		preencherTabelas();
+		preencherTabelas1();
 		if (Fachada.getInstance().listarConsultas().size() > 0) {
 			consultaAtual = Fachada.getInstance().listarConsultas().get(idAtual);
 			preencherCamposVisao();

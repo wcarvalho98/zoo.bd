@@ -180,7 +180,7 @@
                         <Font size="36.0" />
                      </font>
                   </Label>
-                  <Button layoutX="849.0" layoutY="530.0" mnemonicParsing="false" onAction="#cadastrarItemEstoque" text="Cadastrar Estoque_Item">
+                  <Button layoutX="855.0" layoutY="550.0" mnemonicParsing="false" onAction="#cadastrarItemEstoque" text="Cadastrar Estoque_Item">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -210,7 +210,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="idAnimalTextField1" layoutX="771.0" layoutY="446.0" prefHeight="39.0" prefWidth="120.0" promptText="ID Animal">
+                  <TextField fx:id="idAnimalTextField1" layoutX="771.0" layoutY="436.0" prefHeight="39.0" prefWidth="120.0" promptText="ID Animal">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -227,6 +227,26 @@
                   </TextField>
                   <DatePicker fx:id="dtValidadeDatePicker1" layoutX="1037.0" layoutY="419.0" prefHeight="40.0" prefWidth="222.0" promptText="Data Validade" />
                   <DatePicker fx:id="dtEntradaDatePicker1" layoutX="1035.0" layoutY="345.0" prefHeight="40.0" prefWidth="222.0" promptText="Data Entrada" />
+                  <TextField fx:id="codProdTextField" layoutX="771.0" layoutY="491.0" prefHeight="39.0" prefWidth="120.0" promptText="ID Produto">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="idEstoqueTextField" layoutX="1038.0" layoutY="491.0" prefHeight="39.0" prefWidth="120.0" promptText="ID Estoque">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="624.0" layoutY="493.0" text="Cod Produto:">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="908.0" layoutY="493.0" text="Id Estoque:">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
                </children></AnchorPane>
       </content>
     </Tab>

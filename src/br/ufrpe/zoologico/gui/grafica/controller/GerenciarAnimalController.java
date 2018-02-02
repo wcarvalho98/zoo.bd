@@ -112,14 +112,33 @@ public class GerenciarAnimalController implements Initializable{
 	
 	@FXML
 	public void cadastrar(){
-		int val0 = Integer.valueOf(idAnimal.getText());
-		int val1 = Integer.valueOf(idade.getText());
-		String val2 = obs.getText();
-		String val3 = nome.getText();
-		LocalDate val4 = dtNas.getValue();
-		LocalDate val5 = dtFale.getValue();
-		
-		
+		try {
+			int val0 = Integer.valueOf(idAnimal.getText());
+			int val1 = Integer.valueOf(idade.getText());
+			String val2 = obs.getText();
+			String val3 = nome.getText();
+			LocalDate val4 = dtNas.getValue();
+			LocalDate val5 = dtFale.getValue();
+			if(f.generoPertenceOrdem(generoAtual.getId(), ordemAtual.getId()))
+				if(f.especiePertenceGenero(especieAtual.getSeq(), generoAtual.getId())){
+					Animal a = new Animal(val0,val3,true,val4,val5,val1,val3,val2,zooAtual.getIdZoo(),
+							jaulaAtual.getId_jaula(),ordemAtual.getId(),generoAtual.getId(),especieAtual.getSeq());
+					f.cadastrarAnimal(a);
+				}
+		}  catch (NumberFormatException e1){
+			Alert a = new Alert(AlertType.ERROR);
+			a.setTitle("Erro");
+			a.setHeaderText(null);
+			a.setContentText(e1.getMessage());
+			a.showAndWait();
+
+		} catch (Exception e) {
+			Alert a = new Alert(AlertType.ERROR);
+			a.setTitle("Erro");
+			a.setHeaderText(null);
+			a.setContentText(e.getMessage());
+			a.showAndWait();
+		}
 		
 	}
 	

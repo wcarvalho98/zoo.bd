@@ -7,12 +7,9 @@
 package br.ufrpe.zoologico.gui.grafica.controller;
 
 import java.net.URL;
-import java.util.ArrayList;import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.ResourceBundle;import javax.swing.text.TabExpander;
-import javax.swing.text.TabableView;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import br.ufrpe.zoologico.negocio.beans.Animal;
 import br.ufrpe.zoologico.negocio.beans.Especie;
@@ -20,24 +17,21 @@ import br.ufrpe.zoologico.negocio.beans.Genero;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
 import br.ufrpe.zoologico.negocio.beans.Ordem;
 import br.ufrpe.zoologico.negocio.beans.Zoo;
-import javafx.beans.InvalidationListener;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.util.Callback;
 
 public class GerenciarAnimalController implements Initializable{
@@ -75,10 +69,17 @@ public class GerenciarAnimalController implements Initializable{
 	private Fachada f;
 	private int i;
 	
+	private Ordem ordemAtual;
+	private Genero generoAtual;
+	private Jaula jaulaAtual;
+	private Especie especieAtual;
+	private Zoo zooAtual;
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		f = Fachada.getInstance();
 		allDisable();
+		select();
 		i = 0;
 		try {
 			preencherAnimal(i);
@@ -111,6 +112,13 @@ public class GerenciarAnimalController implements Initializable{
 	
 	@FXML
 	public void cadastrar(){
+		int val0 = Integer.valueOf(idAnimal.getText());
+		int val1 = Integer.valueOf(idade.getText());
+		String val2 = obs.getText();
+		String val3 = nome.getText();
+		LocalDate val4 = dtNas.getValue();
+		LocalDate val5 = dtFale.getValue();
+		
 		
 	}
 	
@@ -311,6 +319,49 @@ public class GerenciarAnimalController implements Initializable{
 			a.setContentText(e.getMessage());
 			a.showAndWait();
 		}
+	}
+	
+	private void select(){
+		tbJaula.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Jaula>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Jaula> observable, Jaula oldValue, Jaula newValue) {	
+				jaulaAtual = newValue;
+			}
+		});
+		
+		tbOrdem.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Ordem>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Ordem> observable, Ordem oldValue, Ordem newValue) {
+				ordemAtual = newValue;
+			}
+		});
+		
+		tbZoo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Zoo>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Zoo> observable, Zoo oldValue, Zoo newValue) {
+				zooAtual = newValue;
+			}
+		});
+		
+		tbEspecie.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Especie>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Especie> observable, Especie oldValue, Especie newValue) {
+				especieAtual = newValue;
+			}
+		});
+		
+		tbGenero.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Genero>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Genero> observable, Genero oldValue, Genero newValue) {
+				generoAtual = newValue;
+			}
+		});
+		
 	}
 	
 	private void allDisable(){

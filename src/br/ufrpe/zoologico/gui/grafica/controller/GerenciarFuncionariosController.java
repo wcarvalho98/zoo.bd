@@ -1,16 +1,28 @@
 package br.ufrpe.zoologico.gui.grafica.controller;
 
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 import br.ufrpe.zoologico.negocio.beans.Funcionario;
 import br.ufrpe.zoologico.negocio.beans.JornadaTrabalho;
 import br.ufrpe.zoologico.negocio.beans.Zoo;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.util.Callback;
 
-public class GerenciarFuncionariosController {
+public class GerenciarFuncionariosController implements Initializable{
 
     @FXML
     private TableView<Funcionario> tabelaFuncionarios;
@@ -190,4 +202,62 @@ public class GerenciarFuncionariosController {
     @FXML public void voltar() {
     	ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin());
     }
+    
+    private void preencherTabelas_Zoo_Jornada() {
+    	try {
+    		ArrayList<Zoo> z = Fachada.getInstance().listarZoo();
+			tcIdZoo.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Zoo,String>, ObservableValue<String>>() {
+
+				@Override
+				public ObservableValue<String> call(CellDataFeatures<Zoo, String> param) {
+					return new SimpleStringProperty(Integer.valueOf(param.getValue().getIdZoo()).toString());
+				}
+			});
+			
+			tcZoo.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Zoo,String>, ObservableValue<String>>() {
+
+				@Override
+				public ObservableValue<String> call(CellDataFeatures<Zoo, String> param) {
+					return new SimpleStringProperty(param.getValue().getNome());
+				}
+			});
+			
+			tbZoo.setItems(FXCollections.observableArrayList(z));
+			tbZoo.refresh();
+			
+			ArrayList<JornadaTrabalho> jornada = Fachada.getInstance().listarJornada();
+			colunaIdJornada.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<JornadaTrabalho,String>, ObservableValue<String>>() {
+
+				@Override
+				public ObservableValue<String> call(CellDataFeatures<JornadaTrabalho, String> param) {
+					return new SimpleStringProperty(param.getValue().getId() + "");
+				}
+			});
+			
+			colunaDescricaoJornada.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<JornadaTrabalho,String>, ObservableValue<String>>() {
+
+				@Override
+				public ObservableValue<String> call(CellDataFeatures<JornadaTrabalho, String> param) {
+					return new SimpleStringProperty(param.getValue().getDesc());
+				}
+			});
+			
+			tabelaJornadaTrabalho.setItems(FXCollections.observableArrayList(jornada));
+			tabelaJornadaTrabalho.refresh();
+			
+		} catch (Exception e) {
+			Alert a = new Alert(AlertType.ERROR);
+			a.setTitle("Erro");
+			a.setHeaderText(null);
+			a.setContentText(e.getMessage());
+			a.showAndWait();
+		}
+    }
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		preencherTabelas_Zoo_Jornada();
+	}
+    
+   
 }

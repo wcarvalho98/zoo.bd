@@ -152,14 +152,14 @@ public class Fachada {
 		return animal.listarAnimais();
 	}
 	
-	public ArrayList<Ordem> listarOrdem() throws Exception{
-		return ordem.listarTodos();
-	}
 	public Ordem buscarOrdem(int id) throws Exception{
 		return ordem.buscar(id);
 	}
 	public ArrayList<Especie> listarEspecie() throws Exception{
 		return especie.listarTodos();
+	}
+	public ArrayList<Ordem> listarOrdem() throws Exception{
+		return ordem.listarTodos();
 	}
 	
 	public ArrayList<Genero> listarGenero() throws Exception{
@@ -173,8 +173,6 @@ public class Fachada {
 	public Especie buscarEspecie(int especie2) throws Exception {
 		return especie.buscar(especie2);
 	}
-
-	
 	
 	/** VETERINARIO */
 	public void cadastrarVeterinario(Veterinario o) {
@@ -285,17 +283,12 @@ public class Fachada {
 		return jaulas.listarTodos();
 	}
 	
-	/** ORDEM */
-	public ArrayList<Ordem> listarOrdem() {
-		return ordem.listarTodos();
-	}
 	
 	/** ADMINISTRADOR */
 	public void cadastrarAdministrador(Administrador o) {
 		admin.cadastrarAdministrador(o);
 	}
 	
-	public void removerAdministrador(Administrador o) throws Exception  {
 	public void removerAdministrador(Administrador o) {
 		admin.removerAdministrador(o);
 	}
@@ -311,36 +304,7 @@ public class Fachada {
 	public ArrayList<Administrador> listarAdministradores() {
 		return admin.listarAdministradores();
 	}
-	
-	public Zoo buscarZoo(int id_zoo) {
-		return zoo.buscar(id_zoo);
-	/** ESPECIE */
-	public void cadastrarEspecie(Especie o) {
-		especie.inserir(o);
-	}
 
-	
-	public void removerEspecie(Especie o) {
-		especie.remover(o);
-	}
-	
-	public void alterarEspecie(Especie o) {
-		especie.alterar(o);
-	}
-	
-	public Especie buscarEspecie(int id) {
-		return especie.buscar(id);
-	}
-	
-	public ArrayList<Especie> listarEspecies() {
-		return especie.listarTodos();
-	}
-	
-	/** GENERO */	
-	public ArrayList<Genero> listarGenero() {
-		return genero.listarTodos();
-	}
-	
 	/** RESERVA */
 	public void cadastrarReserva(Reserva o) {
 		reserva.inserir(o);
@@ -390,6 +354,17 @@ public class Fachada {
 	public ArrayList<JornadaTrabalho> listarJornada() {
 		return jornada.listarTodos();
 	}
+
+	/** 
+	 * Metodo: buscarZoo
+	 * @param id_zoo
+	 * @return
+	 * @return Zoo
+	 */
+	public Zoo buscarZoo(int id_zoo) {
+		return zoo.buscar(id_zoo);
+	}
+
 	
 	/** LOGIN */
 	public void fecharConexao() {

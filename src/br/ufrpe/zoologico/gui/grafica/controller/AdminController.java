@@ -31,7 +31,7 @@ public class AdminController {
 
     @FXML
     void abrirTelaFuncionario() {
-
+    	ScreenManager.setScene(ScreenManager.getInstance().getTelaFuncionarios());
     }
 
     @FXML

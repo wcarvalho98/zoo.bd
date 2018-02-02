@@ -91,6 +91,5 @@ public class DAOServico extends DAO<Servico> {
 		fechar();
 		return r;
 	}
-	
 
 }

@@ -158,6 +158,9 @@ public class Fachada {
 	public ArrayList<Especie> listarEspecie() throws Exception{
 		return especie.listarTodos();
 	}
+	public ArrayList<Ordem> listarOrdem() throws Exception{
+		return ordem.listarTodos();
+	}
 	
 	public ArrayList<Genero> listarGenero() throws Exception{
 		return genero.listarTodos();

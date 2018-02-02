@@ -213,7 +213,7 @@ public class GerenciarConsultasController implements Initializable {
 	@FXML
 	void removerConsulta() {
 		if (aRemover != null) {
-			Fachada.getInstance().removerConsullta(aRemover);
+			Fachada.getInstance().removerConsulta(aRemover);
 			preencherTabelas();
 			preencherTabelas1();
 			preencherCamposVisao();

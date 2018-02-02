@@ -16,7 +16,7 @@ create table if not exists Fones(
 	idZoo int Not null, 
     numero varchar(13),
     primary key(idZoo, numero),
-	Foreign key(idZoo) references Zoologico(idZoo)
+	Foreign key(idZoo) references Zoologico(idZoo) on delete cascade
 );
 
 create table if not exists Docs(
@@ -33,7 +33,7 @@ create table if not exists Licenca(
     data_de_expiracao date, 
     idZoo int not null,
 	primary key(id_licenca),
-	foreign key(idZoo) references Zoologico(idZoo) 
+	foreign key(idZoo) references Zoologico(idZoo) on delete cascade
 );
 
 create table if not exists Jornada_De_Trabalho(
@@ -108,7 +108,7 @@ create table if not exists Administrador(
     login varchar(100),
 	primary key(CPF),
 	foreign key(idZoo) references Zoologico(idZoo) on delete cascade on update set null,
-    foreign key(CPF) references Funcionario(cpf)
+    foreign key(CPF) references Funcionario(cpf) on delete cascade
 );
 
 create table if not exists FUNC_Tratador(
@@ -244,9 +244,10 @@ create table if not exists Consulta(
     id_veterinario varchar(11) not null,
     id_animal int not null,
     primary key(id_consulta),
-    foreign key(id_veterinario) references Veterinario(CPF),
-    foreign key(id_animal) references Animal(id)
+    foreign key(id_veterinario) references Veterinario(CPF) on delete cascade,
+    foreign key(id_animal) references Animal(id) on delete cascade
 );
+
 
 create table if not exists Doenca(
 	id_doenca varchar(4) not null,
@@ -266,8 +267,8 @@ create table if not exists Diagnostico(
     id_doenca varchar(4),
     descri varchar(300),
     primary key(id_doenca, id_consulta),
-    foreign key(id_doenca) references Doenca(id_doenca),
-	foreign key(id_consulta) references Consulta(id_consulta)
+    foreign key(id_doenca) references Doenca(id_doenca) on delete cascade,
+	foreign key(id_consulta) references Consulta(id_consulta) on delete cascade
 );
 
 create table if not exists Tratamento(
@@ -279,7 +280,7 @@ create table if not exists Tratamento(
     obs varchar(250),
     id_consulta int,
     primary key(id_tratamento),
-    foreign key(id_consulta) references Consulta(id_consulta) on delete set null
+    foreign key(id_consulta) references Consulta(id_consulta) on delete cascade
 );
 
 create table if not exists Medicamento(
@@ -297,7 +298,7 @@ create table if not exists Prescricao(
     posologia varchar(200),
     primary key(id_medicamento, id_tratamento),
     foreign key(id_medicamento) references Medicamento(id_medicamento),
-    foreign key(id_tratamento) references Tratamento(id_tratamento)
+    foreign key(id_tratamento) references Tratamento(id_tratamento) on delete cascade
 );
 
 create table if not exists Trata(
@@ -320,8 +321,8 @@ create table if not exists pode_ter(
     data_incidente date, 
     houve_morte boolean,
 	primary key(id_jaula, seq),
-	foreign key(id_jaula) references Jaula(id_jaula),
-	foreign key(seq) references Incidente (seq)
+	foreign key(id_jaula) references Jaula(id_jaula) on delete cascade,
+	foreign key(seq) references Incidente (seq) on delete cascade
 );
 -- vermelho
 create table if not exists Fornecedor (
@@ -342,7 +343,7 @@ create table if not exists Endereco(
     cep varchar(10), 
     estado varchar(2),
     primary key(idEnd),
-    foreign key(idForn) references Fornecedor(cod)
+    foreign key(idForn) references Fornecedor(cod) on delete cascade
 );
 
 create table if not exists Estoque(
@@ -350,7 +351,7 @@ create table if not exists Estoque(
     idZoo int not null,
     descr varchar(100), 
     localizacao varchar(100),
-    foreign key (idZoo) references Zoologico (idZoo)
+    foreign key (idZoo) references Zoologico (idZoo) on delete cascade
 ); 
 
 create table if not exists Categoria(
@@ -380,7 +381,7 @@ create table if not exists Produto_Ref(
     primary key(cod), 
     foreign key(subcat) references Sub_categoria(cod),
     foreign key(categ) references Categoria(cod),
-    foreign key(fornecedor) references Fornecedor(cod)
+    foreign key(fornecedor) references Fornecedor(cod) on delete cascade
 );
 
 create table if not exists Item_Estoque(
@@ -394,7 +395,7 @@ create table if not exists Item_Estoque(
 	primary key (cod_prod_ref, id),
     Foreign Key(id) references Estoque(id),
     Foreign Key(cod_prod_ref) references Produto_Ref(cod),
-	foreign key(id_animal) references Animal(id)
+	foreign key(id_animal) references Animal(id) on delete cascade
 );
 
 create table if not exists Servico(
@@ -412,7 +413,7 @@ create table if not exists Pedido_Servico(
     dt_pedido date,
     idZoo int not null,
 	primary key(id),
-	foreign key(idZoo) references Zoologico(idZoo)
+	foreign key(idZoo) references Zoologico(idZoo) on delete cascade
 );
 
 create table if not exists Item_Servico(
@@ -423,8 +424,8 @@ create table if not exists Item_Servico(
     status_item boolean,
     dt_realizacao date,
 	primary key(idPed, idServ),
-	foreign key(idPed) references Pedido_Servico(id),
-	foreign key(idServ) references Servico(id)
+	foreign key(idPed) references Pedido_Servico(id) on delete cascade,
+	foreign key(idServ) references Servico(id) on delete cascade
 );
 
 create table if not exists Empresa_Terceira(
@@ -440,8 +441,8 @@ create table if not exists Presta(
     dt_inicio date,
     dt_fim date,
 	primary key(CNPJEmprTerc, idServ),
-	foreign key(CNPJEmprTerc) references Empresa_Terceira(CNPJ),
-	foreign key(idServ) references Servico(id)
+	foreign key(CNPJEmprTerc) references Empresa_Terceira(CNPJ) on delete cascade,
+	foreign key(idServ) references Servico(id) on delete cascade
 );
 -- antes
 create table if not exists Espacos_Reservavel(
@@ -452,7 +453,7 @@ create table if not exists Espacos_Reservavel(
     nome varchar(50), 
     idZoo int not null,
 	primary key(id_espaco),
-	foreign key(idZoo) references Zoologico(idZoo)
+	foreign key(idZoo) references Zoologico(idZoo) on delete cascade
 );
 
 create table if not exists Instituicao(
@@ -480,8 +481,8 @@ create table if not exists Reserva(
     CNPJ varchar(14), 
     id_espaco int,
     primary key(CNPJ, id_espaco),
-	foreign key(CNPJ) references Instituicao(cnpj),
-	foreign key(id_espaco) references Espacos_Reservavel (id_espaco)
+	foreign key(CNPJ) references Instituicao(cnpj) on delete cascade,
+	foreign key(id_espaco) references Espacos_Reservavel (id_espaco) on delete cascade
 );
 
 create table if not exists Fatura(
@@ -502,9 +503,9 @@ create table if not exists Reservado(
     id_espaco int, 
     idFatura int unique,
 	primary key(CNPJ, id_espaco),
-	foreign key(CNPJ) references Instituicao(cnpj),
-	foreign key(id_espaco) references Espacos_Reservavel(id_espaco),
-	foreign key(idFatura) references Fatura(idFatura)
+	foreign key(CNPJ) references Instituicao(cnpj) on delete cascade,
+	foreign key(id_espaco) references Espacos_Reservavel(id_espaco) on delete cascade,
+	foreign key(idFatura) references Fatura(idFatura) on delete set null
 );
 
 create table if not exists Tipo_Pagamento(

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import br.ufrpe.zoologico.negocio.beans.Administrador;
 import br.ufrpe.zoologico.negocio.beans.Animal;
 import br.ufrpe.zoologico.negocio.beans.Consulta;
+import br.ufrpe.zoologico.negocio.beans.Diagnostico;
 import br.ufrpe.zoologico.negocio.beans.Especie;
 import br.ufrpe.zoologico.negocio.beans.Fatura;
 import br.ufrpe.zoologico.negocio.beans.Funcionario;
@@ -27,6 +28,7 @@ import br.ufrpe.zoologico.negocio.beans.Zoo;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoAdmin;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoAnimal;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoConsultas;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoDiagnostico;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoEspecie;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoFaturas;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoFuncionario;
@@ -59,6 +61,7 @@ public class Fachada {
 	private GerenciamentoReserva reserva;
 	private GerenciamentoJornadaDeTrabalho jornada;
 	private GerenciamentoLogin login;
+	private GerenciamentoDiagnostico diagnostico;
 	
 	private Fachada() {
 		consultas = new GerenciamentoConsultas();
@@ -77,6 +80,7 @@ public class Fachada {
 		reserva = new GerenciamentoReserva();
 		jornada = new GerenciamentoJornadaDeTrabalho();
 		login = new GerenciamentoLogin();
+		diagnostico = new GerenciamentoDiagnostico();
 	}
 	
 	public static Fachada getInstance() {
@@ -95,8 +99,12 @@ public class Fachada {
 		consultas.cadastrarConsulta(o);
 	}
 	
-	public void removerConsullta(Consulta o) {
+	public void removerConsulta(Consulta o) {
 		consultas.removerConsulta(o);
+	}
+	
+	public void removerConsulta(String id_veterinario) throws Exception {
+		consultas.remover(id_veterinario);
 	}
 	
 	public void alterarConsulta(Consulta o) {
@@ -367,8 +375,7 @@ public class Fachada {
 	}
 
 	
-	/** LOGIN 
-	 * @throws SQLException */
+	/** LOGIN */
 	public void fecharConexao() throws SQLException {
 		login.fecharConexao();
 	}
@@ -376,5 +383,27 @@ public class Fachada {
 	public void fazerLogin(String nome, String senha) throws ClassNotFoundException, SQLException {
 		login.fazerLogin(nome, senha);
 	}
+	
+	/** DIAGNOSTICO */
+	public void inserirDiagnostico(Diagnostico o) throws Exception {
+		diagnostico.inserir(o);
+	}
+	
+	public void removerDiagnostico(Diagnostico o) throws Exception {
+		diagnostico.remover(o);
+	}
+	
+	public void removerDiagnostico(int id_consulta) throws Exception {
+		diagnostico.remover(id_consulta);
+	}
+	
+	public void removerDiagnostico(String id_doenca) throws Exception {
+		diagnostico.remover(id_doenca);
+	}
+	
+	public void alterarDiagnostico(Diagnostico o) throws Exception {
+		diagnostico.alterar(o);
+	}
+	
 	
 }

@@ -1,12 +1,17 @@
 USE zoologico;
 
-CREATE USER 'administrador'@'localhost' IDENTIFIED BY 'admin';
-GRANT ALL PRIVILEGES ON zoologico.* TO 'administrador'@'localhost';
+DROP USER 'admin'@'localhost';
+DROP USER 'veterinario'@'localhost';
+DROP USER 'tratador'@'localhost';
+DROP USER 'secretario'@'localhost';
+
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
+GRANT ALL PRIVILEGES ON zoologico.* TO 'admin'@'localhost';
 FLUSH PRIVILEGES;
 
 ##################################################################################################################
 
-CREATE USER 'veterinario'@'localhost' IDENTIFIED BY '123';
+CREATE USER 'veterinario'@'localhost' IDENTIFIED BY 'vet';
 
 GRANT SELECT ON zoologico.animal TO 'veterinario'@'localhost';
 
@@ -70,9 +75,11 @@ GRANT DELETE ON zoologico.tratamento TO 'veterinario'@'localhost';
 GRANT SELECT ON zoologico.tratamento TO 'veterinario'@'localhost';
 GRANT UPDATE ON zoologico.tratamento TO 'veterinario'@'localhost';
 
+FLUSH PRIVILEGES;
+
 ##################################################################################################################
 
-CREATE USER 'tratador'@'localhost' IDENTIFIED BY '12345';
+CREATE USER 'tratador'@'localhost' IDENTIFIED BY 'trat';
 
 GRANT SELECT ON zoologico.animal TO 'tratador'@'localhost';
 
@@ -100,9 +107,11 @@ GRANT INSERT ON zoologico.tratamento TO 'tratador'@'localhost';
 GRANT SELECT ON zoologico.tratamento TO 'tratador'@'localhost';
 GRANT UPDATE ON zoologico.tratamento TO 'tratador'@'localhost';
 
+FLUSH PRIVILEGES;
+
 ##################################################################################################################
 
-CREATE USER 'secretario'@'localhost' IDENTIFIED BY '12';
+CREATE USER 'secretario'@'localhost' IDENTIFIED BY 'sec';
 
 GRANT SELECT ON zoologico.bilheteria TO 'secretario'@'localhost';
 
@@ -111,3 +120,5 @@ GRANT SELECT ON zoologico.empresa_terceira TO 'secretario'@'localhost';
 
 GRANT INSERT ON zoologico.instituicao TO 'secretario'@'localhost';
 GRANT SELECT ON zoologico.instituicao TO 'secretario'@'localhost';
+
+FLUSH PRIVILEGES;

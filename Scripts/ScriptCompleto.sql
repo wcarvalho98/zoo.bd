@@ -386,15 +386,15 @@ create table if not exists Produto_Ref(
 
 create table if not exists Item_Estoque(
 	cod_prod_ref int not null,
-    id int not NULL auto_increment, 
+    id int not NULL , 
     qtd int, 
     data_entrada date, 
     vl_compra double, 
     data_validade date, 
     id_animal int Null,
 	primary key (cod_prod_ref, id),
-    Foreign Key(id) references Estoque(id),
-    Foreign Key(cod_prod_ref) references Produto_Ref(cod),
+    Foreign Key(id) references Estoque(id) on delete cascade,
+    Foreign Key(cod_prod_ref) references Produto_Ref(cod) on delete cascade,
 	foreign key(id_animal) references Animal(id) on delete cascade
 );
 

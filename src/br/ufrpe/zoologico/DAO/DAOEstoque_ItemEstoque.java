@@ -119,7 +119,7 @@ public class DAOEstoque_ItemEstoque extends DAO<Estoque> {
 	}
 
 	public void removerItem(ItemEstoque o) throws Exception {
-		String sql = "DELETE FROM item_estoque WHERE id = ?, cod_prod_ref = ?";
+		String sql = "DELETE FROM item_estoque WHERE id = ? and cod_prod_ref = ?";
 		preparar(sql);
 		getStmt().setInt(1, o.getIdEstoque());
 		getStmt().setInt(2, o.getCod_prod_ref());
@@ -158,7 +158,7 @@ public class DAOEstoque_ItemEstoque extends DAO<Estoque> {
 
 	public ArrayList<ItemEstoque> listarItens() throws Exception {
 		ArrayList<ItemEstoque> r = new ArrayList<ItemEstoque>();
-		String sql = "SELECT * FROM estoque";
+		String sql = "SELECT * FROM item_estoque";
 		preparar(sql);
 		ResultSet rs = null;
 		try {

@@ -24,6 +24,10 @@ public class Estoque {
 		this.descr = descr;
 		this.localizacao = localizacao;
 	}
+	
+	public Estoque(){
+		
+	}
 	/**
 	 * Metodo: getId
 	 * @return id

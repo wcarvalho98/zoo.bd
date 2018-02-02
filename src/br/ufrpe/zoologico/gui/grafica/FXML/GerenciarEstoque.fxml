@@ -61,12 +61,12 @@
                         <TableColumn fx:id="colunaIdAnimal" prefWidth="79.0" text="ID_animal" />
                      </columns>
                   </TableView>
-                  <Button layoutX="650.0" layoutY="290.0" mnemonicParsing="false" onAction="#editarEstoqueItem" text="Editar Estoque">
+                  <Button layoutX="650.0" layoutY="290.0" mnemonicParsing="false" onAction="#editarEstoqueItem" text="Editar Item">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <Button layoutX="1048.0" layoutY="290.0" mnemonicParsing="false" onAction="#removerEstoqueItem" text="Remover Estoque">
+                  <Button layoutX="1048.0" layoutY="290.0" mnemonicParsing="false" onAction="#removerEstoqueItem" text="Remover Item">
                      <font>
                         <Font size="18.0" />
                      </font>

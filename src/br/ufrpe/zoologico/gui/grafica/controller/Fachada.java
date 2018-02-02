@@ -470,4 +470,7 @@ public class Fachada {
 		return estoque.listarItens();
 	}
 	
+	public ArrayList<ItemEstoque> listarItensDoEstoque(Estoque a) throws Exception{
+		return estoque.listarItensDoEstoque(a);
+	}
 }

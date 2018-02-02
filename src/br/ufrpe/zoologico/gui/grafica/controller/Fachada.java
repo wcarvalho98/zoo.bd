@@ -351,5 +351,16 @@ public class Fachada {
 	public ArrayList<JornadaTrabalho> listarJornada() {
 		return jornada.listarTodos();
 	}
+
+	/** 
+	 * Metodo: buscarZoo
+	 * @param id_zoo
+	 * @return
+	 * @return Zoo
+	 */
+	public Zoo buscarZoo(int id_zoo) {
+		return zoo.buscar(id_zoo);
+	}
+
 	
 }

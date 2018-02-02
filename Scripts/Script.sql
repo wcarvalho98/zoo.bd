@@ -79,6 +79,25 @@ begin
 end
 $$
 
+delimiter $$
+	create procedure retorna_idade(in anos int, out b int)
+		begin select year(now()) - anos into b;
+	end;
+$$
+
+delimiter $$
+create procedure checkCate (in idS int, in idC int, out retorno bool)
+begin 
+	declare `val` int;
+	select categ into val from sub_categoria where cod = `idS`;
+    if (`val` = `idC`) then
+		set `retorno` = true;
+	else
+		set `retorno` = false;
+	end if;
+end
+$$
+
 -- triggers
 delimiter $$
 create trigger atualiza_estoque after update on `item_estoque`
@@ -100,12 +119,6 @@ end
 $$
 
 delimiter $$
-	create procedure retorna_idade(in anos int, out b int)
-		begin select year(now()) - anos into b;
-	end;
-$$
-
-delimiter $$
 create trigger idade_em_anos before insert on `animal`
 for each row
 begin
@@ -114,18 +127,6 @@ begin
 end
 $$
 
-delimiter $$
-create procedure checkCate (in idS int, in idC int, out retorno bool)
-begin 
-	declare `val` int;
-	select categ into val from sub_categoria where cod = `idS`;
-    if (`val` = `idC`) then
-		set `retorno` = true;
-	else
-		set `retorno` = false;
-	end if;
-end
-$$
 
 delimiter $$
 create trigger checkCateSub before insert on `Produto_ref`

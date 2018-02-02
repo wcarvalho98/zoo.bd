@@ -126,7 +126,6 @@ public class DAOEstoque_ItemEstoque extends DAO<Estoque>{
 	public void alterarItem(ItemEstoque o) throws Exception {
 	}
 
-	
 	public ArrayList<ItemEstoque> listarItens() throws Exception {
 		return null;
 	}

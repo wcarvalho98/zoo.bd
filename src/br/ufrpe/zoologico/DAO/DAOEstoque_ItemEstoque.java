@@ -119,10 +119,10 @@ public class DAOEstoque_ItemEstoque extends DAO<Estoque> {
 	}
 
 	public void removerItem(ItemEstoque o) throws Exception {
-		String sql = "delete item_estoque where id = ? and cod_prod_ref = ?";
+		String sql = "DELETE FROM item_estoque WHERE id = ?, cod_prod_ref = ?";
 		preparar(sql);
-		getStmt().setInt(2, o.getCod_prod_ref());
 		getStmt().setInt(1, o.getIdEstoque());
+		getStmt().setInt(2, o.getCod_prod_ref());
 		try {
 			getStmt().execute();
 			getCon().commit();
@@ -135,7 +135,8 @@ public class DAOEstoque_ItemEstoque extends DAO<Estoque> {
 	}
 
 	public void alterarItem(ItemEstoque o) throws Exception {
-		String sql = "update table item_estoque set qtd = ?, data_entrada = ?, vl_compra = ?, data_validade = ?, id_animal = ? where id = ? and cod_prod_ref = ?";
+		String sql = "UPDATE item_estoque SET qtd = ?, data_entrada = ?, vl_compra = ?, "
+				+ "data_validade = ?, id_animal = ? WHERE id = ?, cod_prod_ref = ?";
 		preparar(sql);
 		getStmt().setInt(1, o.getQtd());
 		getStmt().setDate(2, Date.valueOf(o.getData_entrada()));

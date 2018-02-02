@@ -15,6 +15,7 @@ public class ItemEstoque {
 	private double vl_compra;
 	private LocalDate data_validade;
 	private String animal_consome;
+	private int idEstoque;
 	/**
 	 * @param cod_prod_ref
 	 * @param qtd
@@ -23,7 +24,7 @@ public class ItemEstoque {
 	 * @param data_validade
 	 * @param animal_consome
 	 */
-	public ItemEstoque(int cod_prod_ref, int qtd, LocalDate data_entrada, double vl_compra, LocalDate data_validade,
+	public ItemEstoque(int cod_prod_ref, int idEstoque, int qtd, LocalDate data_entrada, double vl_compra, LocalDate data_validade,
 			String animal_consome) {
 		super();
 		this.cod_prod_ref = cod_prod_ref;
@@ -32,6 +33,7 @@ public class ItemEstoque {
 		this.vl_compra = vl_compra;
 		this.data_validade = data_validade;
 		this.animal_consome = animal_consome;
+		this.idEstoque = idEstoque;
 	}
 	/**
 	 * Metodo: getCod_prod_ref
@@ -168,6 +170,20 @@ public class ItemEstoque {
 		return "ItemEstoque [cod_prod_ref=" + cod_prod_ref + ", qtd=" + qtd + ", data_entrada=" + data_entrada
 				+ ", vl_compra=" + vl_compra + ", data_validade=" + data_validade + ", animal_consome=" + animal_consome
 				+ "]";
+	}
+	/**
+	 * Metodo: getIdEstoque
+	 * @return idEstoque
+	 */
+	public int getIdEstoque() {
+		return idEstoque;
+	}
+	/**
+	 * Metodo: setIdEstoque
+	 * @param idEstoque the idEstoque to set
+	 */
+	public void setIdEstoque(int idEstoque) {
+		this.idEstoque = idEstoque;
 	}
 	
 	

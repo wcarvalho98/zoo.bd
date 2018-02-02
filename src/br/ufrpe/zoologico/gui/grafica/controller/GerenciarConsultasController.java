@@ -312,7 +312,7 @@ public class GerenciarConsultasController implements Initializable {
 				.setCellValueFactory(new Callback<CellDataFeatures<Consulta, String>, ObservableValue<String>>() {
 					@Override
 					public ObservableValue<String> call(CellDataFeatures<Consulta, String> todosOsVeterinarios) {
-						return new SimpleStringProperty(todosOsVeterinarios.getValue().getVeterinario().getCrmv());
+						return new SimpleStringProperty(todosOsVeterinarios.getValue().getVeterinario().getCpf());
 					}
 				});
 

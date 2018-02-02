@@ -53,7 +53,7 @@ public class DAOZoo extends DAO<Zoo>{
 
 	@Override
 	public void alterar(Zoo o) throws Exception {
-		String sql = "UPDATE administrador SET `cnpj` = ?, `nome` = ?, `razao_social` = ?, `hr_inic_func` = ?, `hr_fim` = ? WHERE `idZoo` = ?";
+		String sql = "UPDATE zoologico SET `cnpj` = ?, `nome` = ?, `razao_social` = ?, `hr_inic_func` = ?, `hr_fim` = ? WHERE `idZoo` = ?";
 		preparar(sql);
 		getStmt().setString(1, o.getCnpj());
 		getStmt().setString(2, o.getNome());

@@ -86,8 +86,9 @@ public class CadastroInstituicaoController implements Initializable{
 
     @FXML
     void editarInstituicao() {
-    	if (instituicaoSelecionada != null && !nomeUsualTextField1.getText().equals("")) {
+    	if (instituicaoSelecionada != null) {
 			preencherCampos1(instituicaoSelecionada);
+			disableCampos1(false);
 		}
     }
 
@@ -95,6 +96,7 @@ public class CadastroInstituicaoController implements Initializable{
     void removerInstituicao() {
     	if (instituicaoSelecionada != null) {
 			Fachada.getInstance().removerInstituicao(instituicaoSelecionada);
+	    	ScreenManager.alertaInformativo("Instituicao removida com sucesso!");
 			preencherTabela();
 		}
     }
@@ -110,6 +112,8 @@ public class CadastroInstituicaoController implements Initializable{
     	Fachada.getInstance().alterarInstituicao(instituicaoSelecionada);
     	preencherTabela();
     	preencherCampos1(null);
+    	disableCampos1(true);
+    	ScreenManager.alertaInformativo("Dados alterados com sucesso!");
     }
 
     @FXML
@@ -128,12 +132,14 @@ public class CadastroInstituicaoController implements Initializable{
     			!telefone2TextField.getText().equals("") ){
     		if(escolaRadioButton.isSelected()){
     			Fachada.getInstance().cadastrarInstituicao(new Instituicao(cnpjTextField.getText(), nomeUsualTextField.getText(), emailTextField.getText(), telefone1TextField.getText(), telefone2TextField.getText(), razaoSocialTextField.getText(), "Escola"));
+    	    	ScreenManager.alertaInformativo("Instituicao cadastrada com sucesso!");
         		esvaziarCampos();
     		} else if(empresaRadioButton.isSelected()){
     			Fachada.getInstance().cadastrarInstituicao(new Instituicao(cnpjTextField.getText(), nomeUsualTextField.getText(), emailTextField.getText(), telefone1TextField.getText(), telefone2TextField.getText(), razaoSocialTextField.getText(), "Empresa"));
-        		esvaziarCampos();
+    	    	ScreenManager.alertaInformativo("Instituicao cadastrada com sucesso!");
+    			esvaziarCampos();
     		} else{
-    			System.err.println("Nenhum campo Escola ou Empresa selecionado");
+    			ScreenManager.alertaErro("Nenhum campo Escola ou Empresa selecionado!");
     		}
     		preencherTabela();
     	}
@@ -181,6 +187,14 @@ public class CadastroInstituicaoController implements Initializable{
 		}
     }
     
+    private void disableCampos1(boolean t) {
+    	emailTextField1.setDisable(t);
+		nomeUsualTextField1.setDisable(t);
+		razaoSocialTextField1.setDisable(t);
+		telefone2TextField1.setDisable(t);
+		telefone1TextField1.setDisable(t);
+    }
+    
     private void preencherTabela() {
     	ArrayList<Instituicao> instituicoes = Fachada.getInstance().listarInstituicoes();
 
@@ -219,6 +233,7 @@ public class CadastroInstituicaoController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		preencherTabela();
+		disableCampos1(true);
 	}
 
 }

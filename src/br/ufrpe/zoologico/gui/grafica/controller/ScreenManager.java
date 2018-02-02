@@ -31,6 +31,7 @@ public class ScreenManager {
 	private Scene telaAnimal;
 	private Scene telaGerenciarServicos;
 	private Scene telaFuncionarios;
+	private Scene telaZoologico;
 
 	private static Stage mainStage;
 
@@ -235,6 +236,21 @@ public class ScreenManager {
 		alert.setContentText(informacao);
 
 		alert.showAndWait();
+	}
+
+	/**
+	 * Metodo: getTelaZoologico
+	 * @return telaZoologico
+	 */
+	public Scene getTelaZoologico() {
+		try {
+			telaZoologico = new Scene(
+					FXMLLoader.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/GerenciarZoo.fxml")));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return telaZoologico;
 	}
 
 }

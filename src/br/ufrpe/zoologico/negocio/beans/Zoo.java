@@ -35,6 +35,10 @@ public class Zoo {
 		this.hr_inic_func = hr_inic_func;
 		this.hr_fim = hr_fim;
 	}
+	
+	public Zoo() {
+		
+	}
 	/**
 	 * Metodo: getIdZoo
 	 * @return idZoo

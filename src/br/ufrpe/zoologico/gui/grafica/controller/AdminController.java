@@ -68,7 +68,7 @@ public class AdminController {
 
     @FXML
     void abrirZoologico() {
-
+    	ScreenManager.setScene(ScreenManager.getInstance().getTelaZoologico());
     }
 
     @FXML

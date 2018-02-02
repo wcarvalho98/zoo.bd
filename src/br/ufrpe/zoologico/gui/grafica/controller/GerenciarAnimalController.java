@@ -117,13 +117,14 @@ public class GerenciarAnimalController implements Initializable{
 	
 	@FXML
 	public void cadastrar(){
+		LocalDate val5 = dtFale.getValue();
 		try {
 			int val0 = Integer.valueOf(idAnimal.getText());
 			int val1 = Integer.valueOf(idade.getText());
 			String val2 = obs.getText();
 			String val3 = nome.getText();
 			LocalDate val4 = dtNas.getValue();
-			LocalDate val5 = dtFale.getValue();
+			
 			if(f.generoPertenceOrdem(generoAtual.getId(), ordemAtual.getId()))
 				if(f.especiePertenceGenero(especieAtual.getSeq(), generoAtual.getId())){
 					Animal a = new Animal(val0,val3,true,val4,val5,val1,val3,val2,zooAtual.getIdZoo(),

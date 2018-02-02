@@ -196,28 +196,28 @@ public class GerenciarEstoque {
 			colunaIdZoo.setCellValueFactory(new Callback<CellDataFeatures<Estoque, String>, ObservableValue<String>>() {
 				@Override
 				public ObservableValue<String> call(CellDataFeatures<Estoque, String> estoques) {
-					return new SimpleStringProperty(estoques.getValue().getIdZoo() + "");
+					return new SimpleStringProperty("" + estoques.getValue().getIdZoo());
 				}
 			});
 			
 			colunaIdEstoqueEstoque.setCellValueFactory(new Callback<CellDataFeatures<Estoque, String>, ObservableValue<String>>() {
 				@Override
 				public ObservableValue<String> call(CellDataFeatures<Estoque, String> estoques) {
-					return new SimpleStringProperty(estoques.getValue().getId() + "");
+					return new SimpleStringProperty("" + estoques.getValue().getId());
 				}
 			});
 			
 			colunaDescricao.setCellValueFactory(new Callback<CellDataFeatures<Estoque, String>, ObservableValue<String>>() {
 				@Override
 				public ObservableValue<String> call(CellDataFeatures<Estoque, String> estoques) {
-					return new SimpleStringProperty(estoques.getValue().getDescr() + "");
+					return new SimpleStringProperty(estoques.getValue().getDescr());
 				}
 			});
 			
 			colunaLocalizacao.setCellValueFactory(new Callback<CellDataFeatures<Estoque, String>, ObservableValue<String>>() {
 				@Override
 				public ObservableValue<String> call(CellDataFeatures<Estoque, String> estoques) {
-					return new SimpleStringProperty(estoques.getValue().getLocalizacao() + "");
+					return new SimpleStringProperty(estoques.getValue().getLocalizacao());
 				}
 			});
 			

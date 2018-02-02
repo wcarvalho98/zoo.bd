@@ -31,7 +31,6 @@ import br.ufrpe.zoologico.negocio.beans.Zoo;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoAdmin;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoAnimal;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoConsultas;
-import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoDAOEstoque_ItemEstoque;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoDiagnostico;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoEspecie;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoEstoque;

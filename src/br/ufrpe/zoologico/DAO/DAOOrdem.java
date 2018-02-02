@@ -28,6 +28,19 @@ public class DAOOrdem extends DAO<Ordem>{
 	public void alterar(Ordem o) throws Exception {
 	}
 
+	public Ordem buscar(int id) throws Exception{
+		String sql = "SELECT * FROM Ordem WHERE `id` = ?";
+		preparar(sql);
+		getStmt().setInt(1, id);
+		ResultSet rs = getStmt().executeQuery();
+		rs.next();
+		Ordem o = new Ordem(rs.getInt(1), rs.getString(2));
+		rs.close();
+		fecharStmt();
+		fechar();
+		return o;
+	}
+	
 	@Override
 	public ArrayList<Ordem> listarTodos() throws Exception {
 		ArrayList<Ordem> list = new ArrayList<>();

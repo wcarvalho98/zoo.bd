@@ -14,6 +14,8 @@ import br.ufrpe.zoologico.negocio.beans.Ordem;
 
 public class DAOGenero extends DAO<Genero>{
 
+
+
 	@Override
 	public void inserir(Genero o) throws Exception {
 	}
@@ -40,6 +42,19 @@ public class DAOGenero extends DAO<Genero>{
 		fecharStmt();
 		fechar();
 		return list;
+	}
+	
+	public Genero busca(int id) throws Exception{
+		String sql = "SELECT * FROM genero WHERE `seq` = ?";
+		preparar(sql);
+		getStmt().setInt(1, id);
+		ResultSet rs = getStmt().executeQuery();
+		rs.next();
+		Genero o = new Genero(rs.getInt(1), rs.getString(2), rs.getInt(3));
+		rs.close();
+		fecharStmt();
+		fechar();
+		return o;
 	}
 
 }

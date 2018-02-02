@@ -14,47 +14,72 @@ import br.ufrpe.zoologico.exceptions.ObjetoNaoExisteException;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
 
 public class GerenciamentoJaula {
+	
 	private DAOJaula jaula;
 	
 	public GerenciamentoJaula(){
 		jaula = new DAOJaula();
 	}
-	public void cadastrar(Jaula o) throws Exception{
-		if(o != null){
-			if(this.listarTodos().contains(o))
-				throw new ObjetoExisteException("Objeto já cadastrado");
-			else
-				jaula.inserir(o);
-		}else
+	
+	public void cadastrar(Jaula o) {
+		if(o != null) {
+			try {
+				if(this.listarTodos().contains(o))
+					throw new ObjetoExisteException("Objeto já cadastrado");
+				else
+					jaula.inserir(o);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else
 			throw new IllegalArgumentException();
 	}
 	
-	public void remover(Jaula o) throws Exception{
+	public void remover(Jaula o) {
 		if(o != null){
-			if(!this.listarTodos().contains(o))
-				throw new ObjetoNaoExisteException("Objeto não existe no banco");
-			else
-				jaula.remover(o);
-		}else
+			try {
+				if(!this.listarTodos().contains(o))
+					throw new ObjetoNaoExisteException("Objeto não existe no banco");
+				else
+					jaula.remover(o);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else
 			throw new IllegalArgumentException();
 	}
 	
-	public void atualizar(Jaula o) throws Exception{
-		jaula.alterar(o);
-	}
-	
-	public Jaula buscar(int id) throws Exception{
-		for (int i = 0; i < listarTodos().size(); i++){
-			if(listarTodos().get(i).getId_jaula() == id)
-				return jaula.buscar(id);
+	public void atualizar(Jaula o) {
+		try {
+			jaula.alterar(o);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		throw new ObjetoNaoExisteException("Jaula não existe");
 	}
 	
-	public ArrayList<Jaula> listarTodos() throws Exception{
-		return jaula.listarTodos();
+	public Jaula buscar(int id) {
+		try {
+			for (int i = 0; i < listarTodos().size(); i++){
+				if(listarTodos().get(i).getId_jaula() == id)
+					return jaula.buscar(id);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			throw new ObjetoNaoExisteException("Jaula não existe");
+		} catch (ObjetoNaoExisteException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
-
 	
-	
+	public ArrayList<Jaula> listarTodos() {
+		try {
+			return jaula.listarTodos();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ArrayList<Jaula>();
+		}
+	}
 }

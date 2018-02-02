@@ -13,7 +13,7 @@ import br.ufrpe.zoologico.negocio.beans.Administrador;
 
 public class GerenciamentoAdmin {
 
-private DAOAdmin admin;
+	private DAOAdmin admin;
 	
 	public GerenciamentoAdmin() {
 		this.admin = new DAOAdmin();

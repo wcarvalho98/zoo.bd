@@ -12,6 +12,7 @@ import br.ufrpe.zoologico.DAO.DAOConsultas;
 import br.ufrpe.zoologico.negocio.beans.Consulta;
 
 public class GerenciamentoConsultas {
+	
 	private DAOConsultas consultas;
 	
 	public GerenciamentoConsultas() {

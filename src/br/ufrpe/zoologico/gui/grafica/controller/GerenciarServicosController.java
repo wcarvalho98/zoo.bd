@@ -12,6 +12,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -84,18 +85,24 @@ public class GerenciarServicosController implements Initializable {
 	@FXML
 	void cadastrarServico() {
 		if (!descricaoServiçoTextField.getText().equals("")
-				&& Double.parseDouble(valorServiçoTextField.getText()) >= 0) {
+				&& !valorServiçoTextField.getText().equals("")) {
 			Servico a = new Servico();
 			a.setDescr(descricaoServiçoTextField.getText());
 			a.setValor(Double.parseDouble(valorServiçoTextField.getText()));
 			Fachada.getInstance().cadastrarServico(a);
 			preencherTabelaServicos();
+			descricaoServiçoTextField.setText("");
+			valorServiçoTextField.setText("");
+			ScreenManager.getInstance().alertaInformativo("Servico cadastrado com sucesso!");
 		}
+		else
+			ScreenManager.getInstance().alertaInformativo("Por favor entre com os dados nos campos!");
 	}
 
 	@FXML
 	void editarFatura() {
 		if (faturaSelecionada != null) {
+			ableAll();
 			preencherCamposEdicao(faturaSelecionada);
 		}
 	}
@@ -104,6 +111,7 @@ public class GerenciarServicosController implements Initializable {
 		if (servicoSelecionado != null) {
 			Fachada.getInstance().removerServico(servicoSelecionado);
 			preencherTabelaServicos();
+			ScreenManager.getInstance().alertaInformativo("Servico removido com sucesso!");
 		}
 	}
 
@@ -119,7 +127,9 @@ public class GerenciarServicosController implements Initializable {
 			faturaSelecionada.setTp_fatura(tipoDeFaturaTextField.getText());
 			Fachada.getInstance().alterarFatura(faturaSelecionada);
 			preencherCamposEdicao(null);
+			disableAll();
 			preencherTabelaFaturas();
+			ScreenManager.getInstance().alertaInformativo("Dados alterados com sucesso!");
 		}
 	}
 
@@ -141,6 +151,26 @@ public class GerenciarServicosController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		preencherTabelaServicos();
+		disableAll();
+		
+	}
+	
+	private void disableAll() {
+		valorDaFaturaTextField.setDisable(true);
+		valorDaMultaTextField.setDisable(true);
+		dataDaFaturaDatePicker.setDisable(true);
+		dstaDePagamentoDatePicker.setDisable(true);
+		statusTextField.setDisable(true);
+		tipoDeFaturaTextField.setDisable(true);
+	}
+	
+	private void ableAll() {
+		valorDaFaturaTextField.setDisable(false);
+		valorDaMultaTextField.setDisable(false);
+		dataDaFaturaDatePicker.setDisable(false);
+		dstaDePagamentoDatePicker.setDisable(false);
+		statusTextField.setDisable(false);
+		tipoDeFaturaTextField.setDisable(false);
 	}
 
 	private void preencherTabelaServicos() {

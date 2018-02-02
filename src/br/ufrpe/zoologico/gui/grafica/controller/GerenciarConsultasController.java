@@ -172,7 +172,7 @@ public class GerenciarConsultasController implements Initializable {
 		minutoTextField1.setText(consultaAtual.getData().getMinute() + "");
 		observacoesTextField1.setText(consultaAtual.getObs());
 	}
-
+	
 	@FXML
 	void proximo() {
 		this.idAtual += 1;
@@ -213,7 +213,7 @@ public class GerenciarConsultasController implements Initializable {
 	@FXML
 	void removerConsulta() {
 		if (aRemover != null) {
-			Fachada.getInstance().removerConsullta(aRemover);
+			Fachada.getInstance().removerConsulta(aRemover);
 			preencherTabelas();
 			preencherTabelas1();
 			preencherCamposVisao();
@@ -348,8 +348,8 @@ public class GerenciarConsultasController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		preencherTabelas();
-		consultaAtual = Fachada.getInstance().listarConsultas().get(idAtual);
-		if (consultaAtual != null) {
+		if (Fachada.getInstance().listarConsultas().size() > 0) {
+			consultaAtual = Fachada.getInstance().listarConsultas().get(idAtual);
 			preencherCamposVisao();
 		}
 	}

@@ -40,6 +40,14 @@ public class DAOConsultas extends DAO<Consulta>{
 		fecharStmt();
 		fechar();
 	}
+	
+	public void remover(String id_veterinario) throws Exception {
+		String sql = "DELETE FROM `consulta` WHERE `id_veterinario` = ?";
+		preparar(sql);
+		getStmt().setString(1, id_veterinario);
+		fecharStmt();
+		fechar();
+	}
 
 	@Override
 	public void alterar(Consulta o) throws Exception {

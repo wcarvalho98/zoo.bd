@@ -19,7 +19,7 @@ import br.ufrpe.zoologico.negocio.beans.Estoque;
 import br.ufrpe.zoologico.negocio.beans.ItemEstoque;
 import br.ufrpe.zoologico.negocio.beans.Veterinario;
 
-public class DAOEstoque_ItemEstoque extends DAO<Estoque>{
+public class DAOEstoque_ItemEstoque extends DAO<Estoque> {
 
 	@Override
 	public void inserir(Estoque o) throws Exception {
@@ -36,7 +36,7 @@ public class DAOEstoque_ItemEstoque extends DAO<Estoque>{
 			e.printStackTrace();
 		} finally {
 			fecharStmt();
-		}	
+		}
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class DAOEstoque_ItemEstoque extends DAO<Estoque>{
 			e.printStackTrace();
 		} finally {
 			fecharStmt();
-		}	
+		}
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class DAOEstoque_ItemEstoque extends DAO<Estoque>{
 			e.printStackTrace();
 		} finally {
 			fecharStmt();
-		}	
+		}
 	}
 
 	@Override
@@ -87,7 +87,7 @@ public class DAOEstoque_ItemEstoque extends DAO<Estoque>{
 			fecharStmt();
 			e.printStackTrace();
 		}
-		while(rs.next()) {
+		while (rs.next()) {
 			Estoque o = new Estoque(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4));
 			r.add(o);
 		}
@@ -95,18 +95,17 @@ public class DAOEstoque_ItemEstoque extends DAO<Estoque>{
 		fecharStmt();
 		return r;
 	}
-	
-	
+
 	public void inserirItem(ItemEstoque o) throws Exception {
 		String sql = "INSERT INTO item_estoque (`cod_prod_ref`,`id`,`qtd`,`data_entrada`,`vl_compra`,`data_validade`,`id_animal`)"
 				+ " VALUES (?, ?, ?, ?, ?, ?, ?)";
 		preparar(sql);
-		getStmt().setInt(1,o.getCod_prod_ref());
-		getStmt().setInt(2,o.getIdEstoque());
+		getStmt().setInt(1, o.getCod_prod_ref());
+		getStmt().setInt(2, o.getIdEstoque());
 		getStmt().setInt(3, o.getQtd());
 		getStmt().setDate(4, Date.valueOf(o.getData_entrada()));
 		getStmt().setDouble(5, o.getVl_compra());
-		getStmt().setDate(6, Date.valueOf(o.getData_validade())); 
+		getStmt().setDate(6, Date.valueOf(o.getData_validade()));
 		getStmt().setInt(7, o.getAnimal_consome());
 		try {
 			getStmt().execute();
@@ -116,15 +115,14 @@ public class DAOEstoque_ItemEstoque extends DAO<Estoque>{
 			e.printStackTrace();
 		} finally {
 			fecharStmt();
-		}	
+		}
 	}
 
-	
 	public void removerItem(ItemEstoque o) throws Exception {
 		String sql = "delete item_estoque where id = ? and cod_prod_ref = ?";
 		preparar(sql);
-		getStmt().setInt(2,o.getCod_prod_ref());
-		getStmt().setInt(1,o.getIdEstoque());
+		getStmt().setInt(2, o.getCod_prod_ref());
+		getStmt().setInt(1, o.getIdEstoque());
 		try {
 			getStmt().execute();
 			getCon().commit();
@@ -133,14 +131,13 @@ public class DAOEstoque_ItemEstoque extends DAO<Estoque>{
 			e.printStackTrace();
 		} finally {
 			fecharStmt();
-		}	
+		}
 	}
 
-	
 	public void alterarItem(ItemEstoque o) throws Exception {
 		String sql = "update table item_estoque set qtd = ?, data_entrada = ?, vl_compra = ?, data_validade = ?, id_animal = ? where id = ? and cod_prod_ref = ?";
 		preparar(sql);
-		getStmt().setInt(1,o.getQtd());
+		getStmt().setInt(1, o.getQtd());
 		getStmt().setDate(2, Date.valueOf(o.getData_entrada()));
 		getStmt().setDouble(3, o.getVl_compra());
 		getStmt().setDate(4, Date.valueOf(o.getData_validade()));
@@ -155,7 +152,7 @@ public class DAOEstoque_ItemEstoque extends DAO<Estoque>{
 			e.printStackTrace();
 		} finally {
 			fecharStmt();
-		}	
+		}
 	}
 
 	public ArrayList<ItemEstoque> listarItens() throws Exception {
@@ -171,9 +168,10 @@ public class DAOEstoque_ItemEstoque extends DAO<Estoque>{
 			fecharStmt();
 			e.printStackTrace();
 		}
-		while(rs.next()) {
-			//ItemEstoque o = new ItemEstoque()
-			//r.add(o);
+		while (rs.next()) {
+			ItemEstoque o = new ItemEstoque(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4).toLocalDate(),
+					rs.getDouble(5), rs.getDate(6).toLocalDate(), rs.getInt(7));
+			r.add(o);
 		}
 		rs.close();
 		fecharStmt();

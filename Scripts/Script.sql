@@ -18,7 +18,7 @@ delimiter $$
 create function oferta (CNPJ varchar(14), idServico int, prazo date) returns bool
  begin
 	declare val1 date;
-	select dt_fim into val1 from presta where idServ = idServico, CNPJempresaTerc = CNPJ;
+	select dt_fim into val1 from presta where idServ = idServico and CNPJempresaTerc = CNPJ;
     if prazo <= val1 then
 		return true;
 	else

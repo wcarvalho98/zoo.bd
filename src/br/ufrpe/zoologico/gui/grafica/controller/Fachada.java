@@ -146,8 +146,9 @@ public class Fachada {
 		return instituicoes.listarInstituicoes();
 	}
 	
-	/** ANIMAL */
-	public void cadastrarAnimal(Animal o) {
+	/** ANIMAL 
+	 * @throws Exception */
+	public void cadastrarAnimal(Animal o) throws Exception {
 		animal.cadastrarAnimal(o);
 	}
 	

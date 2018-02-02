@@ -27,7 +27,7 @@ public class DAOServico extends DAO<Servico> {
 
 	@Override
 	public void remover(Servico o) throws Exception {
-		String sql = "REMOVE FROM servico WHERE id = ?";
+		String sql = "delete FROM `servico` WHERE `id` = ?";
 		preparar(sql);
 		getStmt().setInt(1, o.getId());
 		getStmt().execute();

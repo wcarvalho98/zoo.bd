@@ -21,6 +21,10 @@ public class Servico {
 		this.descr = descr;
 		this.valor = valor;
 	}
+	
+	public Servico() {
+		
+	}
 	/**
 	 * Metodo: getId
 	 * @return id

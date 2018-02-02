@@ -19,46 +19,21 @@ public class GerenciamentoEspecie {
 		this.especie = new DAOEspecie();
 	}
 	
-	public void inserir(Especie o) {
-		try {
-			especie.inserir(o);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void inserir(Especie o) throws Exception {
+		especie.inserir(o);
 	}
 	
-	public void remover(Especie o) {
-		try {
+	public void remover(Especie o) throws Exception {
 			especie.remover(o);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 	
-	public void alterar(Especie o) {
-		try {
+	public void alterar(Especie o) throws Exception {
 			especie.alterar(o);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 	
-	public Especie buscar(int id) {
-		try {
-			return especie.buscar(id);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
 	
-	public ArrayList<Especie> listarTodos() {
-		try {
+	public ArrayList<Especie> listarTodos() throws Exception {
 			return especie.listarTodos();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ArrayList<Especie>();
-		}
 	}
 
 	/** 
@@ -68,7 +43,7 @@ public class GerenciamentoEspecie {
 	 * @return Especie
 	 */
 	public Especie buscar(int especie2) throws Exception {
-		return esp.buscar(especie2);
+		return especie.buscar(especie2);
 	}
 
 }

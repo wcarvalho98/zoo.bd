@@ -28,7 +28,7 @@ public class DAOEspecie extends DAO<Especie> {
 
 	@Override
 	public void remover(Especie o) throws Exception {
-		String sql = "DELETE FROM especie WHERE id = ?";
+		String sql = "DELETE FROM especie WHERE `seq` = ?";
 		preparar(sql);
 		getStmt().setInt(1, o.getSeq());
 		getStmt().execute();
@@ -49,7 +49,7 @@ public class DAOEspecie extends DAO<Especie> {
 	}
 	
 	public Especie buscar(int id) throws Exception {
-		String sql = "SELECT * FROM especie WHERE id = ?";
+		String sql = "SELECT * FROM especie WHERE `seq` = ?";
 		preparar(sql);
 		getStmt().setInt(1, id);
 		ResultSet rs = getStmt().executeQuery();
@@ -77,24 +77,5 @@ public class DAOEspecie extends DAO<Especie> {
 		return list;
 	}
 
-	/** 
-	 * Metodo: buscar
-	 * @param especie2
-	 * @return
-	 * @return Especie
-	 * @throws Exception 
-	 */
-	public Especie buscar(int especie2) throws Exception {
-		String sql = "SELECT * FROM especie WHERE `seq` = ?";
-		preparar(sql);
-		getStmt().setInt(1, especie2);
-		ResultSet rs = getStmt().executeQuery();
-		rs.next();
-		Especie o = new Especie(rs.getInt(1), rs.getString(2), rs.getInt(3));
-		rs.close();
-		fecharStmt();
-		fechar();
-		return o;
-	}
 
 }

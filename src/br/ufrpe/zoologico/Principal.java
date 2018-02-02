@@ -6,12 +6,8 @@
  */
 package br.ufrpe.zoologico;
 
-import br.ufrpe.zoologico.gui.grafica.controller.FabricaTransicao;
 import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
-import br.ufrpe.zoologico.gui.grafica.controller.Telas;
 import javafx.application.Application;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Principal extends Application {
@@ -21,7 +17,7 @@ public class Principal extends Application {
 		ScreenManager.getInstance().setMainStage(primaryStage);
 		ScreenManager.getMainStage().setTitle("Zoológico");
 		ScreenManager.getMainStage().setResizable(false);
-		ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin());
+		ScreenManager.setScene(ScreenManager.getInstance().getTelaLogin());
 	}
 
 	public static void main(String[] args) {

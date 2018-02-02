@@ -21,6 +21,10 @@ public class Servico {
 		this.descr = descr;
 		this.valor = valor;
 	}
+	
+	public Servico() {
+		
+	}
 	/**
 	 * Metodo: getId
 	 * @return id
@@ -87,6 +91,5 @@ public class Servico {
 	public String toString() {
 		return "Servico [id=" + id + ", descr=" + descr + ", valor=" + valor + "]";
 	}
-	
 	
 }

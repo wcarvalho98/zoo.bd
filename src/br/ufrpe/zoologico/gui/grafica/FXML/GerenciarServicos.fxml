@@ -148,9 +148,14 @@
                         <Font size="36.0" />
                      </font>
                   </Label>
-                  <Button layoutX="567.0" layoutY="464.0" mnemonicParsing="false" onAction="#cadastrarServiço" text="Cadastrar Serviço">
+                  <Button layoutX="567.0" layoutY="464.0" mnemonicParsing="false" onAction="#cadastrarServico" text="Cadastrar Serviço">
                      <font>
                         <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="1136.0" layoutY="31.0" mnemonicParsing="false" onAction="#voltar" text="Voltar">
+                     <font>
+                        <Font size="24.0" />
                      </font>
                   </Button>
                </children>

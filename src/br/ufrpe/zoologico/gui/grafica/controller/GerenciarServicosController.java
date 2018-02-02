@@ -71,14 +71,39 @@ public class GerenciarServicosController implements Initializable {
 
 	@FXML
 	private TextField tipoDeFaturaTextField;
+	@FXML
+	private TextField valorServiçoTextField;
+
+	@FXML
+	private TextField descricaoServiçoTextField;
 
 	private Servico servicoSelecionado;
 	private Fatura faturaSelecionada;
+
+
+	@FXML
+	void cadastrarServico() {
+		if (!descricaoServiçoTextField.getText().equals("")
+				&& Double.parseDouble(valorServiçoTextField.getText()) >= 0) {
+			Servico a = new Servico();
+			a.setDescr(descricaoServiçoTextField.getText());
+			a.setValor(Double.parseDouble(valorServiçoTextField.getText()));
+			Fachada.getInstance().cadastrarServico(a);
+			preencherTabelaServicos();
+		}
+	}
 
 	@FXML
 	void editarFatura() {
 		if (faturaSelecionada != null) {
 			preencherCamposEdicao(faturaSelecionada);
+		}
+	}
+	
+	@FXML public void removerServico() {
+		if (servicoSelecionado != null) {
+			Fachada.getInstance().removerServico(servicoSelecionado);
+			preencherTabelaServicos();
 		}
 	}
 
@@ -217,8 +242,9 @@ public class GerenciarServicosController implements Initializable {
 			tipoDeFaturaTextField.setText(a.getTp_fatura());
 		}
 	}
-	
-	@FXML public void voltar() {
+
+	@FXML
+	public void voltar() {
 		// TODO
 	}
 

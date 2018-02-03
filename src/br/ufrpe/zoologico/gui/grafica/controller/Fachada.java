@@ -39,6 +39,7 @@ import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoFuncionario;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoGenero;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoInstituicao;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoJaula;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoJornadaDeTrabalho;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoLogin;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoOrdem;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoReserva;

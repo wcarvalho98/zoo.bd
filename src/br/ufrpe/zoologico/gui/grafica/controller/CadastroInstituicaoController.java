@@ -159,7 +159,7 @@ public class CadastroInstituicaoController implements Initializable{
 
     @FXML
     void voltar() {
-		ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin()); 
+		ScreenManager.setSceneLeft(ScreenManager.getInstance().getTelaAdmin()); 
 	}
     
     private void esvaziarCampos(){

@@ -41,7 +41,7 @@ public class CadastroJaulaController  implements Initializable{
 	
 	@FXML
 	public void voltar(){
-		ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin());
+		ScreenManager.setSceneLeft(ScreenManager.getInstance().getTelaAdmin());
 	}
 	
 	@FXML 

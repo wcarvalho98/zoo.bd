@@ -83,7 +83,7 @@ public class CadastroProdutoController {
 
     @FXML
     void voltar(ActionEvent event) {
-
+    	ScreenManager.setSceneLeft(ScreenManager.getInstance().getTelaAdmin());
     }
 
     @FXML

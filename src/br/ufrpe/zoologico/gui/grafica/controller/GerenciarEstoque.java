@@ -244,7 +244,7 @@ public class GerenciarEstoque {
 
 	@FXML
 	void voltar() {
-
+		ScreenManager.setSceneLeft(ScreenManager.getInstance().getTelaAdmin());
 	}
 
 	@FXML

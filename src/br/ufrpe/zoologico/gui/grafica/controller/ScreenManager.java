@@ -114,14 +114,14 @@ public class ScreenManager {
 				public void handle(ActionEvent event) {
 					mainStage.setScene(a);
 					mainStage.show();
-					FabricaTransicao.fazerTransicao(0.5, a.getRoot(), true);
+					FabricaTransicao.fazerTransicao(0.7, a.getRoot(), true);
 				}
 			});
 		}
 		else {
 			mainStage.setScene(a);
 			mainStage.show();
-			FabricaTransicao.fazerTransicao(0.5, a.getRoot(), true);
+			FabricaTransicao.fazerTransicao(0.7, a.getRoot(), true);
 		}
 	}
 	
@@ -134,14 +134,14 @@ public class ScreenManager {
 				public void handle(ActionEvent event) {
 					mainStage.setScene(a);
 					mainStage.show();
-					FabricaTransicao.fazerTransicaoRight(0.5, a.getRoot(), true);
+					FabricaTransicao.fazerTransicaoRight(0.7, a.getRoot(), true);
 				}
 			});
 		}
 		else {
 			mainStage.setScene(a);
 			mainStage.show();
-			FabricaTransicao.fazerTransicao(0.5, a.getRoot(), true);
+			FabricaTransicao.fazerTransicao(0.7, a.getRoot(), true);
 		}
 	}
 	
@@ -154,14 +154,14 @@ public class ScreenManager {
 				public void handle(ActionEvent event) {
 					mainStage.setScene(a);
 					mainStage.show();
-					FabricaTransicao.fazerTransicaoLeft(0.5, a.getRoot(), true);
+					FabricaTransicao.fazerTransicaoLeft(0.7, a.getRoot(), true);
 				}
 			});
 		}
 		else {
 			mainStage.setScene(a);
 			mainStage.show();
-			FabricaTransicao.fazerTransicao(0.5, a.getRoot(), true);
+			FabricaTransicao.fazerTransicao(0.7, a.getRoot(), true);
 		}
 	}
 

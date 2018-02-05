@@ -8,6 +8,7 @@ package br.ufrpe.zoologico.DAO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.Fatura;
@@ -23,6 +24,8 @@ public class DAOServico extends DAO<Servico> {
 		getStmt().setDouble(2, o.getValor());
 		try {
 			getStmt().execute();
+			//TODO FAZER
+			//Fatura a = new Fatura(0, o.getValor(), LocalDate.now(), null, )
 			getCon().commit();
 		} catch (SQLException e) {
 			getCon().rollback();

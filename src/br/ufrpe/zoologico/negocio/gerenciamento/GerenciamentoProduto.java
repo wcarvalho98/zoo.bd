@@ -6,6 +6,45 @@
  */
 package br.ufrpe.zoologico.negocio.gerenciamento;
 
-public class GerenciamentoProduto {
+import java.util.ArrayList;
 
+import br.ufrpe.zoologico.DAO.DAOProduto;
+import br.ufrpe.zoologico.negocio.beans.ProdutoRef;
+
+public class GerenciamentoProduto {
+	private DAOProduto produtos;
+	
+	public GerenciamentoProduto (){
+		produtos = new DAOProduto();
+	}
+	
+	public void cadastrarProduto(ProdutoRef o) throws Exception {
+		if(o == null)
+			throw new NullPointerException("Produto nulo");
+		else{
+			produtos.inserir(o);
+		}
+	}
+	
+	public void removerProduto(ProdutoRef o) throws Exception{
+		if(o == null)
+			throw new NullPointerException("Produto nulo");
+		else{
+			produtos.remover(o);
+		}
+
+	}
+	
+	public void alterarProduto(ProdutoRef o) throws Exception{
+		if(o == null)
+			throw new NullPointerException("Produto nulo");
+		else{
+			produtos.alterar(o);
+		}
+	}
+	
+	public ArrayList<ProdutoRef> listarTodos() throws Exception{
+		return produtos.listarTodos();
+	}
+	
 }

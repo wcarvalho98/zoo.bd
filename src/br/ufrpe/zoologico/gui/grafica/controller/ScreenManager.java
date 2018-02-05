@@ -33,6 +33,7 @@ public class ScreenManager {
 	private Scene telaFuncionarios;
 	private Scene telaZoologico;
 	private Scene telaEstoque;
+	private Scene telaProduto;
 
 	private static Stage mainStage;
 
@@ -307,6 +308,22 @@ public class ScreenManager {
 			e.printStackTrace();
 		}
 		return telaEstoque;
+	}
+
+	/** 
+	 * Metodo: getTelaProduto
+	 * @return
+	 * @return Scene
+	 */
+	public Scene getTelaProduto() {
+		try {
+			telaProduto = new Scene(
+					FXMLLoader.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/CadastroProduto.fxml")));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return telaProduto;	
 	}
 
 }

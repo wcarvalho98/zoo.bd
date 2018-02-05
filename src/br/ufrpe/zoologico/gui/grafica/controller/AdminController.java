@@ -53,7 +53,7 @@ public class AdminController {
 
     @FXML
     void abrirTelaProduto() {
-
+    	ScreenManager.setSceneLeft(ScreenManager.getInstance().getTelaProduto());
     }
 
     @FXML

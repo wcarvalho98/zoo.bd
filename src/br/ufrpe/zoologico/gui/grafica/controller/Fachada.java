@@ -25,6 +25,7 @@ import br.ufrpe.zoologico.negocio.beans.ItemEstoque;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
 import br.ufrpe.zoologico.negocio.beans.JornadaTrabalho;
 import br.ufrpe.zoologico.negocio.beans.Ordem;
+import br.ufrpe.zoologico.negocio.beans.ProdutoRef;
 import br.ufrpe.zoologico.negocio.beans.Reserva;
 import br.ufrpe.zoologico.negocio.beans.Servico;
 import br.ufrpe.zoologico.negocio.beans.Veterinario;
@@ -43,6 +44,7 @@ import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoJaula;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoJornadaDeTrabalho;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoLogin;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoOrdem;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoProduto;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoReserva;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoServicos;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoVeterinario;
@@ -69,6 +71,7 @@ public class Fachada {
 	private GerenciamentoLogin login;
 	private GerenciamentoDiagnostico diagnostico;
 	private GerenciamentoEstoque estoque;
+	private GerenciamentoProduto produto;
 	
 	private Fachada() {
 		consultas = new GerenciamentoConsultas();
@@ -86,7 +89,7 @@ public class Fachada {
 		admin = new GerenciamentoAdmin();
 		reserva = new GerenciamentoReserva();
 		jornada = new GerenciamentoJornadaDeTrabalho();
-		
+		produto = new GerenciamentoProduto();
 		login = new GerenciamentoLogin();
 		diagnostico = new GerenciamentoDiagnostico();
 		estoque = new GerenciamentoEstoque();
@@ -475,5 +478,23 @@ public class Fachada {
 	
 	public ArrayList<ItemEstoque> listarItensDoEstoque(Estoque a) throws Exception{
 		return estoque.listarItensDoEstoque(a);
+	}
+	
+	/** PRODUTO_REF 
+	 * @throws Exception **/
+	public void inserirProduto(ProdutoRef o) throws Exception{
+		produto.cadastrarProduto(o);
+	}
+	
+	public void removerProduto(ProdutoRef o) throws Exception{
+		produto.removerProduto(o);
+	}
+	
+	public void alterarProduto (ProdutoRef o) throws Exception{
+		produto.alterarProduto(o);
+	}
+	
+	public ArrayList<ProdutoRef> listarProdutos() throws Exception{
+		return produto.listarTodos();
 	}
 }

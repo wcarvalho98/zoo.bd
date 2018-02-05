@@ -6,9 +6,11 @@
  */
 package br.ufrpe.zoologico.DAO;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import br.ufrpe.zoologico.negocio.beans.Administrador;
 import br.ufrpe.zoologico.negocio.beans.ProdutoRef;
 
 public class DAOProduto extends DAO<ProdutoRef> {
@@ -40,15 +42,68 @@ public class DAOProduto extends DAO<ProdutoRef> {
 
 	@Override
 	public void remover(ProdutoRef o) throws Exception {
+		String sql = "DELETE FROM produto_ref where `cod` = ?";
+		preparar(sql);
+		getStmt().setInt(1, o.getCod());
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}	
+		
 	}
-
 	@Override
 	public void alterar(ProdutoRef o) throws Exception {
+		String sql = "UPDATE FROM produto_ref SET `descr` = ? and `freq_pedido` = ? and `cod_barra` = ? and `preco_ult_compra` = ? "
+				+ " and `qtd_total_estoque` = ? and `qtd_min` = ? `subcat` = ? and `categ` = ? `fornecedor` = ? ";
+		preparar(sql);
+		getStmt().setString(1, o.getDescr());
+		getStmt().setInt(2, o.getFreq_pedido());
+		getStmt().setString(3, o.getCod_barra());
+		getStmt().setDouble(4, o.getPreco_ult_compra());
+		getStmt().setInt(5, o.getQtd_estoque());
+		getStmt().setInt(6, o.getQtd_min());
+		getStmt().setInt(7, o.getSubcat());
+		getStmt().setInt(8, o.getCateg());
+		getStmt().setInt(9, o.getFornecedor());
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
+		
 	}
 
 	@Override
 	public ArrayList<ProdutoRef> listarTodos() throws Exception {
-		return null;
+		String sql = "SELECT * FROM produto_ref";
+		preparar(sql);
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
+		
+		ArrayList<ProdutoRef> list = new ArrayList<>();
+		while (rs.next()) {
+			ProdutoRef o = new ProdutoRef(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getInt(5), rs.getDouble(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10), rs.getInt(11));
+			list.add(o);
+		}
+		rs.close();
+		fecharStmt();
+		return list;
 	}
 
 }

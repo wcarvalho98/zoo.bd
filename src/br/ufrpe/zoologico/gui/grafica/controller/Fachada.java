@@ -7,6 +7,7 @@
 package br.ufrpe.zoologico.gui.grafica.controller;
 
 import java.sql.Connection;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -85,6 +86,7 @@ public class Fachada {
 		admin = new GerenciamentoAdmin();
 		reserva = new GerenciamentoReserva();
 		jornada = new GerenciamentoJornadaDeTrabalho();
+		
 		login = new GerenciamentoLogin();
 		diagnostico = new GerenciamentoDiagnostico();
 		estoque = new GerenciamentoEstoque();

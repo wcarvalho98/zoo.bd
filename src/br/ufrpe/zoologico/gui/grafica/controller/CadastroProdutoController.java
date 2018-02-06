@@ -293,7 +293,6 @@ public class CadastroProdutoController implements Initializable {
 		try {
 			ProdutoRef p = f.listarProdutos().get(i);
 			preencherTabelaCategoria(buscarC(p.getCateg()));
-			System.out.println(p.toString());
 			preencherTabelaFornecedor(buscarF(p.getFornecedor()));
 			preencherTabelaSubCategoria(buscarSB(p.getSubcat()));
 			descricaoTextField.setText(p.getDescr());

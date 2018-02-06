@@ -37,7 +37,7 @@ public class DAOProduto extends DAO<ProdutoRef> {
 			getCon().commit();
 		} catch (SQLException e) {
 			getCon().rollback();
-			ScreenManager.getInstance().alertaErro(e.getMessage());
+			ScreenManager.alertaErro(e.getMessage());
 		} finally {
 			fecharStmt();
 		}
@@ -78,7 +78,7 @@ public class DAOProduto extends DAO<ProdutoRef> {
 			getCon().commit();
 		} catch (SQLException e) {
 			getCon().rollback();
-			ScreenManager.getInstance().alertaErro(e.getMessage());
+			ScreenManager.alertaErro(e.getMessage());
 		} finally {
 			fecharStmt();
 		}

@@ -113,9 +113,9 @@ public class CadastroProdutoController implements Initializable {
 		try {
 			ProdutoRef p = pegarTudo();
 			f.removerProduto(p);
-			ScreenManager.getInstance().alertaInformativo("Remorção Feita com sucesso");
+			ScreenManager.alertaInformativo("Remoção feita com sucesso");
 		} catch (Exception e) {
-			ScreenManager.getInstance().alertaErro(e.getMessage());
+			ScreenManager.alertaErro(e.getMessage());
 		} finally{
 			allNull();
 			allDisable();
@@ -345,7 +345,8 @@ public class CadastroProdutoController implements Initializable {
 		int val4 = Integer.valueOf(qtdMinTextField.getText());
 		double val5 = Double.valueOf(precoUltCompra.getText());
 		int val6 = Integer.valueOf(quantEstoq.getText());
-		ProdutoRef p = new ProdutoRef(val6, val1, val3, val2,val5, val6, val4, scAtual.getCod(), cAtual.getCod(), fAtual.getCod());
+		int val7 = Integer.valueOf(idProduto.getText());
+		ProdutoRef p = new ProdutoRef(val7, val1, val3, val2,val5, val6, val4, scAtual.getCod(), cAtual.getCod(), fAtual.getCod());
 		return p;
 	}
 

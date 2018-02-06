@@ -11,15 +11,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
-import br.ufrpe.zoologico.negocio.beans.Administrador;
 import br.ufrpe.zoologico.negocio.beans.ProdutoRef;
 
 public class DAOProduto extends DAO<ProdutoRef> {
 
 	@Override
 	public void inserir(ProdutoRef o) throws Exception {
-		/*String sql = "INSERT INTO produto_ref (`descr`,`freq_pedido`, `cod_barra`, `preco_ult_compra`, "
-				+ "`qtd_total_estoque`, `qtd_min`, `subcat`, `categ`, `fornecedor`) VALUES (?,?,?,?,?,?,?,?,?)";*/
 		String sql = "INSERT INTO `produto_ref` (`descr`,`freq_pedido`,`cod_barra`,`preco_ult_compra`,`qtd_total_estoque`,"
 				+ "`qtd_min`,`subcat`,`categ`,`fornecedor`) VALUES (?,?,?,?,?,?,?,?,?)";
 		preparar(sql);

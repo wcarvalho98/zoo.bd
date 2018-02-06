@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 
 import br.ufrpe.zoologico.negocio.beans.Categoria;
 import br.ufrpe.zoologico.negocio.beans.Fornecedor;
+import br.ufrpe.zoologico.negocio.beans.PedidoServico;
 import br.ufrpe.zoologico.negocio.beans.ProdutoRef;
 import br.ufrpe.zoologico.negocio.beans.SubCategoria;
 import javafx.beans.property.SimpleStringProperty;
@@ -108,6 +109,17 @@ public class CadastroProdutoController implements Initializable {
 		confirmarCadastro.setDisable(true);
 		confirmarAlteracao.setDisable(true);
 		confirmarAlteracao.setVisible(false);
+		
+		try {
+			ProdutoRef p = pegarTudo();
+			f.removerProduto(p);
+			ScreenManager.getInstance().alertaInformativo("Remorção Feita com sucesso");
+		} catch (Exception e) {
+			ScreenManager.getInstance().alertaErro(e.getMessage());
+		} finally{
+			allNull();
+			allDisable();
+		}
 	}
 	
 	@FXML 
@@ -119,8 +131,7 @@ public class CadastroProdutoController implements Initializable {
 		confirmarCadastro.setVisible(false);
 		confirmarCadastro.setDisable(true);
 		allNotDisable();
-		allNull();
-		idProduto.setVisible(false);
+		idProduto.setVisible(true);
 	}
 	
 	@FXML
@@ -143,7 +154,16 @@ public class CadastroProdutoController implements Initializable {
 	
 	@FXML
 	public void confirmarAlteracao(){
-		
+
+		try {
+			ProdutoRef p = pegarTudo();
+			f.alterarProduto(p);
+			ScreenManager.getInstance().alertaInformativo("Altualizaçõa feita com sucesso!");
+		} catch (Exception e) {
+			ScreenManager.getInstance().alertaErro(e.getMessage());
+		} finally{
+			allNull();
+		}
 	}
 	
 	public void preencherTabelaFornecedor(ArrayList<Fornecedor> o){
@@ -325,7 +345,8 @@ public class CadastroProdutoController implements Initializable {
 		int val4 = Integer.valueOf(qtdMinTextField.getText());
 		double val5 = Double.valueOf(precoUltCompra.getText());
 		int val6 = Integer.valueOf(quantEstoq.getText());
-		ProdutoRef p = new ProdutoRef(0, val1, val3, val2,val5, val6, val4, scAtual.getCod(), cAtual.getCod(), fAtual.getCod());
+		ProdutoRef p = new ProdutoRef(val6, val1, val3, val2,val5, val6, val4, scAtual.getCod(), cAtual.getCod(), fAtual.getCod());
 		return p;
 	}
+
 }

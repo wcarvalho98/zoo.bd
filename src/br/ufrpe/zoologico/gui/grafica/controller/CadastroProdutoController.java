@@ -139,14 +139,15 @@ public class CadastroProdutoController implements Initializable {
 		ProdutoRef p = pegarTudo();
 		try {
 			f.inserirProduto(p);
-			ScreenManager.getInstance().alertaInformativo("Cadastro feito com sucesso!");
+			ScreenManager.alertaInformativo("Cadastro feito com sucesso!");
 		} catch (Exception e) {
-			ScreenManager.getInstance().alertaErro(e.getMessage());
+			ScreenManager.alertaErro(e.getMessage());
 		} finally{
 			allNull();
 		}
 	}
 	
+	//TODO Retira isso!
 	@FXML
 	public void confirmarRemorcao(){
 		
@@ -158,9 +159,9 @@ public class CadastroProdutoController implements Initializable {
 		try {
 			ProdutoRef p = pegarTudo();
 			f.alterarProduto(p);
-			ScreenManager.getInstance().alertaInformativo("Altualizaçõa feita com sucesso!");
+			ScreenManager.alertaInformativo("Altualizaçõa feita com sucesso!");
 		} catch (Exception e) {
-			ScreenManager.getInstance().alertaErro(e.getMessage());
+			ScreenManager.alertaErro(e.getMessage());
 		} finally{
 			allNull();
 		}
@@ -234,7 +235,6 @@ public class CadastroProdutoController implements Initializable {
 		tbSubCateg.setItems(FXCollections.observableArrayList(o));
 	}
 	
-	
 	private void select(){
 		tbFornecedor.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Fornecedor>() {
 
@@ -305,7 +305,7 @@ public class CadastroProdutoController implements Initializable {
 			precoUltCompra.setText(Double.valueOf(p.getPreco_ult_compra()).toString());
 			quantEstoq.setText(Integer.valueOf(p.getQtd_total_estoque()).toString());
 		} catch (Exception e) {
-			ScreenManager.getInstance().alertaErro(e.getMessage());
+			ScreenManager.alertaErro(e.getMessage());
 		}
 	}
 	
@@ -337,7 +337,6 @@ public class CadastroProdutoController implements Initializable {
 		return list;
 	}
 
-	
 	private ProdutoRef pegarTudo(){
 		String val1 = descricaoTextField.getText();
 		String val2 = codBarrasTextField.getText();

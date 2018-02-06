@@ -62,7 +62,8 @@ public class DAOProduto extends DAO<ProdutoRef> {
 	@Override
 	public void alterar(ProdutoRef o) throws Exception {
 		String sql = "UPDATE produto_ref SET `descr` = ?, `freq_pedido` = ?, `cod_barra` = ?, `preco_ult_compra` = ?, "
-				+ "`qtd_total_estoque` = ?, `qtd_min` = ?, `subcat` = ?, `categ` = ?, `fornecedor` = ? ";
+				+ "`qtd_total_estoque` = ?, `qtd_min` = ?, `subcat` = ?, `categ` = ?, `fornecedor` = ? "
+				+ "WHERE `cod` = ?";
 		preparar(sql);
 		getStmt().setString(1, o.getDescr());
 		getStmt().setInt(2, o.getFreq_pedido());
@@ -73,6 +74,7 @@ public class DAOProduto extends DAO<ProdutoRef> {
 		getStmt().setInt(7, o.getSubcat());
 		getStmt().setInt(8, o.getCateg());
 		getStmt().setInt(9, o.getFornecedor());
+		getStmt().setInt(10, o.getCod());
 		try {
 			getStmt().execute();
 			getCon().commit();

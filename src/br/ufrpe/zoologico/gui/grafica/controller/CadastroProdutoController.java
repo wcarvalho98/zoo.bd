@@ -310,7 +310,7 @@ public class CadastroProdutoController implements Initializable {
 	}
 	
 	private ArrayList<Fornecedor> buscarF(int id){
-		ArrayList<Fornecedor> list = new ArrayList<>();
+		ArrayList<Fornecedor> list = new ArrayList<Fornecedor>();
 		for(int i = 0 ; i < f.listarTodosFornecedores().size(); i++){
 			if(f.listarTodosFornecedores().get(i).getCod() == id)
 				list.add(f.listarTodosFornecedores().get(i));
@@ -319,8 +319,7 @@ public class CadastroProdutoController implements Initializable {
 	}
 	
 	private ArrayList<Categoria> buscarC(int cod){
-		ArrayList<Categoria> list = new ArrayList<>();
-
+		ArrayList<Categoria> list = new ArrayList<Categoria>();
 		for(int i = 0 ; i < f.listarTodasCategorias().size(); i++){
 			if(f.listarTodasCategorias().get(i).getCod() == cod)
 				list.add(f.listarTodasCategorias().get(i));
@@ -329,7 +328,7 @@ public class CadastroProdutoController implements Initializable {
 	}
 	
 	private ArrayList<SubCategoria> buscarSB(int id){
-		ArrayList<SubCategoria> list = new ArrayList<>();
+		ArrayList<SubCategoria> list = new ArrayList<SubCategoria>();
 		for(int i = 0 ; i < f.listarTodasSubCategorias().size(); i++){
 			if(f.listarTodasSubCategorias().get(i).getCod() == id)
 				list.add(f.listarTodasSubCategorias().get(i));

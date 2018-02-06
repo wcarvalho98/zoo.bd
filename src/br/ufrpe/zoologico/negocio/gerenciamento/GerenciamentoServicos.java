@@ -8,6 +8,7 @@ package br.ufrpe.zoologico.negocio.gerenciamento;
 
 import java.util.ArrayList;
 
+import br.ufrpe.zoologico.DAO.DAOFatura;
 import br.ufrpe.zoologico.DAO.DAOServico;
 import br.ufrpe.zoologico.negocio.beans.Fatura;
 import br.ufrpe.zoologico.negocio.beans.Servico;
@@ -15,9 +16,11 @@ import br.ufrpe.zoologico.negocio.beans.Servico;
 public class GerenciamentoServicos {
 	
 	private DAOServico servicos;
+	private DAOFatura faturas;
 	
 	public GerenciamentoServicos() {
 		this.servicos = new DAOServico();
+		this.faturas = new DAOFatura();
 	}
 	
 	public void cadastrarServico(Servico o) {
@@ -73,5 +76,9 @@ public class GerenciamentoServicos {
 			e.printStackTrace();
 			return new ArrayList<Fatura>();
 		}
+	}
+	
+	public void cadastrarFatura(Fatura o, int idServico) throws Exception{
+		faturas.inserir(o, idServico);
 	}
 }

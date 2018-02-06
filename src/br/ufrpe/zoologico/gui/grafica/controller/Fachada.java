@@ -525,4 +525,8 @@ public class Fachada {
 	public ArrayList<SubCategoria> listarTodasSubCategorias(){
 		return subCateg.listarTodas();
 	}
+	
+	public void cadastrarFatura(Fatura o, int idServico) throws Exception{
+		servicos.cadastrarFatura(o, idServico);
+	}
 }

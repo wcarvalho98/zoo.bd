@@ -13,22 +13,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.Fatura;
+import br.ufrpe.zoologico.negocio.beans.Servico;
 import javafx.fxml.FXML;
 
 public class DAOFatura extends DAO<Fatura> {
 	
-	@Override
-	public void inserir(Fatura o) throws Exception {
-		String sql = "insert into pedido_servico (idZoo) values (1);\r\n" + 
-				"insert into fatura (valor, id_ped_serv, dataDaFatura, dt_paga, tp_fatura, vl_multa, stats) values(115, 13, '2018-02-06', null, 'Boleto', 0, 'Não Paga') ;\r\n" + 
-				"insert into item_servico(idPed, idServ) values (13, 1);";
+	public void inserir(Fatura o, int idServico) throws Exception {
+		String sql = "insert into pedido_servico (idZoo) values (?)";
 		preparar(sql);
-		getStmt().setDouble(1, o.getValor());
-		getStmt().setString(2, o.getTp_fatura());
-		if(o.getId_ped_serv() == 0)
-			getStmt().setNull(3, java.sql.Types.NULL);
-		else
-			getStmt().setInt(3, o.getId_ped_serv());
+		getStmt().setInt(1, 1);
 		try {
 			getStmt().execute();
 			getCon().commit();
@@ -38,6 +31,56 @@ public class DAOFatura extends DAO<Fatura> {
 		} finally {
 			fecharStmt();
 		}
+		
+		sql = "SELECT max(id) FROM zoologico.pedido_servico";
+		preparar(sql);
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
+		rs.next();
+		int idPed = rs.getInt(1);
+		rs.close();
+		fecharStmt();
+		
+		sql = "insert into fatura (valor, id_ped_serv, dataDaFatura, dt_paga, tp_fatura, vl_multa, stats) values(?, ?, ?, ?, ?, ?, ?)";
+		preparar(sql);
+		getStmt().setDouble(1, o.getValor());
+		getStmt().setInt(2, idPed);
+		getStmt().setDate(3, Date.valueOf(o.getDataDaFatura()));
+		getStmt().setDate(4, Date.valueOf(o.getDt_paga()));
+		getStmt().setString(5, o.getTp_fatura());
+		getStmt().setDouble(6, o.getVl_multa());
+		getStmt().setString(7, o.getStats());
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
+		
+		sql = "insert into item_servico(idPed, idServ) values (?, ?)";
+		preparar(sql);
+		getStmt().setInt(1, idPed);
+		getStmt().setInt(2, idServico);
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
+		} finally {
+			fecharStmt();
+		}
+		
 	}
 
 	@Override
@@ -140,6 +183,10 @@ public class DAOFatura extends DAO<Fatura> {
 	
 	@FXML public void voltar() {
 		// TODO ScreenManager.setScene(ScreenManager.getInstance.);
+	}
+
+	@Override
+	public void inserir(Fatura o) throws Exception {
 	}
 
 }

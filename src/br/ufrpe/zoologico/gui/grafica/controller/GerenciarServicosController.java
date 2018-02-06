@@ -1,9 +1,11 @@
 package br.ufrpe.zoologico.gui.grafica.controller;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import br.ufrpe.zoologico.DAO.DAOFatura;
 import br.ufrpe.zoologico.negocio.beans.Animal;
 import br.ufrpe.zoologico.negocio.beans.Fatura;
 import br.ufrpe.zoologico.negocio.beans.Servico;
@@ -112,10 +114,24 @@ public class GerenciarServicosController implements Initializable {
 				Fatura a = new Fatura();
 				a.setDataDaFatura(dataDaFaturaDatePicker.getValue());
 				a.setDt_paga(dstaDePagamentoDatePicker.getValue());
-				//a.setId_ped_serv(); TODO
+				a.setStats(statusTextField.getText());
+				a.setTp_fatura(tipoDeFaturaTextField.getText());
+				a.setValor(Double.parseDouble(valorDaFaturaTextField.getText()));
+				a.setVl_multa(Double.parseDouble(valorDaMultaTextField.getText()));
+				
+				Fachada.getInstance().cadastrarFatura(a, servicoSelecionado.getId());
+				preencherTabelaFaturas();
+				preencherCamposEdicao(null);
+				disableAll();
+				cadastrarFaturaButton.setDisable(true);
+				
+			} else if (servicoSelecionado == null) {
+				ScreenManager.alertaErro("Nenhum serviço selecionado.");
 			}
 		} catch (NumberFormatException e) {
 			ScreenManager.alertaErro("Valores digitados de forma incorreta.");
+		} catch (Exception e){
+			ScreenManager.alertaErro("Algo deu errado.");
 		}
 	}
 
@@ -129,9 +145,9 @@ public class GerenciarServicosController implements Initializable {
 			preencherTabelaServicos();
 			descricaoServiçoTextField.setText("");
 			valorServiçoTextField.setText("");
-			ScreenManager.getInstance().alertaInformativo("Servico cadastrado com sucesso!");
+			ScreenManager.alertaInformativo("Servico cadastrado com sucesso!");
 		} else
-			ScreenManager.getInstance().alertaInformativo("Por favor entre com os dados nos campos!");
+			ScreenManager.alertaInformativo("Por favor entre com os dados nos campos!");
 	}
 
 	@FXML
@@ -151,7 +167,7 @@ public class GerenciarServicosController implements Initializable {
 		if (servicoSelecionado != null) {
 			Fachada.getInstance().removerServico(servicoSelecionado);
 			preencherTabelaServicos();
-			ScreenManager.getInstance().alertaInformativo("Servico removido com sucesso!");
+			ScreenManager.alertaInformativo("Servico removido com sucesso!");
 		}
 	}
 
@@ -168,8 +184,9 @@ public class GerenciarServicosController implements Initializable {
 			Fachada.getInstance().alterarFatura(faturaSelecionada);
 			preencherCamposEdicao(null);
 			disableAll();
+			salvarAltertacoesButton.setDisable(true);
 			preencherTabelaFaturas();
-			ScreenManager.getInstance().alertaInformativo("Dados alterados com sucesso!");
+			ScreenManager.alertaInformativo("Dados alterados com sucesso!");
 		}
 	}
 
@@ -192,6 +209,8 @@ public class GerenciarServicosController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		preencherTabelaServicos();
 		disableAll();
+		salvarAltertacoesButton.setDisable(true);
+		cadastrarFaturaButton.setDisable(true);
 
 	}
 

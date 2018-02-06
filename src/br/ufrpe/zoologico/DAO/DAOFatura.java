@@ -19,7 +19,9 @@ public class DAOFatura extends DAO<Fatura> {
 	
 	@Override
 	public void inserir(Fatura o) throws Exception {
-		String sql = "CALL gera_fatura(?,?,?)";
+		String sql = "insert into pedido_servico (idZoo) values (1);\r\n" + 
+				"insert into fatura (valor, id_ped_serv, dataDaFatura, dt_paga, tp_fatura, vl_multa, stats) values(115, 13, '2018-02-06', null, 'Boleto', 0, 'Não Paga') ;\r\n" + 
+				"insert into item_servico(idPed, idServ) values (13, 1);";
 		preparar(sql);
 		getStmt().setDouble(1, o.getValor());
 		getStmt().setString(2, o.getTp_fatura());

@@ -21,6 +21,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -121,6 +122,7 @@ public class GerenciarConsultasController implements Initializable {
 	private TextField horaTextField;
 	@FXML
 	private TextField horaTextField1;
+	
 
 	private Consulta aRemover;
 	private Animal animalSelecionado;
@@ -134,7 +136,7 @@ public class GerenciarConsultasController implements Initializable {
 	void salvar() {
 		LocalDateTime aux = LocalDateTime.of(dataDaConsultaDatePicker1.getValue(),
 				LocalTime.of(Integer.parseInt(horaTextField1.getText()), Integer.parseInt(minutoTextField1.getText())));
-		if (veterinarioSelecionado1 != null && animalSelecionado1 != null && aux.isAfter(LocalDateTime.now())) {
+		if (veterinarioSelecionado1 != null && animalSelecionado1 != null && (aux.isAfter(LocalDateTime.now()) || aux.isEqual(consultaAtual.getData()))) {
 			consultaAtual.setAnimal(animalSelecionado1);
 			consultaAtual.setVeterinario(veterinarioSelecionado1);
 			consultaAtual.setData(aux);
@@ -146,7 +148,13 @@ public class GerenciarConsultasController implements Initializable {
 			horaTextField1.setText("");
 			minutoTextField1.setText("");
 			preencherTabelas();
-		}
+		} else if (!aux.isAfter(LocalDateTime.now())) {
+			ScreenManager.alertaErro("O novo horário da consulta não é futuro.");
+		} else if (veterinarioSelecionado1 == null) {
+			ScreenManager.alertaErro("Nenhum veterinário selecionado");
+		} else if (animalSelecionado1 == null) {
+			ScreenManager.alertaErro("Nenhum animal selecionado");
+		} 
 	}
 
 	@FXML
@@ -208,6 +216,12 @@ public class GerenciarConsultasController implements Initializable {
 			observacoesTextField.setText("");
 			animalSelecionado = null;
 			veterinarioSelecionado = null;
+		} else if (!aux.isAfter(LocalDateTime.now())) {
+			ScreenManager.alertaErro("O novo horário da consulta não é futuro.");
+		} else if (veterinarioSelecionado1 == null) {
+			ScreenManager.alertaErro("Nenhum veterinário selecionado");
+		} else if (animalSelecionado1 == null) {
+			ScreenManager.alertaErro("Nenhum animal selecionado");
 		} 
 	}
 

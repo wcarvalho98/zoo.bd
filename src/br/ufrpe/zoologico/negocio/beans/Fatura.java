@@ -40,6 +40,10 @@ public class Fatura {
 		this.id_ped_serv = id_ped_serv;
 	}
 	
+	public Fatura() {
+		
+	}
+	
 	/**
 	 * Metodo: getIdFatura
 	 * @return idFatura

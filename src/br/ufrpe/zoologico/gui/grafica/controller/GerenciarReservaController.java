@@ -92,7 +92,7 @@ public class GerenciarReservaController {
 
     @FXML
     void voltar(ActionEvent event) {
-
+    	ScreenManager.setSceneLeft(ScreenManager.getInstance().getTelaAdmin());
     }
 
     @FXML

@@ -23,6 +23,8 @@ public class DAOServico extends DAO<Servico> {
 		getStmt().setDouble(2, o.getValor());
 		try {
 			getStmt().execute();
+			//TODO FAZER
+			//Fatura a = new Fatura(0, o.getValor(), LocalDate.now(), null, )
 			getCon().commit();
 		} catch (SQLException e) {
 			getCon().rollback();

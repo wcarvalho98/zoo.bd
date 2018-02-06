@@ -33,6 +33,7 @@ public class ScreenManager {
 	private Scene telaFuncionarios;
 	private Scene telaZoologico;
 	private Scene telaEstoque;
+	private Scene telaProduto;
 
 	private static Stage mainStage;
 
@@ -114,14 +115,54 @@ public class ScreenManager {
 				public void handle(ActionEvent event) {
 					mainStage.setScene(a);
 					mainStage.show();
-					FabricaTransicao.fazerTransicao(0.5, a.getRoot(), true);
+					FabricaTransicao.fazerTransicao(0.7, a.getRoot(), true);
 				}
 			});
 		}
 		else {
 			mainStage.setScene(a);
 			mainStage.show();
-			FabricaTransicao.fazerTransicao(0.5, a.getRoot(), true);
+			FabricaTransicao.fazerTransicao(0.7, a.getRoot(), true);
+		}
+	}
+	
+	public static void setSceneRight(Scene a) {
+		a.getRoot().setOpacity(0);
+		if (mainStage.getScene() != null) {
+			Transition t = FabricaTransicao.fazerTransicaoRight(0.5, mainStage.getScene().getRoot(), false);
+			t.setOnFinished(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					mainStage.setScene(a);
+					mainStage.show();
+					FabricaTransicao.fazerTransicaoRight(0.7, a.getRoot(), true);
+				}
+			});
+		}
+		else {
+			mainStage.setScene(a);
+			mainStage.show();
+			FabricaTransicao.fazerTransicao(0.7, a.getRoot(), true);
+		}
+	}
+	
+	public static void setSceneLeft(Scene a) {
+		a.getRoot().setOpacity(0);
+		if (mainStage.getScene() != null) {
+			Transition t = FabricaTransicao.fazerTransicaoLeft(0.5, mainStage.getScene().getRoot(), false);
+			t.setOnFinished(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					mainStage.setScene(a);
+					mainStage.show();
+					FabricaTransicao.fazerTransicaoLeft(0.7, a.getRoot(), true);
+				}
+			});
+		}
+		else {
+			mainStage.setScene(a);
+			mainStage.show();
+			FabricaTransicao.fazerTransicao(0.7, a.getRoot(), true);
 		}
 	}
 
@@ -267,6 +308,22 @@ public class ScreenManager {
 			e.printStackTrace();
 		}
 		return telaEstoque;
+	}
+
+	/** 
+	 * Metodo: getTelaProduto
+	 * @return
+	 * @return Scene
+	 */
+	public Scene getTelaProduto() {
+		try {
+			telaProduto = new Scene(
+					FXMLLoader.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/CadastroProduto.fxml")));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return telaProduto;	
 	}
 
 }

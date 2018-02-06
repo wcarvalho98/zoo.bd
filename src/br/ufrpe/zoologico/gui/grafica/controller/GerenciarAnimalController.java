@@ -96,7 +96,7 @@ public class GerenciarAnimalController implements Initializable{
 	
 	@FXML
 	public void voltar() {
-		ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin());
+		ScreenManager.setSceneLeft(ScreenManager.getInstance().getTelaAdmin());
 	}
 	
 	@FXML 
@@ -135,11 +135,7 @@ public class GerenciarAnimalController implements Initializable{
 						f.cadastrarAnimal(b);
 						ScreenManager.alertaInformativo("Cadastro realizado com sucesso!");
 					} catch (Exception e) {
-						Alert a = new Alert(AlertType.ERROR);
-						a.setTitle("Erro");
-						a.setHeaderText(null);
-						a.setContentText("putz");
-						a.showAndWait();
+						ScreenManager.alertaErro("Não foi possível!");
 					}
 				}
 				else

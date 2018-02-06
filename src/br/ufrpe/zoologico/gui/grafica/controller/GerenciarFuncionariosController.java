@@ -247,7 +247,7 @@ public class GerenciarFuncionariosController implements Initializable {
 
 	@FXML
 	public void voltar() {
-		ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin());
+		ScreenManager.setSceneLeft(ScreenManager.getInstance().getTelaAdmin());
 	}
 
 	private void preencherTabelas_Zoo_Jornada() {

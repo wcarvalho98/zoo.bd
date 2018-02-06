@@ -8,8 +8,6 @@ package br.ufrpe.zoologico.negocio.gerenciamento;
 
 import java.util.ArrayList;
 
-import com.mysql.fabric.xmlrpc.base.Array;
-
 import br.ufrpe.zoologico.DAO.DAOEstoque_ItemEstoque;
 import br.ufrpe.zoologico.negocio.beans.Estoque;
 import br.ufrpe.zoologico.negocio.beans.ItemEstoque;

@@ -10,20 +10,17 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import br.ufrpe.zoologico.negocio.beans.Animal;
 import br.ufrpe.zoologico.negocio.beans.Estoque;
 import br.ufrpe.zoologico.negocio.beans.ItemEstoque;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 public class GerenciarEstoque {
@@ -244,7 +241,7 @@ public class GerenciarEstoque {
 
 	@FXML
 	void voltar() {
-
+		ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin());
 	}
 
 	@FXML

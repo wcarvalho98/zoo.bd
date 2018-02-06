@@ -11,7 +11,6 @@ public class ProdutoRef {
 	private String descr;
 	private int freq_pedido;
 	private String cod_barra;
-	private int qtd_estoque;
 	private double preco_ult_compra;
 	private int qtd_total_estoque;
 	private int qtd_min;
@@ -31,14 +30,12 @@ public class ProdutoRef {
 	 * @param categ
 	 * @param fornecedor
 	 */
-	public ProdutoRef(int cod, String descr, int freq_pedido, String cod_barra, int qtd_estoque,
-			double preco_ult_compra, int qtd_total_estoque, int qtd_min, int subcat, int categ, int fornecedor) {
+	public ProdutoRef(int cod, String descr, int freq_pedido, String cod_barra, double preco_ult_compra, int qtd_total_estoque, int qtd_min, int subcat, int categ, int fornecedor) {
 		super();
 		this.cod = cod;
 		this.descr = descr;
 		this.freq_pedido = freq_pedido;
 		this.cod_barra = cod_barra;
-		this.qtd_estoque = qtd_estoque;
 		this.preco_ult_compra = preco_ult_compra;
 		this.qtd_total_estoque = qtd_total_estoque;
 		this.qtd_min = qtd_min;
@@ -101,20 +98,6 @@ public class ProdutoRef {
 	 */
 	public void setCod_barra(String cod_barra) {
 		this.cod_barra = cod_barra;
-	}
-	/**
-	 * Metodo: getQtd_estoque
-	 * @return qtd_estoque
-	 */
-	public int getQtd_estoque() {
-		return qtd_estoque;
-	}
-	/**
-	 * Metodo: setQtd_estoque
-	 * @param qtd_estoque the qtd_estoque to set
-	 */
-	public void setQtd_estoque(int qtd_estoque) {
-		this.qtd_estoque = qtd_estoque;
 	}
 	/**
 	 * Metodo: getPreco_ult_compra
@@ -213,7 +196,6 @@ public class ProdutoRef {
 		long temp;
 		temp = Double.doubleToLongBits(preco_ult_compra);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + qtd_estoque;
 		result = prime * result + qtd_min;
 		result = prime * result + qtd_total_estoque;
 		result = prime * result + subcat;
@@ -248,8 +230,6 @@ public class ProdutoRef {
 			return false;
 		if (Double.doubleToLongBits(preco_ult_compra) != Double.doubleToLongBits(other.preco_ult_compra))
 			return false;
-		if (qtd_estoque != other.qtd_estoque)
-			return false;
 		if (qtd_min != other.qtd_min)
 			return false;
 		if (qtd_total_estoque != other.qtd_total_estoque)
@@ -261,7 +241,7 @@ public class ProdutoRef {
 	@Override
 	public String toString() {
 		return "ProdutoRef [cod=" + cod + ", descr=" + descr + ", freq_pedido=" + freq_pedido + ", cod_barra="
-				+ cod_barra + ", qtd_estoque=" + qtd_estoque + ", preco_ult_compra=" + preco_ult_compra
+				+ cod_barra + ", preco_ult_compra=" + preco_ult_compra
 				+ ", qtd_total_estoque=" + qtd_total_estoque + ", qtd_min=" + qtd_min + ", subcat=" + subcat
 				+ ", categ=" + categ + ", fornecedor=" + fornecedor + "]";
 	}

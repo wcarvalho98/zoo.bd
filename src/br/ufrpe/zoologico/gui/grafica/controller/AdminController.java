@@ -4,7 +4,6 @@ import java.sql.SQLException;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 
 public class AdminController {
 
@@ -13,7 +12,7 @@ public class AdminController {
 
     @FXML
     void abrirTelaAnimal() {
-    	ScreenManager.setScene(ScreenManager.getInstance().getTelaGerenciarAnimal());
+    	ScreenManager.setSceneRight(ScreenManager.getInstance().getTelaGerenciarAnimal());
     }
 
     @FXML
@@ -23,27 +22,27 @@ public class AdminController {
 
     @FXML
     void abrirTelaConsulta() {
-    	ScreenManager.setScene(ScreenManager.getInstance().getTelaCadastrarConsultas());
+    	ScreenManager.setSceneRight(ScreenManager.getInstance().getTelaCadastrarConsultas());
     }
 
     @FXML
     void abrirTelaEstoque() {
-    	ScreenManager.setScene(ScreenManager.getInstance().getTelaEstoque());
+    	ScreenManager.setSceneRight(ScreenManager.getInstance().getTelaEstoque());
     }
 
     @FXML
     void abrirTelaFuncionario() {
-    	ScreenManager.setScene(ScreenManager.getInstance().getTelaFuncionarios());
+    	ScreenManager.setSceneRight(ScreenManager.getInstance().getTelaFuncionarios());
     }
 
     @FXML
     void abrirTelaInstituicoes() {
-    	ScreenManager.setScene(ScreenManager.getInstance().getTelaCadastrarInstituicao());
+    	ScreenManager.setSceneRight(ScreenManager.getInstance().getTelaCadastrarInstituicao());
     }
 
     @FXML
     void abrirTelaJaula() {
-    	ScreenManager.setScene(ScreenManager.getInstance().getTelaJaula());
+    	ScreenManager.setSceneRight(ScreenManager.getInstance().getTelaJaula());
     }
 
     @FXML
@@ -53,7 +52,7 @@ public class AdminController {
 
     @FXML
     void abrirTelaProduto() {
-
+    	ScreenManager.setSceneRight(ScreenManager.getInstance().getTelaProduto());
     }
 
     @FXML
@@ -63,12 +62,12 @@ public class AdminController {
 
     @FXML
     void abrirTelaServico_Faturas() {
-    	ScreenManager.setScene(ScreenManager.getInstance().getTelaGerenciarServicos());
+    	ScreenManager.setSceneRight(ScreenManager.getInstance().getTelaGerenciarServicos());
     }
 
     @FXML
     void abrirZoologico() {
-    	ScreenManager.setScene(ScreenManager.getInstance().getTelaZoologico());
+    	ScreenManager.setSceneRight(ScreenManager.getInstance().getTelaZoologico());
     }
 
     @FXML

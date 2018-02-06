@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.zoologico.gui.grafica.controller.AdminController">
+<VBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.zoologico.gui.grafica.controller.AdminController">
   <children>
       <AnchorPane>
          <children>
@@ -61,7 +61,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button disable="true" layoutX="329.0" layoutY="419.0" mnemonicParsing="false" onAction="#abrirTelaProduto" text="Produto">
+            <Button layoutX="329.0" layoutY="419.0" mnemonicParsing="false" onAction="#abrirTelaProduto" text="Produto">
                <font>
                   <Font size="18.0" />
                </font>

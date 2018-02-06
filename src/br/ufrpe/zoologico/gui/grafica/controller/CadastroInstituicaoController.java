@@ -11,15 +11,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import br.ufrpe.zoologico.negocio.beans.Fatura;
 import br.ufrpe.zoologico.negocio.beans.Instituicao;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -159,7 +156,7 @@ public class CadastroInstituicaoController implements Initializable{
 
     @FXML
     void voltar() {
-		ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin()); 
+		ScreenManager.setSceneLeft(ScreenManager.getInstance().getTelaAdmin()); 
 	}
     
     private void esvaziarCampos(){

@@ -96,12 +96,12 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Button layoutX="763.0" layoutY="272.0" mnemonicParsing="false" onAction="#editarFatura" text="Editar Fatura">
+                  <Button fx:id="editarFaturaButton" layoutX="632.0" layoutY="268.0" mnemonicParsing="false" onAction="#editarFatura" text="Editar Fatura">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <Button layoutX="739.0" layoutY="533.0" mnemonicParsing="false" onAction="#salvarAlteracoes" text="Salvar Alterações">
+                  <Button fx:id="salvarAltertacoesButton" layoutX="615.0" layoutY="521.0" mnemonicParsing="false" onAction="#salvarAlteracoes" text="Salvar Alterações">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -112,6 +112,21 @@
                      </font>
                   </Button>
                   <Button layoutX="147.0" layoutY="572.0" mnemonicParsing="false" onAction="#removerServico" text="Remover Serviço">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="adicionarFaturaButton" layoutX="948.0" layoutY="268.0" mnemonicParsing="false" onAction="#adicionarFatura" text="Adicionar Fatura">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="cadastrarFaturaButton" layoutX="948.0" layoutY="521.0" mnemonicParsing="false" onAction="#cadastrarFatura" text="Cadastrar Fatura">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="1113.0" layoutY="151.0" mnemonicParsing="false" onAction="#removerFatura" text="Remover Fatura">
                      <font>
                         <Font size="18.0" />
                      </font>

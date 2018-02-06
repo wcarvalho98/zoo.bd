@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import br.ufrpe.zoologico.negocio.beans.Animal;
 import br.ufrpe.zoologico.negocio.beans.Fatura;
 import br.ufrpe.zoologico.negocio.beans.Servico;
 import javafx.beans.property.SimpleStringProperty;
@@ -12,7 +11,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -78,14 +77,76 @@ public class GerenciarServicosController implements Initializable {
 	@FXML
 	private TextField descricaoServiçoTextField;
 
+	@FXML
+	private Button salvarAltertacoesButton;
+	@FXML
+	private Button editarFaturaButton;
+	@FXML
+	private Button adicionarFaturaButton;
+	@FXML
+	private Button cadastrarFaturaButton;
+
 	private Servico servicoSelecionado;
 	private Fatura faturaSelecionada;
 
+	@FXML
+	public void adicionarFatura() {
+		if (servicoSelecionado != null) {
+			ableAll();
+			salvarAltertacoesButton.setDisable(true);
+			cadastrarFaturaButton.setDisable(false);
+		} else {
+			ScreenManager.alertaErro("Nenhum serviço foi selecionado.");
+		}
+	}
+
+	@FXML
+	public void cadastrarFatura() {
+		try {
+			if (servicoSelecionado != null && dataDaFaturaDatePicker.getValue() != null && 
+					dstaDePagamentoDatePicker.getValue() != null &&
+					Double.parseDouble(valorDaFaturaTextField.getText()) >= 0 &&
+					Double.parseDouble(valorDaMultaTextField.getText()) >= 0) {
+				Fatura a = new Fatura();
+				a.setDataDaFatura(dataDaFaturaDatePicker.getValue());
+				a.setDt_paga(dstaDePagamentoDatePicker.getValue());
+				a.setStats(statusTextField.getText());
+				a.setTp_fatura(tipoDeFaturaTextField.getText());
+				a.setValor(Double.parseDouble(valorDaFaturaTextField.getText()));
+				a.setVl_multa(Double.parseDouble(valorDaMultaTextField.getText()));
+				
+				Fachada.getInstance().cadastrarFatura(a, servicoSelecionado.getId());
+				preencherTabelaFaturas();
+				preencherCamposEdicao(null);
+				disableAll();
+				cadastrarFaturaButton.setDisable(true);
+				
+				ScreenManager.alertaInformativo("Fatura inserida com sucesso para o serviço de id = " + servicoSelecionado.getId());
+				
+			} else if (servicoSelecionado == null) {
+				ScreenManager.alertaErro("Nenhum serviço selecionado.");
+			}
+		} catch (NumberFormatException e) {
+			ScreenManager.alertaErro("Valores digitados de forma incorreta.");
+		} catch (Exception e){
+			ScreenManager.alertaErro("Algo deu errado.");
+		}
+	}
+	
+	@FXML
+	void removerFatura() {
+		if (faturaSelecionada != null) {
+			Fachada.getInstance().removerFatura(faturaSelecionada);
+			preencherTabelaFaturas();
+			ScreenManager.alertaInformativo("Fatura removida com sucesso");
+		} else {
+			ScreenManager.alertaErro("Nenhuma Fatura foi selecionada.");
+		}
+	}
 
 	@FXML
 	void cadastrarServico() {
-		if (!descricaoServiçoTextField.getText().equals("")
-				&& !valorServiçoTextField.getText().equals("")) {
+		if (!descricaoServiçoTextField.getText().equals("") && !valorServiçoTextField.getText().equals("")) {
 			Servico a = new Servico();
 			a.setDescr(descricaoServiçoTextField.getText());
 			a.setValor(Double.parseDouble(valorServiçoTextField.getText()));
@@ -93,25 +154,29 @@ public class GerenciarServicosController implements Initializable {
 			preencherTabelaServicos();
 			descricaoServiçoTextField.setText("");
 			valorServiçoTextField.setText("");
-			ScreenManager.getInstance().alertaInformativo("Servico cadastrado com sucesso!");
-		}
-		else
-			ScreenManager.getInstance().alertaInformativo("Por favor entre com os dados nos campos!");
+			ScreenManager.alertaInformativo("Servico cadastrado com sucesso!");
+		} else
+			ScreenManager.alertaInformativo("Por favor entre com os dados nos campos!");
 	}
 
 	@FXML
 	void editarFatura() {
 		if (faturaSelecionada != null) {
 			ableAll();
+			salvarAltertacoesButton.setDisable(false);
+			cadastrarFaturaButton.setDisable(true);
 			preencherCamposEdicao(faturaSelecionada);
+		} else {
+			ScreenManager.alertaErro("Nenhuma fatura foi selecionada para edição");
 		}
 	}
-	
-	@FXML public void removerServico() {
+
+	@FXML
+	public void removerServico() {
 		if (servicoSelecionado != null) {
 			Fachada.getInstance().removerServico(servicoSelecionado);
 			preencherTabelaServicos();
-			ScreenManager.getInstance().alertaInformativo("Servico removido com sucesso!");
+			ScreenManager.alertaInformativo("Servico removido com sucesso!");
 		}
 	}
 
@@ -128,8 +193,9 @@ public class GerenciarServicosController implements Initializable {
 			Fachada.getInstance().alterarFatura(faturaSelecionada);
 			preencherCamposEdicao(null);
 			disableAll();
+			salvarAltertacoesButton.setDisable(true);
 			preencherTabelaFaturas();
-			ScreenManager.getInstance().alertaInformativo("Dados alterados com sucesso!");
+			ScreenManager.alertaInformativo("Dados alterados com sucesso!");
 		}
 	}
 
@@ -152,9 +218,11 @@ public class GerenciarServicosController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		preencherTabelaServicos();
 		disableAll();
-		
+		salvarAltertacoesButton.setDisable(true);
+		cadastrarFaturaButton.setDisable(true);
+
 	}
-	
+
 	private void disableAll() {
 		valorDaFaturaTextField.setDisable(true);
 		valorDaMultaTextField.setDisable(true);
@@ -163,7 +231,7 @@ public class GerenciarServicosController implements Initializable {
 		statusTextField.setDisable(true);
 		tipoDeFaturaTextField.setDisable(true);
 	}
-	
+
 	private void ableAll() {
 		valorDaFaturaTextField.setDisable(false);
 		valorDaMultaTextField.setDisable(false);
@@ -275,7 +343,7 @@ public class GerenciarServicosController implements Initializable {
 
 	@FXML
 	public void voltar() {
-		ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin()); 
+		ScreenManager.setSceneLeft(ScreenManager.getInstance().getTelaAdmin());
 	}
 
 }

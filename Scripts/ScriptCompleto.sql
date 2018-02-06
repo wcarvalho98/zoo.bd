@@ -1,4 +1,4 @@
--- DROP SCHEMA zoologico;
+DROP SCHEMA zoologico;
 Create schema Zoologico;
 use Zoologico;
 
@@ -394,7 +394,7 @@ create table if not exists Item_Estoque(
     id_animal int Null,
 	primary key (cod_prod_ref, id),
     Foreign Key(id) references Estoque(id),
-    Foreign Key(cod_prod_ref) references Produto_Ref(cod),
+    Foreign Key(cod_prod_ref) references Produto_Ref(cod) on delete cascade,
 	foreign key(id_animal) references Animal(id) on delete cascade
 );
 

@@ -4,7 +4,7 @@
  * br.ufrpe.zoologico.gui.grafica.controller - Versao 1.0 - 2017.2
  * TODO 02.02.2018 
  */
-package br.ufrpe.zoologico.gui.grafica.controller;
+package br.ufrpe.zoologico.negocio.gerenciamento;
 
 import java.util.ArrayList;
 

@@ -9,15 +9,10 @@ package br.ufrpe.zoologico.DAO;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
-import br.ufrpe.zoologico.gui.grafica.controller.Fachada;
-import br.ufrpe.zoologico.negocio.beans.Animal;
-import br.ufrpe.zoologico.negocio.beans.Consulta;
 import br.ufrpe.zoologico.negocio.beans.Estoque;
 import br.ufrpe.zoologico.negocio.beans.ItemEstoque;
-import br.ufrpe.zoologico.negocio.beans.Veterinario;
 
 public class DAOEstoque_ItemEstoque extends DAO<Estoque> {
 

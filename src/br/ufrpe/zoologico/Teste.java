@@ -20,6 +20,7 @@ import br.ufrpe.zoologico.negocio.beans.Fatura;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
 import br.ufrpe.zoologico.negocio.beans.Veterinario;
 
+@SuppressWarnings("unused")
 public class Teste {
 
 	/** 
@@ -69,6 +70,7 @@ public class Teste {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}*/
+		
 	}
 
 }

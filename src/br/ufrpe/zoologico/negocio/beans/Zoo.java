@@ -6,7 +6,6 @@
  */
 package br.ufrpe.zoologico.negocio.beans;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Zoo {

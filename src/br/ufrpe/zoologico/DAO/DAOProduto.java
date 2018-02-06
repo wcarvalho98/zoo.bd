@@ -45,7 +45,7 @@ public class DAOProduto extends DAO<ProdutoRef> {
 
 	@Override
 	public void remover(ProdutoRef o) throws Exception {
-		String sql = "DELETE FROM produto_ref where `cod` = ?";
+		String sql = "DELETE FROM produto_ref WHERE `cod` = ?";
 		preparar(sql);
 		getStmt().setInt(1, o.getCod());
 		try {

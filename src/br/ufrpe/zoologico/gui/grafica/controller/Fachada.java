@@ -13,11 +13,13 @@ import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.Administrador;
 import br.ufrpe.zoologico.negocio.beans.Animal;
+import br.ufrpe.zoologico.negocio.beans.Categoria;
 import br.ufrpe.zoologico.negocio.beans.Consulta;
 import br.ufrpe.zoologico.negocio.beans.Diagnostico;
 import br.ufrpe.zoologico.negocio.beans.Especie;
 import br.ufrpe.zoologico.negocio.beans.Estoque;
 import br.ufrpe.zoologico.negocio.beans.Fatura;
+import br.ufrpe.zoologico.negocio.beans.Fornecedor;
 import br.ufrpe.zoologico.negocio.beans.Funcionario;
 import br.ufrpe.zoologico.negocio.beans.Genero;
 import br.ufrpe.zoologico.negocio.beans.Instituicao;
@@ -28,15 +30,18 @@ import br.ufrpe.zoologico.negocio.beans.Ordem;
 import br.ufrpe.zoologico.negocio.beans.ProdutoRef;
 import br.ufrpe.zoologico.negocio.beans.Reserva;
 import br.ufrpe.zoologico.negocio.beans.Servico;
+import br.ufrpe.zoologico.negocio.beans.SubCategoria;
 import br.ufrpe.zoologico.negocio.beans.Veterinario;
 import br.ufrpe.zoologico.negocio.beans.Zoo;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoAdmin;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoAnimal;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoCategoria;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoConsultas;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoDiagnostico;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoEspecie;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoEstoque;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoFaturas;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoFornecedor;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoFuncionario;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoGenero;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoInstituicao;
@@ -47,6 +52,7 @@ import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoOrdem;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoProduto;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoReserva;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoServicos;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoSubCategoria;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoVeterinario;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoZoo;
 
@@ -72,6 +78,9 @@ public class Fachada {
 	private GerenciamentoDiagnostico diagnostico;
 	private GerenciamentoEstoque estoque;
 	private GerenciamentoProduto produto;
+	private GerenciamentoFornecedor fornecedor;
+	private GerenciamentoCategoria categ;
+	private GerenciamentoSubCategoria subCateg;
 	
 	private Fachada() {
 		consultas = new GerenciamentoConsultas();
@@ -93,6 +102,10 @@ public class Fachada {
 		login = new GerenciamentoLogin();
 		diagnostico = new GerenciamentoDiagnostico();
 		estoque = new GerenciamentoEstoque();
+		fornecedor = new GerenciamentoFornecedor();
+		produto = new GerenciamentoProduto();
+		categ = new GerenciamentoCategoria();
+		subCateg = new GerenciamentoSubCategoria();
 	}
 	
 	public static Fachada getInstance() {
@@ -496,5 +509,20 @@ public class Fachada {
 	
 	public ArrayList<ProdutoRef> listarProdutos() throws Exception{
 		return produto.listarTodos();
+	}
+	
+	/** FORNECEDOR **/
+	public ArrayList<Fornecedor> listarTodosFornecedores(){
+		return fornecedor.listarTodos();
+	}
+	
+	/** CATEGORIA **/
+	public ArrayList<Categoria> listarTodasCategorias(){
+		return categ.listarTodas();
+	}
+	
+	/** SUB_CATEGORIA **/
+	public ArrayList<SubCategoria> listarTodasSubCategorias(){
+		return subCateg.listarTodas();
 	}
 }

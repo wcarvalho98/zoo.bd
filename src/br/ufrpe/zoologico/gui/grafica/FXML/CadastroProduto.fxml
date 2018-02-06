@@ -25,7 +25,7 @@
             <Font size="24.0" />
          </font>
       </TextField>
-      <Button fx:id="confirmarCadastro" layoutX="1025.0" layoutY="604.0" mnemonicParsing="false" onAction="#confirmarCadastro" prefHeight="77.0" prefWidth="218.0" text="Confirmar">
+      <Button fx:id="confirmarCadastro" disable="true" layoutX="1025.0" layoutY="604.0" mnemonicParsing="false" onAction="#confirmarCadastro" prefHeight="77.0" prefWidth="218.0" text="Confirmar" visible="false">
          <font>
             <Font size="36.0" />
          </font>
@@ -60,13 +60,13 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <TableView fx:id="tbCateg" layoutX="774.0" layoutY="190.0" prefHeight="278.0" prefWidth="218.0">
+      <TableView fx:id="tbCateg" layoutX="774.0" layoutY="190.0" prefHeight="151.0" prefWidth="218.0">
         <columns>
           <TableColumn fx:id="tcIdCateg" prefWidth="43.0" text="ID" />
           <TableColumn fx:id="tcCateg" prefWidth="174.0" text="Categoria" />
         </columns>
       </TableView>
-      <TableView fx:id="tbSubCateg" layoutX="1037.0" layoutY="190.0" prefHeight="278.0" prefWidth="218.0">
+      <TableView fx:id="tbSubCateg" layoutX="1037.0" layoutY="190.0" prefHeight="151.0" prefWidth="218.0">
         <columns>
           <TableColumn fx:id="tcIdSubCateg" prefWidth="40.0" text="ID" />
           <TableColumn fx:id="tcSubCateg" prefWidth="177.0" text="Sub_Categoria" />
@@ -109,15 +109,40 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="confirmarAlteracao" layoutX="790.0" layoutY="514.0" mnemonicParsing="false" onAction="#confirmarAlteracao" prefHeight="77.0" prefWidth="218.0" text="Confirmar">
+      <Button fx:id="confirmarAlteracao" disable="true" layoutX="1025.0" layoutY="604.0" mnemonicParsing="false" onAction="#confirmarAlteracao" prefHeight="77.0" prefWidth="218.0" text="Confirmar" visible="false">
          <font>
             <Font size="36.0" />
          </font>
       </Button>
-      <Button fx:id="confirmarRemorcao" layoutX="1025.0" layoutY="514.0" mnemonicParsing="false" onAction="#confirmarRemorcao" prefHeight="77.0" prefWidth="218.0" text="Confirmar">
+      <Button fx:id="confirmarRemorcao" disable="true" layoutX="1025.0" layoutY="604.0" mnemonicParsing="false" onAction="#confirmarRemorcao" prefHeight="77.0" prefWidth="218.0" text="Confirmar" visible="false">
          <font>
             <Font size="36.0" />
          </font>
       </Button>
+      <TextField fx:id="idProduto" disable="true" layoutX="330.0" layoutY="139.0" prefHeight="51.0" prefWidth="80.0" promptText="ID">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </TextField>
+      <Label layoutX="745.0" layoutY="351.0" text="Preço da última compra:">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="745.0" layoutY="412.0" text="Quantidade em estoque:">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <TextField fx:id="precoUltCompra" layoutX="1087.0" layoutY="348.0" prefHeight="51.0" prefWidth="95.0" promptText="Apenas Números">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="quantEstoq" layoutX="1087.0" layoutY="409.0" prefHeight="51.0" prefWidth="95.0" promptText="Apenas Números">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>

@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
 import br.ufrpe.zoologico.negocio.beans.Administrador;
 import br.ufrpe.zoologico.negocio.beans.ProdutoRef;
 
@@ -17,14 +18,16 @@ public class DAOProduto extends DAO<ProdutoRef> {
 
 	@Override
 	public void inserir(ProdutoRef o) throws Exception {
-		String sql = "INSERT INTO produto_ref (`descr`,`freq_pedido`, `cod_barra`, `preco_ult_compra`, "
-				+ "`qtd_total_estoque`, `qtd_min`, `subcat`, `categ`, `fornecedor`) VALUES (?,?,?,?,?,?,?,?,?)";
+		/*String sql = "INSERT INTO produto_ref (`descr`,`freq_pedido`, `cod_barra`, `preco_ult_compra`, "
+				+ "`qtd_total_estoque`, `qtd_min`, `subcat`, `categ`, `fornecedor`) VALUES (?,?,?,?,?,?,?,?,?)";*/
+		String sql = "INSERT INTO `produto_ref` (`descr`,`freq_pedido`,`cod_barra`,`preco_ult_compra`,`qtd_total_estoque`,"
+				+ "`qtd_min`,`subcat`,`categ`,`fornecedor`) VALUES (?,?,?,?,?,?,?,?,?)";
 		preparar(sql);
 		getStmt().setString(1, o.getDescr());
 		getStmt().setInt(2, o.getFreq_pedido());
 		getStmt().setString(3, o.getCod_barra());
 		getStmt().setDouble(4, o.getPreco_ult_compra());
-		getStmt().setInt(5, o.getQtd_estoque());
+		getStmt().setInt(5, o.getQtd_total_estoque());
 		getStmt().setInt(6, o.getQtd_min());
 		getStmt().setInt(7, o.getSubcat());
 		getStmt().setInt(8, o.getCateg());
@@ -34,7 +37,7 @@ public class DAOProduto extends DAO<ProdutoRef> {
 			getCon().commit();
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.getInstance().alertaErro(e.getMessage());
 		} finally {
 			fecharStmt();
 		}
@@ -58,8 +61,8 @@ public class DAOProduto extends DAO<ProdutoRef> {
 	}
 	@Override
 	public void alterar(ProdutoRef o) throws Exception {
-		String sql = "UPDATE FROM produto_ref SET `descr` = ? and `freq_pedido` = ? and `cod_barra` = ? and `preco_ult_compra` = ? "
-				+ " and `qtd_total_estoque` = ? and `qtd_min` = ? `subcat` = ? and `categ` = ? `fornecedor` = ? ";
+		String sql = "UPDATE produto_ref SET `descr` = ?, `freq_pedido` = ?, `cod_barra` = ?, `preco_ult_compra` = ?, "
+				+ "`qtd_total_estoque` = ?, `qtd_min` = ?, `subcat` = ?, `categ` = ?, `fornecedor` = ? ";
 		preparar(sql);
 		getStmt().setString(1, o.getDescr());
 		getStmt().setInt(2, o.getFreq_pedido());
@@ -75,7 +78,7 @@ public class DAOProduto extends DAO<ProdutoRef> {
 			getCon().commit();
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.getInstance().alertaErro(e.getMessage());
 		} finally {
 			fecharStmt();
 		}
@@ -98,7 +101,9 @@ public class DAOProduto extends DAO<ProdutoRef> {
 		
 		ArrayList<ProdutoRef> list = new ArrayList<>();
 		while (rs.next()) {
-			ProdutoRef o = new ProdutoRef(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getInt(5), rs.getDouble(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10), rs.getInt(11));
+			
+			ProdutoRef o = new ProdutoRef (rs.getInt(1), rs.getString(2),rs.getInt(3), rs.getString(4), rs.getDouble(5), rs.getInt(6), rs.getInt(7), rs.getInt(9), rs.getInt(8), rs.getInt(10));
+
 			list.add(o);
 		}
 		rs.close();

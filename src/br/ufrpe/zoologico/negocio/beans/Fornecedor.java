@@ -10,7 +10,8 @@ public class Fornecedor {
 	private int cod;
 	private String nome;
 	private String cnpj;
-	private String telefone;
+	private String telefone1;
+	private String telefone2;
 	private boolean ativo;
 	/**
 	 * @param cod
@@ -19,12 +20,13 @@ public class Fornecedor {
 	 * @param telefone
 	 * @param ativo
 	 */
-	public Fornecedor(int cod, String nome, String cnpj, String telefone, boolean ativo) {
+	public Fornecedor(int cod, String nome, String cnpj, String telefone1, String telefone2, boolean ativo) {
 		super();
 		this.cod = cod;
 		this.nome = nome;
 		this.cnpj = cnpj;
-		this.telefone = telefone;
+		this.setTelefone1(telefone1);
+		this.setTelefone2(telefone2);
 		this.ativo = ativo;
 	}
 	/**
@@ -69,20 +71,7 @@ public class Fornecedor {
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-	/**
-	 * Metodo: getTelefone
-	 * @return telefone
-	 */
-	public String getTelefone() {
-		return telefone;
-	}
-	/**
-	 * Metodo: setTelefone
-	 * @param telefone the telefone to set
-	 */
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
+	
 	/**
 	 * Metodo: isAtivo
 	 * @return ativo
@@ -105,7 +94,6 @@ public class Fornecedor {
 		result = prime * result + ((cnpj == null) ? 0 : cnpj.hashCode());
 		result = prime * result + cod;
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((telefone == null) ? 0 : telefone.hashCode());
 		return result;
 	}
 	@Override
@@ -131,17 +119,41 @@ public class Fornecedor {
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
-		if (telefone == null) {
-			if (other.telefone != null)
-				return false;
-		} else if (!telefone.equals(other.telefone))
-			return false;
+		
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Fornecedor [cod=" + cod + ", nome=" + nome + ", cnpj=" + cnpj + ", telefone=" + telefone + ", ativo="
+		return "Fornecedor [cod=" + cod + ", nome=" + nome + ", cnpj=" + cnpj + ", telefone=" + telefone1 + ", ativo="
 				+ ativo + "]";
+	}
+	/**
+	 * Metodo: getTelefone1
+	 * @return telefone1
+	 */
+	public String getTelefone1() {
+		return telefone1;
+	}
+	/**
+	 * Metodo: setTelefone1
+	 * @param telefone1 the telefone1 to set
+	 */
+	public void setTelefone1(String telefone1) {
+		this.telefone1 = telefone1;
+	}
+	/**
+	 * Metodo: getTelefone2
+	 * @return telefone2
+	 */
+	public String getTelefone2() {
+		return telefone2;
+	}
+	/**
+	 * Metodo: setTelefone2
+	 * @param telefone2 the telefone2 to set
+	 */
+	public void setTelefone2(String telefone2) {
+		this.telefone2 = telefone2;
 	}
 	
 	

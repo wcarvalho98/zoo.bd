@@ -85,7 +85,7 @@ public class DAOFatura extends DAO<Fatura> {
 
 	@Override
 	public void remover(Fatura o) throws Exception {
-		String sql = "REMOVE FROM fatura WHERE idFatura = ?";
+		String sql = "delete FROM fatura WHERE idFatura = ?";
 		preparar(sql);
 		getStmt().setInt(1, o.getIdFatura());
 		try {

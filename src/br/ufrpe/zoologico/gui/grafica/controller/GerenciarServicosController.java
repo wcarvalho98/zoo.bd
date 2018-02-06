@@ -125,6 +125,8 @@ public class GerenciarServicosController implements Initializable {
 				disableAll();
 				cadastrarFaturaButton.setDisable(true);
 				
+				ScreenManager.alertaInformativo("Fatura inserida com sucesso para o serviço de id = " + servicoSelecionado.getId());
+				
 			} else if (servicoSelecionado == null) {
 				ScreenManager.alertaErro("Nenhum serviço selecionado.");
 			}
@@ -132,6 +134,17 @@ public class GerenciarServicosController implements Initializable {
 			ScreenManager.alertaErro("Valores digitados de forma incorreta.");
 		} catch (Exception e){
 			ScreenManager.alertaErro("Algo deu errado.");
+		}
+	}
+	
+	@FXML
+	void removerFatura() {
+		if (faturaSelecionada != null) {
+			Fachada.getInstance().removerFatura(faturaSelecionada);
+			preencherTabelaFaturas();
+			ScreenManager.alertaInformativo("Fatura removida com sucesso");
+		} else {
+			ScreenManager.alertaErro("Nenhuma Fatura foi selecionada.");
 		}
 	}
 

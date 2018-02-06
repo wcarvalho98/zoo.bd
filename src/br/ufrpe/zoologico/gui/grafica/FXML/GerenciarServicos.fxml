@@ -126,6 +126,11 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
+                  <Button layoutX="1113.0" layoutY="151.0" mnemonicParsing="false" onAction="#removerFatura" text="Remover Fatura">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
                </children></AnchorPane>
       </content>
     </Tab>

@@ -10,7 +10,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-import br.ufrpe.zoologico.exceptions.ObjetoNaoExisteException;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

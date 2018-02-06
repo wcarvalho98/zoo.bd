@@ -13,7 +13,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.Fatura;
-import br.ufrpe.zoologico.negocio.beans.Servico;
 import javafx.fxml.FXML;
 
 public class DAOFatura extends DAO<Fatura> {

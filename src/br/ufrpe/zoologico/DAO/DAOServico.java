@@ -8,7 +8,6 @@ package br.ufrpe.zoologico.DAO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.Fatura;

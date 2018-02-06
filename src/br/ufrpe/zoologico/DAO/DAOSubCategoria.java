@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import br.ufrpe.zoologico.negocio.beans.Categoria;
 import br.ufrpe.zoologico.negocio.beans.SubCategoria;
 
 public class DAOSubCategoria extends DAO<SubCategoria>{

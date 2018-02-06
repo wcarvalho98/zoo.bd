@@ -12,7 +12,6 @@ import java.util.ResourceBundle;
 
 import br.ufrpe.zoologico.negocio.beans.Categoria;
 import br.ufrpe.zoologico.negocio.beans.Fornecedor;
-import br.ufrpe.zoologico.negocio.beans.PedidoServico;
 import br.ufrpe.zoologico.negocio.beans.ProdutoRef;
 import br.ufrpe.zoologico.negocio.beans.SubCategoria;
 import javafx.beans.property.SimpleStringProperty;

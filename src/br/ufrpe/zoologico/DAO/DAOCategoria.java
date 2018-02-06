@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.Categoria;
-import br.ufrpe.zoologico.negocio.beans.Especie;
 
 public class DAOCategoria extends DAO<Categoria>{
 

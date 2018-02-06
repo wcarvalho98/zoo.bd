@@ -6,6 +6,7 @@
  */
 package br.ufrpe.zoologico.exceptions;
 
+@SuppressWarnings("serial")
 public class ObjetoNaoExisteException extends Exception {
 
 	/**

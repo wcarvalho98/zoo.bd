@@ -60,13 +60,13 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <TableView fx:id="tbCateg" layoutX="774.0" layoutY="190.0" prefHeight="278.0" prefWidth="218.0">
+      <TableView fx:id="tbCateg" layoutX="774.0" layoutY="190.0" prefHeight="151.0" prefWidth="218.0">
         <columns>
           <TableColumn fx:id="tcIdCateg" prefWidth="43.0" text="ID" />
           <TableColumn fx:id="tcCateg" prefWidth="174.0" text="Categoria" />
         </columns>
       </TableView>
-      <TableView fx:id="tbSubCateg" layoutX="1037.0" layoutY="190.0" prefHeight="278.0" prefWidth="218.0">
+      <TableView fx:id="tbSubCateg" layoutX="1037.0" layoutY="190.0" prefHeight="151.0" prefWidth="218.0">
         <columns>
           <TableColumn fx:id="tcIdSubCateg" prefWidth="40.0" text="ID" />
           <TableColumn fx:id="tcSubCateg" prefWidth="177.0" text="Sub_Categoria" />
@@ -119,7 +119,27 @@
             <Font size="36.0" />
          </font>
       </Button>
-      <TextField fx:id="idProduto" disable="true" layoutX="330.0" layoutY="139.0" prefHeight="51.0" prefWidth="80.0" promptText="ID" visible="false">
+      <TextField fx:id="idProduto" disable="true" layoutX="330.0" layoutY="139.0" prefHeight="51.0" prefWidth="80.0" promptText="ID">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </TextField>
+      <Label layoutX="745.0" layoutY="351.0" text="Preço da última compra:">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="745.0" layoutY="412.0" text="Quantidade em estoque:">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <TextField fx:id="precoUltCompra" layoutX="1087.0" layoutY="348.0" prefHeight="51.0" prefWidth="95.0" promptText="Apenas Números">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="quantEstoq" layoutX="1087.0" layoutY="409.0" prefHeight="51.0" prefWidth="95.0" promptText="Apenas Números">
          <font>
             <Font size="24.0" />
          </font>

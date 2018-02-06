@@ -48,5 +48,4 @@ public class DAOFornecedor extends DAO<Fornecedor>{
 		fecharStmt();
 		return list;
 	}
-
 }

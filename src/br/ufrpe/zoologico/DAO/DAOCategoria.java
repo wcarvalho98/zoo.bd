@@ -49,5 +49,25 @@ public class DAOCategoria extends DAO<Categoria>{
 		fecharStmt();
 		return list;
 	}
+	
+	public Categoria buscar(int id) throws Exception{
+		String sql = "SELECT * FROM categoria WHERE `cod` = ?";
+		preparar(sql);
+		getStmt().setInt(1, id);
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			e.printStackTrace();
+		}
+		rs.next();
+		Categoria o = new Categoria(rs.getInt(1),rs.getString(2));
+		rs.close();
+		fecharStmt();
+		return o;
+	}
 
 }

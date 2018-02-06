@@ -15,6 +15,7 @@ import br.ufrpe.zoologico.negocio.beans.Fornecedor;
 import br.ufrpe.zoologico.negocio.beans.ProdutoRef;
 import br.ufrpe.zoologico.negocio.beans.SubCategoria;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -29,7 +30,7 @@ import javafx.util.Callback;
 public class CadastroProdutoController implements Initializable {
 
 	@FXML private Button inserir, remover, alterar, confirmarCadastro, confirmarRemorcao, confirmarAlteracao;
-	@FXML private TextField descricaoTextField, codBarrasTextField, freqPedido, qtdMinTextField, idProduto; 
+	@FXML private TextField descricaoTextField, codBarrasTextField, freqPedido, qtdMinTextField, idProduto, precoUltCompra, quantEstoq; 
 	
 	// TABELA FORNECEDOR
 	@FXML private TableView<Fornecedor> tbFornecedor;
@@ -44,10 +45,15 @@ public class CadastroProdutoController implements Initializable {
 	@FXML private TableColumn<SubCategoria, String> tcIdSubCateg, tcSubCateg;
 	
 	private Fachada f;
-	
+	private int i;
+	private Fornecedor fAtual;
+	private Categoria cAtual;
+	private SubCategoria scAtual;
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		f = Fachada.getInstance();
+		i = 0;
+		this.select();
 		preencherTabelaCategoria(f.listarTodasCategorias());
 		preencherTabelaFornecedor(f.listarTodosFornecedores());
 		preencherTabelaSubCategoria(f.listarTodasSubCategorias());
@@ -59,15 +65,23 @@ public class CadastroProdutoController implements Initializable {
 	}
 	
 	@FXML 
-	public void ir(){
+	public void ir() throws Exception{
 		allDisable();
 		idProduto.setVisible(true);
+		i++;
+		if(i > f.listarProdutos().size() - 1)
+			i = 0;
+		preencherProduto(i);
 	}
 	
 	@FXML
-	public void retornar(){
+	public void retornar() throws Exception{
 		allDisable();
 		idProduto.setVisible(true);
+		i--;
+		if(i < 0)
+			i = f.listarProdutos().size() - 1;
+		preencherProduto(i);
 	}
 	
 	@FXML 
@@ -78,6 +92,9 @@ public class CadastroProdutoController implements Initializable {
 		confirmarRemorcao.setDisable(true);
 		confirmarAlteracao.setDisable(true);
 		confirmarAlteracao.setVisible(false);
+		preencherTabelaCategoria(f.listarTodasCategorias());
+		preencherTabelaFornecedor(f.listarTodosFornecedores());
+		preencherTabelaSubCategoria(f.listarTodasSubCategorias());
 		allNotDisable();
 		allNull();
 		idProduto.setVisible(false);
@@ -108,7 +125,15 @@ public class CadastroProdutoController implements Initializable {
 	
 	@FXML
 	public void confirmarCadastro(){
-		
+		ProdutoRef p = pegarTudo();
+		try {
+			f.inserirProduto(p);
+			ScreenManager.getInstance().alertaInformativo("Cadastro feito com sucesso!");
+		} catch (Exception e) {
+			ScreenManager.getInstance().alertaErro(e.getMessage());
+		} finally{
+			allNull();
+		}
 	}
 	
 	@FXML
@@ -190,11 +215,42 @@ public class CadastroProdutoController implements Initializable {
 	}
 	
 	
+	private void select(){
+		tbFornecedor.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Fornecedor>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Fornecedor> observable, Fornecedor oldValue,
+					Fornecedor newValue) {
+				fAtual = newValue;
+			}
+		});
+		
+		tbCateg.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Categoria>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Categoria> observable, Categoria oldValue,
+					Categoria newValue) {
+				cAtual = newValue;
+			}
+		});
+		
+		tbSubCateg.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<SubCategoria>() {
+
+			@Override
+			public void changed(ObservableValue<? extends SubCategoria> observable, SubCategoria oldValue,
+					SubCategoria newValue) {
+				scAtual = newValue;
+			}
+		});
+	}
+	
 	public void allDisable(){
 		descricaoTextField.setDisable(true);
 		codBarrasTextField.setDisable(true);
 		freqPedido.setDisable(true);
 		qtdMinTextField.setDisable(true);
+		precoUltCompra.setDisable(true);
+		quantEstoq.setDisable(true);
 	}
 	
 	public void allNotDisable(){
@@ -202,6 +258,8 @@ public class CadastroProdutoController implements Initializable {
 		codBarrasTextField.setDisable(false);
 		freqPedido.setDisable(false);
 		qtdMinTextField.setDisable(false);
+		precoUltCompra.setDisable(false);
+		quantEstoq.setDisable(false);
 	}
 	
 	public void allNull(){
@@ -209,8 +267,65 @@ public class CadastroProdutoController implements Initializable {
 		codBarrasTextField.setText(null);
 		freqPedido.setText(null);
 		qtdMinTextField.setText(null);
+		precoUltCompra.setText(null);
+		quantEstoq.setText(null);
 	}
 	
+	public void preencherProduto(int i){
+		try {
+			ProdutoRef p = f.listarProdutos().get(i);
+			preencherTabelaCategoria(buscarC(p.getCateg()));
+			preencherTabelaFornecedor(buscarF(p.getFornecedor()));
+			preencherTabelaSubCategoria(buscarSB(p.getSubcat()));
+			descricaoTextField.setText(p.getDescr());
+			codBarrasTextField.setText(p.getCod_barra());
+			freqPedido.setText(Integer.valueOf(p.getFreq_pedido()).toString());
+			qtdMinTextField.setText(Integer.valueOf(p.getQtd_min()).toString());
+			idProduto.setText(Integer.valueOf(p.getCod()).toString());
+			precoUltCompra.setText(Double.valueOf(p.getPreco_ult_compra()).toString());
+			quantEstoq.setText(Integer.valueOf(p.getQtd_total_estoque()).toString());
+		} catch (Exception e) {
+			ScreenManager.getInstance().alertaErro(e.getMessage());
+		}
+	}
 	
+	private ArrayList<Fornecedor> buscarF(int id){
+		ArrayList<Fornecedor> list = new ArrayList<>();
+		for(int i = 0 ; i < f.listarTodosFornecedores().size(); i++){
+			if(f.listarTodosFornecedores().get(i).getCod() == id)
+				list.add(f.listarTodosFornecedores().get(i));
+		}
+		return list;
+	}
 	
+	private ArrayList<Categoria> buscarC(int cod){
+		ArrayList<Categoria> list = new ArrayList<>();
+
+		for(int i = 0 ; i < f.listarTodasCategorias().size(); i++){
+			if(f.listarTodasCategorias().get(i).getCod() == cod)
+				list.add(f.listarTodasCategorias().get(i));
+		}
+		return list;
+	}
+	
+	private ArrayList<SubCategoria> buscarSB(int id){
+		ArrayList<SubCategoria> list = new ArrayList<>();
+		for(int i = 0 ; i < f.listarTodasSubCategorias().size(); i++){
+			if(f.listarTodasSubCategorias().get(i).getCod() == id)
+				list.add(f.listarTodasSubCategorias().get(i));
+		}
+		return list;
+	}
+
+	
+	private ProdutoRef pegarTudo(){
+		String val1 = descricaoTextField.getText();
+		String val2 = codBarrasTextField.getText();
+		int val3 = Integer.valueOf(freqPedido.getText());
+		int val4 = Integer.valueOf(qtdMinTextField.getText());
+		double val5 = Double.valueOf(precoUltCompra.getText());
+		int val6 = Integer.valueOf(quantEstoq.getText());
+		ProdutoRef p = new ProdutoRef(0, val1, val3, val2,val5, val6, val4, scAtual.getCod(), cAtual.getCod(), fAtual.getCod());
+		return p;
+	}
 }

@@ -31,14 +31,12 @@ public class ProdutoRef {
 	 * @param categ
 	 * @param fornecedor
 	 */
-	public ProdutoRef(int cod, String descr, int freq_pedido, String cod_barra, int qtd_estoque,
-			double preco_ult_compra, int qtd_total_estoque, int qtd_min, int subcat, int categ, int fornecedor) {
+	public ProdutoRef(int cod, String descr, int freq_pedido, String cod_barra, double preco_ult_compra, int qtd_total_estoque, int qtd_min, int subcat, int categ, int fornecedor) {
 		super();
 		this.cod = cod;
 		this.descr = descr;
 		this.freq_pedido = freq_pedido;
 		this.cod_barra = cod_barra;
-		this.qtd_estoque = qtd_estoque;
 		this.preco_ult_compra = preco_ult_compra;
 		this.qtd_total_estoque = qtd_total_estoque;
 		this.qtd_min = qtd_min;

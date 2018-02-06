@@ -113,7 +113,6 @@ public class CadastroProdutoController implements Initializable {
 		try {
 			ProdutoRef p = pegarTudo();
 			f.removerProduto(p);
-			ScreenManager.alertaInformativo("Remoção feita com sucesso");
 		} catch (Exception e) {
 			ScreenManager.alertaErro(e.getMessage());
 		} finally{
@@ -139,7 +138,6 @@ public class CadastroProdutoController implements Initializable {
 		ProdutoRef p = pegarTudo();
 		try {
 			f.inserirProduto(p);
-			ScreenManager.alertaInformativo("Cadastro feito com sucesso!");
 		} catch (Exception e) {
 			ScreenManager.alertaErro(e.getMessage());
 		} finally{
@@ -295,6 +293,7 @@ public class CadastroProdutoController implements Initializable {
 		try {
 			ProdutoRef p = f.listarProdutos().get(i);
 			preencherTabelaCategoria(buscarC(p.getCateg()));
+			System.out.println(p.toString());
 			preencherTabelaFornecedor(buscarF(p.getFornecedor()));
 			preencherTabelaSubCategoria(buscarSB(p.getSubcat()));
 			descricaoTextField.setText(p.getDescr());
@@ -310,7 +309,7 @@ public class CadastroProdutoController implements Initializable {
 	}
 	
 	private ArrayList<Fornecedor> buscarF(int id){
-		ArrayList<Fornecedor> list = new ArrayList<>();
+		ArrayList<Fornecedor> list = new ArrayList<Fornecedor>();
 		for(int i = 0 ; i < f.listarTodosFornecedores().size(); i++){
 			if(f.listarTodosFornecedores().get(i).getCod() == id)
 				list.add(f.listarTodosFornecedores().get(i));
@@ -319,7 +318,7 @@ public class CadastroProdutoController implements Initializable {
 	}
 	
 	private ArrayList<Categoria> buscarC(int cod){
-		ArrayList<Categoria> list = new ArrayList<>();
+		ArrayList<Categoria> list = new ArrayList<Categoria>();
 
 		for(int i = 0 ; i < f.listarTodasCategorias().size(); i++){
 			if(f.listarTodasCategorias().get(i).getCod() == cod)
@@ -329,7 +328,7 @@ public class CadastroProdutoController implements Initializable {
 	}
 	
 	private ArrayList<SubCategoria> buscarSB(int id){
-		ArrayList<SubCategoria> list = new ArrayList<>();
+		ArrayList<SubCategoria> list = new ArrayList<SubCategoria>();
 		for(int i = 0 ; i < f.listarTodasSubCategorias().size(); i++){
 			if(f.listarTodasSubCategorias().get(i).getCod() == id)
 				list.add(f.listarTodasSubCategorias().get(i));

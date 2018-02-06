@@ -35,6 +35,7 @@ public class DAOProduto extends DAO<ProdutoRef> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Inserção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
 			ScreenManager.alertaErro(e.getMessage());
@@ -51,8 +52,10 @@ public class DAOProduto extends DAO<ProdutoRef> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Remoção feita com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
+			ScreenManager.alertaErro(e.getMessage());
 			e.printStackTrace();
 		} finally {
 			fecharStmt();
@@ -104,7 +107,7 @@ public class DAOProduto extends DAO<ProdutoRef> {
 		ArrayList<ProdutoRef> list = new ArrayList<>();
 		while (rs.next()) {
 			
-			ProdutoRef o = new ProdutoRef (rs.getInt(1), rs.getString(2),rs.getInt(3), rs.getString(4), rs.getDouble(5), rs.getInt(6), rs.getInt(7), rs.getInt(9), rs.getInt(8), rs.getInt(10));
+			ProdutoRef o = new ProdutoRef (rs.getInt(1), rs.getString(2),rs.getInt(3), rs.getString(4), rs.getDouble(5), rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10));
 
 			list.add(o);
 		}

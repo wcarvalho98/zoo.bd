@@ -72,7 +72,7 @@ public class DAOProduto extends DAO<ProdutoRef> {
 		getStmt().setInt(2, o.getFreq_pedido());
 		getStmt().setString(3, o.getCod_barra());
 		getStmt().setDouble(4, o.getPreco_ult_compra());
-		getStmt().setInt(5, o.getQtd_estoque());
+		getStmt().setInt(5, o.getQtd_total_estoque());
 		getStmt().setInt(6, o.getQtd_min());
 		getStmt().setInt(7, o.getSubcat());
 		getStmt().setInt(8, o.getCateg());

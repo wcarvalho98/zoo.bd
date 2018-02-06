@@ -113,7 +113,6 @@ public class CadastroProdutoController implements Initializable {
 		try {
 			ProdutoRef p = pegarTudo();
 			f.removerProduto(p);
-			ScreenManager.alertaInformativo("Remoção feita com sucesso");
 		} catch (Exception e) {
 			ScreenManager.alertaErro(e.getMessage());
 		} finally{
@@ -139,7 +138,6 @@ public class CadastroProdutoController implements Initializable {
 		ProdutoRef p = pegarTudo();
 		try {
 			f.inserirProduto(p);
-			ScreenManager.alertaInformativo("Cadastro feito com sucesso!");
 		} catch (Exception e) {
 			ScreenManager.alertaErro(e.getMessage());
 		} finally{
@@ -295,6 +293,7 @@ public class CadastroProdutoController implements Initializable {
 		try {
 			ProdutoRef p = f.listarProdutos().get(i);
 			preencherTabelaCategoria(buscarC(p.getCateg()));
+			System.out.println(p.toString());
 			preencherTabelaFornecedor(buscarF(p.getFornecedor()));
 			preencherTabelaSubCategoria(buscarSB(p.getSubcat()));
 			descricaoTextField.setText(p.getDescr());

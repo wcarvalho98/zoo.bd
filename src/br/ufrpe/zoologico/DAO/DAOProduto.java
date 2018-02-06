@@ -35,6 +35,7 @@ public class DAOProduto extends DAO<ProdutoRef> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Inserção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
 			ScreenManager.alertaErro(e.getMessage());
@@ -51,8 +52,10 @@ public class DAOProduto extends DAO<ProdutoRef> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Remoção feita com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
+			ScreenManager.alertaErro(e.getMessage());
 			e.printStackTrace();
 		} finally {
 			fecharStmt();

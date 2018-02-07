@@ -69,9 +69,9 @@ public class DAOAnimal extends DAO<Animal> {
 
 	@Override
 	public void alterar(Animal o) throws Exception {
-		String sql = "UPDATE animal SET " + "`nome` = ?,`vivo` = ?,`dt_nasc` = ?,`dt_falecimento` = ?"
-				+ "`idade` = ?,`nome_vulgar` = ?,`obs` = ?,`id_zoo` = ?,"
-				+ "`id_jaula` = ?,`ordem` = ?,`genero` = ?,`especie` = ?" + "WHERE `id` = ?";
+		String sql = "UPDATE animal SET " + "`nome` = ?, `vivo` = ?, `dt_nasc` = ?, `dt_falecimento` = ?, "
+				+ "`idade` = ?, `nome_vulgar` = ?, `obs` = ?, `id_zoo` = ?, "
+				+ "`id_jaula` = ?, `ordem` = ?, `genero` = ?, `especie` = ? " + "WHERE `id` = ?";
 		preparar(sql);
 		getStmt().setString(1, o.getNome());
 		getStmt().setBoolean(2, o.isVivo());
@@ -80,7 +80,6 @@ public class DAOAnimal extends DAO<Animal> {
 			getStmt().setDate(4, Date.valueOf(o.getDt_falecimento()));
 		else
 			getStmt().setDate(4, null);
-
 		getStmt().setInt(5, o.getIdade());
 		getStmt().setString(6, o.getNome_vulgar());
 		getStmt().setString(7, o.getObs());
@@ -96,6 +95,7 @@ public class DAOAnimal extends DAO<Animal> {
 			ScreenManager.alertaInformativo("Alteração realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
+			e.printStackTrace();
 			ScreenManager.alertaErro("Não foi possível alterar!");
 		} finally {
 			fecharStmt();

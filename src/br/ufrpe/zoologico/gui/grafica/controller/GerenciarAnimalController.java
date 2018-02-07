@@ -84,8 +84,8 @@ public class GerenciarAnimalController implements Initializable {
 	@FXML
 	private DatePicker dtNas, dtFale;
 
-	@FXML
-	private Button cadastrar;
+	@FXML private Button cadastrar;
+	@FXML private Button salvarAlteracao;
 	private Fachada f;
 	private int i;
 
@@ -179,13 +179,33 @@ public class GerenciarAnimalController implements Initializable {
 	}
 
 	@FXML
-	public void alterar() {
-
+	public void alterar() throws Exception {
+		allNotDisable();
+		idade.setDisable(true);
+		dtNas.setDisable(true);
+		idAnimal.setDisable(true);
+		salvarAlteracao.setDisable(false);
+		salvarAlteracao.setVisible(true);
+		preencherTabelaEspecie(f.listarEspecie());
+		preencherTabelaGenero(f.listarGenero());
+		preencherTabelaJaula(f.listarJaulas());
+		preencherTabelaOrdem(f.listarOrdem());
+		preencherTabelaZoo(f.listarZoo());
+		
+		
 	}
 
 	@FXML
 	public void salvarAlteracao() {
+		LocalDate val5 = dtFale.getValue();
+		String val2 = obs.getText();
+		String val3 = nome.getText();
+		LocalDate val4 = dtNas.getValue();
+		Animal b = new Animal(Integer.valueOf(idAnimal.getText()), val3, true, val4, val5, 
+				Integer.valueOf(idade.getText()), val3, val2, zooAtual.getIdZoo(), jaulaAtual.getId_jaula(),
+				ordemAtual.getId(), generoAtual.getId(), especieAtual.getSeq());
 
+		f.alterarAnimal(b);
 	}
 
 	@FXML
@@ -278,10 +298,8 @@ public class GerenciarAnimalController implements Initializable {
 
 	private void preencherTabelaEspecie(ArrayList<Especie> e) {
 		try {
-
 			tcIdEspecie.setCellValueFactory(
 					new Callback<TableColumn.CellDataFeatures<Especie, String>, ObservableValue<String>>() {
-
 						@Override
 						public ObservableValue<String> call(CellDataFeatures<Especie, String> param) {
 							return new SimpleStringProperty(Integer.valueOf(param.getValue().getSeq()).toString());
@@ -298,6 +316,7 @@ public class GerenciarAnimalController implements Initializable {
 					});
 
 			tbEspecie.setItems(FXCollections.observableArrayList(e));
+			tbEspecie.refresh();
 		} catch (Exception e2) {
 			Alert a = new Alert(AlertType.ERROR);
 			a.setTitle("Erro");

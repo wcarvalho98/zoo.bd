@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import br.ufrpe.zoologico.negocio.beans.EspacoReservavel;
+import br.ufrpe.zoologico.negocio.beans.Fatura;
 import br.ufrpe.zoologico.negocio.beans.Instituicao;
 import br.ufrpe.zoologico.negocio.beans.Reserva;
 import javafx.beans.property.SimpleStringProperty;
@@ -148,6 +149,15 @@ public class GerenciarReservasController implements Initializable {
     private TableColumn<Reserva, String> colunaStatsRemover;
     
     @FXML
+    private TableView<Fatura> tabelaFatura;
+    
+    @FXML
+    private TableColumn<Fatura, String> colunaIdFatura;
+    
+    @FXML
+    private TableColumn<Fatura, String> colunaValorFatura;
+    
+    @FXML
     private Label doisPontosUmLabel;
     
     @FXML
@@ -155,6 +165,9 @@ public class GerenciarReservasController implements Initializable {
     
     @FXML
     private Label doisPontosTresLabel;
+    
+    @FXML
+    private Label faturaLabel;
     
     @FXML
     private Button saveButton;
@@ -189,6 +202,7 @@ public class GerenciarReservasController implements Initializable {
     	this.insere = true;
     	preencheCamposInsercao();
     	preencheTabelaGerencia();
+    	despreencheLabel();
     }
 
     @FXML
@@ -221,6 +235,7 @@ public class GerenciarReservasController implements Initializable {
     @FXML
     void salvar(ActionEvent event) {
     	if (instituicaoAtual != null && espacoAtual != null) {
+    		reservaAtual = new Reserva();
     		reservaAtual.setCnpj(instituicaoAtual.getCnpj());
     		reservaAtual.setId(espacoAtual.getId());
     		reservaAtual.setValor(Double.parseDouble(valorTextField.getText()));
@@ -285,6 +300,8 @@ public class GerenciarReservasController implements Initializable {
     	doisPontosDoisLabel.setVisible(visivel);
     	doisPontosTresLabel.setVisible(visivel);
     	saveButton.setVisible(visivel);
+    	tabelaFatura.setVisible(!visivel);
+    	faturaLabel.setVisible(!visivel);
     }
     
     private void preencheLabel() {
@@ -301,6 +318,20 @@ public class GerenciarReservasController implements Initializable {
     	hrLabel.setText(ScreenManager.formatarLocalTime(res.get(indice).getHorario()));
     	hrInicioLabel.setText(ScreenManager.formatarLocalTime(res.get(indice).getHr_inicio_reser()));
     	hrFinalLabel.setText(ScreenManager.formatarLocalTime(res.get(indice).getHr_final_reser()));
+    }
+    
+    private void despreencheLabel() {
+    	idEspacoLabel.setText("--");
+    	valorLabel.setText("--");
+    	statsLabel.setText("--");
+    	tpEventoLabel.setText("--");
+    	cortesiaLabel.setText("--");
+    	qtdLabel.setText("--");
+    	dtValidadeLabel.setText("--/--/----");
+    	dtReservaLabel.setText("--/--/----");
+    	hrLabel.setText("--");
+    	hrInicioLabel.setText("--");
+    	hrFinalLabel.setText("--");
     }
     
     private void preencheCamposEdicao() {
@@ -341,10 +372,13 @@ public class GerenciarReservasController implements Initializable {
     private void preencheTabela() {
     	ArrayList<Instituicao> listaDeInstituicoes = new ArrayList<Instituicao>();
     	ArrayList<EspacoReservavel> listaDeEspacos = new ArrayList<EspacoReservavel>();
+    	ArrayList<Fatura> listaDeFatura = new ArrayList<Fatura>();
     	ArrayList<Reserva> res = Fachada.getInstance().listarReservas();
     	
     	listaDeInstituicoes.add(Fachada.getInstance().buscarInstituicao(res.get(indice).getCnpj()));
     	listaDeEspacos.add(Fachada.getInstance().buscarEspacoReservavel(res.get(indice).getId()));
+    	listaDeFatura.add(Fachada.getInstance().buscarFatura(Fachada.getInstance()
+    			.buscarReservaFatura(listaDeInstituicoes.get(0).getCnpj(), listaDeEspacos.get(0).getId())));
     	
     	colunaCnpjInstituicao.setCellValueFactory(new Callback<CellDataFeatures<Instituicao, String>, ObservableValue<String>>() {
 			@Override
@@ -409,6 +443,20 @@ public class GerenciarReservasController implements Initializable {
 			}
 		});
     	
+    	colunaIdFatura.setCellValueFactory(new Callback<CellDataFeatures<Fatura, String>, ObservableValue<String>>() {
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Fatura, String> todasAsFaturas) {
+				return new SimpleStringProperty(todasAsFaturas.getValue().getIdFatura() + "");
+			}
+		});
+    	
+    	colunaValorFatura.setCellValueFactory(new Callback<CellDataFeatures<Fatura, String>, ObservableValue<String>>() {
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Fatura, String> todasAsFaturas) {
+				return new SimpleStringProperty(todasAsFaturas.getValue().getValor() + "");
+			}
+		});
+    	
     	tabelaInstituicao.setItems(FXCollections.observableArrayList(listaDeInstituicoes));
     	tabelaInstituicao.refresh();
     	
@@ -417,6 +465,9 @@ public class GerenciarReservasController implements Initializable {
     	
     	tabelaReservaRemover.setItems(FXCollections.observableArrayList(res));
     	tabelaReservaRemover.refresh();
+    	
+    	tabelaFatura.setItems(FXCollections.observableArrayList(listaDeFatura));
+    	tabelaFatura.refresh();
     }
     
     private void preencheTabelaGerencia() {

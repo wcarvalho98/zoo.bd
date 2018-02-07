@@ -217,7 +217,7 @@ public class GerenciarAnimal_Item implements Initializable {
 
 	@FXML
 	void voltar() {
-		ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin());
+		ScreenManager.setSceneLeft(ScreenManager.getInstance().getTelaAdmin());
 	}
 
 	@Override

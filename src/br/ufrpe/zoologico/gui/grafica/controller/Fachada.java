@@ -309,6 +309,10 @@ public class Fachada {
 	public Fatura buscarFatura(int id) {
 		return faturas.buscar(id);
 	}
+	
+	public int buscarReservaFatura(String cnpj, int id_espaco) {
+		return faturas.buscarReserva(cnpj, id_espaco);
+	}
 
 	public ArrayList<Fatura> listarFaturas() {
 		return faturas.listarTodos();

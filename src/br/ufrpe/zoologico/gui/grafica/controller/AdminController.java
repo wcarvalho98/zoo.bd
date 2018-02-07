@@ -57,7 +57,7 @@ public class AdminController {
 
 	@FXML
 	void abrirTelaReserva() {
-
+		ScreenManager.setSceneRight(ScreenManager.getInstance().getTelaReserva());
 	}
 
 	@FXML

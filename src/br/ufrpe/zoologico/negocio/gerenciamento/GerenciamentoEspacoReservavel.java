@@ -31,12 +31,22 @@ public class GerenciamentoEspacoReservavel {
 		espaco.alterar(o);
 	}
 	
-	public EspacoReservavel buscar(int id_espaco) throws Exception {
-		return espaco.buscar(id_espaco);
+	public EspacoReservavel buscar(int id_espaco) {
+		try {
+			return espaco.buscar(id_espaco);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
-	public ArrayList<EspacoReservavel> listarTodos() throws Exception {
-		return espaco.listarTodos();
+	public ArrayList<EspacoReservavel> listarTodos() {
+		try {
+			return espaco.listarTodos();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ArrayList<EspacoReservavel>();
+		}
 	}
 
 }

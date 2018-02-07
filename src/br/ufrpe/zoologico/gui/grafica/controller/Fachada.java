@@ -162,7 +162,7 @@ public class Fachada {
 	}
 
 	public Instituicao buscarInstituicao(String cnpj) {
-		return null;
+		return instituicoes.buscarInstituicao(cnpj);
 	}
 
 	public ArrayList<Instituicao> listarInstituicoes() {
@@ -554,11 +554,11 @@ public class Fachada {
 		espaco.alterar(o);
 	}
 	
-	public EspacoReservavel buscarEspacoReservavel(int id_espaco) throws Exception {
+	public EspacoReservavel buscarEspacoReservavel(int id_espaco) {
 		return espaco.buscar(id_espaco);
 	}
 	
-	public ArrayList<EspacoReservavel> listarTodosEspacosReservaveis() throws Exception {
+	public ArrayList<EspacoReservavel> listarTodosEspacosReservaveis() {
 		return espaco.listarTodos();
 	}
 	

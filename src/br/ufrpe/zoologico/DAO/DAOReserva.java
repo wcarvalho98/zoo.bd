@@ -50,7 +50,7 @@ public class DAOReserva extends DAO<Reserva> {
 
 	@Override
 	public void remover(Reserva o) throws Exception {
-		String sql = "DELETE FROM reserva WHERE cnpj = ?, id_espaco = ?";
+		String sql = "DELETE FROM reserva WHERE cnpj = ? AND id_espaco = ?";
 		preparar(sql);
 		getStmt().setString(1, o.getCnpj());
 		getStmt().setInt(2, o.getId());
@@ -60,6 +60,7 @@ public class DAOReserva extends DAO<Reserva> {
 			ScreenManager.alertaInformativo("Remoção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
+			e.printStackTrace();
 			ScreenManager.alertaErro("Não foi possível remover!");
 		} finally {
 			fecharStmt();

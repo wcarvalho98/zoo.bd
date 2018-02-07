@@ -182,6 +182,7 @@ public class GerenciarReservasController implements Initializable {
     	this.insere = false;
     	preencheCamposEdicao();
     	preencheTabelaGerencia();
+    	despreencheLabel();
     }
 
     @FXML
@@ -189,6 +190,7 @@ public class GerenciarReservasController implements Initializable {
     	this.insere = true;
     	preencheCamposInsercao();
     	preencheTabelaGerencia();
+    	despreencheLabel();
     }
 
     @FXML
@@ -301,6 +303,20 @@ public class GerenciarReservasController implements Initializable {
     	hrLabel.setText(ScreenManager.formatarLocalTime(res.get(indice).getHorario()));
     	hrInicioLabel.setText(ScreenManager.formatarLocalTime(res.get(indice).getHr_inicio_reser()));
     	hrFinalLabel.setText(ScreenManager.formatarLocalTime(res.get(indice).getHr_final_reser()));
+    }
+    
+    private void despreencheLabel() {
+    	idEspacoLabel.setText("--");
+    	valorLabel.setText("--");
+    	statsLabel.setText("--");
+    	tpEventoLabel.setText("--");
+    	cortesiaLabel.setText("--");
+    	qtdLabel.setText("--");
+    	dtValidadeLabel.setText("--/--/----");
+    	dtReservaLabel.setText("--/--/----");
+    	hrLabel.setText("--");
+    	hrInicioLabel.setText("--");
+    	hrFinalLabel.setText("--");
     }
     
     private void preencheCamposEdicao() {

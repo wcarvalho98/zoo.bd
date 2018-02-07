@@ -49,12 +49,12 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <Label layoutX="628.0" layoutY="419.0" text="Quantidade:">
+                  <Label layoutX="628.0" layoutY="433.0" text="Quantidade:">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="630.0" layoutY="475.0" text="Valor:">
+                  <Label layoutX="628.0" layoutY="513.0" text="Valor:">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -64,27 +64,17 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="631.0" layoutY="535.0" text="ID Animal:">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
                   <Label layoutX="901.0" layoutY="511.0" text="Dt Validade:">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="idAnimalTextField" layoutX="770.0" layoutY="537.0" prefHeight="39.0" prefWidth="120.0" promptText="ID Animal">
+                  <TextField fx:id="vlCompraTextField" layoutX="768.0" layoutY="511.0" prefHeight="39.0" prefWidth="120.0" promptText="Valor">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="vlCompraTextField" layoutX="770.0" layoutY="475.0" prefHeight="39.0" prefWidth="120.0" promptText="Valor">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="quantidadeTextField" layoutX="770.0" layoutY="420.0" prefHeight="39.0" prefWidth="120.0" promptText="Quantidade">
+                  <TextField fx:id="quantidadeTextField" layoutX="770.0" layoutY="434.0" prefHeight="39.0" prefWidth="120.0" promptText="Quantidade">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -116,6 +106,16 @@
                         <Font size="24.0" />
                      </font>
                   </Button>
+                  <TableView fx:id="tabelaProduto" layoutX="382.0" layoutY="315.0" onMouseClicked="#selecionarProduto" prefHeight="164.0" prefWidth="217.0">
+                    <columns>
+                      <TableColumn fx:id="colunaNomeProduto" prefWidth="215.0" text="Produto" />
+                    </columns>
+                  </TableView>
+                  <TableView fx:id="tabelaEstoque" layoutX="382.0" layoutY="501.0" onMouseClicked="#selecionarEstoque" prefHeight="164.0" prefWidth="217.0">
+                     <columns>
+                        <TableColumn fx:id="colunaIdEstoque" prefWidth="215.0" text="ID Estoque" />
+                     </columns>
+                  </TableView>
                </children></AnchorPane>
       </content>
     </Tab>

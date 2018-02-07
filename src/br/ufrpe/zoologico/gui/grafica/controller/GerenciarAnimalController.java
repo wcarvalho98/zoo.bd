@@ -179,13 +179,33 @@ public class GerenciarAnimalController implements Initializable {
 	}
 
 	@FXML
-	public void alterar() {
+	public void alterar() throws Exception {
+		allNotDisable();
+		idade.setDisable(true);
+		dtNas.setDisable(true);
+		idAnimal.setDisable(true);
+		salvarAlteracao.setDisable(false);
+		salvarAlteracao.setVisible(true);
+		preencherTabelaEspecie(f.listarEspecie());
+		preencherTabelaGenero(f.listarGenero());
+		preencherTabelaJaula(f.listarJaulas());
+		preencherTabelaOrdem(f.listarOrdem());
+		preencherTabelaZoo(f.listarZoo());
+		
 		
 	}
 
 	@FXML
 	public void salvarAlteracao() {
+		LocalDate val5 = dtFale.getValue();
+		String val2 = obs.getText();
+		String val3 = nome.getText();
+		LocalDate val4 = dtNas.getValue();
+		Animal b = new Animal(Integer.valueOf(idAnimal.getText()), val3, true, val4, val5, 
+				Integer.valueOf(idade.getText()), val3, val2, zooAtual.getIdZoo(), jaulaAtual.getId_jaula(),
+				ordemAtual.getId(), generoAtual.getId(), especieAtual.getSeq());
 
+		f.alterarAnimal(b);
 	}
 
 	@FXML

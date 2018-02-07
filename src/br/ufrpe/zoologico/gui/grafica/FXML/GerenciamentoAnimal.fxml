@@ -10,34 +10,27 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
-	prefWidth="1280.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="br.ufrpe.zoologico.gui.grafica.controller.GerenciarAnimalController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.zoologico.gui.grafica.controller.GerenciarAnimalController">
 	<children>
-		<TableView fx:id="tbEspecie" layoutX="72.0" layoutY="110.0"
-			prefHeight="200.0" prefWidth="260.0">
+		<TableView fx:id="tbEspecie" layoutX="72.0" layoutY="110.0" prefHeight="200.0" prefWidth="260.0">
 			<columns>
 				<TableColumn fx:id="tcIdEspecie" prefWidth="40.0" text="ID" />
 				<TableColumn fx:id="tcEspecie" prefWidth="219.0" text="Especie" />
 			</columns>
 		</TableView>
-		<TableView fx:id="tbOrdem" layoutX="72.0" layoutY="343.0"
-			prefHeight="200.0" prefWidth="260.0">
+		<TableView fx:id="tbOrdem" layoutX="72.0" layoutY="343.0" prefHeight="200.0" prefWidth="260.0">
 			<columns>
 				<TableColumn fx:id="tcIdOrdem" prefWidth="46.0" text="Id" />
 				<TableColumn fx:id="tcOrdem" prefWidth="213.0" text="Ordem" />
 			</columns>
 		</TableView>
-		<TableView fx:id="tbGenero" layoutX="640.0" layoutY="115.0"
-			prefHeight="200.0" prefWidth="260.0">
+		<TableView fx:id="tbGenero" layoutX="640.0" layoutY="115.0" prefHeight="200.0" prefWidth="260.0">
 			<columns>
 				<TableColumn fx:id="tcIdGenero" prefWidth="40.0" text="ID" />
 				<TableColumn fx:id="tcGenero" prefWidth="219.0" text="Genêro" />
 			</columns>
 		</TableView>
-		<TableView fx:id="tbJaula" layoutX="640.0" layoutY="343.0"
-			prefHeight="200.0" prefWidth="260.0">
+		<TableView fx:id="tbJaula" layoutX="640.0" layoutY="343.0" prefHeight="200.0" prefWidth="260.0">
 			<columns>
 				<TableColumn fx:id="tcIdJaula" prefWidth="40.0" text="ID" />
 				<TableColumn fx:id="tcJaula" prefWidth="219.0" text="Jaula" />
@@ -48,106 +41,85 @@
 				<Font size="48.0" />
 			</font>
 		</Label>
-		<Label layoutX="356.0" layoutY="126.0" prefHeight="45.0"
-			prefWidth="138.0" text="Id Animal:">
+		<Label layoutX="356.0" layoutY="126.0" prefHeight="45.0" prefWidth="138.0" text="Id Animal:">
 			<font>
 				<Font size="30.0" />
 			</font>
 		</Label>
-		<TextField fx:id="idAnimal" layoutX="516.0" layoutY="121.0"
-			prefHeight="8.0" prefWidth="71.0" promptText="ID">
+		<TextField fx:id="idAnimal" layoutX="516.0" layoutY="121.0" prefHeight="8.0" prefWidth="71.0" promptText="ID">
 			<font>
 				<Font size="25.0" />
 			</font>
 		</TextField>
-		<DatePicker fx:id="dtNas" layoutX="356.0" layoutY="198.0"
-			prefHeight="34.0" prefWidth="231.0" promptText="Data de Nascimento" />
-		<DatePicker fx:id="dtFale" layoutX="356.0" layoutY="242.0"
-			prefHeight="34.0" prefWidth="231.0" promptText="Data de Falecimento" />
-		<Label layoutX="360.0" layoutY="293.0" prefHeight="45.0"
-			prefWidth="88.0" text="Idade:">
+		<DatePicker fx:id="dtNas" layoutX="356.0" layoutY="198.0" prefHeight="34.0" prefWidth="231.0" promptText="Data de Nascimento" />
+		<DatePicker fx:id="dtFale" layoutX="356.0" layoutY="242.0" prefHeight="34.0" prefWidth="231.0" promptText="Data de Falecimento" />
+		<Label layoutX="360.0" layoutY="293.0" prefHeight="45.0" prefWidth="88.0" text="Idade:">
 			<font>
 				<Font size="30.0" />
 			</font>
 		</Label>
-		<TextField fx:id="idade" layoutX="487.0" layoutY="289.0"
-			prefHeight="54.0" prefWidth="100.0" promptText="Idade">
+		<TextField fx:id="idade" layoutX="487.0" layoutY="289.0" prefHeight="54.0" prefWidth="100.0" promptText="Idade">
 			<font>
 				<Font size="25.0" />
 			</font>
 		</TextField>
-		<Label layoutX="358.0" layoutY="364.0" prefHeight="45.0"
-			prefWidth="100.0" text="Nome:">
+		<Label layoutX="358.0" layoutY="364.0" prefHeight="45.0" prefWidth="100.0" text="Nome:">
 			<font>
 				<Font size="30.0" />
 			</font>
 		</Label>
-		<TextField fx:id="nome" layoutX="485.0" layoutY="360.0"
-			prefHeight="54.0" prefWidth="100.0" promptText="Nome">
+		<TextField fx:id="nome" layoutX="485.0" layoutY="360.0" prefHeight="54.0" prefWidth="100.0" promptText="Nome">
 			<font>
 				<Font size="25.0" />
 			</font>
 		</TextField>
-		<TextArea fx:id="obs" layoutX="358.0" layoutY="425.0"
-			prefHeight="118.0" prefWidth="231.0" promptText="OBSERVAÇÃO">
+		<TextArea fx:id="obs" layoutX="358.0" layoutY="425.0" prefHeight="118.0" prefWidth="231.0" promptText="OBSERVAÇÃO">
 			<font>
 				<Font size="19.0" />
 			</font>
 		</TextArea>
-		<TableView fx:id="tbZoo" layoutX="916.0" layoutY="176.0"
-			prefHeight="200.0" prefWidth="341.0">
+		<TableView fx:id="tbZoo" layoutX="916.0" layoutY="176.0" prefHeight="200.0" prefWidth="341.0">
 			<columns>
 				<TableColumn fx:id="tcIdZoo" prefWidth="40.0" text="ID" />
 				<TableColumn fx:id="tcZoo" prefWidth="297.0" text="Zoológico" />
 			</columns>
 		</TableView>
-		<Button layoutX="1073.0" layoutY="70.0" mnemonicParsing="false"
-			onAction="#voltar" text="Voltar">
+		<Button layoutX="1073.0" layoutY="70.0" mnemonicParsing="false" onAction="#voltar" text="Voltar">
 			<font>
 				<Font size="36.0" />
 			</font>
 		</Button>
-		<Button fx:id="cadastrar" disable="true" layoutX="1030.0"
-			layoutY="593.0" mnemonicParsing="false" onAction="#cadastrar" text="Salvar"
-			visible="false">
+		<Button fx:id="cadastrar" disable="true" layoutX="1030.0" layoutY="593.0" mnemonicParsing="false" onAction="#cadastrar" text="Salvar" visible="false">
 			<font>
 				<Font size="36.0" />
 			</font>
 		</Button>
-		<Button layoutX="1114.0" layoutY="484.0" mnemonicParsing="false"
-			onAction="#passar" prefHeight="77.0" prefWidth="118.0" text="&gt;">
+		<Button layoutX="1114.0" layoutY="484.0" mnemonicParsing="false" onAction="#passar" prefHeight="77.0" prefWidth="118.0" text="&gt;">
 			<font>
 				<Font size="36.0" />
 			</font>
 		</Button>
-		<Button layoutX="965.0" layoutY="484.0" mnemonicParsing="false"
-			onAction="#retornar" prefHeight="77.0" prefWidth="118.0" text="&lt;">
+		<Button layoutX="965.0" layoutY="484.0" mnemonicParsing="false" onAction="#retornar" prefHeight="77.0" prefWidth="118.0" text="&lt;">
 			<font>
 				<Font size="36.0" />
 			</font>
 		</Button>
-		<Button disable="true" layoutX="550.0" layoutY="593.0"
-			mnemonicParsing="false" onAction="#alterar" prefHeight="77.0"
-			prefWidth="180.0" text="Alterar">
+		<Button layoutX="550.0" layoutY="593.0" mnemonicParsing="false" onAction="#alterar" prefHeight="77.0" prefWidth="180.0" text="Alterar">
 			<font>
 				<Font size="36.0" />
 			</font>
 		</Button>
-		<Button layoutX="273.0" layoutY="593.0" mnemonicParsing="false"
-			onAction="#remover" prefHeight="77.0" prefWidth="236.0" text="Remover">
+		<Button layoutX="273.0" layoutY="593.0" mnemonicParsing="false" onAction="#remover" prefHeight="77.0" prefWidth="236.0" text="Remover">
 			<font>
 				<Font size="36.0" />
 			</font>
 		</Button>
-		<Button layoutX="55.0" layoutY="593.0" mnemonicParsing="false"
-			onAction="#inserir" prefHeight="77.0" prefWidth="180.0" text="Inserir">
+		<Button layoutX="55.0" layoutY="593.0" mnemonicParsing="false" onAction="#inserir" prefHeight="77.0" prefWidth="180.0" text="Inserir">
 			<font>
 				<Font size="36.0" />
 			</font>
 		</Button>
-		<Button fx:id="salvarAlteracao" disable="true" layoutX="1025.0"
-			layoutY="593.0" mnemonicParsing="false" onAction="#salvarAlteracao"
-			text="Salvar" visible="false">
+		<Button fx:id="salvarAlteracao" disable="true" layoutX="1025.0" layoutY="593.0" mnemonicParsing="false" onAction="#salvarAlteracao" text="Salvar" visible="false">
 			<font>
 				<Font size="36.0" />
 			</font>

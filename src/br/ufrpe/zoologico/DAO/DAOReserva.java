@@ -42,9 +42,27 @@ public class DAOReserva extends DAO<Reserva> {
 			Fachada.getInstance().cadastrarFatura(new Fatura(0, o.getValor(), LocalDate.now(), null, 0, null, "Crédito", 0));
 		} catch (SQLException e) {
 			getCon().rollback();
+			ScreenManager.alertaErro("Não foi possível inserir reserva!");
+		}
+		sql = "SELECT max(idFatura) FROM fatura";
+		preparar(sql);
+		ResultSet rs = getStmt().executeQuery();
+		rs.next();
+		sql = "INSERT INTO reservado VALUES (?, ?, ?)";
+		preparar(sql);
+		getStmt().setString(1, o.getCnpj());
+		getStmt().setInt(2, o.getId());
+		getStmt().setInt(3, rs.getInt(1));
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			e.printStackTrace();
 			ScreenManager.alertaErro("Não foi possível inserir!");
 		} finally {
 			fecharStmt();
+			rs.close();
 		}
 	}
 

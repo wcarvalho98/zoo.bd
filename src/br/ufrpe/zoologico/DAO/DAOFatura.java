@@ -30,10 +30,7 @@ public class DAOFatura extends DAO<Fatura> {
 			getCon().rollback();
 			e.printStackTrace();
 			ScreenManager.alertaErro("Não foi possível gerar fatura!");
-		} finally {
-			fecharStmt();
-		}
-		
+		}		
 	}
 
 	public void inserir(Fatura o, int idServico) throws Exception {
@@ -170,6 +167,24 @@ public class DAOFatura extends DAO<Fatura> {
 		rs.close();
 		fecharStmt();
 		return o;
+	}
+	
+	public int buscarReserva(String cnpj, int id_espaco) throws Exception {
+		String sql = "SELECT idFatura FROM reservado WHERE cnpj = ? and id_espaco = ?";
+		preparar(sql);
+		getStmt().setString(1, cnpj);
+		getStmt().setInt(2, id_espaco);
+		ResultSet rs = null;
+		try {
+			rs = getStmt().executeQuery();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			fecharStmt();
+			ScreenManager.alertaErro("Fatura não encontrada!");
+		}
+		rs.next();
+		return rs.getInt(1);
 	}
 
 	@Override

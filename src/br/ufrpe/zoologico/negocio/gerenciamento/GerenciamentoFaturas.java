@@ -57,6 +57,15 @@ public class GerenciamentoFaturas {
 			return null;
 		}
 	}
+	
+	public int buscarReserva(String cnpj, int id_espaco) {
+		try {
+			return fatura.buscarReserva(cnpj, id_espaco);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
 
 	public ArrayList<Fatura> listarTodos() {
 		try {

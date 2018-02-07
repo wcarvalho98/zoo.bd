@@ -37,6 +37,7 @@ public class ScreenManager {
 	private Scene telaProduto;
 	private Scene telaAnimal_Item;
 	private Scene telaReserva;
+	private Scene telaJaulaTipo3;
 	
 
 	private static Stage mainStage;
@@ -364,6 +365,21 @@ public class ScreenManager {
 			e.printStackTrace();
 		}
 		return telaReserva;
+	}
+
+	/**
+	 * Metodo: getTelaJaulaTipo3
+	 * @return telaJaulaTipo3
+	 */
+	public Scene getTelaJaulaTipo3() {
+		try {
+			telaJaulaTipo3 = new Scene(FXMLLoader
+					.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/JaulaTipoIII.fxml")));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return telaJaulaTipo3;
 	}
 
 }

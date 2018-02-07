@@ -81,7 +81,7 @@
 						<Font size="18.0" />
 					</font>
 				</Button>
-				<Button disable="true" layoutX="580.0" layoutY="422.0" mnemonicParsing="false" onAction="#abrirTelaReserva" stylesheets="@../../button.css" text="Reserva">
+				<Button layoutX="580.0" layoutY="422.0" mnemonicParsing="false" onAction="#abrirTelaReserva" stylesheets="@../../button.css" text="Reserva">
 					<font>
 						<Font size="18.0" />
 					</font>

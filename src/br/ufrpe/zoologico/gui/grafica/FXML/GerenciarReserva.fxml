@@ -191,17 +191,17 @@
                               <Font size="36.0" />
                            </font>
                         </Label>
-                        <Label layoutX="500.0" layoutY="410.0" text=":">
+                        <Label fx:id="doisPontosTresLabel" layoutX="500.0" layoutY="410.0" text=":">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <Label layoutX="500.0" layoutY="376.0" text=":">
+                        <Label fx:id="doisPontosDoisLabel" layoutX="500.0" layoutY="376.0" text=":">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <Label layoutX="500.0" layoutY="341.0" text=":">
+                        <Label fx:id="doisPontosUmLabel" layoutX="500.0" layoutY="341.0" text=":">
                            <font>
                               <Font size="30.0" />
                            </font>
@@ -228,7 +228,7 @@
                               <TableColumn fx:id="colunaIdEspaco" prefWidth="144.51031494140625" text="ID" />
                            </columns>
                         </TableView>
-                        <Button layoutX="740.0" layoutY="580.0" mnemonicParsing="false" onAction="#salvar" text="Salvar">
+                        <Button fx:id="saveButton" layoutX="740.0" layoutY="580.0" mnemonicParsing="false" onAction="#salvar" text="Salvar">
                            <font>
                               <Font size="24.0" />
                            </font>

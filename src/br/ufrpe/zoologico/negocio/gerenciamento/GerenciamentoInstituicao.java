@@ -38,6 +38,15 @@ public class GerenciamentoInstituicao {
 			e.printStackTrace();
 		}
 	}
+	
+	public Instituicao buscarInstituicao(String cnpj) {
+		try {
+			return instituicoes.buscar(cnpj);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	public ArrayList<Instituicao> listarInstituicoes() {
 		try {

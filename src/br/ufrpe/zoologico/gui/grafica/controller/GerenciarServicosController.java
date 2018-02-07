@@ -96,7 +96,7 @@ public class GerenciarServicosController implements Initializable {
 			salvarAltertacoesButton.setDisable(true);
 			cadastrarFaturaButton.setDisable(false);
 		} else {
-			ScreenManager.alertaErro("Nenhum serviço foi selecionado.");
+			ScreenManager.alertaErro("Nenhum serviço foi selecionado!");
 		}
 	}
 
@@ -120,17 +120,14 @@ public class GerenciarServicosController implements Initializable {
 				preencherCamposEdicao(null);
 				disableAll();
 				cadastrarFaturaButton.setDisable(true);
-
-				ScreenManager.alertaInformativo(
-						"Fatura inserida com sucesso para o serviço de id = " + servicoSelecionado.getId());
-
+				
 			} else if (servicoSelecionado == null) {
-				ScreenManager.alertaErro("Nenhum serviço selecionado.");
+				ScreenManager.alertaErro("Nenhum serviço selecionado!");
 			}
 		} catch (NumberFormatException e) {
-			ScreenManager.alertaErro("Valores digitados de forma incorreta.");
+			ScreenManager.alertaErro("Valores digitados de forma incorreta!");
 		} catch (Exception e) {
-			ScreenManager.alertaErro("Algo deu errado.");
+			e.printStackTrace();
 		}
 	}
 
@@ -139,9 +136,8 @@ public class GerenciarServicosController implements Initializable {
 		if (faturaSelecionada != null) {
 			Fachada.getInstance().removerFatura(faturaSelecionada);
 			preencherTabelaFaturas();
-			ScreenManager.alertaInformativo("Fatura removida com sucesso");
 		} else {
-			ScreenManager.alertaErro("Nenhuma Fatura foi selecionada.");
+			ScreenManager.alertaErro("Nenhuma fatura foi selecionada!");
 		}
 	}
 
@@ -155,9 +151,7 @@ public class GerenciarServicosController implements Initializable {
 			preencherTabelaServicos();
 			descricaoServiçoTextField.setText("");
 			valorServiçoTextField.setText("");
-			ScreenManager.alertaInformativo("Servico cadastrado com sucesso!");
-		} else
-			ScreenManager.alertaInformativo("Por favor entre com os dados nos campos!");
+		}
 	}
 
 	@FXML
@@ -168,7 +162,7 @@ public class GerenciarServicosController implements Initializable {
 			cadastrarFaturaButton.setDisable(true);
 			preencherCamposEdicao(faturaSelecionada);
 		} else {
-			ScreenManager.alertaErro("Nenhuma fatura foi selecionada para edição");
+			ScreenManager.alertaErro("Nenhuma fatura foi selecionada para edição!");
 		}
 	}
 
@@ -177,7 +171,6 @@ public class GerenciarServicosController implements Initializable {
 		if (servicoSelecionado != null) {
 			Fachada.getInstance().removerServico(servicoSelecionado);
 			preencherTabelaServicos();
-			ScreenManager.alertaInformativo("Servico removido com sucesso!");
 		}
 	}
 
@@ -196,7 +189,6 @@ public class GerenciarServicosController implements Initializable {
 			disableAll();
 			salvarAltertacoesButton.setDisable(true);
 			preencherTabelaFaturas();
-			ScreenManager.alertaInformativo("Dados alterados com sucesso!");
 		}
 	}
 

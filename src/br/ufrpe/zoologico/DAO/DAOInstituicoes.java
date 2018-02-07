@@ -100,7 +100,7 @@ public class DAOInstituicoes extends DAO<Instituicao> {
 		String sql = "SELECT * FROM `Instituicao`";
 		preparar(sql);
 		ResultSet rs;
-		rs= null;
+		rs = null;
 		try {
 			rs = getStmt().executeQuery();
 			getCon().commit();

@@ -47,7 +47,7 @@ public class DAODiagnostico extends DAO<Diagnostico> {
 			fecharStmt();
 		}
 	}
-	
+
 	public void remover(int id_consulta) throws Exception {
 		String sql = "DELETE FROM diagnostico WHERE id_consulta = ?";
 		preparar(sql);
@@ -62,7 +62,7 @@ public class DAODiagnostico extends DAO<Diagnostico> {
 			fecharStmt();
 		}
 	}
-	
+
 	public void remover(String id_doenca) throws Exception {
 		String sql = "DELETE FROM diagnostico WHERE id_doenca = ?";
 		preparar(sql);

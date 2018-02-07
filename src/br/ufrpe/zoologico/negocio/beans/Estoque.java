@@ -11,6 +11,7 @@ public class Estoque {
 	private int idZoo;
 	private String descr;
 	private String localizacao;
+
 	/**
 	 * @param id
 	 * @param idZoo
@@ -24,66 +25,87 @@ public class Estoque {
 		this.descr = descr;
 		this.localizacao = localizacao;
 	}
-	
-	public Estoque(){
-		
+
+	public Estoque() {
+
 	}
+
 	/**
 	 * Metodo: getId
+	 * 
 	 * @return id
 	 */
 	public int getId() {
 		return id;
 	}
+
 	/**
 	 * Metodo: setId
-	 * @param id the id to set
+	 * 
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	/**
 	 * Metodo: getIdZoo
+	 * 
 	 * @return idZoo
 	 */
 	public int getIdZoo() {
 		return idZoo;
 	}
+
 	/**
 	 * Metodo: setIdZoo
-	 * @param idZoo the idZoo to set
+	 * 
+	 * @param idZoo
+	 *            the idZoo to set
 	 */
 	public void setIdZoo(int idZoo) {
 		this.idZoo = idZoo;
 	}
+
 	/**
 	 * Metodo: getDescr
+	 * 
 	 * @return descr
 	 */
 	public String getDescr() {
 		return descr;
 	}
+
 	/**
 	 * Metodo: setDescr
-	 * @param descr the descr to set
+	 * 
+	 * @param descr
+	 *            the descr to set
 	 */
 	public void setDescr(String descr) {
 		this.descr = descr;
 	}
+
 	/**
 	 * Metodo: getLocalizacao
+	 * 
 	 * @return localizacao
 	 */
 	public String getLocalizacao() {
 		return localizacao;
 	}
+
 	/**
 	 * Metodo: setLocalizacao
-	 * @param localizacao the localizacao to set
+	 * 
+	 * @param localizacao
+	 *            the localizacao to set
 	 */
 	public void setLocalizacao(String localizacao) {
 		this.localizacao = localizacao;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -94,6 +116,7 @@ public class Estoque {
 		result = prime * result + ((localizacao == null) ? 0 : localizacao.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -119,6 +142,7 @@ public class Estoque {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Estoque [id=" + id + ", idZoo=" + idZoo + ", descr=" + descr + ", localizacao=" + localizacao + "]";

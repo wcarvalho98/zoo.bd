@@ -12,13 +12,13 @@ import br.ufrpe.zoologico.DAO.DAOConsultas;
 import br.ufrpe.zoologico.negocio.beans.Consulta;
 
 public class GerenciamentoConsultas {
-	
+
 	private DAOConsultas consultas;
-	
+
 	public GerenciamentoConsultas() {
 		this.consultas = new DAOConsultas();
 	}
-	
+
 	public void cadastrarConsulta(Consulta o) {
 		try {
 			if (o != null) {
@@ -26,9 +26,11 @@ public class GerenciamentoConsultas {
 			} else {
 				System.err.println("A consulta que passado como parâmetro é null");
 			}
-		} catch (Exception e) {System.err.println("O comando consultas.inserir() falhou em GerenciamentoConsultas.java");}
+		} catch (Exception e) {
+			System.err.println("O comando consultas.inserir() falhou em GerenciamentoConsultas.java");
+		}
 	}
-	
+
 	public void removerConsulta(Consulta o) {
 		try {
 			if (o != null) {
@@ -36,9 +38,11 @@ public class GerenciamentoConsultas {
 			} else {
 				System.err.println("A consulta que passado como parâmetro é null");
 			}
-		} catch (Exception e) {System.err.println("O comando consultas.remover() falhou em GerenciamentoConsultas.java");}
+		} catch (Exception e) {
+			System.err.println("O comando consultas.remover() falhou em GerenciamentoConsultas.java");
+		}
 	}
-	
+
 	public void remover(String id_veterinario) throws Exception {
 		consultas.remover(id_veterinario);
 	}
@@ -50,7 +54,7 @@ public class GerenciamentoConsultas {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Consulta buscarConsulta(int id) {
 		try {
 			return consultas.buscar(id);
@@ -59,8 +63,8 @@ public class GerenciamentoConsultas {
 			return null;
 		}
 	}
-	
-	public ArrayList<Consulta> listarConsultas(){
+
+	public ArrayList<Consulta> listarConsultas() {
 		try {
 			return consultas.listarTodos();
 		} catch (Exception e) {
@@ -68,5 +72,5 @@ public class GerenciamentoConsultas {
 			return new ArrayList<Consulta>();
 		}
 	}
-	
+
 }

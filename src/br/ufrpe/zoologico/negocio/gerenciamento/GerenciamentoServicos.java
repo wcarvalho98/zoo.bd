@@ -14,15 +14,15 @@ import br.ufrpe.zoologico.negocio.beans.Fatura;
 import br.ufrpe.zoologico.negocio.beans.Servico;
 
 public class GerenciamentoServicos {
-	
+
 	private DAOServico servicos;
 	private DAOFatura faturas;
-	
+
 	public GerenciamentoServicos() {
 		this.servicos = new DAOServico();
 		this.faturas = new DAOFatura();
 	}
-	
+
 	public void cadastrarServico(Servico o) {
 		try {
 			if (o != null) {
@@ -50,7 +50,7 @@ public class GerenciamentoServicos {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Servico buscarServico(int id) {
 		try {
 			return servicos.buscar(id);
@@ -59,8 +59,8 @@ public class GerenciamentoServicos {
 			return null;
 		}
 	}
-	
-	public ArrayList<Servico> listarServicos(){
+
+	public ArrayList<Servico> listarServicos() {
 		try {
 			return servicos.listarTodos();
 		} catch (Exception e) {
@@ -68,8 +68,8 @@ public class GerenciamentoServicos {
 			return new ArrayList<Servico>();
 		}
 	}
-	
-	public ArrayList<Fatura> faturasDoServico(Servico o){
+
+	public ArrayList<Fatura> faturasDoServico(Servico o) {
 		try {
 			return servicos.faturasDoServico(o);
 		} catch (Exception e) {
@@ -77,8 +77,8 @@ public class GerenciamentoServicos {
 			return new ArrayList<Fatura>();
 		}
 	}
-	
-	public void cadastrarFatura(Fatura o, int idServico) throws Exception{
+
+	public void cadastrarFatura(Fatura o, int idServico) throws Exception {
 		faturas.inserir(o, idServico);
 	}
 }

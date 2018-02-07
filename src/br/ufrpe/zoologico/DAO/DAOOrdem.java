@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.Ordem;
 
-public class DAOOrdem extends DAO<Ordem>{
+public class DAOOrdem extends DAO<Ordem> {
 
 	@Override
 	public void inserir(Ordem o) throws Exception {
@@ -26,7 +26,7 @@ public class DAOOrdem extends DAO<Ordem>{
 	public void alterar(Ordem o) throws Exception {
 	}
 
-	public Ordem buscar(int id) throws Exception{
+	public Ordem buscar(int id) throws Exception {
 		String sql = "SELECT * FROM Ordem WHERE `id` = ?";
 		preparar(sql);
 		getStmt().setInt(1, id);
@@ -45,7 +45,7 @@ public class DAOOrdem extends DAO<Ordem>{
 		fecharStmt();
 		return o;
 	}
-	
+
 	@Override
 	public ArrayList<Ordem> listarTodos() throws Exception {
 		ArrayList<Ordem> list = new ArrayList<>();

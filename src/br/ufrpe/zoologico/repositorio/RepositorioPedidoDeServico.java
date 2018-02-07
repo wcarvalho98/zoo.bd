@@ -11,26 +11,27 @@ import java.util.ArrayList;
 import br.ufrpe.zoologico.negocio.beans.PedidoServico;
 import br.ufrpe.zoologico.repositorio.Interfaces.IRepositorio;
 
-public class RepositorioPedidoDeServico implements IRepositorio<PedidoServico>{
+public class RepositorioPedidoDeServico implements IRepositorio<PedidoServico> {
 
 	private ArrayList<PedidoServico> r;
 	private static IRepositorio<PedidoServico> i;
-	
-   /**
+
+	/**
 	 * 
 	 */
 	private RepositorioPedidoDeServico() {
 		r = new ArrayList<PedidoServico>();
 	}
-	
-	private static IRepositorio<PedidoServico> getInstance(){
-		if(i == null){
+
+	@SuppressWarnings("unused")
+	private static IRepositorio<PedidoServico> getInstance() {
+		if (i == null) {
 			i = new RepositorioPedidoDeServico();
 		}
-		
+
 		return i;
 	}
-	
+
 	@Override
 	public void cadastrar(PedidoServico obj) {
 		r.add(obj);
@@ -38,7 +39,7 @@ public class RepositorioPedidoDeServico implements IRepositorio<PedidoServico>{
 
 	@Override
 	public void atualizar(PedidoServico newObj) {
-		r.set(newObj.getId(),newObj);
+		r.set(newObj.getId(), newObj);
 	}
 
 	@Override

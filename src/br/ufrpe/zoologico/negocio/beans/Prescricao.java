@@ -10,8 +10,8 @@ public class Prescricao {
 	private Tratamento tratamento;
 	private Medicamento medicamento;
 	private String posologia;
-	
-	public Prescricao(Tratamento tratamento, Medicamento medicamento, String dosagem){
+
+	public Prescricao(Tratamento tratamento, Medicamento medicamento, String dosagem) {
 		this.tratamento = tratamento;
 		this.medicamento = medicamento;
 		this.posologia = dosagem;
@@ -40,5 +40,5 @@ public class Prescricao {
 	public void setPosologia(String posologia) {
 		this.posologia = posologia;
 	}
-	
+
 }

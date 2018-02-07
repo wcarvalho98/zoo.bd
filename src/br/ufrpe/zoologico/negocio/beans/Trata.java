@@ -9,8 +9,8 @@ package br.ufrpe.zoologico.negocio.beans;
 public class Trata {
 	private Medicamento medicamento;
 	private Doenca doenca;
-	
-	public Trata(Medicamento medicamento, Doenca doenca){
+
+	public Trata(Medicamento medicamento, Doenca doenca) {
 		this.doenca = doenca;
 		this.medicamento = medicamento;
 	}
@@ -30,5 +30,5 @@ public class Trata {
 	public void setDoenca(Doenca doenca) {
 		this.doenca = doenca;
 	}
-	
+
 }

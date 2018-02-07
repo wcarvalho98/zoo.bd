@@ -11,22 +11,24 @@ import java.util.ArrayList;
 import br.ufrpe.zoologico.negocio.beans.Animal;
 import br.ufrpe.zoologico.repositorio.Interfaces.IRepositorioAnimais;
 
-public class RepositorioAnimais implements IRepositorioAnimais{
+public class RepositorioAnimais implements IRepositorioAnimais {
 
 	private ArrayList<Animal> rep;
 	private static IRepositorioAnimais instance;
-	
-	private  RepositorioAnimais(){
+
+	private RepositorioAnimais() {
 		rep = new ArrayList<>();
 	}
-	
-	private static IRepositorioAnimais getInstance(){
-		if(instance == null){
+
+	@SuppressWarnings("unused")
+	private static IRepositorioAnimais getInstance() {
+		if (instance == null) {
 			instance = new RepositorioAnimais();
 		}
-		
+
 		return instance;
 	}
+
 	@Override
 	public void cadastrar(Animal obj) {
 		rep.add(obj);

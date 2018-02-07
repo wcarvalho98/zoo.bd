@@ -21,7 +21,7 @@ import javafx.scene.control.Tooltip;
 import javafx.stage.WindowEvent;
 
 public class PrincipalController implements Initializable {
-	
+
 	@FXML
 	private TextField loginId;
 	@FXML
@@ -32,12 +32,12 @@ public class PrincipalController implements Initializable {
 	private Tooltip tooltipLogin;
 	@FXML
 	private Tooltip tooltipSenha;
-	
+
 	@FXML
 	public void validaLogin() {
 		String nome = loginId.getText();
 		String senha = senhaId.getText();
-		
+
 		if (nome.isEmpty())
 			tooltipLogin.show(ScreenManager.getMainStage().getOwner());
 		else
@@ -50,15 +50,15 @@ public class PrincipalController implements Initializable {
 			try {
 				Fachada.getInstance().fazerLogin(nome, senha);
 				switch (nome) {
-					case "admin":
-						ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin());
-						break;
-					case "veterinario":
-						break;
-					case "secretario":
-						break;
-					case "tratador":
-						break;
+				case "admin":
+					ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin());
+					break;
+				case "veterinario":
+					break;
+				case "secretario":
+					break;
+				case "tratador":
+					break;
 				}
 			} catch (Exception e) {
 				Alert alert = new Alert(AlertType.ERROR);
@@ -69,14 +69,14 @@ public class PrincipalController implements Initializable {
 				alert.showAndWait();
 				e.printStackTrace();
 			}
-			
+
 		}
-			
+
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+
 		ScreenManager.getMainStage().setResizable(false);
 		ScreenManager.getMainStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
 

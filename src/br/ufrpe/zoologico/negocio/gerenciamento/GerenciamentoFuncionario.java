@@ -12,13 +12,13 @@ import br.ufrpe.zoologico.DAO.DAOFuncionario;
 import br.ufrpe.zoologico.negocio.beans.Funcionario;
 
 public class GerenciamentoFuncionario {
-	
+
 	private DAOFuncionario funcionario;
-	
+
 	public GerenciamentoFuncionario() {
 		this.funcionario = new DAOFuncionario();
 	}
-	
+
 	public void cadastrarFuncionario(Funcionario o) {
 		try {
 			funcionario.inserir(o);
@@ -26,7 +26,7 @@ public class GerenciamentoFuncionario {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void removerFuncionario(Funcionario o) {
 		try {
 			funcionario.remover(o);
@@ -34,7 +34,7 @@ public class GerenciamentoFuncionario {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void alterarFuncionario(Funcionario o) {
 		try {
 			funcionario.alterar(o);
@@ -42,7 +42,7 @@ public class GerenciamentoFuncionario {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Funcionario buscarFuncionario(String cpf) {
 		try {
 			return funcionario.buscar(cpf);
@@ -51,8 +51,8 @@ public class GerenciamentoFuncionario {
 			return null;
 		}
 	}
-	
-	public ArrayList<Funcionario> listarFuncionarios(){
+
+	public ArrayList<Funcionario> listarFuncionarios() {
 		try {
 			return funcionario.listarTodos();
 		} catch (Exception e) {

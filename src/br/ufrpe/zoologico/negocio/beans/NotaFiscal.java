@@ -14,7 +14,7 @@ public class NotaFiscal {
 	private double valor_total;
 	private double vl_total_desconto;
 	private LocalDate data_nf;
-	
+
 	/**
 	 * @param nfe
 	 * @param icms
@@ -30,76 +30,102 @@ public class NotaFiscal {
 		this.vl_total_desconto = vl_total_desconto;
 		this.data_nf = data_nf;
 	}
+
 	/**
 	 * Metodo: getNfe
+	 * 
 	 * @return nfe
 	 */
 	public int getNfe() {
 		return nfe;
 	}
+
 	/**
 	 * Metodo: setNfe
-	 * @param nfe the nfe to set
+	 * 
+	 * @param nfe
+	 *            the nfe to set
 	 */
 	public void setNfe(int nfe) {
 		this.nfe = nfe;
 	}
+
 	/**
 	 * Metodo: getIcms
+	 * 
 	 * @return icms
 	 */
 	public double getIcms() {
 		return icms;
 	}
+
 	/**
 	 * Metodo: setIcms
-	 * @param icms the icms to set
+	 * 
+	 * @param icms
+	 *            the icms to set
 	 */
 	public void setIcms(double icms) {
 		this.icms = icms;
 	}
+
 	/**
 	 * Metodo: getValor_total
+	 * 
 	 * @return valor_total
 	 */
 	public double getValor_total() {
 		return valor_total;
 	}
+
 	/**
 	 * Metodo: setValor_total
-	 * @param valor_total the valor_total to set
+	 * 
+	 * @param valor_total
+	 *            the valor_total to set
 	 */
 	public void setValor_total(double valor_total) {
 		this.valor_total = valor_total;
 	}
+
 	/**
 	 * Metodo: getVl_total_desconto
+	 * 
 	 * @return vl_total_desconto
 	 */
 	public double getVl_total_desconto() {
 		return vl_total_desconto;
 	}
+
 	/**
 	 * Metodo: setVl_total_desconto
-	 * @param vl_total_desconto the vl_total_desconto to set
+	 * 
+	 * @param vl_total_desconto
+	 *            the vl_total_desconto to set
 	 */
 	public void setVl_total_desconto(double vl_total_desconto) {
 		this.vl_total_desconto = vl_total_desconto;
 	}
+
 	/**
 	 * Metodo: getData_nf
+	 * 
 	 * @return data_nf
 	 */
 	public LocalDate getData_nf() {
 		return data_nf;
 	}
+
 	/**
 	 * Metodo: setData_nf
-	 * @param data_nf the data_nf to set
+	 * 
+	 * @param data_nf
+	 *            the data_nf to set
 	 */
 	public void setData_nf(LocalDate data_nf) {
 		this.data_nf = data_nf;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -115,6 +141,7 @@ public class NotaFiscal {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -139,6 +166,7 @@ public class NotaFiscal {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "NotaFiscal [nfe=" + nfe + ", icms=" + icms + ", valor_total=" + valor_total + ", vl_total_desconto="

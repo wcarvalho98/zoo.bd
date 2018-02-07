@@ -12,13 +12,13 @@ import br.ufrpe.zoologico.DAO.DAOGenero;
 import br.ufrpe.zoologico.negocio.beans.Genero;
 
 public class GerenciamentoGenero {
-	
+
 	private DAOGenero genero;
-	
-	public GerenciamentoGenero(){
-		this.genero = new DAOGenero(); 
+
+	public GerenciamentoGenero() {
+		this.genero = new DAOGenero();
 	}
-	
+
 	public ArrayList<Genero> listarTodos() {
 		try {
 			return genero.listarTodos();
@@ -28,16 +28,17 @@ public class GerenciamentoGenero {
 		}
 	}
 
-	/** 
+	/**
 	 * Metodo: buscaGenero
-	 * @param genero2 
+	 * 
+	 * @param genero2
 	 * @return
 	 * @return Genero
 	 */
-	public Genero buscaGenero(int genero2) throws Exception{
+	public Genero buscaGenero(int genero2) throws Exception {
 		return genero.busca(genero2);
 	}
-	
+
 	public boolean pertence(int idGenero, int idOrdem) {
 		try {
 			return genero.pertence(idGenero, idOrdem);

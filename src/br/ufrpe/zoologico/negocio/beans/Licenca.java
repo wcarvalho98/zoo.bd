@@ -13,7 +13,7 @@ public class Licenca {
 	private String descr;
 	private LocalDate data_de_expiracao;
 	private Zoo zoo;
-	
+
 	/**
 	 * @param id_liceca
 	 * @param descr
@@ -30,6 +30,7 @@ public class Licenca {
 
 	/**
 	 * Metodo: getId_liceca
+	 * 
 	 * @return id_liceca
 	 */
 	public int getId_liceca() {
@@ -38,7 +39,9 @@ public class Licenca {
 
 	/**
 	 * Metodo: setId_liceca
-	 * @param id_liceca the id_liceca to set
+	 * 
+	 * @param id_liceca
+	 *            the id_liceca to set
 	 */
 	public void setId_liceca(int id_liceca) {
 		this.id_liceca = id_liceca;
@@ -46,6 +49,7 @@ public class Licenca {
 
 	/**
 	 * Metodo: getDescr
+	 * 
 	 * @return descr
 	 */
 	public String getDescr() {
@@ -54,7 +58,9 @@ public class Licenca {
 
 	/**
 	 * Metodo: setDescr
-	 * @param descr the descr to set
+	 * 
+	 * @param descr
+	 *            the descr to set
 	 */
 	public void setDescr(String descr) {
 		this.descr = descr;
@@ -62,6 +68,7 @@ public class Licenca {
 
 	/**
 	 * Metodo: getData_de_expiracao
+	 * 
 	 * @return data_de_expiracao
 	 */
 	public LocalDate getData_de_expiracao() {
@@ -70,7 +77,9 @@ public class Licenca {
 
 	/**
 	 * Metodo: setData_de_expiracao
-	 * @param data_de_expiracao the data_de_expiracao to set
+	 * 
+	 * @param data_de_expiracao
+	 *            the data_de_expiracao to set
 	 */
 	public void setData_de_expiracao(LocalDate data_de_expiracao) {
 		this.data_de_expiracao = data_de_expiracao;
@@ -78,6 +87,7 @@ public class Licenca {
 
 	/**
 	 * Metodo: getZoo
+	 * 
 	 * @return zoo
 	 */
 	public Zoo getZoo() {
@@ -86,7 +96,9 @@ public class Licenca {
 
 	/**
 	 * Metodo: setZoo
-	 * @param zoo the zoo to set
+	 * 
+	 * @param zoo
+	 *            the zoo to set
 	 */
 	public void setZoo(Zoo zoo) {
 		this.zoo = zoo;

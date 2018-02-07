@@ -11,190 +11,223 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.zoologico.gui.grafica.controller.CadastroInstituicaoController">
-   <children>
-      <TabPane prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Cadastrar Instituição">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TextField fx:id="nomeUsualTextField" layoutX="438.0" layoutY="173.0" promptText="Nome Usual">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="cnpjTextField" layoutX="438.0" layoutY="246.0" promptText="Apenas Números">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="razaoSocialTextField" layoutX="438.0" layoutY="319.0" promptText="Nome Jurídico">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="emailTextField" layoutX="438.0" layoutY="391.0">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="telefone1TextField" layoutX="438.0" layoutY="465.0" promptText="Apenas Números">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="telefone2TextField" layoutX="438.0" layoutY="538.0" promptText="Apenas Números">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </TextField>
-                        <Label layoutX="169.0" layoutY="176.0" text="Nome Instituição:">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="328.0" layoutY="250.0" text="CNPJ:">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="227.0" layoutY="323.0" text="Razão Social:">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="332.0" layoutY="394.0" text="Email:">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="261.0" layoutY="468.0" text="Telefone 1:">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="259.0" layoutY="542.0" text="Telefone 2:">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                        </Label>
-                        <RadioButton fx:id="escolaRadioButton" layoutX="349.0" layoutY="626.0" mnemonicParsing="false" onMouseClicked="#setEscolaSelecionado" text="Escola">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </RadioButton>
-                        <RadioButton fx:id="empresaRadioButton" layoutX="537.0" layoutY="626.0" mnemonicParsing="false" onMouseClicked="#setEmpresaSelecionado" text="Empresa">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </RadioButton>
-                        <Button layoutX="844.0" layoutY="537.0" mnemonicParsing="false" onAction="#confirmarCadastro" text="Confirmar Cadastro">
-                           <font>
-                              <Font size="36.0" />
-                           </font>
-                        </Button>
-                        <Label layoutX="406.0" layoutY="43.0" text="Cadastro de Instituições">
-                           <font>
-                              <Font size="48.0" />
-                           </font>
-                        </Label>
-                        <Button layoutX="1062.0" layoutY="32.0" mnemonicParsing="false" onAction="#voltar" text="Voltar">
-                           <font>
-                              <Font size="36.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-          <Tab text="Listar/Editar/Remover">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Button layoutX="667.0" layoutY="100.0" mnemonicParsing="false" onAction="#editarInstituicao" text="Editar Instituição">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <TextField fx:id="nomeUsualTextField1" layoutX="888.0" layoutY="167.0" promptText="Nome Usual">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="razaoSocialTextField1" layoutX="888.0" layoutY="238.0" promptText="Nome Jurídico">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="emailTextField1" layoutX="888.0" layoutY="310.0">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="telefone1TextField1" layoutX="888.0" layoutY="384.0" promptText="Apenas Números">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="telefone2TextField1" layoutX="888.0" layoutY="457.0" promptText="Apenas Números">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </TextField>
-                        <Label layoutX="619.0" layoutY="170.0" text="Nome Instituição:">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="677.0" layoutY="242.0" text="Razão Social:">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="782.0" layoutY="313.0" text="Email:">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="711.0" layoutY="387.0" text="Telefone 1:">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="709.0" layoutY="461.0" text="Telefone 2:">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                        </Label>
-                        <Button layoutX="810.0" layoutY="550.0" mnemonicParsing="false" onAction="#salvarAlteracoes" text="Salvar Alterações">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button layoutX="1072.0" layoutY="42.0" mnemonicParsing="false" onAction="#voltar" text="Voltar">
-                           <font>
-                              <Font size="36.0" />
-                           </font>
-                        </Button>
-                        <TableView fx:id="tabelaInstituicao" layoutX="109.0" layoutY="78.0" onMouseClicked="#selecionarInstituicao" prefHeight="559.0" prefWidth="492.0">
-                          <columns>
-                            <TableColumn fx:id="colunaCnpj" prefWidth="109.66667175292969" text="CNPJ" />
-                            <TableColumn fx:id="colunaNome" prefWidth="115.33334350585938" text="Nome" />
-                              <TableColumn fx:id="colunaRazaoSocial" prefWidth="127.66665649414062" text="Razão Social" />
-                              <TableColumn fx:id="colunaTipo" prefWidth="139.33334350585938" text="Tipo Instituição" />
-                          </columns>
-                        </TableView>
-                        <Button layoutX="846.0" layoutY="99.0" mnemonicParsing="false" onAction="#removerInstituicao" text="Remover Instituição">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-        </tabs>
-      </TabPane>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
+	prefWidth="1280.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="br.ufrpe.zoologico.gui.grafica.controller.CadastroInstituicaoController">
+	<children>
+		<TabPane prefHeight="720.0" prefWidth="1280.0"
+			tabClosingPolicy="UNAVAILABLE">
+			<tabs>
+				<Tab text="Cadastrar Instituição">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+							prefWidth="200.0">
+							<children>
+								<TextField fx:id="nomeUsualTextField" layoutX="438.0"
+									layoutY="173.0" promptText="Nome Usual">
+									<font>
+										<Font size="24.0" />
+									</font>
+								</TextField>
+								<TextField fx:id="cnpjTextField" layoutX="438.0"
+									layoutY="246.0" promptText="Apenas Números">
+									<font>
+										<Font size="24.0" />
+									</font>
+								</TextField>
+								<TextField fx:id="razaoSocialTextField" layoutX="438.0"
+									layoutY="319.0" promptText="Nome Jurídico">
+									<font>
+										<Font size="24.0" />
+									</font>
+								</TextField>
+								<TextField fx:id="emailTextField" layoutX="438.0"
+									layoutY="391.0">
+									<font>
+										<Font size="24.0" />
+									</font>
+								</TextField>
+								<TextField fx:id="telefone1TextField" layoutX="438.0"
+									layoutY="465.0" promptText="Apenas Números">
+									<font>
+										<Font size="24.0" />
+									</font>
+								</TextField>
+								<TextField fx:id="telefone2TextField" layoutX="438.0"
+									layoutY="538.0" promptText="Apenas Números">
+									<font>
+										<Font size="24.0" />
+									</font>
+								</TextField>
+								<Label layoutX="169.0" layoutY="176.0" text="Nome Instituição:">
+									<font>
+										<Font size="30.0" />
+									</font>
+								</Label>
+								<Label layoutX="328.0" layoutY="250.0" text="CNPJ:">
+									<font>
+										<Font size="30.0" />
+									</font>
+								</Label>
+								<Label layoutX="227.0" layoutY="323.0" text="Razão Social:">
+									<font>
+										<Font size="30.0" />
+									</font>
+								</Label>
+								<Label layoutX="332.0" layoutY="394.0" text="Email:">
+									<font>
+										<Font size="30.0" />
+									</font>
+								</Label>
+								<Label layoutX="261.0" layoutY="468.0" text="Telefone 1:">
+									<font>
+										<Font size="30.0" />
+									</font>
+								</Label>
+								<Label layoutX="259.0" layoutY="542.0" text="Telefone 2:">
+									<font>
+										<Font size="30.0" />
+									</font>
+								</Label>
+								<RadioButton fx:id="escolaRadioButton" layoutX="349.0"
+									layoutY="626.0" mnemonicParsing="false" onMouseClicked="#setEscolaSelecionado"
+									text="Escola">
+									<font>
+										<Font size="24.0" />
+									</font>
+								</RadioButton>
+								<RadioButton fx:id="empresaRadioButton" layoutX="537.0"
+									layoutY="626.0" mnemonicParsing="false" onMouseClicked="#setEmpresaSelecionado"
+									text="Empresa">
+									<font>
+										<Font size="24.0" />
+									</font>
+								</RadioButton>
+								<Button layoutX="844.0" layoutY="537.0" mnemonicParsing="false"
+									onAction="#confirmarCadastro" text="Confirmar Cadastro">
+									<font>
+										<Font size="36.0" />
+									</font>
+								</Button>
+								<Label layoutX="406.0" layoutY="43.0" text="Cadastro de Instituições">
+									<font>
+										<Font size="48.0" />
+									</font>
+								</Label>
+								<Button layoutX="1062.0" layoutY="32.0" mnemonicParsing="false"
+									onAction="#voltar" text="Voltar">
+									<font>
+										<Font size="36.0" />
+									</font>
+								</Button>
+							</children>
+						</AnchorPane>
+					</content>
+				</Tab>
+				<Tab text="Listar/Editar/Remover">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+							prefWidth="200.0">
+							<children>
+								<Button layoutX="667.0" layoutY="100.0" mnemonicParsing="false"
+									onAction="#editarInstituicao" text="Editar Instituição">
+									<font>
+										<Font size="18.0" />
+									</font>
+								</Button>
+								<TextField fx:id="nomeUsualTextField1" layoutX="888.0"
+									layoutY="167.0" promptText="Nome Usual">
+									<font>
+										<Font size="24.0" />
+									</font>
+								</TextField>
+								<TextField fx:id="razaoSocialTextField1" layoutX="888.0"
+									layoutY="238.0" promptText="Nome Jurídico">
+									<font>
+										<Font size="24.0" />
+									</font>
+								</TextField>
+								<TextField fx:id="emailTextField1" layoutX="888.0"
+									layoutY="310.0">
+									<font>
+										<Font size="24.0" />
+									</font>
+								</TextField>
+								<TextField fx:id="telefone1TextField1" layoutX="888.0"
+									layoutY="384.0" promptText="Apenas Números">
+									<font>
+										<Font size="24.0" />
+									</font>
+								</TextField>
+								<TextField fx:id="telefone2TextField1" layoutX="888.0"
+									layoutY="457.0" promptText="Apenas Números">
+									<font>
+										<Font size="24.0" />
+									</font>
+								</TextField>
+								<Label layoutX="619.0" layoutY="170.0" text="Nome Instituição:">
+									<font>
+										<Font size="30.0" />
+									</font>
+								</Label>
+								<Label layoutX="677.0" layoutY="242.0" text="Razão Social:">
+									<font>
+										<Font size="30.0" />
+									</font>
+								</Label>
+								<Label layoutX="782.0" layoutY="313.0" text="Email:">
+									<font>
+										<Font size="30.0" />
+									</font>
+								</Label>
+								<Label layoutX="711.0" layoutY="387.0" text="Telefone 1:">
+									<font>
+										<Font size="30.0" />
+									</font>
+								</Label>
+								<Label layoutX="709.0" layoutY="461.0" text="Telefone 2:">
+									<font>
+										<Font size="30.0" />
+									</font>
+								</Label>
+								<Button layoutX="810.0" layoutY="550.0" mnemonicParsing="false"
+									onAction="#salvarAlteracoes" text="Salvar Alterações">
+									<font>
+										<Font size="18.0" />
+									</font>
+								</Button>
+								<Button layoutX="1072.0" layoutY="42.0" mnemonicParsing="false"
+									onAction="#voltar" text="Voltar">
+									<font>
+										<Font size="36.0" />
+									</font>
+								</Button>
+								<TableView fx:id="tabelaInstituicao" layoutX="109.0"
+									layoutY="78.0" onMouseClicked="#selecionarInstituicao"
+									prefHeight="559.0" prefWidth="492.0">
+									<columns>
+										<TableColumn fx:id="colunaCnpj" prefWidth="109.66667175292969"
+											text="CNPJ" />
+										<TableColumn fx:id="colunaNome" prefWidth="115.33334350585938"
+											text="Nome" />
+										<TableColumn fx:id="colunaRazaoSocial" prefWidth="127.66665649414062"
+											text="Razão Social" />
+										<TableColumn fx:id="colunaTipo" prefWidth="139.33334350585938"
+											text="Tipo Instituição" />
+									</columns>
+								</TableView>
+								<Button layoutX="846.0" layoutY="99.0" mnemonicParsing="false"
+									onAction="#removerInstituicao" text="Remover Instituição">
+									<font>
+										<Font size="18.0" />
+									</font>
+								</Button>
+							</children>
+						</AnchorPane>
+					</content>
+				</Tab>
+			</tabs>
+		</TabPane>
+	</children>
 </AnchorPane>

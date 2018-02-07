@@ -14,17 +14,17 @@ import br.ufrpe.zoologico.exceptions.ObjetoNaoExisteException;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
 
 public class GerenciamentoJaula {
-	
+
 	private DAOJaula jaula;
-	
-	public GerenciamentoJaula(){
+
+	public GerenciamentoJaula() {
 		jaula = new DAOJaula();
 	}
-	
+
 	public void cadastrar(Jaula o) {
-		if(o != null) {
+		if (o != null) {
 			try {
-				if(this.listarTodos().contains(o))
+				if (this.listarTodos().contains(o))
 					throw new ObjetoExisteException("Objeto já cadastrado");
 				else
 					jaula.inserir(o);
@@ -34,11 +34,11 @@ public class GerenciamentoJaula {
 		} else
 			throw new IllegalArgumentException();
 	}
-	
+
 	public void remover(Jaula o) {
-		if(o != null){
+		if (o != null) {
 			try {
-				if(!this.listarTodos().contains(o))
+				if (!this.listarTodos().contains(o))
 					throw new ObjetoNaoExisteException("Objeto não existe no banco");
 				else
 					jaula.remover(o);
@@ -48,7 +48,7 @@ public class GerenciamentoJaula {
 		} else
 			throw new IllegalArgumentException();
 	}
-	
+
 	public void atualizar(Jaula o) {
 		try {
 			jaula.alterar(o);
@@ -56,11 +56,11 @@ public class GerenciamentoJaula {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Jaula buscar(int id) {
 		try {
-			for (int i = 0; i < listarTodos().size(); i++){
-				if(listarTodos().get(i).getId_jaula() == id)
+			for (int i = 0; i < listarTodos().size(); i++) {
+				if (listarTodos().get(i).getId_jaula() == id)
 					return jaula.buscar(id);
 			}
 		} catch (Exception e) {
@@ -73,7 +73,7 @@ public class GerenciamentoJaula {
 		}
 		return null;
 	}
-	
+
 	public ArrayList<Jaula> listarTodos() {
 		try {
 			return jaula.listarTodos();

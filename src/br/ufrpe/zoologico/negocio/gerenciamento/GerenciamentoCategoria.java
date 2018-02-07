@@ -13,13 +13,13 @@ import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
 import br.ufrpe.zoologico.negocio.beans.Categoria;
 
 public class GerenciamentoCategoria {
-	
+
 	private DAOCategoria categoria;
-	
-	public GerenciamentoCategoria(){
+
+	public GerenciamentoCategoria() {
 		categoria = new DAOCategoria();
 	}
-	
+
 	public ArrayList<Categoria> listarTodas() {
 		try {
 			return categoria.listarTodos();

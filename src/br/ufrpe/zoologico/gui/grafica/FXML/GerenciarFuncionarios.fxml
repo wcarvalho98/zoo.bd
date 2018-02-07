@@ -12,236 +12,288 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.zoologico.gui.grafica.controller.GerenciarFuncionariosController">
-  <tabs>
-    <Tab text="Listar/Editar/Remover">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <TableView fx:id="tabelaFuncionarios" layoutX="94.0" layoutY="75.0" onMouseClicked="#selecionarFuncionario" prefHeight="184.0" prefWidth="1089.0">
-                    <columns>
-                      <TableColumn fx:id="colunaCpf" prefWidth="75.0" text="CPF" />
-                      <TableColumn fx:id="colunaNome" prefWidth="112.33332824707031" text="Nome" />
-                        <TableColumn fx:id="colunaEspecializacao" prefWidth="129.0" text="Especialização" />
-                        <TableColumn fx:id="colunaTelefone" prefWidth="143.66668701171875" text="Telefone" />
-                        <TableColumn fx:id="colunaDataContrato" prefWidth="164.33331298828125" text="Data de Contratação" />
-                        <TableColumn fx:id="colunaSalario" prefWidth="100.66668701171875" text="Salário" />
-                        <TableColumn fx:id="colunaEndereco" prefWidth="363.33331298828125" text="Endereço" />
-                    </columns>
-                  </TableView>
-                  <Button layoutX="274.0" layoutY="280.0" mnemonicParsing="false" onAction="#editarFuncionario" text="Editar Funcionario">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="821.0" layoutY="281.0" mnemonicParsing="false" onAction="#removerFuncionario" text="Remover Funcionario">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Label layoutX="581.0" layoutY="15.0" text="Funcionários">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="nomeTextField1" layoutX="321.0" layoutY="363.0" promptText="Nome">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="telefone1TextField1" layoutX="322.0" layoutY="422.0" promptText="Telefone 1">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="telefone2TextField1" layoutX="323.0" layoutY="479.0" promptText="Telefone 2">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="salarioTextField1" layoutX="816.0" layoutY="421.0" promptText="Salário">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="enderecoTextField1" layoutX="815.0" layoutY="363.0" promptText="Endereço">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="233.0" layoutY="364.0" text="Nome:">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="188.0" layoutY="422.0" text="Telefone 1:">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="188.0" layoutY="480.0" text="Telefone 2:">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="690.0" layoutY="364.0" text="Endereço:">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="717.0" layoutY="423.0" text="Salário:">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="570.0" layoutY="476.0" text="Data de Contratação:">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <DatePicker fx:id="contratoDatePicker1" layoutX="816.0" layoutY="476.0" prefHeight="40.0" prefWidth="222.0" />
-                  <Button layoutX="1157.0" layoutY="16.0" mnemonicParsing="false" onAction="#voltar" text="Voltar">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="598.0" layoutY="561.0" mnemonicParsing="false" onAction="#salvarAlteracoes" text="Salvar Alterações">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-               </children></AnchorPane>
-      </content>
-    </Tab>
-    <Tab text="Cadastrar">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <TextField fx:id="cpfTextField" layoutX="379.0" layoutY="128.0" promptText="CPF">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="nomeTextField" layoutX="379.0" layoutY="183.0" promptText="Nome">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="telefone1TextField" layoutX="380.0" layoutY="242.0" promptText="Telefone 1">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="telefone2TextField" layoutX="381.0" layoutY="299.0" promptText="Telefone 2">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="salarioTextField" layoutX="383.0" layoutY="411.0" promptText="Salário">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="enderecoTextField" layoutX="382.0" layoutY="353.0" promptText="Endereço">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="312.0" layoutY="129.0" text="CPF:">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="291.0" layoutY="184.0" text="Nome:">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="246.0" layoutY="242.0" text="Telefone 1:">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="246.0" layoutY="300.0" text="Telefone 2:">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="257.0" layoutY="354.0" text="Endereço:">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="284.0" layoutY="413.0" text="Salário:">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <TableView fx:id="tbZoo" layoutX="667.0" layoutY="121.0" onMouseClicked="#selecionarZoologico" prefHeight="200.0" prefWidth="341.0">
-                     <columns>
-                        <TableColumn fx:id="tcIdZoo" prefWidth="40.0" text="ID" />
-                        <TableColumn fx:id="tcZoo" prefWidth="297.0" text="Zoológico" />
-                     </columns>
-                  </TableView>
-                  <TableView fx:id="tabelaJornadaTrabalho" layoutX="664.0" layoutY="395.0" onMouseClicked="#selecionarJornada" prefHeight="184.0" prefWidth="344.0">
-                    <columns>
-                      <TableColumn fx:id="colunaIdJornada" prefWidth="45.66668701171875" text="ID" />
-                      <TableColumn fx:id="colunaDescricaoJornada" prefWidth="297.0" text="Descrição" />
-                    </columns>
-                  </TableView>
-                  <Label layoutX="785.0" layoutY="79.0" text="Zoológico">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="731.0" layoutY="344.0" text="Jornada de Trabalho">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Button layoutX="740.0" layoutY="592.0" mnemonicParsing="false" onAction="#cadastrarFuncionario" text="Cadastrar Funcionario">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <RadioButton fx:id="radioTratador" layoutX="361.0" layoutY="533.0" mnemonicParsing="false" onMouseClicked="#selecionarTratador" text="Tratador">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton fx:id="radioVeterinario" layoutX="214.0" layoutY="534.0" mnemonicParsing="false" onMouseClicked="#selecionarVeterinario" text="Veterinario">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton fx:id="radioSecretario" layoutX="214.0" layoutY="578.0" mnemonicParsing="false" onMouseClicked="#selecionarSecretario" text="Secretario">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton fx:id="radioAdministrador" layoutX="363.0" layoutY="576.0" mnemonicParsing="false" onMouseClicked="#selecionarAdministrador" text="Administrador">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton fx:id="radioNenhum" layoutX="216.0" layoutY="626.0" mnemonicParsing="false" onMouseClicked="#selecionarNenhum" text="Nenhum">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </RadioButton>
-                  <Label layoutX="137.0" layoutY="466.0" text="Data de Contratação:">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <DatePicker fx:id="contratoDatePicker" layoutX="383.0" layoutY="466.0" prefHeight="40.0" prefWidth="222.0" />
-                  <Button layoutX="1167.0" layoutY="26.0" mnemonicParsing="false" onAction="#voltar" text="Voltar">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Button>
-               </children></AnchorPane>
-      </content>
-    </Tab>
-  </tabs>
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+	minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0"
+	tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/9.0.1"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="br.ufrpe.zoologico.gui.grafica.controller.GerenciarFuncionariosController">
+	<tabs>
+		<Tab text="Listar/Editar/Remover">
+			<content>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+					prefWidth="200.0">
+					<children>
+						<TableView fx:id="tabelaFuncionarios" layoutX="94.0"
+							layoutY="75.0" onMouseClicked="#selecionarFuncionario"
+							prefHeight="184.0" prefWidth="1089.0">
+							<columns>
+								<TableColumn fx:id="colunaCpf" prefWidth="75.0"
+									text="CPF" />
+								<TableColumn fx:id="colunaNome" prefWidth="112.33332824707031"
+									text="Nome" />
+								<TableColumn fx:id="colunaEspecializacao" prefWidth="129.0"
+									text="Especialização" />
+								<TableColumn fx:id="colunaTelefone" prefWidth="143.66668701171875"
+									text="Telefone" />
+								<TableColumn fx:id="colunaDataContrato" prefWidth="164.33331298828125"
+									text="Data de Contratação" />
+								<TableColumn fx:id="colunaSalario" prefWidth="100.66668701171875"
+									text="Salário" />
+								<TableColumn fx:id="colunaEndereco" prefWidth="363.33331298828125"
+									text="Endereço" />
+							</columns>
+						</TableView>
+						<Button layoutX="274.0" layoutY="280.0" mnemonicParsing="false"
+							onAction="#editarFuncionario" text="Editar Funcionario">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</Button>
+						<Button layoutX="821.0" layoutY="281.0" mnemonicParsing="false"
+							onAction="#removerFuncionario" text="Remover Funcionario">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</Button>
+						<Label layoutX="581.0" layoutY="15.0" text="Funcionários">
+							<font>
+								<Font size="36.0" />
+							</font>
+						</Label>
+						<TextField fx:id="nomeTextField1" layoutX="321.0"
+							layoutY="363.0" promptText="Nome">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</TextField>
+						<TextField fx:id="telefone1TextField1" layoutX="322.0"
+							layoutY="422.0" promptText="Telefone 1">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</TextField>
+						<TextField fx:id="telefone2TextField1" layoutX="323.0"
+							layoutY="479.0" promptText="Telefone 2">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</TextField>
+						<TextField fx:id="salarioTextField1" layoutX="816.0"
+							layoutY="421.0" promptText="Salário">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</TextField>
+						<TextField fx:id="enderecoTextField1" layoutX="815.0"
+							layoutY="363.0" promptText="Endereço">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</TextField>
+						<Label layoutX="233.0" layoutY="364.0" text="Nome:">
+							<font>
+								<Font size="24.0" />
+							</font>
+						</Label>
+						<Label layoutX="188.0" layoutY="422.0" text="Telefone 1:">
+							<font>
+								<Font size="24.0" />
+							</font>
+						</Label>
+						<Label layoutX="188.0" layoutY="480.0" text="Telefone 2:">
+							<font>
+								<Font size="24.0" />
+							</font>
+						</Label>
+						<Label layoutX="690.0" layoutY="364.0" text="Endereço:">
+							<font>
+								<Font size="24.0" />
+							</font>
+						</Label>
+						<Label layoutX="717.0" layoutY="423.0" text="Salário:">
+							<font>
+								<Font size="24.0" />
+							</font>
+						</Label>
+						<Label layoutX="570.0" layoutY="476.0" text="Data de Contratação:">
+							<font>
+								<Font size="24.0" />
+							</font>
+						</Label>
+						<DatePicker fx:id="contratoDatePicker1" layoutX="816.0"
+							layoutY="476.0" prefHeight="40.0" prefWidth="222.0" />
+						<Button layoutX="1157.0" layoutY="16.0" mnemonicParsing="false"
+							onAction="#voltar" text="Voltar">
+							<font>
+								<Font size="24.0" />
+							</font>
+						</Button>
+						<Button layoutX="598.0" layoutY="561.0" mnemonicParsing="false"
+							onAction="#salvarAlteracoes" text="Salvar Alterações">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</Button>
+					</children>
+				</AnchorPane>
+			</content>
+		</Tab>
+		<Tab text="Cadastrar">
+			<content>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+					prefWidth="200.0">
+					<children>
+						<TextField fx:id="cpfTextField" layoutX="379.0" layoutY="128.0"
+							promptText="CPF">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</TextField>
+						<TextField fx:id="nomeTextField" layoutX="379.0"
+							layoutY="183.0" promptText="Nome">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</TextField>
+						<TextField fx:id="telefone1TextField" layoutX="380.0"
+							layoutY="242.0" promptText="Telefone 1">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</TextField>
+						<TextField fx:id="telefone2TextField" layoutX="381.0"
+							layoutY="299.0" promptText="Telefone 2">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</TextField>
+						<TextField fx:id="salarioTextField" layoutX="383.0"
+							layoutY="411.0" promptText="Salário">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</TextField>
+						<TextField fx:id="enderecoTextField" layoutX="382.0"
+							layoutY="353.0" promptText="Endereço">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</TextField>
+						<Label layoutX="312.0" layoutY="129.0" text="CPF:">
+							<font>
+								<Font size="24.0" />
+							</font>
+						</Label>
+						<Label layoutX="291.0" layoutY="184.0" text="Nome:">
+							<font>
+								<Font size="24.0" />
+							</font>
+						</Label>
+						<Label layoutX="246.0" layoutY="242.0" text="Telefone 1:">
+							<font>
+								<Font size="24.0" />
+							</font>
+						</Label>
+						<Label layoutX="246.0" layoutY="300.0" text="Telefone 2:">
+							<font>
+								<Font size="24.0" />
+							</font>
+						</Label>
+						<Label layoutX="257.0" layoutY="354.0" text="Endereço:">
+							<font>
+								<Font size="24.0" />
+							</font>
+						</Label>
+						<Label layoutX="284.0" layoutY="413.0" text="Salário:">
+							<font>
+								<Font size="24.0" />
+							</font>
+						</Label>
+						<TableView fx:id="tbZoo" layoutX="667.0" layoutY="121.0"
+							onMouseClicked="#selecionarZoologico" prefHeight="200.0"
+							prefWidth="341.0">
+							<columns>
+								<TableColumn fx:id="tcIdZoo" prefWidth="40.0" text="ID" />
+								<TableColumn fx:id="tcZoo" prefWidth="297.0" text="Zoológico" />
+							</columns>
+						</TableView>
+						<TableView fx:id="tabelaJornadaTrabalho" layoutX="664.0"
+							layoutY="395.0" onMouseClicked="#selecionarJornada" prefHeight="184.0"
+							prefWidth="344.0">
+							<columns>
+								<TableColumn fx:id="colunaIdJornada" prefWidth="45.66668701171875"
+									text="ID" />
+								<TableColumn fx:id="colunaDescricaoJornada"
+									prefWidth="297.0" text="Descrição" />
+							</columns>
+						</TableView>
+						<Label layoutX="785.0" layoutY="79.0" text="Zoológico">
+							<font>
+								<Font size="24.0" />
+							</font>
+						</Label>
+						<Label layoutX="731.0" layoutY="344.0" text="Jornada de Trabalho">
+							<font>
+								<Font size="24.0" />
+							</font>
+						</Label>
+						<Button layoutX="740.0" layoutY="592.0" mnemonicParsing="false"
+							onAction="#cadastrarFuncionario" text="Cadastrar Funcionario">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</Button>
+						<RadioButton fx:id="radioTratador" layoutX="361.0"
+							layoutY="533.0" mnemonicParsing="false" onMouseClicked="#selecionarTratador"
+							text="Tratador">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</RadioButton>
+						<RadioButton fx:id="radioVeterinario" layoutX="214.0"
+							layoutY="534.0" mnemonicParsing="false" onMouseClicked="#selecionarVeterinario"
+							text="Veterinario">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</RadioButton>
+						<RadioButton fx:id="radioSecretario" layoutX="214.0"
+							layoutY="578.0" mnemonicParsing="false" onMouseClicked="#selecionarSecretario"
+							text="Secretario">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</RadioButton>
+						<RadioButton fx:id="radioAdministrador" layoutX="363.0"
+							layoutY="576.0" mnemonicParsing="false" onMouseClicked="#selecionarAdministrador"
+							text="Administrador">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</RadioButton>
+						<RadioButton fx:id="radioNenhum" layoutX="216.0"
+							layoutY="626.0" mnemonicParsing="false" onMouseClicked="#selecionarNenhum"
+							text="Nenhum">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</RadioButton>
+						<Label layoutX="137.0" layoutY="466.0" text="Data de Contratação:">
+							<font>
+								<Font size="24.0" />
+							</font>
+						</Label>
+						<DatePicker fx:id="contratoDatePicker" layoutX="383.0"
+							layoutY="466.0" prefHeight="40.0" prefWidth="222.0" />
+						<Button layoutX="1167.0" layoutY="26.0" mnemonicParsing="false"
+							onAction="#voltar" text="Voltar">
+							<font>
+								<Font size="24.0" />
+							</font>
+						</Button>
+					</children>
+				</AnchorPane>
+			</content>
+		</Tab>
+	</tabs>
 </TabPane>

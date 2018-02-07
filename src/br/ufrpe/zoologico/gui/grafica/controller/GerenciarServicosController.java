@@ -103,10 +103,10 @@ public class GerenciarServicosController implements Initializable {
 	@FXML
 	public void cadastrarFatura() {
 		try {
-			if (servicoSelecionado != null && dataDaFaturaDatePicker.getValue() != null && 
-					dstaDePagamentoDatePicker.getValue() != null &&
-					Double.parseDouble(valorDaFaturaTextField.getText()) >= 0 &&
-					Double.parseDouble(valorDaMultaTextField.getText()) >= 0) {
+			if (servicoSelecionado != null && dataDaFaturaDatePicker.getValue() != null
+					&& dstaDePagamentoDatePicker.getValue() != null
+					&& Double.parseDouble(valorDaFaturaTextField.getText()) >= 0
+					&& Double.parseDouble(valorDaMultaTextField.getText()) >= 0) {
 				Fatura a = new Fatura();
 				a.setDataDaFatura(dataDaFaturaDatePicker.getValue());
 				a.setDt_paga(dstaDePagamentoDatePicker.getValue());
@@ -114,25 +114,26 @@ public class GerenciarServicosController implements Initializable {
 				a.setTp_fatura(tipoDeFaturaTextField.getText());
 				a.setValor(Double.parseDouble(valorDaFaturaTextField.getText()));
 				a.setVl_multa(Double.parseDouble(valorDaMultaTextField.getText()));
-				
+
 				Fachada.getInstance().cadastrarFatura(a, servicoSelecionado.getId());
 				preencherTabelaFaturas();
 				preencherCamposEdicao(null);
 				disableAll();
 				cadastrarFaturaButton.setDisable(true);
-				
-				ScreenManager.alertaInformativo("Fatura inserida com sucesso para o serviço de id = " + servicoSelecionado.getId());
-				
+
+				ScreenManager.alertaInformativo(
+						"Fatura inserida com sucesso para o serviço de id = " + servicoSelecionado.getId());
+
 			} else if (servicoSelecionado == null) {
 				ScreenManager.alertaErro("Nenhum serviço selecionado.");
 			}
 		} catch (NumberFormatException e) {
 			ScreenManager.alertaErro("Valores digitados de forma incorreta.");
-		} catch (Exception e){
+		} catch (Exception e) {
 			ScreenManager.alertaErro("Algo deu errado.");
 		}
 	}
-	
+
 	@FXML
 	void removerFatura() {
 		if (faturaSelecionada != null) {

@@ -11,21 +11,22 @@ import java.util.ArrayList;
 import br.ufrpe.zoologico.negocio.beans.Zoo;
 import br.ufrpe.zoologico.repositorio.Interfaces.IRepositorioZoo;
 
-public class RepositorioZoo implements IRepositorioZoo{
+public class RepositorioZoo implements IRepositorioZoo {
 
 	private ArrayList<Zoo> repositorio;
 	private static IRepositorioZoo instance;
-	
-	private RepositorioZoo(){
+
+	private RepositorioZoo() {
 		repositorio = new ArrayList<Zoo>();
 	}
-	public static IRepositorioZoo getInstance(){
-		if(instance == null){
+
+	public static IRepositorioZoo getInstance() {
+		if (instance == null) {
 			instance = new RepositorioZoo();
 		}
 		return instance;
 	}
-	
+
 	@Override
 	public void cadastrar(Zoo obj) {
 		repositorio.add(obj);

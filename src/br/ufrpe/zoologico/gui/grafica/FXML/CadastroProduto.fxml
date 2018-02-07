@@ -8,141 +8,168 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.zoologico.gui.grafica.controller.CadastroProdutoController">
-   <children>
-      <TextField fx:id="descricaoTextField" layoutX="429.0" layoutY="191.0" promptText="Nome Usual">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="codBarrasTextField" layoutX="429.0" layoutY="264.0" promptText="Apenas Números">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="qtdMinTextField" layoutX="429.0" layoutY="409.0" promptText="Apenas Números">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </TextField>
-      <Button fx:id="confirmarCadastro" disable="true" layoutX="1025.0" layoutY="604.0" mnemonicParsing="false" onAction="#confirmarCadastro" prefHeight="77.0" prefWidth="218.0" text="Confirmar" visible="false">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Button>
-      <Button layoutX="1053.0" layoutY="50.0" mnemonicParsing="false" onAction="#voltar" text="Voltar">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Button>
-      <Label layoutX="397.0" layoutY="61.0" text="Cadastro de Produto">
-         <font>
-            <Font size="48.0" />
-         </font>
-      </Label>
-      <Label layoutX="262.0" layoutY="194.0" text="Descrição:">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
-      <Label layoutX="162.0" layoutY="267.0" text="Código de barras:">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
-      <Label layoutX="97.0" layoutY="340.0" text="Frequência do pedido:">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
-      <Label layoutX="128.0" layoutY="412.0" text="Quantidade mínima:">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
-      <TableView fx:id="tbCateg" layoutX="774.0" layoutY="190.0" prefHeight="151.0" prefWidth="218.0">
-        <columns>
-          <TableColumn fx:id="tcIdCateg" prefWidth="43.0" text="ID" />
-          <TableColumn fx:id="tcCateg" prefWidth="174.0" text="Categoria" />
-        </columns>
-      </TableView>
-      <TableView fx:id="tbSubCateg" layoutX="1037.0" layoutY="190.0" prefHeight="151.0" prefWidth="218.0">
-        <columns>
-          <TableColumn fx:id="tcIdSubCateg" prefWidth="40.0" text="ID" />
-          <TableColumn fx:id="tcSubCateg" prefWidth="177.0" text="Sub_Categoria" />
-        </columns>
-      </TableView>
-      <TextField fx:id="freqPedido" layoutX="429.0" layoutY="337.0" promptText="Apenas Números">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </TextField>
-      <TableView fx:id="tbFornecedor" layoutX="128.0" layoutY="468.0" prefHeight="200.0" prefWidth="382.0">
-        <columns>
-          <TableColumn fx:id="tcIdFornecedor" prefWidth="43.0" text="ID" />
-          <TableColumn fx:id="tcNome" prefWidth="153.0" text="Fornecedor" />
-            <TableColumn fx:id="tcCnpj" prefWidth="185.0" text="CNPJ" />
-        </columns>
-      </TableView>
-      <Button layoutX="542.0" layoutY="491.0" mnemonicParsing="false" onAction="#retornar" text="&lt;">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Button>
-      <Button layoutX="640.0" layoutY="491.0" mnemonicParsing="false" onAction="#ir" text="&gt;">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Button>
-      <Button layoutX="516.0" layoutY="617.0" mnemonicParsing="false" onAction="#inserir" prefHeight="51.0" prefWidth="118.0" text="Inserir">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
-      <Button layoutX="670.0" layoutY="617.0" mnemonicParsing="false" onAction="#remover" prefHeight="51.0" prefWidth="128.0" text="Remover">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
-      <Button layoutX="824.0" layoutY="617.0" mnemonicParsing="false" onAction="#alterar" prefHeight="51.0" prefWidth="118.0" text="Alterar">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
-      <Button fx:id="confirmarAlteracao" disable="true" layoutX="1025.0" layoutY="604.0" mnemonicParsing="false" onAction="#confirmarAlteracao" prefHeight="77.0" prefWidth="218.0" text="Confirmar" visible="false">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Button>
-      <Button fx:id="confirmarRemorcao" disable="true" layoutX="1025.0" layoutY="604.0" mnemonicParsing="false" onAction="#confirmarRemorcao" prefHeight="77.0" prefWidth="218.0" text="Confirmar" visible="false">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Button>
-      <TextField fx:id="idProduto" disable="true" layoutX="330.0" layoutY="139.0" prefHeight="51.0" prefWidth="80.0" promptText="ID">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </TextField>
-      <Label layoutX="745.0" layoutY="351.0" text="Preço da última compra:">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
-      <Label layoutX="745.0" layoutY="412.0" text="Quantidade em estoque:">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
-      <TextField fx:id="precoUltCompra" layoutX="1087.0" layoutY="348.0" prefHeight="51.0" prefWidth="95.0" promptText="Apenas Números">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="quantEstoq" layoutX="1087.0" layoutY="409.0" prefHeight="51.0" prefWidth="95.0" promptText="Apenas Números">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </TextField>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
+	prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="br.ufrpe.zoologico.gui.grafica.controller.CadastroProdutoController">
+	<children>
+		<TextField fx:id="descricaoTextField" layoutX="429.0"
+			layoutY="191.0" promptText="Nome Usual">
+			<font>
+				<Font size="24.0" />
+			</font>
+		</TextField>
+		<TextField fx:id="codBarrasTextField" layoutX="429.0"
+			layoutY="264.0" promptText="Apenas Números">
+			<font>
+				<Font size="24.0" />
+			</font>
+		</TextField>
+		<TextField fx:id="qtdMinTextField" layoutX="429.0" layoutY="409.0"
+			promptText="Apenas Números">
+			<font>
+				<Font size="24.0" />
+			</font>
+		</TextField>
+		<Button fx:id="confirmarCadastro" disable="true" layoutX="1025.0"
+			layoutY="604.0" mnemonicParsing="false" onAction="#confirmarCadastro"
+			prefHeight="77.0" prefWidth="218.0" text="Confirmar" visible="false">
+			<font>
+				<Font size="36.0" />
+			</font>
+		</Button>
+		<Button layoutX="1053.0" layoutY="50.0" mnemonicParsing="false"
+			onAction="#voltar" text="Voltar">
+			<font>
+				<Font size="36.0" />
+			</font>
+		</Button>
+		<Label layoutX="397.0" layoutY="61.0" text="Cadastro de Produto">
+			<font>
+				<Font size="48.0" />
+			</font>
+		</Label>
+		<Label layoutX="262.0" layoutY="194.0" text="Descrição:">
+			<font>
+				<Font size="30.0" />
+			</font>
+		</Label>
+		<Label layoutX="162.0" layoutY="267.0" text="Código de barras:">
+			<font>
+				<Font size="30.0" />
+			</font>
+		</Label>
+		<Label layoutX="97.0" layoutY="340.0" text="Frequência do pedido:">
+			<font>
+				<Font size="30.0" />
+			</font>
+		</Label>
+		<Label layoutX="128.0" layoutY="412.0" text="Quantidade mínima:">
+			<font>
+				<Font size="30.0" />
+			</font>
+		</Label>
+		<TableView fx:id="tbCateg" layoutX="774.0" layoutY="190.0"
+			prefHeight="151.0" prefWidth="218.0">
+			<columns>
+				<TableColumn fx:id="tcIdCateg" prefWidth="43.0" text="ID" />
+				<TableColumn fx:id="tcCateg" prefWidth="174.0" text="Categoria" />
+			</columns>
+		</TableView>
+		<TableView fx:id="tbSubCateg" layoutX="1037.0" layoutY="190.0"
+			prefHeight="151.0" prefWidth="218.0">
+			<columns>
+				<TableColumn fx:id="tcIdSubCateg" prefWidth="40.0" text="ID" />
+				<TableColumn fx:id="tcSubCateg" prefWidth="177.0"
+					text="Sub_Categoria" />
+			</columns>
+		</TableView>
+		<TextField fx:id="freqPedido" layoutX="429.0" layoutY="337.0"
+			promptText="Apenas Números">
+			<font>
+				<Font size="24.0" />
+			</font>
+		</TextField>
+		<TableView fx:id="tbFornecedor" layoutX="128.0" layoutY="468.0"
+			prefHeight="200.0" prefWidth="382.0">
+			<columns>
+				<TableColumn fx:id="tcIdFornecedor" prefWidth="43.0"
+					text="ID" />
+				<TableColumn fx:id="tcNome" prefWidth="153.0" text="Fornecedor" />
+				<TableColumn fx:id="tcCnpj" prefWidth="185.0" text="CNPJ" />
+			</columns>
+		</TableView>
+		<Button layoutX="542.0" layoutY="491.0" mnemonicParsing="false"
+			onAction="#retornar" text="&lt;">
+			<font>
+				<Font size="36.0" />
+			</font>
+		</Button>
+		<Button layoutX="640.0" layoutY="491.0" mnemonicParsing="false"
+			onAction="#ir" text="&gt;">
+			<font>
+				<Font size="36.0" />
+			</font>
+		</Button>
+		<Button layoutX="516.0" layoutY="617.0" mnemonicParsing="false"
+			onAction="#inserir" prefHeight="51.0" prefWidth="118.0" text="Inserir">
+			<font>
+				<Font size="24.0" />
+			</font>
+		</Button>
+		<Button layoutX="670.0" layoutY="617.0" mnemonicParsing="false"
+			onAction="#remover" prefHeight="51.0" prefWidth="128.0" text="Remover">
+			<font>
+				<Font size="24.0" />
+			</font>
+		</Button>
+		<Button layoutX="824.0" layoutY="617.0" mnemonicParsing="false"
+			onAction="#alterar" prefHeight="51.0" prefWidth="118.0" text="Alterar">
+			<font>
+				<Font size="24.0" />
+			</font>
+		</Button>
+		<Button fx:id="confirmarAlteracao" disable="true" layoutX="1025.0"
+			layoutY="604.0" mnemonicParsing="false" onAction="#confirmarAlteracao"
+			prefHeight="77.0" prefWidth="218.0" text="Confirmar" visible="false">
+			<font>
+				<Font size="36.0" />
+			</font>
+		</Button>
+		<Button fx:id="confirmarRemorcao" disable="true" layoutX="1025.0"
+			layoutY="604.0" mnemonicParsing="false" onAction="#confirmarRemorcao"
+			prefHeight="77.0" prefWidth="218.0" text="Confirmar" visible="false">
+			<font>
+				<Font size="36.0" />
+			</font>
+		</Button>
+		<TextField fx:id="idProduto" disable="true" layoutX="330.0"
+			layoutY="139.0" prefHeight="51.0" prefWidth="80.0" promptText="ID">
+			<font>
+				<Font size="24.0" />
+			</font>
+		</TextField>
+		<Label layoutX="745.0" layoutY="351.0" text="Preço da última compra:">
+			<font>
+				<Font size="30.0" />
+			</font>
+		</Label>
+		<Label layoutX="745.0" layoutY="412.0" text="Quantidade em estoque:">
+			<font>
+				<Font size="30.0" />
+			</font>
+		</Label>
+		<TextField fx:id="precoUltCompra" layoutX="1087.0" layoutY="348.0"
+			prefHeight="51.0" prefWidth="95.0" promptText="Apenas Números">
+			<font>
+				<Font size="24.0" />
+			</font>
+		</TextField>
+		<TextField fx:id="quantEstoq" layoutX="1087.0" layoutY="409.0"
+			prefHeight="51.0" prefWidth="95.0" promptText="Apenas Números">
+			<font>
+				<Font size="24.0" />
+			</font>
+		</TextField>
+	</children>
 </AnchorPane>

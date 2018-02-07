@@ -11,22 +11,23 @@ import java.util.ArrayList;
 import br.ufrpe.zoologico.negocio.beans.Fornecedor;
 import br.ufrpe.zoologico.repositorio.Interfaces.IRepositorio;
 
-public class RepositorioFornecedor implements IRepositorio<Fornecedor>{
+public class RepositorioFornecedor implements IRepositorio<Fornecedor> {
 
 	private ArrayList<Fornecedor> r;
 	private static IRepositorio<Fornecedor> i;
-	
-	private RepositorioFornecedor(){
+
+	private RepositorioFornecedor() {
 		r = new ArrayList<Fornecedor>();
 	}
-	
-	private static IRepositorio<Fornecedor> getInstance(){
-		if(i == null){
+
+	@SuppressWarnings("unused")
+	private static IRepositorio<Fornecedor> getInstance() {
+		if (i == null) {
 			i = new RepositorioFornecedor();
 		}
 		return i;
 	}
-	
+
 	@Override
 	public void cadastrar(Fornecedor obj) {
 		r.add(obj);
@@ -34,8 +35,8 @@ public class RepositorioFornecedor implements IRepositorio<Fornecedor>{
 
 	@Override
 	public void atualizar(Fornecedor newObj) {
-		//TODO fornecedor sem id
-		//r.set(, newObj);
+		// TODO fornecedor sem id
+		// r.set(, newObj);
 	}
 
 	@Override

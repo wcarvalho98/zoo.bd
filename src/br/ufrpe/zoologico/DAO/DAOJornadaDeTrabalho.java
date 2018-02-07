@@ -49,8 +49,7 @@ public class DAOJornadaDeTrabalho extends DAO<JornadaTrabalho> {
 
 	@Override
 	public void alterar(JornadaTrabalho o) throws Exception {
-		String sql = "UPDATE jornada_de_trabalho SET `trabalha_sabado` = ?, `descr` = ?"
-				+ "WHERE id = ?";
+		String sql = "UPDATE jornada_de_trabalho SET `trabalha_sabado` = ?, `descr` = ?" + "WHERE id = ?";
 		preparar(sql);
 		getStmt().setBoolean(1, o.isTrabalha_sabado());
 		getStmt().setString(2, o.getDesc());
@@ -65,7 +64,7 @@ public class DAOJornadaDeTrabalho extends DAO<JornadaTrabalho> {
 			fecharStmt();
 		}
 	}
-	
+
 	public JornadaTrabalho buscar(int id) throws Exception {
 		String sql = "SELECT * FROM jornada_de_trabalho WHERE id = ?";
 		preparar(sql);
@@ -100,7 +99,7 @@ public class DAOJornadaDeTrabalho extends DAO<JornadaTrabalho> {
 			fecharStmt();
 			e.printStackTrace();
 		}
-		while(rs.next()) {
+		while (rs.next()) {
 			JornadaTrabalho o = new JornadaTrabalho(rs.getInt(1), rs.getBoolean(2), rs.getString(3));
 			r.add(o);
 		}

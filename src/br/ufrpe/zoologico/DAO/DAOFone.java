@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.Fones;
 
-public class DAOFone extends DAO<Fones>{
+public class DAOFone extends DAO<Fones> {
 
 	@Override
 	public void inserir(Fones o) throws Exception {
@@ -62,7 +62,7 @@ public class DAOFone extends DAO<Fones>{
 			e.printStackTrace();
 		} finally {
 			fecharStmt();
-		}	
+		}
 	}
 
 	@Override
@@ -79,8 +79,8 @@ public class DAOFone extends DAO<Fones>{
 			e.printStackTrace();
 		}
 		ArrayList<Fones> list = new ArrayList<>();
-		while (rs.next()){
-			Fones f = new Fones(rs.getString(2),rs.getInt(1));
+		while (rs.next()) {
+			Fones f = new Fones(rs.getString(2), rs.getInt(1));
 			list.add(f);
 		}
 		rs.close();

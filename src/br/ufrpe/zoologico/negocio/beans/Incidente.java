@@ -9,34 +9,45 @@ package br.ufrpe.zoologico.negocio.beans;
 public class Incidente {
 	private int seq;
 	private String descr;
+
 	/**
 	 * Metodo: getSeq
+	 * 
 	 * @return seq
 	 */
 	public int getSeq() {
 		return seq;
 	}
+
 	/**
 	 * Metodo: setSeq
-	 * @param seq the seq to set
+	 * 
+	 * @param seq
+	 *            the seq to set
 	 */
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}
+
 	/**
 	 * Metodo: getDescr
+	 * 
 	 * @return descr
 	 */
 	public String getDescr() {
 		return descr;
 	}
+
 	/**
 	 * Metodo: setDescr
-	 * @param descr the descr to set
+	 * 
+	 * @param descr
+	 *            the descr to set
 	 */
 	public void setDescr(String descr) {
 		this.descr = descr;
 	}
+
 	/**
 	 * @param seq
 	 * @param descr
@@ -46,7 +57,8 @@ public class Incidente {
 		this.seq = seq;
 		this.descr = descr;
 	}
-	public boolean equals(){
+
+	public boolean equals() {
 		return false;
 	}
 }

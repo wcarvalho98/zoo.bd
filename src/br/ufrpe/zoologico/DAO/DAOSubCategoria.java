@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.SubCategoria;
 
-public class DAOSubCategoria extends DAO<SubCategoria>{
+public class DAOSubCategoria extends DAO<SubCategoria> {
 
 	@Override
 	public void inserir(SubCategoria o) throws Exception {

@@ -30,12 +30,13 @@ public class FabricaTransicao {
 		}
 		fadeTransition.setFromValue(x);
 		fadeTransition.setToValue(y);
-		fadeTransition.setInterpolator(Interpolator.LINEAR);;
+		fadeTransition.setInterpolator(Interpolator.LINEAR);
+		;
 		t = fadeTransition;
 		t.play();
 		return t;
 	}
-	
+
 	public static Transition fazerTransicaoRight(double duracaoSegundos, Node stage, boolean ligar) {
 		Duration duracao = new Duration(duracaoSegundos * 1000);
 		int x = 0;
@@ -59,7 +60,7 @@ public class FabricaTransicao {
 		pl.play();
 		return pl;
 	}
-	
+
 	public static Transition fazerTransicaoLeft(double duracaoSegundos, Node stage, boolean ligar) {
 		Duration duracao = new Duration(duracaoSegundos * 1000);
 		TranslateTransition translateTransition = new TranslateTransition(duracao, stage);
@@ -83,5 +84,5 @@ public class FabricaTransicao {
 		pl.play();
 		return pl;
 	}
-	
+
 }

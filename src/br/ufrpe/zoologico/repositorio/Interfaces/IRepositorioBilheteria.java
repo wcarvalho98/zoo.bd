@@ -8,6 +8,6 @@ package br.ufrpe.zoologico.repositorio.Interfaces;
 
 import br.ufrpe.zoologico.negocio.beans.Bilheteria;
 
-public interface IRepositorioBilheteria extends IRepositorio<Bilheteria>{
+public interface IRepositorioBilheteria extends IRepositorio<Bilheteria> {
 
 }

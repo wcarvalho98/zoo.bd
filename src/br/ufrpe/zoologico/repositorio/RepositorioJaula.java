@@ -11,22 +11,23 @@ import java.util.ArrayList;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
 import br.ufrpe.zoologico.repositorio.Interfaces.IRepositorioJaula;
 
-public class RepositorioJaula implements IRepositorioJaula{
-	
+public class RepositorioJaula implements IRepositorioJaula {
+
 	private ArrayList<Jaula> r;
 	private static IRepositorioJaula i;
-	
-	private RepositorioJaula(){
+
+	private RepositorioJaula() {
 		r = new ArrayList<Jaula>();
 	}
-	
-	private static IRepositorioJaula getInstance(){
-		if(i == null){
+
+	@SuppressWarnings("unused")
+	private static IRepositorioJaula getInstance() {
+		if (i == null) {
 			i = new RepositorioJaula();
 		}
 		return i;
 	}
-	
+
 	@Override
 	public void cadastrar(Jaula obj) {
 		r.add(obj);

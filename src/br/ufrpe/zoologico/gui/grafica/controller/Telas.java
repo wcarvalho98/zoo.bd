@@ -28,13 +28,14 @@ public class Telas {
 	private static Telas instance;
 	private ArrayList<Scene> cena;
 	private FXMLLoader f;
-	
-	private Telas(){
+
+	private Telas() {
 		cena = new ArrayList<Scene>();
 	}
 
 	/**
 	 * Metodo: getStage
+	 * 
 	 * @return stage
 	 */
 	public Stage getStage() {
@@ -43,7 +44,9 @@ public class Telas {
 
 	/**
 	 * Metodo: setStage
-	 * @param stage the stage to set
+	 * 
+	 * @param stage
+	 *            the stage to set
 	 */
 	public void setStage(Stage stage) {
 		this.stage = stage;
@@ -51,6 +54,7 @@ public class Telas {
 
 	/**
 	 * Metodo: getDialogStage
+	 * 
 	 * @return dialogStage
 	 */
 	public Stage getDialogStage() {
@@ -59,7 +63,9 @@ public class Telas {
 
 	/**
 	 * Metodo: setDialogStage
-	 * @param dialogStage the dialogStage to set
+	 * 
+	 * @param dialogStage
+	 *            the dialogStage to set
 	 */
 	public void setDialogStage(Stage dialogStage) {
 		this.dialogStage = dialogStage;
@@ -67,6 +73,7 @@ public class Telas {
 
 	/**
 	 * Metodo: getP
+	 * 
 	 * @return p
 	 */
 	public Principal getP() {
@@ -75,7 +82,9 @@ public class Telas {
 
 	/**
 	 * Metodo: setP
-	 * @param p the p to set
+	 * 
+	 * @param p
+	 *            the p to set
 	 */
 	public void setP(Principal p) {
 		this.p = p;
@@ -83,6 +92,7 @@ public class Telas {
 
 	/**
 	 * Metodo: getInstance
+	 * 
 	 * @return instance
 	 */
 	public static Telas getInstance() {
@@ -95,6 +105,7 @@ public class Telas {
 
 	/**
 	 * Metodo: getCena
+	 * 
 	 * @return cena
 	 */
 	public ArrayList<Scene> getCena() {
@@ -103,7 +114,9 @@ public class Telas {
 
 	/**
 	 * Metodo: setCena
-	 * @param cena the cena to set
+	 * 
+	 * @param cena
+	 *            the cena to set
 	 */
 	public void setCena(Scene cena) {
 		this.cena.add(cena);
@@ -111,6 +124,7 @@ public class Telas {
 
 	/**
 	 * Metodo: getF
+	 * 
 	 * @return f
 	 */
 	public FXMLLoader getF() {
@@ -119,14 +133,17 @@ public class Telas {
 
 	/**
 	 * Metodo: setF
-	 * @param f the f to set
+	 * 
+	 * @param f
+	 *            the f to set
 	 */
 	public void setF(FXMLLoader f) {
 		this.f = f;
 	}
-	
-	/** 
+
+	/**
 	 * Metodo: abrirTelaDialogo
+	 * 
 	 * @return void
 	 */
 	public void abrirTelaDialogo() {
@@ -134,8 +151,9 @@ public class Telas {
 		dialogStage.showAndWait();
 	}
 
-	/** 
+	/**
 	 * Metodo: fecharTelaDialogo
+	 * 
 	 * @return void
 	 */
 	public void fecharTelaDialogo() {
@@ -143,8 +161,9 @@ public class Telas {
 		dialogStage.close();
 	}
 
-	/** 
+	/**
 	 * Metodo: abrirTela
+	 * 
 	 * @return void
 	 */
 	public void abrirTela() {
@@ -152,16 +171,18 @@ public class Telas {
 		stage.show();
 	}
 
-	/** 
+	/**
 	 * Metodo: fecharTela
+	 * 
 	 * @return void
 	 */
 	public void fecharTela() {
 		stage.close();
 	}
 
-	/** 
+	/**
 	 * Metodo: carregarFXML
+	 * 
 	 * @param tela
 	 * @return Node
 	 */
@@ -171,24 +192,26 @@ public class Telas {
 		f = new FXMLLoader(p.getClass().getResource(r));
 		try {
 			root = f.load();
-			
+
 		} catch (IOException e) {
 			System.err.println("root é null, não foi possíel carregar a cena");
 		}
 
 		return root;
 	}
-	
-	/** 
+
+	/**
 	 * Metodo: voltarTela
+	 * 
 	 * @return void
 	 */
 	public void voltarTela() {
 		this.cena.remove(cena.size() - 1);
 	}
-	
-	/** 
+
+	/**
 	 * Metodo: sairDoSistema
+	 * 
 	 * @return void
 	 */
 	public void sairDoSistema() {
@@ -204,7 +227,7 @@ public class Telas {
 			alert.close();
 		}
 	}
-	
+
 	public void setScene(Scene s) {
 		this.cena.add(s);
 	}

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.Administrador;
 
-public class DAOAdmin extends DAO<Administrador>{
+public class DAOAdmin extends DAO<Administrador> {
 
 	@Override
 	public void inserir(Administrador o) throws Exception {
@@ -30,7 +30,7 @@ public class DAOAdmin extends DAO<Administrador>{
 			e.printStackTrace();
 		} finally {
 			fecharStmt();
-		}		
+		}
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class DAOAdmin extends DAO<Administrador>{
 			e.printStackTrace();
 		} finally {
 			fecharStmt();
-		}	
+		}
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class DAOAdmin extends DAO<Administrador>{
 			e.printStackTrace();
 		} finally {
 			fecharStmt();
-		}		
+		}
 	}
 
 	public Administrador buscar(String login) throws Exception {
@@ -88,7 +88,7 @@ public class DAOAdmin extends DAO<Administrador>{
 		fecharStmt();
 		return o;
 	}
-	
+
 	public Administrador buscar(int idZoo, String cpf) throws Exception {
 		String sql = "SELECT * FROM administrador WHERE `idZoo` = ?, `cpf` = ?";
 		preparar(sql);

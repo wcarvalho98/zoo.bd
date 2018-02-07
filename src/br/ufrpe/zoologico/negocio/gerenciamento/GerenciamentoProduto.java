@@ -13,38 +13,38 @@ import br.ufrpe.zoologico.negocio.beans.ProdutoRef;
 
 public class GerenciamentoProduto {
 	private DAOProduto produtos;
-	
-	public GerenciamentoProduto (){
+
+	public GerenciamentoProduto() {
 		produtos = new DAOProduto();
 	}
-	
+
 	public void cadastrarProduto(ProdutoRef o) throws Exception {
-		if(o == null)
+		if (o == null)
 			throw new NullPointerException("Produto nulo");
-		else{
+		else {
 			produtos.inserir(o);
 		}
 	}
-	
-	public void removerProduto(ProdutoRef o) throws Exception{
-		if(o == null)
+
+	public void removerProduto(ProdutoRef o) throws Exception {
+		if (o == null)
 			throw new NullPointerException("Produto nulo");
-		else{
+		else {
 			produtos.remover(o);
 		}
 
 	}
-	
-	public void alterarProduto(ProdutoRef o) throws Exception{
-		if(o == null)
+
+	public void alterarProduto(ProdutoRef o) throws Exception {
+		if (o == null)
 			throw new NullPointerException("Produto nulo");
-		else{
+		else {
 			produtos.alterar(o);
 		}
 	}
-	
-	public ArrayList<ProdutoRef> listarTodos() throws Exception{
+
+	public ArrayList<ProdutoRef> listarTodos() throws Exception {
 		return produtos.listarTodos();
 	}
-	
+
 }

@@ -15,12 +15,11 @@ import br.ufrpe.zoologico.negocio.beans.Funcionario;
 import br.ufrpe.zoologico.negocio.beans.Veterinario;
 
 public class DAOVeterinario extends DAO<Veterinario> {
-	
+
 	@Override
 	public void inserir(Veterinario o) throws Exception {
-		Funcionario f = new Funcionario(o.getCpf(), o.getNome(),
-				o.getFone_1(), o.getFone_2(), o.getEspecializacao(), o.getData_de_contratacao(),
-				o.getSalario(), o.getEndereco(), o.getJornada_trabalho(), o.getId_zoo());
+		Funcionario f = new Funcionario(o.getCpf(), o.getNome(), o.getFone_1(), o.getFone_2(), o.getEspecializacao(),
+				o.getData_de_contratacao(), o.getSalario(), o.getEndereco(), o.getJornada_trabalho(), o.getId_zoo());
 		Fachada.getInstance().cadastrarFuncionario(f);
 		String sql = "INSERT INTO `veterinario` (`CPF`,`estado`,`CRMV`) VALUES (?,?,?)";
 		preparar(sql);
@@ -40,9 +39,8 @@ public class DAOVeterinario extends DAO<Veterinario> {
 
 	@Override
 	public void remover(Veterinario o) throws Exception {
-		Funcionario f = new Funcionario(o.getCpf(), o.getNome(),
-				o.getFone_1(), o.getFone_2(), o.getEspecializacao(), o.getData_de_contratacao(),
-				o.getSalario(), o.getEndereco(), o.getJornada_trabalho(), o.getId_zoo());
+		Funcionario f = new Funcionario(o.getCpf(), o.getNome(), o.getFone_1(), o.getFone_2(), o.getEspecializacao(),
+				o.getData_de_contratacao(), o.getSalario(), o.getEndereco(), o.getJornada_trabalho(), o.getId_zoo());
 		Fachada.getInstance().removerFuncionario(f);
 		String sql = "DELETE FROM `veterinario` WHERE `CPF` = ?";
 		preparar(sql);
@@ -60,9 +58,8 @@ public class DAOVeterinario extends DAO<Veterinario> {
 
 	@Override
 	public void alterar(Veterinario o) throws Exception {
-		Funcionario f = new Funcionario(o.getCpf(), o.getNome(),
-				o.getFone_1(), o.getFone_2(), o.getEspecializacao(), o.getData_de_contratacao(),
-				o.getSalario(), o.getEndereco(), o.getJornada_trabalho(), o.getId_zoo());
+		Funcionario f = new Funcionario(o.getCpf(), o.getNome(), o.getFone_1(), o.getFone_2(), o.getEspecializacao(),
+				o.getData_de_contratacao(), o.getSalario(), o.getEndereco(), o.getJornada_trabalho(), o.getId_zoo());
 		Fachada.getInstance().alterarFuncionario(f);
 		String sql = "UPDATE `veterinario` SET `estado` = ?,`CRMV` = ? WHERE `CPF` = ?";
 		preparar(sql);
@@ -79,7 +76,7 @@ public class DAOVeterinario extends DAO<Veterinario> {
 			fecharStmt();
 		}
 	}
-	
+
 	public Veterinario buscar(String cpf) throws Exception {
 		String sqlFunc = "SELECT * FROM `funcionario` WHERE `CPF` = ?";
 		String sqlVet = "SELECT * FROM `veterinario` WHERE `CPF` = ?";
@@ -107,10 +104,9 @@ public class DAOVeterinario extends DAO<Veterinario> {
 		}
 		rs.next();
 		rt.next();
-		Veterinario o = new Veterinario(rs.getString(1), rs.getString(2),
-				rs.getString(3), rs.getString(4), rs.getString(5),
-				rs.getDate(6).toLocalDate(),
-				rs.getDouble(7), rs.getString(8), rs.getInt(9), rs.getInt(10), rt.getString(2), rt.getString(3));
+		Veterinario o = new Veterinario(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+				rs.getString(5), rs.getDate(6).toLocalDate(), rs.getDouble(7), rs.getString(8), rs.getInt(9),
+				rs.getInt(10), rt.getString(2), rt.getString(3));
 		rs.close();
 		rt.close();
 		fecharStmt();
@@ -134,7 +130,7 @@ public class DAOVeterinario extends DAO<Veterinario> {
 		}
 		preparar(sqlFunc);
 		ResultSet rs = null;
-		while(rt.next()) {
+		while (rt.next()) {
 			getStmt().setString(1, rt.getString(1));
 			try {
 				rs = getStmt().executeQuery();
@@ -145,10 +141,9 @@ public class DAOVeterinario extends DAO<Veterinario> {
 				e.printStackTrace();
 			}
 			rs.next();
-			Veterinario o = new Veterinario(rs.getString(1), rs.getString(2),
-				rs.getString(3), rs.getString(4), rs.getString(5),
-				rs.getDate(6).toLocalDate(),
-				rs.getDouble(7), rs.getString(8), rs.getInt(9), rs.getInt(10), rt.getString(2), rt.getString(3));
+			Veterinario o = new Veterinario(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+					rs.getString(5), rs.getDate(6).toLocalDate(), rs.getDouble(7), rs.getString(8), rs.getInt(9),
+					rs.getInt(10), rt.getString(2), rt.getString(3));
 			r.add(o);
 		}
 		if (rs != null)

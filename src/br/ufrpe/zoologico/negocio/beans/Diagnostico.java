@@ -7,12 +7,12 @@
 package br.ufrpe.zoologico.negocio.beans;
 
 public class Diagnostico {
-	
+
 	private Consulta consulta;
 	private Doenca doenca;
 	private String descri;
-	
-	public Diagnostico(Consulta consulta, Doenca doenca, String descri){
+
+	public Diagnostico(Consulta consulta, Doenca doenca, String descri) {
 		this.consulta = consulta;
 		this.doenca = doenca;
 		this.setDescri(descri);

@@ -16,6 +16,7 @@ public class Pagamento {
 	private String tipo_pag;
 	private int idFatura;
 	private int nfe;
+
 	/**
 	 * @param cod
 	 * @param data_pagamento
@@ -36,104 +37,140 @@ public class Pagamento {
 		this.idFatura = idFatura;
 		this.nfe = nfe;
 	}
+
 	/**
 	 * Metodo: getCod
+	 * 
 	 * @return cod
 	 */
 	public int getCod() {
 		return cod;
 	}
+
 	/**
 	 * Metodo: setCod
-	 * @param cod the cod to set
+	 * 
+	 * @param cod
+	 *            the cod to set
 	 */
 	public void setCod(int cod) {
 		this.cod = cod;
 	}
+
 	/**
 	 * Metodo: getData_pagamento
+	 * 
 	 * @return data_pagamento
 	 */
 	public LocalDate getData_pagamento() {
 		return data_pagamento;
 	}
+
 	/**
 	 * Metodo: setData_pagamento
-	 * @param data_pagamento the data_pagamento to set
+	 * 
+	 * @param data_pagamento
+	 *            the data_pagamento to set
 	 */
 	public void setData_pagamento(LocalDate data_pagamento) {
 		this.data_pagamento = data_pagamento;
 	}
+
 	/**
 	 * Metodo: getStats
+	 * 
 	 * @return stats
 	 */
 	public String getStats() {
 		return stats;
 	}
+
 	/**
 	 * Metodo: setStats
-	 * @param stats the stats to set
+	 * 
+	 * @param stats
+	 *            the stats to set
 	 */
 	public void setStats(String stats) {
 		this.stats = stats;
 	}
+
 	/**
 	 * Metodo: getVl_pago
+	 * 
 	 * @return vl_pago
 	 */
 	public double getVl_pago() {
 		return vl_pago;
 	}
+
 	/**
 	 * Metodo: setVl_pago
-	 * @param vl_pago the vl_pago to set
+	 * 
+	 * @param vl_pago
+	 *            the vl_pago to set
 	 */
 	public void setVl_pago(double vl_pago) {
 		this.vl_pago = vl_pago;
 	}
+
 	/**
 	 * Metodo: getTipo_pag
+	 * 
 	 * @return tipo_pag
 	 */
 	public String getTipo_pag() {
 		return tipo_pag;
 	}
+
 	/**
 	 * Metodo: setTipo_pag
-	 * @param tipo_pag the tipo_pag to set
+	 * 
+	 * @param tipo_pag
+	 *            the tipo_pag to set
 	 */
 	public void setTipo_pag(String tipo_pag) {
 		this.tipo_pag = tipo_pag;
 	}
+
 	/**
 	 * Metodo: getIdFatura
+	 * 
 	 * @return idFatura
 	 */
 	public int getIdFatura() {
 		return idFatura;
 	}
+
 	/**
 	 * Metodo: setIdFatura
-	 * @param idFatura the idFatura to set
+	 * 
+	 * @param idFatura
+	 *            the idFatura to set
 	 */
 	public void setIdFatura(int idFatura) {
 		this.idFatura = idFatura;
 	}
+
 	/**
 	 * Metodo: getNfe
+	 * 
 	 * @return nfe
 	 */
 	public int getNfe() {
 		return nfe;
 	}
+
 	/**
 	 * Metodo: setNfe
-	 * @param nfe the nfe to set
+	 * 
+	 * @param nfe
+	 *            the nfe to set
 	 */
 	public void setNfe(int nfe) {
 		this.nfe = nfe;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -149,6 +186,7 @@ public class Pagamento {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -183,11 +221,11 @@ public class Pagamento {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Pagamento [cod=" + cod + ", data_pagamento=" + data_pagamento + ", stats=" + stats + ", vl_pago="
 				+ vl_pago + ", tipo_pag=" + tipo_pag + ", idFatura=" + idFatura + ", nfe=" + nfe + "]";
 	}
-	
-	
+
 }

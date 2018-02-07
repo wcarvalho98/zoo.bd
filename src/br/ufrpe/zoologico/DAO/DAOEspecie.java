@@ -62,9 +62,9 @@ public class DAOEspecie extends DAO<Especie> {
 			e.printStackTrace();
 		} finally {
 			fecharStmt();
-		}	
+		}
 	}
-	
+
 	public Especie buscar(int id) throws Exception {
 		String sql = "SELECT * FROM especie WHERE `seq` = ?";
 		preparar(sql);
@@ -108,11 +108,11 @@ public class DAOEspecie extends DAO<Especie> {
 		fecharStmt();
 		return list;
 	}
-	
-	public boolean pertence(int idEspecie, int idGenero) throws Exception{
+
+	public boolean pertence(int idEspecie, int idGenero) throws Exception {
 		String sql = "select zoologico.espePertenceGenero(?, ?)";
 		preparar(sql);
-		getStmt().setInt(1,idEspecie);
+		getStmt().setInt(1, idEspecie);
 		getStmt().setInt(2, idGenero);
 		ResultSet rs = null;
 		try {
@@ -129,6 +129,5 @@ public class DAOEspecie extends DAO<Especie> {
 		fecharStmt();
 		return resp;
 	}
-
 
 }

@@ -13,11 +13,11 @@ import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.Zoo;
 
-public class DAOZoo extends DAO<Zoo>{
+public class DAOZoo extends DAO<Zoo> {
 
 	@Override
 	public void inserir(Zoo o) throws Exception {
-		String sql =  "INSERT INTO Zoologico (`cnpj`, `nome`, `razao_social`, `hr_inic_func`, `hr_fim`) VALUES (?, ?, ?, ?,?)";
+		String sql = "INSERT INTO Zoologico (`cnpj`, `nome`, `razao_social`, `hr_inic_func`, `hr_fim`) VALUES (?, ?, ?, ?,?)";
 		preparar(sql);
 		getStmt().setString(1, o.getCnpj());
 		getStmt().setString(2, o.getNome());
@@ -71,8 +71,8 @@ public class DAOZoo extends DAO<Zoo>{
 			fecharStmt();
 		}
 	}
-	
-	public Zoo buscar(int id) throws Exception{
+
+	public Zoo buscar(int id) throws Exception {
 		String sql = "SELECT * FROM Zoologico WHERE `idZoo` = ?";
 		preparar(sql);
 		getStmt().setInt(1, id);
@@ -87,12 +87,11 @@ public class DAOZoo extends DAO<Zoo>{
 		}
 		rs.next();
 		Zoo j = new Zoo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getTime(5).toLocalTime(),
-			rs.getTime(6).toLocalTime());
+				rs.getTime(6).toLocalTime());
 		rs.close();
 		fecharStmt();
 		return j;
-		
-		
+
 	}
 
 	@Override
@@ -110,8 +109,8 @@ public class DAOZoo extends DAO<Zoo>{
 		}
 		ArrayList<Zoo> list = new ArrayList<Zoo>();
 		while (rs.next()) {
-			Zoo o = new Zoo(rs.getInt(1), rs.getString(2) ,rs.getString(3), 
-					rs.getString(4), rs.getTime(5).toLocalTime(), rs.getTime(6).toLocalTime());
+			Zoo o = new Zoo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+					rs.getTime(5).toLocalTime(), rs.getTime(6).toLocalTime());
 			list.add(o);
 		}
 		rs.close();

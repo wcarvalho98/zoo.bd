@@ -14,16 +14,17 @@ public class Consulta {
 	private int id_consulta;
 	private LocalDateTime data;
 	private String obs;
-	
-	public Consulta(Veterinario vet, Animal animal, int id_consulta, LocalDateTime data, String obs){
+
+	public Consulta(Veterinario vet, Animal animal, int id_consulta, LocalDateTime data, String obs) {
 		this.veterinario = vet;
 		this.animal = animal;
 		this.id_consulta = id_consulta;
 		this.data = data;
 		this.obs = obs;
 	}
+
 	public Consulta() {
-		
+
 	}
 
 	public Veterinario getVeterinario() {
@@ -65,6 +66,5 @@ public class Consulta {
 	public void setObs(String obs) {
 		this.obs = obs;
 	}
-	
-	
+
 }

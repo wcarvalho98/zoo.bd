@@ -13,13 +13,13 @@ public class PodeTer {
 	private Incidente incidente;
 	private LocalDate data_incidente;
 	private boolean houve_morte;
-	
-	
+
 	@Override
 	public String toString() {
 		return "PodeTer [jaula=" + jaula + ", incidente=" + incidente + ", data_incidente=" + data_incidente
 				+ ", houve_morte=" + houve_morte + "]";
 	}
+
 	/**
 	 * @param jaula
 	 * @param incidente
@@ -33,61 +33,81 @@ public class PodeTer {
 		this.data_incidente = data_incidente;
 		this.houve_morte = houve_morte;
 	}
+
 	/**
 	 * Metodo: getJaula
+	 * 
 	 * @return jaula
 	 */
 	public Jaula getJaula() {
 		return jaula;
 	}
+
 	/**
 	 * Metodo: setJaula
-	 * @param jaula the jaula to set
+	 * 
+	 * @param jaula
+	 *            the jaula to set
 	 */
 	public void setJaula(Jaula jaula) {
 		this.jaula = jaula;
 	}
+
 	/**
 	 * Metodo: getIncidente
+	 * 
 	 * @return incidente
 	 */
 	public Incidente getIncidente() {
 		return incidente;
 	}
+
 	/**
 	 * Metodo: setIncidente
-	 * @param incidente the incidente to set
+	 * 
+	 * @param incidente
+	 *            the incidente to set
 	 */
 	public void setIncidente(Incidente incidente) {
 		this.incidente = incidente;
 	}
+
 	/**
 	 * Metodo: getData_incidente
+	 * 
 	 * @return data_incidente
 	 */
 	public LocalDate getData_incidente() {
 		return data_incidente;
 	}
+
 	/**
 	 * Metodo: setData_incidente
-	 * @param data_incidente the data_incidente to set
+	 * 
+	 * @param data_incidente
+	 *            the data_incidente to set
 	 */
 	public void setData_incidente(LocalDate data_incidente) {
 		this.data_incidente = data_incidente;
 	}
+
 	/**
 	 * Metodo: isHouve_morte
+	 * 
 	 * @return houve_morte
 	 */
 	public boolean isHouve_morte() {
 		return houve_morte;
 	}
+
 	/**
 	 * Metodo: setHouve_morte
-	 * @param houve_morte the houve_morte to set
+	 * 
+	 * @param houve_morte
+	 *            the houve_morte to set
 	 */
 	public void setHouve_morte(boolean houve_morte) {
 		this.houve_morte = houve_morte;
 	}
-	
+
 }

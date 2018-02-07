@@ -99,22 +99,24 @@ public class GerenciarZooController implements Initializable {
 		}
 	}
 
+	@SuppressWarnings("unlikely-arg-type")
 	@FXML
 	void cadastrarZoologico() {
 		try {
 			if (!cnpjTextField.getText().equals("") && Integer.parseInt(horaAbreTextField.getText()) >= 0
 					&& Integer.parseInt(horaFechaTextField.getText()) >= 0
 					&& Integer.parseInt(minutoAbreTextField.getText()) >= 0
-					&& Integer.parseInt(minutoFechaTextField.getText()) >= 0
-					&& !nomeTextField.equals("")
+					&& Integer.parseInt(minutoFechaTextField.getText()) >= 0 && !nomeTextField.equals("")
 					&& !razaoTextField.equals("")) {
 				Zoo a = new Zoo();
 				a.setCnpj(cnpjTextField.getText());
 				a.setNome(nomeTextField.getText());
 				a.setRazao_social(razaoTextField.getText());
-				a.setHr_inic_func(LocalTime.of(Integer.parseInt(horaAbreTextField.getText()), Integer.parseInt(minutoAbreTextField.getText())));
-				a.setHr_fim(LocalTime.of(Integer.parseInt(horaFechaTextField.getText()), Integer.parseInt(minutoFechaTextField.getText())));
-			
+				a.setHr_inic_func(LocalTime.of(Integer.parseInt(horaAbreTextField.getText()),
+						Integer.parseInt(minutoAbreTextField.getText())));
+				a.setHr_fim(LocalTime.of(Integer.parseInt(horaFechaTextField.getText()),
+						Integer.parseInt(minutoFechaTextField.getText())));
+
 				Fachada.getInstance().cadastrarZoo(a);
 				preencherLabels();
 				esvaziarCamposCadastro();
@@ -176,21 +178,24 @@ public class GerenciarZooController implements Initializable {
 		}
 	}
 
+	@SuppressWarnings("unlikely-arg-type")
 	@FXML
 	void salvarAlteracoes() {
 		try {
 			if (Integer.parseInt(horaAbreTextField1.getText()) >= 0
 					&& Integer.parseInt(horaFechaTextField1.getText()) >= 0
 					&& Integer.parseInt(minutoAbreTextField1.getText()) >= 0
-					&& Integer.parseInt(minutoFechaTextField1.getText()) >= 0
-					&& !nomeTextField1.equals("")
+					&& Integer.parseInt(minutoFechaTextField1.getText()) >= 0 && !nomeTextField1.equals("")
 					&& !razaoTextField1.equals("")) {
-				
+
 				zooAtual.setNome(nomeTextField1.getText());
 				zooAtual.setRazao_social(razaoTextField1.getText());
-				zooAtual.setHr_inic_func(LocalTime.of(Integer.parseInt(horaAbreTextField1.getText()), Integer.parseInt(minutoAbreTextField1.getText())));
-				zooAtual.setHr_fim(LocalTime.of(Integer.parseInt(horaFechaTextField1.getText()), Integer.parseInt(minutoFechaTextField1.getText())));
-				Fachada.getInstance().alterarZoo(zooAtual);;
+				zooAtual.setHr_inic_func(LocalTime.of(Integer.parseInt(horaAbreTextField1.getText()),
+						Integer.parseInt(minutoAbreTextField1.getText())));
+				zooAtual.setHr_fim(LocalTime.of(Integer.parseInt(horaFechaTextField1.getText()),
+						Integer.parseInt(minutoFechaTextField1.getText())));
+				Fachada.getInstance().alterarZoo(zooAtual);
+				;
 				preencherLabels();
 				esvaziarCamposEdicao();
 				setCamposDisable(true);

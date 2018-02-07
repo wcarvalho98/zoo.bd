@@ -11,22 +11,23 @@ import java.util.ArrayList;
 import br.ufrpe.zoologico.negocio.beans.Licenca;
 import br.ufrpe.zoologico.repositorio.Interfaces.IRepositorio;
 
-public class RepositorioLicenca implements IRepositorio<Licenca>{
-	
+public class RepositorioLicenca implements IRepositorio<Licenca> {
+
 	private ArrayList<Licenca> rep;
 	private static IRepositorio<Licenca> instance;
-	
-	private RepositorioLicenca(){
+
+	private RepositorioLicenca() {
 		rep = new ArrayList<Licenca>();
 	}
-	
-	private static IRepositorio<Licenca> getInstance(){
-		if(instance == null){
+
+	@SuppressWarnings("unused")
+	private static IRepositorio<Licenca> getInstance() {
+		if (instance == null) {
 			instance = new RepositorioLicenca();
 		}
 		return instance;
 	}
-	
+
 	@Override
 	public void cadastrar(Licenca obj) {
 		rep.add(obj);

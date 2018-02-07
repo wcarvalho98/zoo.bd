@@ -15,8 +15,8 @@ public class Tratamento {
 	private LocalDate dt_fim;
 	private String resultado;
 	private String obs;
-	
-	public Tratamento(boolean em_andamento, LocalDate dt_inicio, LocalDate dt_fim, String resultado, String obs){
+
+	public Tratamento(boolean em_andamento, LocalDate dt_inicio, LocalDate dt_fim, String resultado, String obs) {
 		this.em_andamento = em_andamento;
 		this.dt_inicio = dt_inicio;
 		this.dt_fim = dt_fim;
@@ -71,6 +71,5 @@ public class Tratamento {
 	public void setObs(String obs) {
 		this.obs = obs;
 	}
-	
-	
+
 }

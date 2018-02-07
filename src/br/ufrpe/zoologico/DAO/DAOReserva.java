@@ -61,7 +61,7 @@ public class DAOReserva extends DAO<Reserva> {
 			fecharStmt();
 		}
 	}
-	
+
 	public void remover(String cnpj) throws Exception {
 		String sql = "DELETE FROM reserva WHERE cnpj = ?";
 		preparar(sql);
@@ -76,7 +76,7 @@ public class DAOReserva extends DAO<Reserva> {
 			fecharStmt();
 		}
 	}
-	
+
 	public void remover(int id_espaco) throws Exception {
 		String sql = "DELETE FROM reserva WHERE id_espaco = ?";
 		preparar(sql);
@@ -120,7 +120,7 @@ public class DAOReserva extends DAO<Reserva> {
 			fecharStmt();
 		}
 	}
-	
+
 	public Reserva buscar(String cnpj, int id_espaco) throws Exception {
 		String sql = "SELECT * FROM reserva WHERE cnpj = ?, id_espaco = ?";
 		preparar(sql);
@@ -135,30 +135,29 @@ public class DAOReserva extends DAO<Reserva> {
 			fecharStmt();
 			e.printStackTrace();
 		}
-		
+
 		rs.next();
-		
+
 		LocalDate dt_validade = null;
 		LocalTime horario = null;
 		LocalDate dt_reserva = null;
 		LocalTime hr_inicio_reser = null;
 		LocalTime hr_final_reser = null;
-		
-		if(rs.getDate(2) != null)
+
+		if (rs.getDate(2) != null)
 			dt_validade = rs.getDate(2).toLocalDate();
-		if(rs.getTime(3) != null)
+		if (rs.getTime(3) != null)
 			horario = rs.getTime(3).toLocalTime();
-		if(rs.getDate(4) != null)
+		if (rs.getDate(4) != null)
 			dt_reserva = rs.getDate(4).toLocalDate();
-		if(rs.getTime(7) != null)
+		if (rs.getTime(7) != null)
 			hr_inicio_reser = rs.getTime(7).toLocalTime();
-		if(rs.getTime(8) != null)
+		if (rs.getTime(8) != null)
 			hr_final_reser = rs.getTime(8).toLocalTime();
-		
-		Reserva o = new Reserva(rs.getInt(1), dt_validade, horario, dt_reserva, rs.getDouble(5),
-				rs.getString(6), hr_inicio_reser, hr_final_reser, rs.getString(9), rs.getString(10),
-				rs.getString(11), rs.getInt(12));
-		
+
+		Reserva o = new Reserva(rs.getInt(1), dt_validade, horario, dt_reserva, rs.getDouble(5), rs.getString(6),
+				hr_inicio_reser, hr_final_reser, rs.getString(9), rs.getString(10), rs.getString(11), rs.getInt(12));
+
 		rs.close();
 		fecharStmt();
 		return o;
@@ -178,32 +177,32 @@ public class DAOReserva extends DAO<Reserva> {
 			fecharStmt();
 			e.printStackTrace();
 		}
-		
+
 		LocalDate dt_validade;
 		LocalTime horario;
 		LocalDate dt_reserva;
 		LocalTime hr_inicio_reser;
 		LocalTime hr_final_reser;
-		
-		while(rs.next()) {
+
+		while (rs.next()) {
 			dt_validade = null;
 			horario = null;
 			dt_reserva = null;
 			hr_inicio_reser = null;
 			hr_final_reser = null;
-			if(rs.getDate(2) != null)
+			if (rs.getDate(2) != null)
 				dt_validade = rs.getDate(2).toLocalDate();
-			if(rs.getTime(3) != null)
+			if (rs.getTime(3) != null)
 				horario = rs.getTime(3).toLocalTime();
-			if(rs.getDate(4) != null)
+			if (rs.getDate(4) != null)
 				dt_reserva = rs.getDate(4).toLocalDate();
-			if(rs.getTime(7) != null)
+			if (rs.getTime(7) != null)
 				hr_inicio_reser = rs.getTime(7).toLocalTime();
-			if(rs.getTime(8) != null)
+			if (rs.getTime(8) != null)
 				hr_final_reser = rs.getTime(8).toLocalTime();
-			Reserva o = new Reserva(rs.getInt(1), dt_validade, horario, dt_reserva, rs.getDouble(5),
-					rs.getString(6), hr_inicio_reser, hr_final_reser, rs.getString(9), rs.getString(10),
-					rs.getString(11), rs.getInt(12));
+			Reserva o = new Reserva(rs.getInt(1), dt_validade, horario, dt_reserva, rs.getDouble(5), rs.getString(6),
+					hr_inicio_reser, hr_final_reser, rs.getString(9), rs.getString(10), rs.getString(11),
+					rs.getInt(12));
 			r.add(o);
 		}
 		rs.close();

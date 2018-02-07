@@ -16,7 +16,7 @@ import br.ufrpe.zoologico.negocio.beans.Fatura;
 import javafx.fxml.FXML;
 
 public class DAOFatura extends DAO<Fatura> {
-	
+
 	public void inserir(Fatura o, int idServico) throws Exception {
 		String sql = "insert into pedido_servico (idZoo) values (?)";
 		preparar(sql);
@@ -30,7 +30,7 @@ public class DAOFatura extends DAO<Fatura> {
 		} finally {
 			fecharStmt();
 		}
-		
+
 		sql = "SELECT max(id) FROM zoologico.pedido_servico";
 		preparar(sql);
 		ResultSet rs = null;
@@ -46,7 +46,7 @@ public class DAOFatura extends DAO<Fatura> {
 		int idPed = rs.getInt(1);
 		rs.close();
 		fecharStmt();
-		
+
 		sql = "insert into fatura (valor, id_ped_serv, dataDaFatura, dt_paga, tp_fatura, vl_multa, stats) values(?, ?, ?, ?, ?, ?, ?)";
 		preparar(sql);
 		getStmt().setDouble(1, o.getValor());
@@ -65,7 +65,7 @@ public class DAOFatura extends DAO<Fatura> {
 		} finally {
 			fecharStmt();
 		}
-		
+
 		sql = "insert into item_servico(idPed, idServ) values (?, ?)";
 		preparar(sql);
 		getStmt().setInt(1, idPed);
@@ -79,7 +79,7 @@ public class DAOFatura extends DAO<Fatura> {
 		} finally {
 			fecharStmt();
 		}
-		
+
 	}
 
 	@Override
@@ -120,7 +120,7 @@ public class DAOFatura extends DAO<Fatura> {
 			fecharStmt();
 		}
 	}
-	
+
 	public Fatura buscar(int id) throws Exception {
 		String sql = "SELECT * FROM fatura WHERE idFatura = ?";
 		preparar(sql);
@@ -141,8 +141,8 @@ public class DAOFatura extends DAO<Fatura> {
 		LocalDate dt_paga = null;
 		if (rs.getDate(4) != null)
 			dt_paga = rs.getDate(4).toLocalDate();
-		Fatura o = new Fatura(rs.getInt(1), rs.getDouble(2), dataDaFatura, dt_paga,
-				rs.getDouble(5), rs.getString(6), rs.getString(7), rs.getInt(8));
+		Fatura o = new Fatura(rs.getInt(1), rs.getDouble(2), dataDaFatura, dt_paga, rs.getDouble(5), rs.getString(6),
+				rs.getString(7), rs.getInt(8));
 		rs.close();
 		fecharStmt();
 		return o;
@@ -150,7 +150,7 @@ public class DAOFatura extends DAO<Fatura> {
 
 	@Override
 	public ArrayList<Fatura> listarTodos() throws Exception {
-		ArrayList<Fatura> r = new  ArrayList<Fatura>();
+		ArrayList<Fatura> r = new ArrayList<Fatura>();
 		String sql = "SELECT * FROM fatura";
 		preparar(sql);
 		ResultSet rs = null;
@@ -164,23 +164,24 @@ public class DAOFatura extends DAO<Fatura> {
 		}
 		LocalDate dataDaFatura;
 		LocalDate dt_paga;
-		while(rs.next()) {
+		while (rs.next()) {
 			dataDaFatura = null;
 			dt_paga = null;
 			if (rs.getDate(3) != null)
 				dataDaFatura = rs.getDate(3).toLocalDate();
 			if (rs.getDate(4) != null)
 				dt_paga = rs.getDate(4).toLocalDate();
-			Fatura o = new Fatura(rs.getInt(1), rs.getDouble(2), dataDaFatura, dt_paga,
-					rs.getDouble(5), rs.getString(6), rs.getString(7), rs.getInt(8));
+			Fatura o = new Fatura(rs.getInt(1), rs.getDouble(2), dataDaFatura, dt_paga, rs.getDouble(5),
+					rs.getString(6), rs.getString(7), rs.getInt(8));
 			r.add(o);
-		}		
+		}
 		rs.close();
 		fecharStmt();
 		return r;
 	}
-	
-	@FXML public void voltar() {
+
+	@FXML
+	public void voltar() {
 		// TODO ScreenManager.setScene(ScreenManager.getInstance.);
 	}
 

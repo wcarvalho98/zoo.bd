@@ -68,13 +68,13 @@ public class GerenciarEstoque {
 
 	@FXML
 	private URL location;
-	
+
 	@FXML
 	private TextField codProdTextField;
 
 	@FXML
 	private TextField idEstoqueTextField;
-	
+
 	@FXML
 	private TextField descricaoTextField;
 
@@ -116,9 +116,9 @@ public class GerenciarEstoque {
 
 	@FXML
 	private DatePicker dtEntradaDatePicker1;
-	
+
 	private Estoque estoqueSelecionado;
-	
+
 	private ItemEstoque itemSelecionado;
 
 	@FXML
@@ -138,9 +138,8 @@ public class GerenciarEstoque {
 	@FXML
 	void cadastrarItemEstoque() {
 		try {
-			if (Integer.parseInt(codProdTextField.getText()) >= 0 &&
-					Integer.parseInt(idEstoqueTextField.getText()) >= 0 &&
-					Integer.parseInt(idAnimalTextField1.getText()) >= 0) {
+			if (Integer.parseInt(codProdTextField.getText()) >= 0 && Integer.parseInt(idEstoqueTextField.getText()) >= 0
+					&& Integer.parseInt(idAnimalTextField1.getText()) >= 0) {
 				ItemEstoque a = new ItemEstoque();
 				a.setAnimal_consome(Integer.parseInt(idAnimalTextField1.getText()));
 				a.setVl_compra(Double.parseDouble(vlCompraTextField1.getText()));
@@ -223,7 +222,7 @@ public class GerenciarEstoque {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	@FXML
@@ -260,109 +259,121 @@ public class GerenciarEstoque {
 		assert quantidadeTextField1 != null : "fx:id=\"quantidadeTextField1\" was not injected: check your FXML file 'GerenciarEstoque.fxml'.";
 		assert dtValidadeDatePicker1 != null : "fx:id=\"dtValidadeDatePicker1\" was not injected: check your FXML file 'GerenciarEstoque.fxml'.";
 		assert dtEntradaDatePicker1 != null : "fx:id=\"dtEntradaDatePicker1\" was not injected: check your FXML file 'GerenciarEstoque.fxml'.";
-	
+
 		preencherTabelaEstoque();
 	}
 
 	private void preencherTabelaEstoque() {
-    	try {
+		try {
 			ArrayList<Estoque> estoque = Fachada.getInstance().listarEstoque();
-			
+
 			colunaIdZoo.setCellValueFactory(new Callback<CellDataFeatures<Estoque, String>, ObservableValue<String>>() {
 				@Override
 				public ObservableValue<String> call(CellDataFeatures<Estoque, String> estoques) {
 					return new SimpleStringProperty("" + estoques.getValue().getIdZoo());
 				}
 			});
-			
-			colunaIdEstoqueEstoque.setCellValueFactory(new Callback<CellDataFeatures<Estoque, String>, ObservableValue<String>>() {
-				@Override
-				public ObservableValue<String> call(CellDataFeatures<Estoque, String> estoques) {
-					return new SimpleStringProperty("" + estoques.getValue().getId());
-				}
-			});
-			
-			colunaDescricao.setCellValueFactory(new Callback<CellDataFeatures<Estoque, String>, ObservableValue<String>>() {
-				@Override
-				public ObservableValue<String> call(CellDataFeatures<Estoque, String> estoques) {
-					return new SimpleStringProperty(estoques.getValue().getDescr());
-				}
-			});
-			
-			colunaLocalizacao.setCellValueFactory(new Callback<CellDataFeatures<Estoque, String>, ObservableValue<String>>() {
-				@Override
-				public ObservableValue<String> call(CellDataFeatures<Estoque, String> estoques) {
-					return new SimpleStringProperty(estoques.getValue().getLocalizacao());
-				}
-			});
-			
+
+			colunaIdEstoqueEstoque
+					.setCellValueFactory(new Callback<CellDataFeatures<Estoque, String>, ObservableValue<String>>() {
+						@Override
+						public ObservableValue<String> call(CellDataFeatures<Estoque, String> estoques) {
+							return new SimpleStringProperty("" + estoques.getValue().getId());
+						}
+					});
+
+			colunaDescricao
+					.setCellValueFactory(new Callback<CellDataFeatures<Estoque, String>, ObservableValue<String>>() {
+						@Override
+						public ObservableValue<String> call(CellDataFeatures<Estoque, String> estoques) {
+							return new SimpleStringProperty(estoques.getValue().getDescr());
+						}
+					});
+
+			colunaLocalizacao
+					.setCellValueFactory(new Callback<CellDataFeatures<Estoque, String>, ObservableValue<String>>() {
+						@Override
+						public ObservableValue<String> call(CellDataFeatures<Estoque, String> estoques) {
+							return new SimpleStringProperty(estoques.getValue().getLocalizacao());
+						}
+					});
+
 			tabelaEstoque.setItems(FXCollections.observableArrayList(estoque));
 			tabelaEstoque.refresh();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-    }
-	
+	}
+
 	private void preencherTabelaItem() {
 		try {
 			ArrayList<ItemEstoque> itens = Fachada.getInstance().listarItensDoEstoque(estoqueSelecionado);
-			
-			colunaCodProd.setCellValueFactory(new Callback<CellDataFeatures<ItemEstoque, String>, ObservableValue<String>>() {
-				@Override
-				public ObservableValue<String> call(CellDataFeatures<ItemEstoque, String> estoques) {
-					return new SimpleStringProperty(estoques.getValue().getCod_prod_ref() + "");
-				}
-			});
-			
-			colunaIdEstoqueItem.setCellValueFactory(new Callback<CellDataFeatures<ItemEstoque, String>, ObservableValue<String>>() {
-				@Override
-				public ObservableValue<String> call(CellDataFeatures<ItemEstoque, String> estoques) {
-					return new SimpleStringProperty(estoques.getValue().getIdEstoque() + "");
-				}
-			});
-			
-			colunaDtEntrada.setCellValueFactory(new Callback<CellDataFeatures<ItemEstoque, String>, ObservableValue<String>>() {
-				@Override
-				public ObservableValue<String> call(CellDataFeatures<ItemEstoque, String> estoques) {
-					return new SimpleStringProperty(ScreenManager.formatarLocalDate(estoques.getValue().getData_entrada()));
-				}
-			});
-			
-			colunaVlCompra.setCellValueFactory(new Callback<CellDataFeatures<ItemEstoque, String>, ObservableValue<String>>() {
-				@Override
-				public ObservableValue<String> call(CellDataFeatures<ItemEstoque, String> estoques) {
-					return new SimpleStringProperty(estoques.getValue().getVl_compra() + "");
-				}
-			});
-			
-			colunaDtValidade.setCellValueFactory(new Callback<CellDataFeatures<ItemEstoque, String>, ObservableValue<String>>() {
-				@Override
-				public ObservableValue<String> call(CellDataFeatures<ItemEstoque, String> estoques) {
-					return new SimpleStringProperty(ScreenManager.formatarLocalDate(estoques.getValue().getData_validade()));
-				}
-			});
-			
-			colunaIdAnimal.setCellValueFactory(new Callback<CellDataFeatures<ItemEstoque, String>, ObservableValue<String>>() {
-				@Override
-				public ObservableValue<String> call(CellDataFeatures<ItemEstoque, String> estoques) {
-					return new SimpleStringProperty(estoques.getValue().getAnimal_consome() + "");
-				}
-			});
-			
-			colunaQtd.setCellValueFactory(new Callback<CellDataFeatures<ItemEstoque, String>, ObservableValue<String>>() {
-				@Override
-				public ObservableValue<String> call(CellDataFeatures<ItemEstoque, String> estoques) {
-					return new SimpleStringProperty(estoques.getValue().getQtd() + "");
-				}
-			});
-			
+
+			colunaCodProd.setCellValueFactory(
+					new Callback<CellDataFeatures<ItemEstoque, String>, ObservableValue<String>>() {
+						@Override
+						public ObservableValue<String> call(CellDataFeatures<ItemEstoque, String> estoques) {
+							return new SimpleStringProperty(estoques.getValue().getCod_prod_ref() + "");
+						}
+					});
+
+			colunaIdEstoqueItem.setCellValueFactory(
+					new Callback<CellDataFeatures<ItemEstoque, String>, ObservableValue<String>>() {
+						@Override
+						public ObservableValue<String> call(CellDataFeatures<ItemEstoque, String> estoques) {
+							return new SimpleStringProperty(estoques.getValue().getIdEstoque() + "");
+						}
+					});
+
+			colunaDtEntrada.setCellValueFactory(
+					new Callback<CellDataFeatures<ItemEstoque, String>, ObservableValue<String>>() {
+						@Override
+						public ObservableValue<String> call(CellDataFeatures<ItemEstoque, String> estoques) {
+							return new SimpleStringProperty(
+									ScreenManager.formatarLocalDate(estoques.getValue().getData_entrada()));
+						}
+					});
+
+			colunaVlCompra.setCellValueFactory(
+					new Callback<CellDataFeatures<ItemEstoque, String>, ObservableValue<String>>() {
+						@Override
+						public ObservableValue<String> call(CellDataFeatures<ItemEstoque, String> estoques) {
+							return new SimpleStringProperty(estoques.getValue().getVl_compra() + "");
+						}
+					});
+
+			colunaDtValidade.setCellValueFactory(
+					new Callback<CellDataFeatures<ItemEstoque, String>, ObservableValue<String>>() {
+						@Override
+						public ObservableValue<String> call(CellDataFeatures<ItemEstoque, String> estoques) {
+							return new SimpleStringProperty(
+									ScreenManager.formatarLocalDate(estoques.getValue().getData_validade()));
+						}
+					});
+
+			colunaIdAnimal.setCellValueFactory(
+					new Callback<CellDataFeatures<ItemEstoque, String>, ObservableValue<String>>() {
+						@Override
+						public ObservableValue<String> call(CellDataFeatures<ItemEstoque, String> estoques) {
+							return new SimpleStringProperty(estoques.getValue().getAnimal_consome() + "");
+						}
+					});
+
+			colunaQtd.setCellValueFactory(
+					new Callback<CellDataFeatures<ItemEstoque, String>, ObservableValue<String>>() {
+						@Override
+						public ObservableValue<String> call(CellDataFeatures<ItemEstoque, String> estoques) {
+							return new SimpleStringProperty(estoques.getValue().getQtd() + "");
+						}
+					});
+
 			tabelaItemEstoque.setItems(FXCollections.observableArrayList(itens));
 			tabelaItemEstoque.refresh();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	private void preencherCamposEstoque(Estoque a) {
@@ -374,7 +385,7 @@ public class GerenciarEstoque {
 			localizacaoTextField.setText(a.getLocalizacao());
 		}
 	}
-	
+
 	private void preencherCamposEstoque1(Estoque a) {
 		if (a == null) {
 			descricaoTextField1.setText("");
@@ -384,7 +395,7 @@ public class GerenciarEstoque {
 			localizacaoTextField1.setText(a.getLocalizacao());
 		}
 	}
-	
+
 	private void preencherCamposItem(ItemEstoque a) {
 		if (a == null) {
 			quantidadeTextField.setText("");
@@ -400,7 +411,7 @@ public class GerenciarEstoque {
 			dtValidadeDatePicker.setValue(a.getData_validade());
 		}
 	}
-	
+
 	private void preencherCamposItem1(ItemEstoque a) {
 		if (a == null) {
 			quantidadeTextField1.setText("");

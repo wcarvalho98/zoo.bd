@@ -29,26 +29,36 @@ import javafx.util.Callback;
 
 public class CadastroProdutoController implements Initializable {
 
-	@FXML private Button inserir, remover, alterar, confirmarCadastro, confirmarRemorcao, confirmarAlteracao;
-	@FXML private TextField descricaoTextField, codBarrasTextField, freqPedido, qtdMinTextField, idProduto, precoUltCompra, quantEstoq; 
-	
+	@FXML
+	private Button inserir, remover, alterar, confirmarCadastro, confirmarRemorcao, confirmarAlteracao;
+	@FXML
+	private TextField descricaoTextField, codBarrasTextField, freqPedido, qtdMinTextField, idProduto, precoUltCompra,
+			quantEstoq;
+
 	// TABELA FORNECEDOR
-	@FXML private TableView<Fornecedor> tbFornecedor;
-	@FXML private TableColumn<Fornecedor, String> tcIdFornecedor, tcNome, tcCnpj;
-	
+	@FXML
+	private TableView<Fornecedor> tbFornecedor;
+	@FXML
+	private TableColumn<Fornecedor, String> tcIdFornecedor, tcNome, tcCnpj;
+
 	// TABELA CATEGORIA
-	@FXML private TableView<Categoria> tbCateg;
-	@FXML private TableColumn<Categoria, String> tcIdCateg, tcCateg;
-	
+	@FXML
+	private TableView<Categoria> tbCateg;
+	@FXML
+	private TableColumn<Categoria, String> tcIdCateg, tcCateg;
+
 	// TABELA SUB_CATEGORIA
-	@FXML private TableView<SubCategoria> tbSubCateg;
-	@FXML private TableColumn<SubCategoria, String> tcIdSubCateg, tcSubCateg;
-	
+	@FXML
+	private TableView<SubCategoria> tbSubCateg;
+	@FXML
+	private TableColumn<SubCategoria, String> tcIdSubCateg, tcSubCateg;
+
 	private Fachada f;
 	private int i;
 	private Fornecedor fAtual;
 	private Categoria cAtual;
 	private SubCategoria scAtual;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		f = Fachada.getInstance();
@@ -60,32 +70,32 @@ public class CadastroProdutoController implements Initializable {
 	}
 
 	@FXML
-	public void voltar(){
+	public void voltar() {
 		ScreenManager.setSceneLeft(ScreenManager.getInstance().getTelaAdmin());
 	}
-	
-	@FXML 
-	public void ir() throws Exception{
+
+	@FXML
+	public void ir() throws Exception {
 		allDisable();
 		idProduto.setVisible(true);
 		i++;
-		if(i > f.listarProdutos().size() - 1)
+		if (i > f.listarProdutos().size() - 1)
 			i = 0;
 		preencherProduto(i);
 	}
-	
+
 	@FXML
-	public void retornar() throws Exception{
+	public void retornar() throws Exception {
 		allDisable();
 		idProduto.setVisible(true);
 		i--;
-		if(i < 0)
+		if (i < 0)
 			i = f.listarProdutos().size() - 1;
 		preencherProduto(i);
 	}
-	
-	@FXML 
-	public void inserir(){
+
+	@FXML
+	public void inserir() {
 		confirmarCadastro.setVisible(true);
 		confirmarCadastro.setDisable(false);
 		confirmarRemorcao.setVisible(false);
@@ -99,29 +109,30 @@ public class CadastroProdutoController implements Initializable {
 		allNull();
 		idProduto.setVisible(false);
 	}
-	
+
 	@FXML
-	public void remover(){
-		/*confirmarRemorcao.setVisible(true);
-		confirmarRemorcao.setDisable(false);*/
+	public void remover() {
+		/*
+		 * confirmarRemorcao.setVisible(true); confirmarRemorcao.setDisable(false);
+		 */
 		confirmarCadastro.setVisible(false);
 		confirmarCadastro.setDisable(true);
 		confirmarAlteracao.setDisable(true);
 		confirmarAlteracao.setVisible(false);
-		
+
 		try {
 			ProdutoRef p = pegarTudo();
 			f.removerProduto(p);
 		} catch (Exception e) {
 			ScreenManager.alertaErro(e.getMessage());
-		} finally{
+		} finally {
 			allNull();
 			allDisable();
 		}
 	}
-	
-	@FXML 
-	public void alterar(){
+
+	@FXML
+	public void alterar() {
 		confirmarAlteracao.setDisable(false);
 		confirmarAlteracao.setVisible(true);
 		confirmarRemorcao.setVisible(false);
@@ -131,27 +142,27 @@ public class CadastroProdutoController implements Initializable {
 		allNotDisable();
 		idProduto.setVisible(true);
 	}
-	
+
 	@FXML
-	public void confirmarCadastro(){
+	public void confirmarCadastro() {
 		ProdutoRef p = pegarTudo();
 		try {
 			f.inserirProduto(p);
 		} catch (Exception e) {
 			ScreenManager.alertaErro(e.getMessage());
-		} finally{
+		} finally {
 			allNull();
 		}
 	}
-	
-	//TODO Retira isso!
+
+	// TODO Retira isso!
 	@FXML
-	public void confirmarRemorcao(){
-		
+	public void confirmarRemorcao() {
+
 	}
-	
+
 	@FXML
-	public void confirmarAlteracao(){
+	public void confirmarAlteracao() {
 
 		try {
 			ProdutoRef p = pegarTudo();
@@ -159,80 +170,88 @@ public class CadastroProdutoController implements Initializable {
 			ScreenManager.alertaInformativo("Altualizaçõa feita com sucesso!");
 		} catch (Exception e) {
 			ScreenManager.alertaErro(e.getMessage());
-		} finally{
+		} finally {
 			allNull();
 		}
 	}
-	
-	public void preencherTabelaFornecedor(ArrayList<Fornecedor> o){
-		tcIdFornecedor.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Fornecedor,String>, ObservableValue<String>>() {
-			
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<Fornecedor, String> param) {
-				return new SimpleStringProperty(Integer.valueOf(param.getValue().getCod()).toString());
-			}
-		});
-		
-		tcNome.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Fornecedor,String>, ObservableValue<String>>() {
 
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<Fornecedor, String> param) {
-				return new SimpleStringProperty(param.getValue().getNome());
-			}
-		});
-		
-		tcCnpj.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Fornecedor,String>, ObservableValue<String>>() {
+	public void preencherTabelaFornecedor(ArrayList<Fornecedor> o) {
+		tcIdFornecedor.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Fornecedor, String>, ObservableValue<String>>() {
 
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<Fornecedor, String> param) {
-				return new SimpleStringProperty(param.getValue().getCnpj());
-			}
-		});
-		
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Fornecedor, String> param) {
+						return new SimpleStringProperty(Integer.valueOf(param.getValue().getCod()).toString());
+					}
+				});
+
+		tcNome.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Fornecedor, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Fornecedor, String> param) {
+						return new SimpleStringProperty(param.getValue().getNome());
+					}
+				});
+
+		tcCnpj.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Fornecedor, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Fornecedor, String> param) {
+						return new SimpleStringProperty(param.getValue().getCnpj());
+					}
+				});
+
 		tbFornecedor.setItems(FXCollections.observableArrayList(o));
 	}
-	
-	public void preencherTabelaCategoria(ArrayList<Categoria> o){
-		tcIdCateg.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Categoria,String>, ObservableValue<String>>() {
 
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<Categoria, String> param) {
-				return new SimpleStringProperty(Integer.valueOf(param.getValue().getCod()).toString());
-			}
-		});
-		
-		tcCateg.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Categoria,String>, ObservableValue<String>>() {
+	public void preencherTabelaCategoria(ArrayList<Categoria> o) {
+		tcIdCateg.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Categoria, String>, ObservableValue<String>>() {
 
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<Categoria, String> param) {
-				return new SimpleStringProperty(param.getValue().getDescr());
-			}
-		});
-		
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Categoria, String> param) {
+						return new SimpleStringProperty(Integer.valueOf(param.getValue().getCod()).toString());
+					}
+				});
+
+		tcCateg.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Categoria, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Categoria, String> param) {
+						return new SimpleStringProperty(param.getValue().getDescr());
+					}
+				});
+
 		tbCateg.setItems(FXCollections.observableArrayList(o));
 	}
-	
-	public void preencherTabelaSubCategoria(ArrayList<SubCategoria> o){
-		tcIdSubCateg.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubCategoria,String>, ObservableValue<String>>() {
 
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<SubCategoria, String> param) {
-				return new SimpleStringProperty(Integer.valueOf(param.getValue().getCod()).toString());
-			}
-		});
-		
-		tcSubCateg.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubCategoria,String>, ObservableValue<String>>() {
+	public void preencherTabelaSubCategoria(ArrayList<SubCategoria> o) {
+		tcIdSubCateg.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<SubCategoria, String>, ObservableValue<String>>() {
 
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<SubCategoria, String> param) {
-				return new SimpleStringProperty(param.getValue().getDescr());
-			}
-		});;
-		
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<SubCategoria, String> param) {
+						return new SimpleStringProperty(Integer.valueOf(param.getValue().getCod()).toString());
+					}
+				});
+
+		tcSubCateg.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<SubCategoria, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<SubCategoria, String> param) {
+						return new SimpleStringProperty(param.getValue().getDescr());
+					}
+				});
+		;
+
 		tbSubCateg.setItems(FXCollections.observableArrayList(o));
 	}
-	
-	private void select(){
+
+	private void select() {
 		tbFornecedor.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Fornecedor>() {
 
 			@Override
@@ -241,7 +260,7 @@ public class CadastroProdutoController implements Initializable {
 				fAtual = newValue;
 			}
 		});
-		
+
 		tbCateg.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Categoria>() {
 
 			@Override
@@ -250,7 +269,7 @@ public class CadastroProdutoController implements Initializable {
 				cAtual = newValue;
 			}
 		});
-		
+
 		tbSubCateg.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<SubCategoria>() {
 
 			@Override
@@ -260,8 +279,8 @@ public class CadastroProdutoController implements Initializable {
 			}
 		});
 	}
-	
-	public void allDisable(){
+
+	public void allDisable() {
 		descricaoTextField.setDisable(true);
 		codBarrasTextField.setDisable(true);
 		freqPedido.setDisable(true);
@@ -269,8 +288,8 @@ public class CadastroProdutoController implements Initializable {
 		precoUltCompra.setDisable(true);
 		quantEstoq.setDisable(true);
 	}
-	
-	public void allNotDisable(){
+
+	public void allNotDisable() {
 		descricaoTextField.setDisable(false);
 		codBarrasTextField.setDisable(false);
 		freqPedido.setDisable(false);
@@ -278,8 +297,8 @@ public class CadastroProdutoController implements Initializable {
 		precoUltCompra.setDisable(false);
 		quantEstoq.setDisable(false);
 	}
-	
-	public void allNull(){
+
+	public void allNull() {
 		descricaoTextField.setText(null);
 		codBarrasTextField.setText(null);
 		freqPedido.setText(null);
@@ -287,8 +306,8 @@ public class CadastroProdutoController implements Initializable {
 		precoUltCompra.setText(null);
 		quantEstoq.setText(null);
 	}
-	
-	public void preencherProduto(int i){
+
+	public void preencherProduto(int i) {
 		try {
 			ProdutoRef p = f.listarProdutos().get(i);
 			preencherTabelaCategoria(buscarC(p.getCateg()));
@@ -305,35 +324,35 @@ public class CadastroProdutoController implements Initializable {
 			ScreenManager.alertaErro(e.getMessage());
 		}
 	}
-	
-	private ArrayList<Fornecedor> buscarF(int id){
+
+	private ArrayList<Fornecedor> buscarF(int id) {
 		ArrayList<Fornecedor> list = new ArrayList<Fornecedor>();
-		for(int i = 0 ; i < f.listarTodosFornecedores().size(); i++){
-			if(f.listarTodosFornecedores().get(i).getCod() == id)
+		for (int i = 0; i < f.listarTodosFornecedores().size(); i++) {
+			if (f.listarTodosFornecedores().get(i).getCod() == id)
 				list.add(f.listarTodosFornecedores().get(i));
 		}
 		return list;
 	}
-	
-	private ArrayList<Categoria> buscarC(int cod){
+
+	private ArrayList<Categoria> buscarC(int cod) {
 		ArrayList<Categoria> list = new ArrayList<Categoria>();
-		for(int i = 0 ; i < f.listarTodasCategorias().size(); i++){
-			if(f.listarTodasCategorias().get(i).getCod() == cod)
+		for (int i = 0; i < f.listarTodasCategorias().size(); i++) {
+			if (f.listarTodasCategorias().get(i).getCod() == cod)
 				list.add(f.listarTodasCategorias().get(i));
 		}
 		return list;
 	}
-	
-	private ArrayList<SubCategoria> buscarSB(int id){
+
+	private ArrayList<SubCategoria> buscarSB(int id) {
 		ArrayList<SubCategoria> list = new ArrayList<SubCategoria>();
-		for(int i = 0 ; i < f.listarTodasSubCategorias().size(); i++){
-			if(f.listarTodasSubCategorias().get(i).getCod() == id)
+		for (int i = 0; i < f.listarTodasSubCategorias().size(); i++) {
+			if (f.listarTodasSubCategorias().get(i).getCod() == id)
 				list.add(f.listarTodasSubCategorias().get(i));
 		}
 		return list;
 	}
 
-	private ProdutoRef pegarTudo(){
+	private ProdutoRef pegarTudo() {
 		String val1 = descricaoTextField.getText();
 		String val2 = codBarrasTextField.getText();
 		int val3 = Integer.valueOf(freqPedido.getText());
@@ -341,7 +360,8 @@ public class CadastroProdutoController implements Initializable {
 		double val5 = Double.valueOf(precoUltCompra.getText());
 		int val6 = Integer.valueOf(quantEstoq.getText());
 		int val7 = Integer.valueOf(idProduto.getText());
-		ProdutoRef p = new ProdutoRef(val7, val1, val3, val2,val5, val6, val4, scAtual.getCod(), cAtual.getCod(), fAtual.getCod());
+		ProdutoRef p = new ProdutoRef(val7, val1, val3, val2, val5, val6, val4, scAtual.getCod(), cAtual.getCod(),
+				fAtual.getCod());
 		return p;
 	}
 

@@ -13,15 +13,15 @@ import java.util.ArrayList;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
 
 public class DAOJaula extends DAO<Jaula> {
-	
+
 	@Override
 	public void inserir(Jaula o) throws Exception {
 		String sql = "INSERT INTO jaula ( `stats`, `tipo`, `dt_ultima_inspecao`, "
-				   + "`populacao_max`, `obs`, `perid_insp_dias`, "
-				   + "`altura`, `largura`, `profundidade`, `idZoo`, `cpf_tratador`) "
-				   + "VALUES (?, ?, ?,?, ?, ?, ?, ?, ?,?, ?)";
+				+ "`populacao_max`, `obs`, `perid_insp_dias`, "
+				+ "`altura`, `largura`, `profundidade`, `idZoo`, `cpf_tratador`) "
+				+ "VALUES (?, ?, ?,?, ?, ?, ?, ?, ?,?, ?)";
 		preparar(sql);
-		getStmt().setBoolean(1,o.isStats());
+		getStmt().setBoolean(1, o.isStats());
 		getStmt().setString(2, o.getTipo());
 		getStmt().setString(3, o.getDt_ultima_inspecao().toString());
 		getStmt().setInt(4, o.getPopulacao_max());
@@ -40,7 +40,7 @@ public class DAOJaula extends DAO<Jaula> {
 			e.printStackTrace();
 		} finally {
 			fecharStmt();
-		}	
+		}
 
 	}
 
@@ -62,12 +62,12 @@ public class DAOJaula extends DAO<Jaula> {
 
 	@Override
 	public void alterar(Jaula o) throws Exception {
-		String sql =  "UPDATE jaula SET `stats` = ?, `tipo` = ?, `dt_ultima_inspecao` = ?, "
-				   + "`populacao_max` = ?, `obs` = ?, `perid_insp_dias` = ?, "
-				   + "`altura` = ?, `largura` = ?, `profundidade` = ?, `idZoo` = ?, `cpf_tratador` = ?"
-				   + "  WHERE `id_Jaula` = ?";
+		String sql = "UPDATE jaula SET `stats` = ?, `tipo` = ?, `dt_ultima_inspecao` = ?, "
+				+ "`populacao_max` = ?, `obs` = ?, `perid_insp_dias` = ?, "
+				+ "`altura` = ?, `largura` = ?, `profundidade` = ?, `idZoo` = ?, `cpf_tratador` = ?"
+				+ "  WHERE `id_Jaula` = ?";
 		preparar(sql);
-		getStmt().setBoolean(1,o.isStats());
+		getStmt().setBoolean(1, o.isStats());
 		getStmt().setString(2, o.getTipo());
 		getStmt().setString(3, o.getDt_ultima_inspecao().toString());
 		getStmt().setInt(4, o.getPopulacao_max());
@@ -87,10 +87,10 @@ public class DAOJaula extends DAO<Jaula> {
 			e.printStackTrace();
 		} finally {
 			fecharStmt();
-		}	
+		}
 	}
-	
-	public Jaula buscar(int id) throws Exception{
+
+	public Jaula buscar(int id) throws Exception {
 		String sql = "SELECT * FROM jaula WHERE `id_Jaula` = ?";
 		preparar(sql);
 		getStmt().setInt(1, id);
@@ -104,16 +104,17 @@ public class DAOJaula extends DAO<Jaula> {
 			e.printStackTrace();
 		}
 		rs.next();
-		Jaula j = new Jaula(rs.getInt(1), rs.getBoolean(2), rs.getString(3), rs.getDate(4).toLocalDate(), rs.getInt(5), rs.getString(6), 
-				rs.getInt(7), rs.getDouble(8), rs.getDouble(9), rs.getDouble(10), rs.getInt(11), rs.getString(12));
+		Jaula j = new Jaula(rs.getInt(1), rs.getBoolean(2), rs.getString(3), rs.getDate(4).toLocalDate(), rs.getInt(5),
+				rs.getString(6), rs.getInt(7), rs.getDouble(8), rs.getDouble(9), rs.getDouble(10), rs.getInt(11),
+				rs.getString(12));
 		rs.close();
 		fecharStmt();
 		return j;
 	}
-	
+
 	@Override
 	public ArrayList<Jaula> listarTodos() throws Exception {
-		ArrayList<Jaula> r = new  ArrayList<Jaula>();
+		ArrayList<Jaula> r = new ArrayList<Jaula>();
 		String sql = "select * from Jaula";
 		preparar(sql);
 		ResultSet rs = null;
@@ -125,9 +126,10 @@ public class DAOJaula extends DAO<Jaula> {
 			fecharStmt();
 			e.printStackTrace();
 		}
-		while(rs.next()){
-			Jaula j = new Jaula(rs.getInt(1), rs.getBoolean(2), rs.getString(3), rs.getDate(4).toLocalDate(), rs.getInt(5), rs.getString(6), 
-					rs.getInt(7), rs.getDouble(8), rs.getDouble(9), rs.getDouble(10), rs.getInt(11), rs.getString(12));
+		while (rs.next()) {
+			Jaula j = new Jaula(rs.getInt(1), rs.getBoolean(2), rs.getString(3), rs.getDate(4).toLocalDate(),
+					rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getDouble(8), rs.getDouble(9), rs.getDouble(10),
+					rs.getInt(11), rs.getString(12));
 			r.add(j);
 		}
 		fecharStmt();

@@ -12,24 +12,25 @@ import br.ufrpe.zoologico.DAO.DAOFone;
 import br.ufrpe.zoologico.negocio.beans.Fones;
 import br.ufrpe.zoologico.repositorio.Interfaces.IRepositorio;
 
-public class RepositorioFones implements IRepositorio<Fones>{
+public class RepositorioFones implements IRepositorio<Fones> {
 
 	private ArrayList<Fones> repositorio;
 	private static IRepositorio<Fones> instance;
 	private DAOFone dao;
-	
-	private RepositorioFones(){
+
+	private RepositorioFones() {
 		dao = new DAOFone();
 		repositorio = new ArrayList<>();
 	}
-	
-	private static IRepositorio<Fones> getInstace(){
-		if(instance == null){
+
+	@SuppressWarnings("unused")
+	private static IRepositorio<Fones> getInstace() {
+		if (instance == null) {
 			instance = new RepositorioFones();
 		}
 		return instance;
 	}
-	
+
 	@Override
 	public void cadastrar(Fones obj) {
 		try {
@@ -42,7 +43,7 @@ public class RepositorioFones implements IRepositorio<Fones>{
 
 	@Override
 	public void atualizar(Fones newObj) {
-		// TODO cadastrar dois n�meros distintos 
+		// TODO cadastrar dois n�meros distintos
 		repositorio.set(newObj.getIdZoo(), newObj);
 	}
 
@@ -61,5 +62,4 @@ public class RepositorioFones implements IRepositorio<Fones>{
 		return repositorio;
 	}
 
-	
 }

@@ -6,6 +6,7 @@
  */
 package br.ufrpe.zoologico.gui.grafica.controller;
 
+import java.sql.SQLException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -34,6 +35,8 @@ public class ScreenManager {
 	private Scene telaZoologico;
 	private Scene telaEstoque;
 	private Scene telaProduto;
+	private Scene telaAnimal_Item;
+	
 
 	private static Stage mainStage;
 
@@ -49,7 +52,7 @@ public class ScreenManager {
 		}
 		return instance;
 	}
-	
+
 	public static boolean sairDoSistema() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Desconectar");
@@ -57,13 +60,19 @@ public class ScreenManager {
 		alert.setContentText("Deseja fechar o programa?");
 
 		Optional<ButtonType> result = alert.showAndWait();
-		
+
 		if (result.get().equals(ButtonType.OK)) {
 			Transition t = FabricaTransicao.fazerTransicao(0.5, mainStage.getScene().getRoot(), false);
 			t.setOnFinished(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
-					System.exit(0);
+					try {
+						Fachada.getInstance().fecharConexao();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					} finally {
+						System.exit(0);
+					}
 				}
 			});
 		} else {
@@ -74,7 +83,7 @@ public class ScreenManager {
 
 	public static String formatarLocalDate(LocalDate a) {
 		if (a != null) {
-		return a.getDayOfMonth() + "/" + a.getMonthValue() + "/" + a.getYear();
+			return a.getDayOfMonth() + "/" + a.getMonthValue() + "/" + a.getYear();
 		} else {
 			return "--/--/----";
 		}
@@ -118,14 +127,13 @@ public class ScreenManager {
 					FabricaTransicao.fazerTransicao(0.7, a.getRoot(), true);
 				}
 			});
-		}
-		else {
+		} else {
 			mainStage.setScene(a);
 			mainStage.show();
 			FabricaTransicao.fazerTransicao(0.7, a.getRoot(), true);
 		}
 	}
-	
+
 	public static void setSceneRight(Scene a) {
 		a.getRoot().setOpacity(0);
 		if (mainStage.getScene() != null) {
@@ -138,14 +146,13 @@ public class ScreenManager {
 					FabricaTransicao.fazerTransicaoRight(0.7, a.getRoot(), true);
 				}
 			});
-		}
-		else {
+		} else {
 			mainStage.setScene(a);
 			mainStage.show();
 			FabricaTransicao.fazerTransicao(0.7, a.getRoot(), true);
 		}
 	}
-	
+
 	public static void setSceneLeft(Scene a) {
 		a.getRoot().setOpacity(0);
 		if (mainStage.getScene() != null) {
@@ -158,8 +165,7 @@ public class ScreenManager {
 					FabricaTransicao.fazerTransicaoLeft(0.7, a.getRoot(), true);
 				}
 			});
-		}
-		else {
+		} else {
 			mainStage.setScene(a);
 			mainStage.show();
 			FabricaTransicao.fazerTransicao(0.7, a.getRoot(), true);
@@ -195,7 +201,7 @@ public class ScreenManager {
 		}
 		return telaAdmin;
 	}
-	
+
 	public Scene getTelaJaula() {
 		try {
 			telaJaula = new Scene(
@@ -206,11 +212,11 @@ public class ScreenManager {
 		}
 		return telaJaula;
 	}
-	
+
 	public Scene getTelaGerenciarAnimal() {
 		try {
-			telaAnimal = new Scene(
-					FXMLLoader.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/GerenciamentoAnimal.fxml")));
+			telaAnimal = new Scene(FXMLLoader
+					.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/GerenciamentoAnimal.fxml")));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -220,8 +226,8 @@ public class ScreenManager {
 
 	public Scene getTelaCadastrarConsultas() {
 		try {
-			telaCadastrarConsultas = new Scene(
-					FXMLLoader.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/CadastrarConsultas.fxml")));
+			telaCadastrarConsultas = new Scene(FXMLLoader
+					.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/CadastrarConsultas.fxml")));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -231,8 +237,8 @@ public class ScreenManager {
 
 	public Scene getTelaCadastrarInstituicao() {
 		try {
-			telaCadastrarInstituicao = new Scene(
-					FXMLLoader.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/CadastroInstituicoes.fxml")));
+			telaCadastrarInstituicao = new Scene(FXMLLoader
+					.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/CadastroInstituicoes.fxml")));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -242,8 +248,8 @@ public class ScreenManager {
 
 	public Scene getTelaGerenciarServicos() {
 		try {
-			telaGerenciarServicos = new Scene(
-					FXMLLoader.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/GerenciarServicos.fxml")));
+			telaGerenciarServicos = new Scene(FXMLLoader
+					.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/GerenciarServicos.fxml")));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -253,15 +259,15 @@ public class ScreenManager {
 
 	public Scene getTelaFuncionarios() {
 		try {
-			telaFuncionarios = new Scene(
-					FXMLLoader.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/GerenciarFuncionarios.fxml")));
+			telaFuncionarios = new Scene(FXMLLoader
+					.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/GerenciarFuncionarios.fxml")));
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return telaFuncionarios;
 	}
-	
+
 	public static void alertaInformativo(String informacao) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Caixa de Alerta");
@@ -270,7 +276,7 @@ public class ScreenManager {
 
 		alert.showAndWait();
 	}
-	
+
 	public static void alertaErro(String informacao) {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Erro!");
@@ -282,6 +288,7 @@ public class ScreenManager {
 
 	/**
 	 * Metodo: getTelaZoologico
+	 * 
 	 * @return telaZoologico
 	 */
 	public Scene getTelaZoologico() {
@@ -297,12 +304,13 @@ public class ScreenManager {
 
 	/**
 	 * Metodo: getTelaEstoque
+	 * 
 	 * @return telaEstoque
 	 */
 	public Scene getTelaEstoque() {
 		try {
-			telaEstoque = new Scene(
-					FXMLLoader.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/GerenciarEstoque.fxml")));
+			telaEstoque = new Scene(FXMLLoader
+					.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/GerenciarEstoque.fxml")));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -310,20 +318,36 @@ public class ScreenManager {
 		return telaEstoque;
 	}
 
-	/** 
+	/**
 	 * Metodo: getTelaProduto
+	 * 
 	 * @return
 	 * @return Scene
 	 */
 	public Scene getTelaProduto() {
 		try {
-			telaProduto = new Scene(
-					FXMLLoader.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/CadastroProduto.fxml")));
+			telaProduto = new Scene(FXMLLoader
+					.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/CadastroProduto.fxml")));
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return telaProduto;	
+		return telaProduto;
+	}
+
+	/**
+	 * Metodo: getTelaAnimal_Item
+	 * @return telaAnimal_Item
+	 */
+	public Scene getTelaAnimal_Item() {
+		try {
+			telaAnimal_Item = new Scene(FXMLLoader
+					.load(getClass().getResource("/br/ufrpe/zoologico/gui/grafica/FXML/GerenciamentoAnimal_Item.fxml")));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return telaAnimal_Item;
 	}
 
 }

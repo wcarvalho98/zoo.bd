@@ -12,12 +12,12 @@ public class Turno {
 	private int cod;
 	private String descricao;
 	private LocalTime hr_inicio;
-	private	LocalTime hr_fim;
-	
+	private LocalTime hr_fim;
+
 	/**
 	 * 
 	 */
-	public Turno(String desc, LocalTime hora_inicio, LocalTime hora_fim){
+	public Turno(String desc, LocalTime hora_inicio, LocalTime hora_fim) {
 		this.descricao = desc;
 		this.hr_fim = hora_fim;
 		this.hr_inicio = hora_inicio;
@@ -54,5 +54,5 @@ public class Turno {
 	public void setHr_fim(LocalTime hr_fim) {
 		this.hr_fim = hr_fim;
 	}
-	
+
 }

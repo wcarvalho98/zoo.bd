@@ -12,16 +12,16 @@ import br.ufrpe.zoologico.DAO.DAOFatura;
 import br.ufrpe.zoologico.negocio.beans.Fatura;
 
 public class GerenciamentoFaturas {
-	
+
 	private DAOFatura fatura;
-	
+
 	public GerenciamentoFaturas() {
 		this.fatura = new DAOFatura();
 	}
-	
+
 	public void cadastrarFatura(Fatura o) {
 		try {
-			if (o!= null) {
+			if (o != null) {
 				fatura.inserir(o);
 			}
 		} catch (Exception e) {
@@ -48,7 +48,7 @@ public class GerenciamentoFaturas {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Fatura buscar(int id) {
 		try {
 			return fatura.buscar(id);
@@ -58,7 +58,7 @@ public class GerenciamentoFaturas {
 		}
 	}
 
-	public ArrayList<Fatura> listarTodos(){
+	public ArrayList<Fatura> listarTodos() {
 		try {
 			return fatura.listarTodos();
 		} catch (Exception e) {

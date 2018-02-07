@@ -20,7 +20,7 @@ public class Funcionario {
 	private int jornada_trabalho;
 	private int id_zoo;
 
-	public Funcionario(String cpf, String nome, String especializacao, String fone1, String fone2, 
+	public Funcionario(String cpf, String nome, String especializacao, String fone1, String fone2,
 			LocalDate data_de_contratacao, double salario, String endereco, int jornada_trabalho, int id_zoo) {
 		this.cpf = cpf;
 		this.Nome = nome;
@@ -33,9 +33,9 @@ public class Funcionario {
 		this.setJornada_trabalho(jornada_trabalho);
 		this.setId_zoo(id_zoo);
 	}
-	
+
 	public Funcionario() {
-		
+
 	}
 
 	public String getCpf() {
@@ -117,6 +117,5 @@ public class Funcionario {
 	public void setId_zoo(int id_zoo) {
 		this.id_zoo = id_zoo;
 	}
-	
-	
+
 }

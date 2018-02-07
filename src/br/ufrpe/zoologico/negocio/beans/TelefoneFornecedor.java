@@ -7,5 +7,5 @@
 package br.ufrpe.zoologico.negocio.beans;
 
 public class TelefoneFornecedor {
-	//TODO telefone de fornecedor...
+	// TODO telefone de fornecedor...
 }

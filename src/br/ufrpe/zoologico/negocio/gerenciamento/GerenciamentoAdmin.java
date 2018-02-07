@@ -14,11 +14,11 @@ import br.ufrpe.zoologico.negocio.beans.Administrador;
 public class GerenciamentoAdmin {
 
 	private DAOAdmin admin;
-	
+
 	public GerenciamentoAdmin() {
 		this.admin = new DAOAdmin();
 	}
-	
+
 	public void cadastrarAdministrador(Administrador o) {
 		try {
 			if (o != null) {
@@ -28,6 +28,7 @@ public class GerenciamentoAdmin {
 			e.printStackTrace();
 		}
 	}
+
 	public void removerAdministrador(Administrador o) {
 		try {
 			if (o != null) {
@@ -37,7 +38,7 @@ public class GerenciamentoAdmin {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void alterarAdministrador(Administrador o) {
 		try {
 			admin.alterar(o);
@@ -45,7 +46,7 @@ public class GerenciamentoAdmin {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Administrador buscarAdministrador(String login) {
 		try {
 			return admin.buscar(login);
@@ -54,8 +55,8 @@ public class GerenciamentoAdmin {
 			return null;
 		}
 	}
-	
-	public ArrayList<Administrador> listarAdministradores(){
+
+	public ArrayList<Administrador> listarAdministradores() {
 		try {
 			return admin.listarTodos();
 		} catch (Exception e) {
@@ -63,6 +64,5 @@ public class GerenciamentoAdmin {
 			return new ArrayList<Administrador>();
 		}
 	}
-	
-	
+
 }

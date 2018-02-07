@@ -12,9 +12,9 @@ import br.ufrpe.zoologico.DAO.DAOJornadaDeTrabalho;
 import br.ufrpe.zoologico.negocio.beans.JornadaTrabalho;
 
 public class GerenciamentoJornadaDeTrabalho {
-	
+
 	private DAOJornadaDeTrabalho jornada;
-	
+
 	public GerenciamentoJornadaDeTrabalho() {
 		this.jornada = new DAOJornadaDeTrabalho();
 	}
@@ -42,7 +42,7 @@ public class GerenciamentoJornadaDeTrabalho {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public JornadaTrabalho buscar(int id) {
 		try {
 			return jornada.buscar(id);
@@ -60,5 +60,5 @@ public class GerenciamentoJornadaDeTrabalho {
 			return new ArrayList<JornadaTrabalho>();
 		}
 	}
-	
+
 }

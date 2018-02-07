@@ -10,11 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
 import br.ufrpe.zoologico.negocio.beans.Genero;
 
-public class DAOGenero extends DAO<Genero>{
-
-
+public class DAOGenero extends DAO<Genero> {
 
 	@Override
 	public void inserir(Genero o) throws Exception {
@@ -50,8 +49,8 @@ public class DAOGenero extends DAO<Genero>{
 		fecharStmt();
 		return list;
 	}
-	
-	public Genero busca(int id) throws Exception{
+
+	public Genero busca(int id) throws Exception {
 		String sql = "SELECT * FROM genero WHERE `seq` = ?";
 		preparar(sql);
 		getStmt().setInt(1, id);
@@ -62,7 +61,7 @@ public class DAOGenero extends DAO<Genero>{
 		} catch (SQLException e) {
 			getCon().rollback();
 			fecharStmt();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Gênero não encontrado!");
 		}
 		rs.next();
 		Genero o = new Genero(rs.getInt(1), rs.getString(2), rs.getInt(3));
@@ -70,11 +69,11 @@ public class DAOGenero extends DAO<Genero>{
 		fecharStmt();
 		return o;
 	}
-	
-	public boolean pertence(int idGenero, int idOrdem) throws Exception{
+
+	public boolean pertence(int idGenero, int idOrdem) throws Exception {
 		String sql = "SELECT zoologico.generoPertenceOrdem(?, ?);";
 		preparar(sql);
-		getStmt().setInt(1,idGenero);
+		getStmt().setInt(1, idGenero);
 		getStmt().setInt(2, idOrdem);
 		ResultSet rs = null;
 		try {

@@ -13,8 +13,8 @@ public class Ponto {
 	private LocalDateTime data_hora_fim;
 	private boolean faltou;
 	private Funcionario funcionario;
-	
-	public Ponto(LocalDateTime chegou, LocalDateTime saiu, boolean faltou, Funcionario funcionario){
+
+	public Ponto(LocalDateTime chegou, LocalDateTime saiu, boolean faltou, Funcionario funcionario) {
 		this.data_hora_inicial = chegou;
 		this.data_hora_fim = saiu;
 		this.faltou = faltou;

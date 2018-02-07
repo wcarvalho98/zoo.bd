@@ -12,13 +12,13 @@ import br.ufrpe.zoologico.DAO.DAOOrdem;
 import br.ufrpe.zoologico.negocio.beans.Ordem;
 
 public class GerenciamentoOrdem {
-	
+
 	private DAOOrdem ordem;
-	
-	public GerenciamentoOrdem(){
+
+	public GerenciamentoOrdem() {
 		this.ordem = new DAOOrdem();
 	}
-	
+
 	public ArrayList<Ordem> listarTodos() {
 		try {
 			return ordem.listarTodos();
@@ -27,8 +27,8 @@ public class GerenciamentoOrdem {
 			return new ArrayList<Ordem>();
 		}
 	}
-	
-	public Ordem buscar(int id) throws Exception{
+
+	public Ordem buscar(int id) throws Exception {
 		return ordem.buscar(id);
 	}
 }

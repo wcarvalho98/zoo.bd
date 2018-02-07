@@ -12,9 +12,9 @@ import br.ufrpe.zoologico.DAO.DAOReserva;
 import br.ufrpe.zoologico.negocio.beans.Reserva;
 
 public class GerenciamentoReserva {
-	
+
 	private DAOReserva reserva;
-	
+
 	public GerenciamentoReserva() {
 		this.reserva = new DAOReserva();
 	}
@@ -26,7 +26,7 @@ public class GerenciamentoReserva {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void remover(Reserva o) {
 		try {
 			reserva.remover(o);
@@ -34,7 +34,7 @@ public class GerenciamentoReserva {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void remover(String cnpj) {
 		try {
 			reserva.remover(cnpj);
@@ -42,7 +42,7 @@ public class GerenciamentoReserva {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void remover(int id) {
 		try {
 			reserva.remover(id);
@@ -50,7 +50,7 @@ public class GerenciamentoReserva {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void alterar(Reserva o) {
 		try {
 			reserva.alterar(o);
@@ -58,7 +58,7 @@ public class GerenciamentoReserva {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Reserva buscar(String cnpj, int id_espaco) {
 		try {
 			return reserva.buscar(cnpj, id_espaco);
@@ -67,7 +67,7 @@ public class GerenciamentoReserva {
 			return null;
 		}
 	}
-	
+
 	public ArrayList<Reserva> listarTodos() {
 		try {
 			return reserva.listarTodos();
@@ -76,5 +76,5 @@ public class GerenciamentoReserva {
 			return new ArrayList<Reserva>();
 		}
 	}
-	
+
 }

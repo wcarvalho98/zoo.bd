@@ -17,6 +17,7 @@ public class ProdutoRef {
 	private int subcat;
 	private int categ;
 	private int fornecedor;
+
 	/**
 	 * @param cod
 	 * @param descr
@@ -30,7 +31,8 @@ public class ProdutoRef {
 	 * @param categ
 	 * @param fornecedor
 	 */
-	public ProdutoRef(int cod, String descr, int freq_pedido, String cod_barra, double preco_ult_compra, int qtd_total_estoque, int qtd_min, int subcat, int categ, int fornecedor) {
+	public ProdutoRef(int cod, String descr, int freq_pedido, String cod_barra, double preco_ult_compra,
+			int qtd_total_estoque, int qtd_min, int subcat, int categ, int fornecedor) {
 		super();
 		this.cod = cod;
 		this.descr = descr;
@@ -43,146 +45,197 @@ public class ProdutoRef {
 		this.categ = categ;
 		this.fornecedor = fornecedor;
 	}
+
 	/**
 	 * Metodo: getCod
+	 * 
 	 * @return cod
 	 */
 	public int getCod() {
 		return cod;
 	}
+
 	/**
 	 * Metodo: setCod
-	 * @param cod the cod to set
+	 * 
+	 * @param cod
+	 *            the cod to set
 	 */
 	public void setCod(int cod) {
 		this.cod = cod;
 	}
+
 	/**
 	 * Metodo: getDescr
+	 * 
 	 * @return descr
 	 */
 	public String getDescr() {
 		return descr;
 	}
+
 	/**
 	 * Metodo: setDescr
-	 * @param descr the descr to set
+	 * 
+	 * @param descr
+	 *            the descr to set
 	 */
 	public void setDescr(String descr) {
 		this.descr = descr;
 	}
+
 	/**
 	 * Metodo: getFreq_pedido
+	 * 
 	 * @return freq_pedido
 	 */
 	public int getFreq_pedido() {
 		return freq_pedido;
 	}
+
 	/**
 	 * Metodo: setFreq_pedido
-	 * @param freq_pedido the freq_pedido to set
+	 * 
+	 * @param freq_pedido
+	 *            the freq_pedido to set
 	 */
 	public void setFreq_pedido(int freq_pedido) {
 		this.freq_pedido = freq_pedido;
 	}
+
 	/**
 	 * Metodo: getCod_barra
+	 * 
 	 * @return cod_barra
 	 */
 	public String getCod_barra() {
 		return cod_barra;
 	}
+
 	/**
 	 * Metodo: setCod_barra
-	 * @param cod_barra the cod_barra to set
+	 * 
+	 * @param cod_barra
+	 *            the cod_barra to set
 	 */
 	public void setCod_barra(String cod_barra) {
 		this.cod_barra = cod_barra;
 	}
+
 	/**
 	 * Metodo: getPreco_ult_compra
+	 * 
 	 * @return preco_ult_compra
 	 */
 	public double getPreco_ult_compra() {
 		return preco_ult_compra;
 	}
+
 	/**
 	 * Metodo: setPreco_ult_compra
-	 * @param preco_ult_compra the preco_ult_compra to set
+	 * 
+	 * @param preco_ult_compra
+	 *            the preco_ult_compra to set
 	 */
 	public void setPreco_ult_compra(double preco_ult_compra) {
 		this.preco_ult_compra = preco_ult_compra;
 	}
+
 	/**
 	 * Metodo: getQtd_total_estoque
+	 * 
 	 * @return qtd_total_estoque
 	 */
 	public int getQtd_total_estoque() {
 		return qtd_total_estoque;
 	}
+
 	/**
 	 * Metodo: setQtd_total_estoque
-	 * @param qtd_total_estoque the qtd_total_estoque to set
+	 * 
+	 * @param qtd_total_estoque
+	 *            the qtd_total_estoque to set
 	 */
 	public void setQtd_total_estoque(int qtd_total_estoque) {
 		this.qtd_total_estoque = qtd_total_estoque;
 	}
+
 	/**
 	 * Metodo: getQtd_min
+	 * 
 	 * @return qtd_min
 	 */
 	public int getQtd_min() {
 		return qtd_min;
 	}
+
 	/**
 	 * Metodo: setQtd_min
-	 * @param qtd_min the qtd_min to set
+	 * 
+	 * @param qtd_min
+	 *            the qtd_min to set
 	 */
 	public void setQtd_min(int qtd_min) {
 		this.qtd_min = qtd_min;
 	}
+
 	/**
 	 * Metodo: getSubcat
+	 * 
 	 * @return subcat
 	 */
 	public int getSubcat() {
 		return subcat;
 	}
+
 	/**
 	 * Metodo: setSubcat
-	 * @param subcat the subcat to set
+	 * 
+	 * @param subcat
+	 *            the subcat to set
 	 */
 	public void setSubcat(int subcat) {
 		this.subcat = subcat;
 	}
+
 	/**
 	 * Metodo: getCateg
+	 * 
 	 * @return categ
 	 */
 	public int getCateg() {
 		return categ;
 	}
+
 	/**
 	 * Metodo: setCateg
-	 * @param categ the categ to set
+	 * 
+	 * @param categ
+	 *            the categ to set
 	 */
 	public void setCateg(int categ) {
 		this.categ = categ;
 	}
+
 	/**
 	 * Metodo: getFornecedor
+	 * 
 	 * @return fornecedor
 	 */
 	public int getFornecedor() {
 		return fornecedor;
 	}
+
 	/**
 	 * Metodo: setFornecedor
-	 * @param fornecedor the fornecedor to set
+	 * 
+	 * @param fornecedor
+	 *            the fornecedor to set
 	 */
 	public void setFornecedor(int fornecedor) {
 		this.fornecedor = fornecedor;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -201,6 +254,7 @@ public class ProdutoRef {
 		result = prime * result + subcat;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -238,11 +292,12 @@ public class ProdutoRef {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "ProdutoRef [cod=" + cod + ", descr=" + descr + ", freq_pedido=" + freq_pedido + ", cod_barra="
-				+ cod_barra + ", preco_ult_compra=" + preco_ult_compra
-				+ ", qtd_total_estoque=" + qtd_total_estoque + ", qtd_min=" + qtd_min + ", subcat=" + subcat
-				+ ", categ=" + categ + ", fornecedor=" + fornecedor + "]";
+				+ cod_barra + ", preco_ult_compra=" + preco_ult_compra + ", qtd_total_estoque=" + qtd_total_estoque
+				+ ", qtd_min=" + qtd_min + ", subcat=" + subcat + ", categ=" + categ + ", fornecedor=" + fornecedor
+				+ "]";
 	}
 }

@@ -10,6 +10,7 @@ public class SubCategoria {
 	private int cod;
 	private String descr;
 	private int categ;
+
 	/**
 	 * @param cod
 	 * @param descr
@@ -21,6 +22,7 @@ public class SubCategoria {
 		this.descr = descr;
 		this.categ = categ;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -30,6 +32,7 @@ public class SubCategoria {
 		result = prime * result + ((descr == null) ? 0 : descr.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -50,52 +53,67 @@ public class SubCategoria {
 			return false;
 		return true;
 	}
+
 	/**
 	 * Metodo: getCod
+	 * 
 	 * @return cod
 	 */
 	public int getCod() {
 		return cod;
 	}
+
 	/**
 	 * Metodo: setCod
-	 * @param cod the cod to set
+	 * 
+	 * @param cod
+	 *            the cod to set
 	 */
 	public void setCod(int cod) {
 		this.cod = cod;
 	}
+
 	/**
 	 * Metodo: getDescr
+	 * 
 	 * @return descr
 	 */
 	public String getDescr() {
 		return descr;
 	}
+
 	/**
 	 * Metodo: setDescr
-	 * @param descr the descr to set
+	 * 
+	 * @param descr
+	 *            the descr to set
 	 */
 	public void setDescr(String descr) {
 		this.descr = descr;
 	}
+
 	/**
 	 * Metodo: getCateg
+	 * 
 	 * @return categ
 	 */
 	public int getCateg() {
 		return categ;
 	}
+
 	/**
 	 * Metodo: setCateg
-	 * @param categ the categ to set
+	 * 
+	 * @param categ
+	 *            the categ to set
 	 */
 	public void setCateg(int categ) {
 		this.categ = categ;
 	}
+
 	@Override
 	public String toString() {
 		return "SubCategoria [cod=" + cod + ", descr=" + descr + ", categ=" + categ + "]";
 	}
-	
-	
+
 }

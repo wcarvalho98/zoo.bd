@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="br.ufrpe.zoologico.gui.grafica.controller.GerenciarAnimal_Item">
+  <tabs>
+    <Tab text="Gerenciar">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView fx:id="tabelaAnimal" layoutX="112.0" layoutY="100.0" onMouseClicked="#selecionarAnimal" prefHeight="190.0" prefWidth="448.0">
+                    <columns>
+                      <TableColumn fx:id="clunaIdAnimalAnimal" prefWidth="103.0" text="ID Animal" />
+                      <TableColumn fx:id="colunaNome" prefWidth="344.0" text="Nome" />
+                    </columns>
+                  </TableView>
+                  <TableView fx:id="tabelaItemEstoque" layoutX="616.0" layoutY="100.0" onMouseClicked="#selecionarEstoqueItem" prefHeight="190.0" prefWidth="594.0">
+                     <columns>
+                        <TableColumn fx:id="colunaCodProd" prefWidth="67.66668701171875" text="Cod_Prod" />
+                        <TableColumn fx:id="colunaIdEstoqueItem" minWidth="0.0" prefWidth="35.33331298828125" text="ID" />
+                        <TableColumn fx:id="colunaQtd" prefWidth="89.6666259765625" text="Quantidade" />
+                        <TableColumn fx:id="colunaDtEntrada" prefWidth="125.0" text="Dt_entrada" />
+                        <TableColumn fx:id="colunaVlCompra" prefWidth="69.33331298828125" text="Vl_compra" />
+                        <TableColumn fx:id="colunaDtValidade" prefWidth="125.0" text="Dt_validade" />
+                        <TableColumn fx:id="colunaIdAnimal" prefWidth="79.0" text="ID_animal" />
+                     </columns>
+                  </TableView>
+                  <Button fx:id="editarItemButton" layoutX="636.0" layoutY="315.0" mnemonicParsing="false" onAction="#editarEstoqueItem" text="Editar Item">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="833.0" layoutY="315.0" mnemonicParsing="false" onAction="#removerEstoqueItem" text="Remover Item">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="salvarAlteracoesButton" layoutX="614.0" layoutY="600.0" mnemonicParsing="false" onAction="#salvarAlteracoesItemEstoque" text="Salvar Alterações">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="628.0" layoutY="433.0" text="Quantidade:">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="628.0" layoutY="513.0" text="Valor:">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="901.0" layoutY="438.0" text="Dt Entrada:">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="901.0" layoutY="511.0" text="Dt Validade:">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="vlCompraTextField" layoutX="768.0" layoutY="511.0" prefHeight="39.0" prefWidth="120.0" promptText="Valor">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="quantidadeTextField" layoutX="770.0" layoutY="434.0" prefHeight="39.0" prefWidth="120.0" promptText="Quantidade">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <DatePicker fx:id="dtValidadeDatePicker" layoutX="1036.0" layoutY="510.0" prefHeight="40.0" prefWidth="222.0" promptText="Data Validade" />
+                  <DatePicker fx:id="dtEntradaDatePicker" layoutX="1034.0" layoutY="436.0" prefHeight="40.0" prefWidth="222.0" promptText="Data Entrada" />
+                  <Button fx:id="adicionarItemButton" layoutX="1051.0" layoutY="315.0" mnemonicParsing="false" onAction="#adicionarItem" text="Adicionar Item">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="cadastrarItemButton" layoutX="1051.0" layoutY="600.0" mnemonicParsing="false" onAction="#cadastrarItem" text="Cadastrar Item">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="299.0" layoutY="54.0" text="Animal">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="866.0" layoutY="54.0" text="Item">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="1167.0" layoutY="26.0" mnemonicParsing="false" onAction="#voltar" text="Voltar">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <TableView fx:id="tabelaProduto" layoutX="382.0" layoutY="315.0" onMouseClicked="#selecionarProduto" prefHeight="164.0" prefWidth="217.0">
+                    <columns>
+                      <TableColumn fx:id="colunaNomeProduto" prefWidth="215.0" text="Produto" />
+                    </columns>
+                  </TableView>
+                  <TableView fx:id="tabelaEstoque" layoutX="382.0" layoutY="501.0" onMouseClicked="#selecionarEstoque" prefHeight="164.0" prefWidth="217.0">
+                     <columns>
+                        <TableColumn fx:id="colunaIdEstoque" prefWidth="215.0" text="ID Estoque" />
+                     </columns>
+                  </TableView>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>

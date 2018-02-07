@@ -9,39 +9,48 @@ package br.ufrpe.zoologico.negocio.beans;
 public class Faz {
 	private String fone;
 	private int idZoo;
-	
-	public Faz(String fone, int idZoo){
+
+	public Faz(String fone, int idZoo) {
 		this.setFone(fone);
 		this.setIdZoo(idZoo);
 	}
-	
+
 	/**
 	 * Metodo: getFone
+	 * 
 	 * @return fone
 	 */
 	public String getFone() {
 		return fone;
 	}
+
 	/**
 	 * Metodo: setFone
-	 * @param fone the fone to set
+	 * 
+	 * @param fone
+	 *            the fone to set
 	 */
 	public void setFone(String fone) {
 		this.fone = fone;
 	}
+
 	/**
 	 * Metodo: getIdZoo
+	 * 
 	 * @return idZoo
 	 */
 	public Integer getIdZoo() {
 		return idZoo;
 	}
+
 	/**
 	 * Metodo: setIdZoo
-	 * @param idZoo the idZoo to set
+	 * 
+	 * @param idZoo
+	 *            the idZoo to set
 	 */
 	public void setIdZoo(Integer idZoo) {
 		this.idZoo = idZoo;
 	}
-	
+
 }

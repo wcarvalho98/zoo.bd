@@ -9,6 +9,7 @@ package br.ufrpe.zoologico.negocio.beans;
 public class Categoria {
 	private int cod;
 	private String descr;
+
 	/**
 	 * @param cod
 	 * @param descr
@@ -18,34 +19,45 @@ public class Categoria {
 		this.cod = cod;
 		this.descr = descr;
 	}
+
 	/**
 	 * Metodo: getCod
+	 * 
 	 * @return cod
 	 */
 	public int getCod() {
 		return cod;
 	}
+
 	/**
 	 * Metodo: setCod
-	 * @param cod the cod to set
+	 * 
+	 * @param cod
+	 *            the cod to set
 	 */
 	public void setCod(int cod) {
 		this.cod = cod;
 	}
+
 	/**
 	 * Metodo: getDescr
+	 * 
 	 * @return descr
 	 */
 	public String getDescr() {
 		return descr;
 	}
+
 	/**
 	 * Metodo: setDescr
-	 * @param descr the descr to set
+	 * 
+	 * @param descr
+	 *            the descr to set
 	 */
 	public void setDescr(String descr) {
 		this.descr = descr;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -54,6 +66,7 @@ public class Categoria {
 		result = prime * result + ((descr == null) ? 0 : descr.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -72,10 +85,10 @@ public class Categoria {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Categoria [cod=" + cod + ", descr=" + descr + "]";
 	}
-	
-	
+
 }

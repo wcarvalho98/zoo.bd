@@ -10,9 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
 import br.ufrpe.zoologico.negocio.beans.Administrador;
 
-public class DAOAdmin extends DAO<Administrador>{
+public class DAOAdmin extends DAO<Administrador> {
 
 	@Override
 	public void inserir(Administrador o) throws Exception {
@@ -25,12 +26,13 @@ public class DAOAdmin extends DAO<Administrador>{
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Inserção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível inserir!");
 		} finally {
 			fecharStmt();
-		}		
+		}
 	}
 
 	@Override
@@ -42,12 +44,13 @@ public class DAOAdmin extends DAO<Administrador>{
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Remoção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível remover!");
 		} finally {
 			fecharStmt();
-		}	
+		}
 	}
 
 	@Override
@@ -61,12 +64,13 @@ public class DAOAdmin extends DAO<Administrador>{
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Alteração realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível alterar!");
 		} finally {
 			fecharStmt();
-		}		
+		}
 	}
 
 	public Administrador buscar(String login) throws Exception {
@@ -80,7 +84,7 @@ public class DAOAdmin extends DAO<Administrador>{
 		} catch (SQLException e) {
 			getCon().rollback();
 			fecharStmt();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Administrador não encontrado!");
 		}
 		rs.next();
 		Administrador o = new Administrador(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4));
@@ -88,7 +92,7 @@ public class DAOAdmin extends DAO<Administrador>{
 		fecharStmt();
 		return o;
 	}
-	
+
 	public Administrador buscar(int idZoo, String cpf) throws Exception {
 		String sql = "SELECT * FROM administrador WHERE `idZoo` = ?, `cpf` = ?";
 		preparar(sql);
@@ -101,7 +105,7 @@ public class DAOAdmin extends DAO<Administrador>{
 		} catch (SQLException e) {
 			getCon().rollback();
 			fecharStmt();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Administrador não encontrado!");
 		}
 		Administrador o = new Administrador(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4));
 		rs.close();
@@ -120,7 +124,6 @@ public class DAOAdmin extends DAO<Administrador>{
 		} catch (SQLException e) {
 			getCon().rollback();
 			fecharStmt();
-			e.printStackTrace();
 		}
 		ArrayList<Administrador> list = new ArrayList<Administrador>();
 		while (rs.next()) {

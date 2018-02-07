@@ -10,9 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
 import br.ufrpe.zoologico.negocio.beans.Categoria;
 
-public class DAOCategoria extends DAO<Categoria>{
+public class DAOCategoria extends DAO<Categoria> {
 
 	@Override
 	public void inserir(Categoria o) throws Exception {
@@ -48,8 +49,8 @@ public class DAOCategoria extends DAO<Categoria>{
 		fecharStmt();
 		return list;
 	}
-	
-	public Categoria buscar(int id) throws Exception{
+
+	public Categoria buscar(int id) throws Exception {
 		String sql = "SELECT * FROM categoria WHERE `cod` = ?";
 		preparar(sql);
 		getStmt().setInt(1, id);
@@ -60,10 +61,10 @@ public class DAOCategoria extends DAO<Categoria>{
 		} catch (SQLException e) {
 			getCon().rollback();
 			fecharStmt();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Categoria não encontrada!");
 		}
 		rs.next();
-		Categoria o = new Categoria(rs.getInt(1),rs.getString(2));
+		Categoria o = new Categoria(rs.getInt(1), rs.getString(2));
 		rs.close();
 		fecharStmt();
 		return o;

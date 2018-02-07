@@ -12,12 +12,13 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.gui.grafica.controller.Fachada;
+import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
 import br.ufrpe.zoologico.negocio.beans.Animal;
 import br.ufrpe.zoologico.negocio.beans.Consulta;
 import br.ufrpe.zoologico.negocio.beans.Veterinario;
 
-public class DAOConsultas extends DAO<Consulta>{
-	
+public class DAOConsultas extends DAO<Consulta> {
+
 	@Override
 	public void inserir(Consulta o) throws Exception {
 		String sql = "INSERT INTO `consulta` (`dat_consulta`, `obs`, `id_veterinario`, `id_animal`) VALUES (?, ?, ?, ?)";
@@ -30,12 +31,13 @@ public class DAOConsultas extends DAO<Consulta>{
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Inserção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível inserir!");
 		} finally {
 			fecharStmt();
-		}	
+		}
 	}
 
 	@Override
@@ -46,14 +48,15 @@ public class DAOConsultas extends DAO<Consulta>{
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Remoção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível remover!");
 		} finally {
 			fecharStmt();
-		}	
+		}
 	}
-	
+
 	public void remover(String id_veterinario) throws Exception {
 		String sql = "DELETE FROM `consulta` WHERE `id_veterinario` = ?";
 		preparar(sql);
@@ -61,12 +64,13 @@ public class DAOConsultas extends DAO<Consulta>{
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Remoção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível remover!");
 		} finally {
 			fecharStmt();
-		}	
+		}
 	}
 
 	@Override
@@ -83,12 +87,13 @@ public class DAOConsultas extends DAO<Consulta>{
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Alteração realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível alterar!");
 		} finally {
 			fecharStmt();
-		}	
+		}
 	}
 
 	public Consulta buscar(int id) throws Exception {
@@ -102,7 +107,7 @@ public class DAOConsultas extends DAO<Consulta>{
 		} catch (SQLException e) {
 			getCon().rollback();
 			fecharStmt();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Consulta não encontrada!");
 		}
 		rs.next();
 		Veterinario vet = Fachada.getInstance().buscarVeterinario(rs.getString(4));
@@ -115,7 +120,7 @@ public class DAOConsultas extends DAO<Consulta>{
 
 	@Override
 	public ArrayList<Consulta> listarTodos() throws Exception {
-		ArrayList<Consulta> r = new  ArrayList<Consulta>();
+		ArrayList<Consulta> r = new ArrayList<Consulta>();
 		String sql = "SELECT * FROM `consulta`";
 		preparar(sql);
 		ResultSet rs = null;
@@ -127,7 +132,7 @@ public class DAOConsultas extends DAO<Consulta>{
 			fecharStmt();
 			e.printStackTrace();
 		}
-		while(rs.next()) {
+		while (rs.next()) {
 			Veterinario vet = Fachada.getInstance().buscarVeterinario(rs.getString(4));
 			Animal ani = Fachada.getInstance().buscarAnimal(rs.getInt(5));
 			Consulta o = new Consulta(vet, ani, rs.getInt(1), rs.getTimestamp(2).toLocalDateTime(), rs.getString(3));

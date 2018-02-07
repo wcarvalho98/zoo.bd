@@ -11,22 +11,23 @@ import java.util.ArrayList;
 import br.ufrpe.zoologico.negocio.beans.EspecieIndicada;
 import br.ufrpe.zoologico.repositorio.Interfaces.IRepositorio;
 
-public class RepositorioEspecieIndicada implements IRepositorio<EspecieIndicada>{
+public class RepositorioEspecieIndicada implements IRepositorio<EspecieIndicada> {
 
 	private ArrayList<EspecieIndicada> r;
 	private static IRepositorio<EspecieIndicada> i;
-	
-	private RepositorioEspecieIndicada(){
+
+	private RepositorioEspecieIndicada() {
 		r = new ArrayList<EspecieIndicada>();
 	}
-	
-	private static IRepositorio<EspecieIndicada> getInstance(){
-		if(i == null){
+
+	@SuppressWarnings("unused")
+	private static IRepositorio<EspecieIndicada> getInstance() {
+		if (i == null) {
 			i = new RepositorioEspecieIndicada();
 		}
 		return i;
 	}
-	
+
 	@Override
 	public void cadastrar(EspecieIndicada obj) {
 		r.add(obj);

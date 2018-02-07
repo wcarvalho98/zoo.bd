@@ -378,7 +378,7 @@ public class GerenciarFuncionariosController implements Initializable {
 		zoologicoSelecionado = null;
 		salarioTextField.setText("");
 	}
-	
+
 	private void preencherCampos1(Funcionario a) {
 		if (a == null) {
 			nomeTextField1.setText("");
@@ -396,6 +396,7 @@ public class GerenciarFuncionariosController implements Initializable {
 			salarioTextField1.setText(a.getSalario() + "");
 		}
 	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		preencherTabelas_Zoo_Jornada();

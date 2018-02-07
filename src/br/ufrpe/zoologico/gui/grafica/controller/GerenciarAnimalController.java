@@ -35,41 +35,60 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.util.Callback;
 
-public class GerenciarAnimalController implements Initializable{
+public class GerenciarAnimalController implements Initializable {
 
-	//TABLE ESPECIE
-	@FXML private TableView<Especie> tbEspecie;
-	@FXML private TableColumn<Especie, String> tcIdEspecie;
-	@FXML private TableColumn<Especie, String> tcEspecie;
-	
-	//TABLE GENERO
-	@FXML private TableView<Genero> tbGenero;
-	@FXML private TableColumn<Genero, String> tcIdGenero;
-	@FXML private TableColumn<Genero, String> tcGenero;
- 	
-	//TABLE ORDEM
-	@FXML private TableView<Ordem> tbOrdem;
-	@FXML private TableColumn<Ordem, String> tcIdOrdem;
-	@FXML private TableColumn<Ordem, String> tcOrdem;
- 	
-	//TABLE ZOOLOGICO
-	@FXML private TableView<Zoo> tbZoo;
-	@FXML private TableColumn<Zoo, String> tcIdZoo;
-	@FXML private TableColumn<Zoo, String> tcZoo;
- 	
-	//TABLE JAULA
-	@FXML private TableView<Jaula> tbJaula;
-	@FXML private TableColumn<Jaula, String> tcIdJaula;
-	@FXML private TableColumn<Jaula, String> tcJaula;
-	
-	@FXML private TextField idAnimal, idade, nome;
-	@FXML private TextArea obs;
-	@FXML private DatePicker dtNas, dtFale;
- 	
-	@FXML private Button cadastrar;
+	// TABLE ESPECIE
+	@FXML
+	private TableView<Especie> tbEspecie;
+	@FXML
+	private TableColumn<Especie, String> tcIdEspecie;
+	@FXML
+	private TableColumn<Especie, String> tcEspecie;
+
+	// TABLE GENERO
+	@FXML
+	private TableView<Genero> tbGenero;
+	@FXML
+	private TableColumn<Genero, String> tcIdGenero;
+	@FXML
+	private TableColumn<Genero, String> tcGenero;
+
+	// TABLE ORDEM
+	@FXML
+	private TableView<Ordem> tbOrdem;
+	@FXML
+	private TableColumn<Ordem, String> tcIdOrdem;
+	@FXML
+	private TableColumn<Ordem, String> tcOrdem;
+
+	// TABLE ZOOLOGICO
+	@FXML
+	private TableView<Zoo> tbZoo;
+	@FXML
+	private TableColumn<Zoo, String> tcIdZoo;
+	@FXML
+	private TableColumn<Zoo, String> tcZoo;
+
+	// TABLE JAULA
+	@FXML
+	private TableView<Jaula> tbJaula;
+	@FXML
+	private TableColumn<Jaula, String> tcIdJaula;
+	@FXML
+	private TableColumn<Jaula, String> tcJaula;
+
+	@FXML
+	private TextField idAnimal, idade, nome;
+	@FXML
+	private TextArea obs;
+	@FXML
+	private DatePicker dtNas, dtFale;
+
+	@FXML
+	private Button cadastrar;
 	private Fachada f;
 	private int i;
-	
+
 	private Ordem ordemAtual;
 	private Genero generoAtual;
 	private Jaula jaulaAtual;
@@ -81,7 +100,7 @@ public class GerenciarAnimalController implements Initializable{
 		f = Fachada.getInstance();
 		allDisable();
 		select();
-		
+
 		i = 0;
 		try {
 			preencherAnimal(i);
@@ -93,58 +112,55 @@ public class GerenciarAnimalController implements Initializable{
 			a.showAndWait();
 		}
 	}
-	
+
 	@FXML
 	public void voltar() {
 		ScreenManager.setSceneLeft(ScreenManager.getInstance().getTelaAdmin());
 	}
-	
-	@FXML 
-	public void passar() throws Exception{
+
+	@FXML
+	public void passar() throws Exception {
 		i++;
-		if(i > f.listarAnimais().size() - 1)
+		if (i > f.listarAnimais().size() - 1)
 			i = 0;
 		allDisable();
 		preencherAnimal(i);
 	}
-	
+
 	@FXML
-	public void retornar() throws Exception{
+	public void retornar() throws Exception {
 		i--;
-		if(i < 0)
+		if (i < 0)
 			i = f.listarAnimais().size() - 1;
 		allDisable();
 		preencherAnimal(i);
 	}
-	
+
 	@FXML
-	public void cadastrar(){
-		
+	public void cadastrar() {
+
 		LocalDate val5 = dtFale.getValue();
 		String val2 = obs.getText();
 		String val3 = nome.getText();
 		LocalDate val4 = dtNas.getValue();
-		Animal b = new Animal(0, val3, true, val4, val5, 0, val3, val2, zooAtual.getIdZoo(), 
-				jaulaAtual.getId_jaula(), ordemAtual.getId(), generoAtual.getId(), especieAtual.getSeq());
-	
+		Animal b = new Animal(0, val3, true, val4, val5, 0, val3, val2, zooAtual.getIdZoo(), jaulaAtual.getId_jaula(),
+				ordemAtual.getId(), generoAtual.getId(), especieAtual.getSeq());
+
 		try {
-			if(f.generoPertenceOrdem(generoAtual.getId(),ordemAtual.getId())) {
-				if(f.especiePertenceGenero(especieAtual.getSeq(), generoAtual.getId())){
+			if (f.generoPertenceOrdem(generoAtual.getId(), ordemAtual.getId())) {
+				if (f.especiePertenceGenero(especieAtual.getSeq(), generoAtual.getId())) {
 					try {
 						System.out.println(b.toString());
 						f.cadastrarAnimal(b);
-						ScreenManager.alertaInformativo("Cadastro realizado com sucesso!");
 					} catch (Exception e) {
-						ScreenManager.alertaErro("Não foi possível!");
+						e.printStackTrace();
 					}
-				}
-				else
+				} else
 					ScreenManager.alertaErro("Espécie não pertence a gênero!");
-			}
-			else
-				ScreenManager.alertaErro("Genêro não pertence a ordem!");
+			} else
+				ScreenManager.alertaErro("Gênero não pertence a ordem!");
 		} catch (Exception e) {
-			ScreenManager.alertaErro(e.getMessage());
+			e.printStackTrace();
 		}
 		allNull();
 		allDisable();
@@ -152,32 +168,28 @@ public class GerenciarAnimalController implements Initializable{
 		cadastrar.setDisable(true);
 
 	}
-	
-	@FXML 
-	public void remover() throws Exception{
+
+	@FXML
+	public void remover() throws Exception {
 		Animal b = f.buscarAnimal(Integer.valueOf(idAnimal.getText()));
-		if(b == null)
-			ScreenManager.alertaErro("Animal não existe!");
-		else {
+		if (b != null) {
 			f.removerAnimal(b);
-			ScreenManager.alertaInformativo("Animal removido com sucesso!");
 			preencherAnimal(0);
 		}
 	}
-	
-	@FXML 
-	public void alterar(){
-		
-		
-	}
-	
+
 	@FXML
-	public void salvarAlteracao(){
-		
+	public void alterar() {
+
 	}
-	
+
 	@FXML
-	public void inserir() throws SQLException{
+	public void salvarAlteracao() {
+
+	}
+
+	@FXML
+	public void inserir() throws SQLException {
 		try {
 			preencherTabelaEspecie(f.listarEspecie());
 			preencherTabelaGenero(f.listarGenero());
@@ -198,18 +210,16 @@ public class GerenciarAnimalController implements Initializable{
 			a.showAndWait();
 		}
 	}
-	
-	
-	
-	private void preencherAnimal(int i) throws Exception{
+
+	private void preencherAnimal(int i) throws Exception {
 		Animal a = f.listarAnimais().get(i);
-		
+
 		Ordem val = f.buscarOrdem(a.getOrdem());
 		Genero val1 = f.buscarGenero(a.getGenero());
 		Especie val2 = f.buscarEspecie(a.getEspecie());
 		Zoo val3 = f.buscarZoo(a.getId_zoo());
 		Jaula val4 = f.buscarJaula(a.getId_jaula());
-		
+
 		ArrayList<Ordem> b = new ArrayList<Ordem>();
 		b.add(val);
 		ArrayList<Jaula> c = new ArrayList<Jaula>();
@@ -220,39 +230,42 @@ public class GerenciarAnimalController implements Initializable{
 		e.add(val2);
 		ArrayList<Zoo> z = new ArrayList<Zoo>();
 		z.add(val3);
-		
+
 		idAnimal.setText(Integer.valueOf(a.getId()).toString());
 		idade.setText(Integer.valueOf(a.getIdade()).toString());
 		obs.setText(a.getObs());
 		nome.setText(a.getNome());
 		dtNas.setValue(a.getDt_nasc());
 		dtFale.setValue(a.getDt_falecimento());
-		
+
 		preencherTabelaOrdem(b);
 		preencherTabelaJaula(c);
 		preencherTabelaEspecie(e);
 		preencherTabelaZoo(z);
 		preencherTabelaGenero(d);
-		
-	}	
-	private void preencherTabelaGenero(ArrayList<Genero> g){
-		try {
-			tcIdGenero.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Genero,String>, ObservableValue<String>>() {
-				
-				@Override
-				public ObservableValue<String> call(CellDataFeatures<Genero, String> arg0) {
-					return new SimpleStringProperty(Integer.valueOf(arg0.getValue().getId()).toString());
-				}
-			});
-			
-			tcGenero.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Genero,String>, ObservableValue<String>>() {
 
-				@Override
-				public ObservableValue<String> call(CellDataFeatures<Genero, String> param) {
-					return new SimpleStringProperty(param.getValue().getNome());
-				}
-			});
-			
+	}
+
+	private void preencherTabelaGenero(ArrayList<Genero> g) {
+		try {
+			tcIdGenero.setCellValueFactory(
+					new Callback<TableColumn.CellDataFeatures<Genero, String>, ObservableValue<String>>() {
+
+						@Override
+						public ObservableValue<String> call(CellDataFeatures<Genero, String> arg0) {
+							return new SimpleStringProperty(Integer.valueOf(arg0.getValue().getId()).toString());
+						}
+					});
+
+			tcGenero.setCellValueFactory(
+					new Callback<TableColumn.CellDataFeatures<Genero, String>, ObservableValue<String>>() {
+
+						@Override
+						public ObservableValue<String> call(CellDataFeatures<Genero, String> param) {
+							return new SimpleStringProperty(param.getValue().getNome());
+						}
+					});
+
 			tbGenero.setItems(FXCollections.observableArrayList(g));
 		} catch (Exception e) {
 			Alert a = new Alert(AlertType.ERROR);
@@ -262,26 +275,28 @@ public class GerenciarAnimalController implements Initializable{
 			a.showAndWait();
 		}
 	}
-	
-	private void preencherTabelaEspecie(ArrayList<Especie> e){
+
+	private void preencherTabelaEspecie(ArrayList<Especie> e) {
 		try {
-			
-			tcIdEspecie.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Especie,String>, ObservableValue<String>>() {
 
-				@Override
-				public ObservableValue<String> call(CellDataFeatures<Especie, String> param) {
-					return new SimpleStringProperty(Integer.valueOf(param.getValue().getSeq()).toString());
-				}
-			});
-			
-			tcEspecie.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Especie,String>, ObservableValue<String>>() {
+			tcIdEspecie.setCellValueFactory(
+					new Callback<TableColumn.CellDataFeatures<Especie, String>, ObservableValue<String>>() {
 
-				@Override
-				public ObservableValue<String> call(CellDataFeatures<Especie, String> param) {
-					return new SimpleStringProperty(param.getValue().getNome());
-				}
-			});
-			
+						@Override
+						public ObservableValue<String> call(CellDataFeatures<Especie, String> param) {
+							return new SimpleStringProperty(Integer.valueOf(param.getValue().getSeq()).toString());
+						}
+					});
+
+			tcEspecie.setCellValueFactory(
+					new Callback<TableColumn.CellDataFeatures<Especie, String>, ObservableValue<String>>() {
+
+						@Override
+						public ObservableValue<String> call(CellDataFeatures<Especie, String> param) {
+							return new SimpleStringProperty(param.getValue().getNome());
+						}
+					});
+
 			tbEspecie.setItems(FXCollections.observableArrayList(e));
 		} catch (Exception e2) {
 			Alert a = new Alert(AlertType.ERROR);
@@ -291,25 +306,27 @@ public class GerenciarAnimalController implements Initializable{
 			a.showAndWait();
 		}
 	}
-	
-	private void preencherTabelaJaula(ArrayList<Jaula> j){
+
+	private void preencherTabelaJaula(ArrayList<Jaula> j) {
 		try {
-			tcIdJaula.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Jaula,String>, ObservableValue<String>>() {
+			tcIdJaula.setCellValueFactory(
+					new Callback<TableColumn.CellDataFeatures<Jaula, String>, ObservableValue<String>>() {
 
-				@Override
-				public ObservableValue<String> call(CellDataFeatures<Jaula, String> param) {
-					return new SimpleStringProperty(Integer.valueOf(param.getValue().getId_jaula()).toString());
-				}
-			});
-			
-			tcJaula.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Jaula,String>, ObservableValue<String>>() {
+						@Override
+						public ObservableValue<String> call(CellDataFeatures<Jaula, String> param) {
+							return new SimpleStringProperty(Integer.valueOf(param.getValue().getId_jaula()).toString());
+						}
+					});
 
-				@Override
-				public ObservableValue<String> call(CellDataFeatures<Jaula, String> param) {
-					return new SimpleStringProperty(param.getValue().getTipo());
-				}
-			});
-			
+			tcJaula.setCellValueFactory(
+					new Callback<TableColumn.CellDataFeatures<Jaula, String>, ObservableValue<String>>() {
+
+						@Override
+						public ObservableValue<String> call(CellDataFeatures<Jaula, String> param) {
+							return new SimpleStringProperty(param.getValue().getTipo());
+						}
+					});
+
 			tbJaula.setItems(FXCollections.observableArrayList(j));
 		} catch (Exception e) {
 			Alert a = new Alert(AlertType.ERROR);
@@ -319,25 +336,27 @@ public class GerenciarAnimalController implements Initializable{
 			a.showAndWait();
 		}
 	}
-	
-	private void preencherTabelaZoo(ArrayList<Zoo> z){
+
+	private void preencherTabelaZoo(ArrayList<Zoo> z) {
 		try {
-			tcIdZoo.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Zoo,String>, ObservableValue<String>>() {
+			tcIdZoo.setCellValueFactory(
+					new Callback<TableColumn.CellDataFeatures<Zoo, String>, ObservableValue<String>>() {
 
-				@Override
-				public ObservableValue<String> call(CellDataFeatures<Zoo, String> param) {
-					return new SimpleStringProperty(Integer.valueOf(param.getValue().getIdZoo()).toString());
-				}
-			});
-			
-			tcZoo.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Zoo,String>, ObservableValue<String>>() {
+						@Override
+						public ObservableValue<String> call(CellDataFeatures<Zoo, String> param) {
+							return new SimpleStringProperty(Integer.valueOf(param.getValue().getIdZoo()).toString());
+						}
+					});
 
-				@Override
-				public ObservableValue<String> call(CellDataFeatures<Zoo, String> param) {
-					return new SimpleStringProperty(param.getValue().getNome());
-				}
-			});
-			
+			tcZoo.setCellValueFactory(
+					new Callback<TableColumn.CellDataFeatures<Zoo, String>, ObservableValue<String>>() {
+
+						@Override
+						public ObservableValue<String> call(CellDataFeatures<Zoo, String> param) {
+							return new SimpleStringProperty(param.getValue().getNome());
+						}
+					});
+
 			tbZoo.setItems(FXCollections.observableArrayList(z));
 		} catch (Exception e) {
 			Alert a = new Alert(AlertType.ERROR);
@@ -347,29 +366,32 @@ public class GerenciarAnimalController implements Initializable{
 			a.showAndWait();
 		}
 	}
-	
-	/** 
+
+	/**
 	 * Metodo: preencherTabelaOrdem
+	 * 
 	 * @return void
 	 */
 	private void preencherTabelaOrdem(ArrayList<Ordem> o) {
 		try {
-			tcIdOrdem.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Ordem,String>, ObservableValue<String>>() {
+			tcIdOrdem.setCellValueFactory(
+					new Callback<TableColumn.CellDataFeatures<Ordem, String>, ObservableValue<String>>() {
 
-				@Override
-				public ObservableValue<String> call(CellDataFeatures<Ordem, String> param) {
-					return new SimpleStringProperty(Integer.valueOf(param.getValue().getId()).toString());
-				}
-			});
-			
-			tcOrdem.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Ordem,String>, ObservableValue<String>>() {
+						@Override
+						public ObservableValue<String> call(CellDataFeatures<Ordem, String> param) {
+							return new SimpleStringProperty(Integer.valueOf(param.getValue().getId()).toString());
+						}
+					});
 
-				@Override
-				public ObservableValue<String> call(CellDataFeatures<Ordem, String> param) {
-					return new SimpleStringProperty(param.getValue().getNome());
-				}
-			});
-			
+			tcOrdem.setCellValueFactory(
+					new Callback<TableColumn.CellDataFeatures<Ordem, String>, ObservableValue<String>>() {
+
+						@Override
+						public ObservableValue<String> call(CellDataFeatures<Ordem, String> param) {
+							return new SimpleStringProperty(param.getValue().getNome());
+						}
+					});
+
 			tbOrdem.setItems(FXCollections.observableArrayList(o));
 
 		} catch (Exception e) {
@@ -380,16 +402,16 @@ public class GerenciarAnimalController implements Initializable{
 			a.showAndWait();
 		}
 	}
-	
-	private void select(){
+
+	private void select() {
 		tbJaula.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Jaula>() {
 
 			@Override
-			public void changed(ObservableValue<? extends Jaula> observable, Jaula oldValue, Jaula newValue) {	
+			public void changed(ObservableValue<? extends Jaula> observable, Jaula oldValue, Jaula newValue) {
 				jaulaAtual = newValue;
 			}
 		});
-		
+
 		tbOrdem.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Ordem>() {
 
 			@Override
@@ -397,7 +419,7 @@ public class GerenciarAnimalController implements Initializable{
 				ordemAtual = newValue;
 			}
 		});
-		
+
 		tbZoo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Zoo>() {
 
 			@Override
@@ -405,7 +427,7 @@ public class GerenciarAnimalController implements Initializable{
 				zooAtual = newValue;
 			}
 		});
-		
+
 		tbEspecie.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Especie>() {
 
 			@Override
@@ -413,7 +435,7 @@ public class GerenciarAnimalController implements Initializable{
 				especieAtual = newValue;
 			}
 		});
-		
+
 		tbGenero.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Genero>() {
 
 			@Override
@@ -421,10 +443,10 @@ public class GerenciarAnimalController implements Initializable{
 				generoAtual = newValue;
 			}
 		});
-		
+
 	}
-	
-	private void allDisable(){
+
+	private void allDisable() {
 		idAnimal.setDisable(true);
 		idade.setDisable(true);
 		obs.setDisable(true);
@@ -432,8 +454,8 @@ public class GerenciarAnimalController implements Initializable{
 		dtNas.setDisable(true);
 		dtFale.setDisable(true);
 	}
-	
-	private void allNotDisable(){
+
+	private void allNotDisable() {
 		idAnimal.setDisable(false);
 		idade.setDisable(false);
 		obs.setDisable(false);
@@ -441,8 +463,8 @@ public class GerenciarAnimalController implements Initializable{
 		dtNas.setDisable(false);
 		dtFale.setDisable(false);
 	}
-	
-	private void allNull(){
+
+	private void allNull() {
 		idAnimal.setText(null);
 		idAnimal.setPromptText("ID");
 		idade.setText(null);

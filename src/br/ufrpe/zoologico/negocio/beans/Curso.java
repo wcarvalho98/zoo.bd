@@ -11,8 +11,8 @@ public class Curso {
 	private String desc;
 	private int carga_hor;
 	private String tipo;
-	
-	public Curso(String desc, int carga_horaria, String tipo){
+
+	public Curso(String desc, int carga_horaria, String tipo) {
 		this.desc = desc;
 		this.carga_hor = carga_horaria;
 		this.tipo = tipo;
@@ -49,6 +49,5 @@ public class Curso {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	
-	
+
 }

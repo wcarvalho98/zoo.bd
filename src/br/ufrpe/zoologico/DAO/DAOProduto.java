@@ -35,7 +35,7 @@ public class DAOProduto extends DAO<ProdutoRef> {
 			ScreenManager.alertaInformativo("Inserção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			ScreenManager.alertaErro(e.getMessage());
+			ScreenManager.alertaErro("Não foi possível inserir!");
 		} finally {
 			fecharStmt();
 		}
@@ -49,16 +49,16 @@ public class DAOProduto extends DAO<ProdutoRef> {
 		try {
 			getStmt().execute();
 			getCon().commit();
-			ScreenManager.alertaInformativo("Remoção feita com sucesso!");
+			ScreenManager.alertaInformativo("Remoção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			ScreenManager.alertaErro(e.getMessage());
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível remover!");
 		} finally {
 			fecharStmt();
-		}	
-		
+		}
+
 	}
+
 	@Override
 	public void alterar(ProdutoRef o) throws Exception {
 		String sql = "UPDATE produto_ref SET `descr` = ?, `freq_pedido` = ?, `cod_barra` = ?, `preco_ult_compra` = ?, "
@@ -78,13 +78,14 @@ public class DAOProduto extends DAO<ProdutoRef> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Alteração realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			ScreenManager.alertaErro(e.getMessage());
+			ScreenManager.alertaErro("Não foi possível alterar!");
 		} finally {
 			fecharStmt();
 		}
-		
+
 	}
 
 	@Override
@@ -100,11 +101,12 @@ public class DAOProduto extends DAO<ProdutoRef> {
 			fecharStmt();
 			e.printStackTrace();
 		}
-		
+
 		ArrayList<ProdutoRef> list = new ArrayList<>();
 		while (rs.next()) {
-			
-			ProdutoRef o = new ProdutoRef (rs.getInt(1), rs.getString(2),rs.getInt(3), rs.getString(4), rs.getDouble(5), rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10));
+
+			ProdutoRef o = new ProdutoRef(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getDouble(5),
+					rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10));
 
 			list.add(o);
 		}

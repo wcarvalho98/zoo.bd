@@ -12,30 +12,33 @@ import br.ufrpe.zoologico.DAO.DAOInstituicoes;
 import br.ufrpe.zoologico.negocio.beans.Instituicao;
 
 public class GerenciamentoInstituicao {
-	
+
 	private DAOInstituicoes instituicoes;
-	
-	public GerenciamentoInstituicao(){
+
+	public GerenciamentoInstituicao() {
 		this.instituicoes = new DAOInstituicoes();
 	}
-	
+
 	public void cadastrarInstituicao(Instituicao o) {
 		try {
 			if (o != null) {
 				instituicoes.inserir(o);
 			}
-		} catch (Exception e) {System.err.println("O comando de instituicoes.inserir() falhou em GerenciamentoInstituicao.java");}
+		} catch (Exception e) {
+			System.err.println("O comando de instituicoes.inserir() falhou em GerenciamentoInstituicao.java");
+		}
 	}
-	
+
 	public void removerInstituicao(Instituicao o) {
 		try {
 			if (o != null) {
 				instituicoes.remover(o);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();}
+			e.printStackTrace();
 		}
-	
+	}
+
 	public ArrayList<Instituicao> listarInstituicoes() {
 		try {
 			return instituicoes.listarTodos();
@@ -44,7 +47,7 @@ public class GerenciamentoInstituicao {
 			return new ArrayList<Instituicao>();
 		}
 	}
-	
+
 	public void alterarInstituicao(Instituicao o) {
 		try {
 			instituicoes.alterar(o);

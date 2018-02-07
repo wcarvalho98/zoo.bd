@@ -11,8 +11,8 @@ public class Medicamento {
 	private String nome;
 	private boolean isAtivo;
 	private String descricao_da_frequencia;
-	
-	public Medicamento(String nome, boolean isAtivo, String descricao_da_frequencia){
+
+	public Medicamento(String nome, boolean isAtivo, String descricao_da_frequencia) {
 		this.nome = nome;
 		this.isAtivo = isAtivo;
 		this.descricao_da_frequencia = descricao_da_frequencia;

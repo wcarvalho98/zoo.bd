@@ -10,7 +10,7 @@ public class JornadaTrabalho {
 	private int id;
 	private String desc;
 	private boolean trabalha_sabado;
-	
+
 	public JornadaTrabalho(int id, boolean trabalha_sabado, String desc) {
 		this.id = id;
 		this.trabalha_sabado = trabalha_sabado;
@@ -40,5 +40,5 @@ public class JornadaTrabalho {
 	public void setTrabalha_sabado(boolean trabalha_sabado) {
 		this.trabalha_sabado = trabalha_sabado;
 	}
-	
+
 }

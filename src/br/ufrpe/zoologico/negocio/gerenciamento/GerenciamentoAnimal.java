@@ -12,16 +12,17 @@ import br.ufrpe.zoologico.DAO.DAOAnimal;
 import br.ufrpe.zoologico.negocio.beans.Animal;
 
 public class GerenciamentoAnimal {
-	
+
 	private DAOAnimal animal;
-	
+
 	public GerenciamentoAnimal() {
 		this.animal = new DAOAnimal();
 	}
-	
+
 	public void cadastrarAnimal(Animal o) throws Exception {
 		animal.inserir(o);
 	}
+
 	public void removerAnimal(Animal o) {
 		try {
 			if (o != null) {
@@ -31,7 +32,7 @@ public class GerenciamentoAnimal {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void alterarAnimal(Animal o) {
 		try {
 			animal.alterar(o);
@@ -39,7 +40,7 @@ public class GerenciamentoAnimal {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Animal buscarAnimal(int id) {
 		try {
 			return animal.buscar(id);
@@ -48,8 +49,8 @@ public class GerenciamentoAnimal {
 			return null;
 		}
 	}
-	
-	public ArrayList<Animal> listarAnimais(){
+
+	public ArrayList<Animal> listarAnimais() {
 		try {
 			return animal.listarTodos();
 		} catch (Exception e) {
@@ -57,5 +58,5 @@ public class GerenciamentoAnimal {
 			return new ArrayList<Animal>();
 		}
 	}
-	
+
 }

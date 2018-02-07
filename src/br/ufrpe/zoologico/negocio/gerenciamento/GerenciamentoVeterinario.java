@@ -12,13 +12,13 @@ import br.ufrpe.zoologico.DAO.DAOVeterinario;
 import br.ufrpe.zoologico.negocio.beans.Veterinario;
 
 public class GerenciamentoVeterinario {
-	
+
 	private DAOVeterinario veterinario;
-	
+
 	public GerenciamentoVeterinario() {
 		this.veterinario = new DAOVeterinario();
 	}
-	
+
 	public void cadastrarVeterinario(Veterinario o) {
 		try {
 			veterinario.inserir(o);
@@ -26,7 +26,7 @@ public class GerenciamentoVeterinario {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void removerVeterinario(Veterinario o) {
 		try {
 			veterinario.remover(o);
@@ -34,7 +34,7 @@ public class GerenciamentoVeterinario {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void alterarVeterinario(Veterinario o) {
 		try {
 			veterinario.alterar(o);
@@ -42,7 +42,7 @@ public class GerenciamentoVeterinario {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Veterinario buscarVeterinario(String cpf) {
 		try {
 			return veterinario.buscar(cpf);
@@ -51,7 +51,8 @@ public class GerenciamentoVeterinario {
 			return null;
 		}
 	}
-	public ArrayList<Veterinario> listarVeterinarios(){
+
+	public ArrayList<Veterinario> listarVeterinarios() {
 		try {
 			return veterinario.listarTodos();
 		} catch (Exception e) {

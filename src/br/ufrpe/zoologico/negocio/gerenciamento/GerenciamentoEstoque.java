@@ -13,13 +13,13 @@ import br.ufrpe.zoologico.negocio.beans.Estoque;
 import br.ufrpe.zoologico.negocio.beans.ItemEstoque;
 
 public class GerenciamentoEstoque {
-	
+
 	private DAOEstoque_ItemEstoque estoque;
-	
+
 	public GerenciamentoEstoque() {
 		this.estoque = new DAOEstoque_ItemEstoque();
 	}
-	
+
 	public void inserirEstoque(Estoque o) throws Exception {
 		estoque.inserir(o);
 	}
@@ -28,12 +28,10 @@ public class GerenciamentoEstoque {
 		estoque.remover(o);
 	}
 
-	
 	public void alterarEstoque(Estoque o) throws Exception {
 		estoque.alterar(o);
 	}
 
-	
 	public ArrayList<Estoque> listarEstoque() throws Exception {
 		return estoque.listarTodos();
 	}
@@ -53,8 +51,8 @@ public class GerenciamentoEstoque {
 	public ArrayList<ItemEstoque> listarItens() throws Exception {
 		return estoque.listarItens();
 	}
-	
-	public ArrayList<ItemEstoque> listarItensDoEstoque(Estoque a) throws Exception{
+
+	public ArrayList<ItemEstoque> listarItensDoEstoque(Estoque a) throws Exception {
 		ArrayList<ItemEstoque> saida = new ArrayList<ItemEstoque>();
 		ArrayList<ItemEstoque> todos = listarItens();
 		for (int i = 0; i < todos.size(); i++) {
@@ -64,5 +62,5 @@ public class GerenciamentoEstoque {
 		}
 		return saida;
 	}
-	
+
 }

@@ -7,7 +7,7 @@
 package br.ufrpe.zoologico.exceptions;
 
 @SuppressWarnings("serial")
-public class ObjetoExisteException extends Exception{
+public class ObjetoExisteException extends Exception {
 	/**
 	 * @param message
 	 */

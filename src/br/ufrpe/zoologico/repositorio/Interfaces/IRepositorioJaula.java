@@ -8,6 +8,6 @@ package br.ufrpe.zoologico.repositorio.Interfaces;
 
 import br.ufrpe.zoologico.negocio.beans.Jaula;
 
-public interface IRepositorioJaula extends IRepositorio<Jaula>{
+public interface IRepositorioJaula extends IRepositorio<Jaula> {
 
 }

@@ -11,13 +11,14 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 
+import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
 import br.ufrpe.zoologico.negocio.beans.Zoo;
 
-public class DAOZoo extends DAO<Zoo>{
+public class DAOZoo extends DAO<Zoo> {
 
 	@Override
 	public void inserir(Zoo o) throws Exception {
-		String sql =  "INSERT INTO Zoologico (`cnpj`, `nome`, `razao_social`, `hr_inic_func`, `hr_fim`) VALUES (?, ?, ?, ?,?)";
+		String sql = "INSERT INTO Zoologico (`cnpj`, `nome`, `razao_social`, `hr_inic_func`, `hr_fim`) VALUES (?, ?, ?, ?,?)";
 		preparar(sql);
 		getStmt().setString(1, o.getCnpj());
 		getStmt().setString(2, o.getNome());
@@ -27,9 +28,10 @@ public class DAOZoo extends DAO<Zoo>{
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Inserção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível inserir!");
 		} finally {
 			fecharStmt();
 		}
@@ -43,9 +45,10 @@ public class DAOZoo extends DAO<Zoo>{
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Remoção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível remover!");
 		} finally {
 			fecharStmt();
 		}
@@ -64,15 +67,16 @@ public class DAOZoo extends DAO<Zoo>{
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Alteração realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível alterar!");
 		} finally {
 			fecharStmt();
 		}
 	}
-	
-	public Zoo buscar(int id) throws Exception{
+
+	public Zoo buscar(int id) throws Exception {
 		String sql = "SELECT * FROM Zoologico WHERE `idZoo` = ?";
 		preparar(sql);
 		getStmt().setInt(1, id);
@@ -83,16 +87,15 @@ public class DAOZoo extends DAO<Zoo>{
 		} catch (SQLException e) {
 			getCon().rollback();
 			fecharStmt();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Zoológico não encontrado!");
 		}
 		rs.next();
 		Zoo j = new Zoo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getTime(5).toLocalTime(),
-			rs.getTime(6).toLocalTime());
+				rs.getTime(6).toLocalTime());
 		rs.close();
 		fecharStmt();
 		return j;
-		
-		
+
 	}
 
 	@Override
@@ -110,8 +113,8 @@ public class DAOZoo extends DAO<Zoo>{
 		}
 		ArrayList<Zoo> list = new ArrayList<Zoo>();
 		while (rs.next()) {
-			Zoo o = new Zoo(rs.getInt(1), rs.getString(2) ,rs.getString(3), 
-					rs.getString(4), rs.getTime(5).toLocalTime(), rs.getTime(6).toLocalTime());
+			Zoo o = new Zoo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+					rs.getTime(5).toLocalTime(), rs.getTime(6).toLocalTime());
 			list.add(o);
 		}
 		rs.close();

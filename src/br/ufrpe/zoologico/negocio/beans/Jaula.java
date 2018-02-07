@@ -8,7 +8,6 @@ package br.ufrpe.zoologico.negocio.beans;
 
 import java.time.LocalDate;
 
-
 public class Jaula {
 	private int id_jaula;
 	private boolean stats;
@@ -22,8 +21,7 @@ public class Jaula {
 	private double profundidade;
 	private int zoo;
 	private String tratador;
-	
-	
+
 	/**
 	 * @param stats
 	 * @param dt_ultima_inspecao
@@ -37,8 +35,8 @@ public class Jaula {
 	 * @param tratador
 	 * @param id_jaula
 	 */
-	public Jaula(int id_jaula, boolean stats, String tipo, LocalDate dt_ultima_inspecao, int populacao_max, String obs, int perid_insp_dias,
-			double altura, double largura, double profundidade, int zoo, String tratador) {
+	public Jaula(int id_jaula, boolean stats, String tipo, LocalDate dt_ultima_inspecao, int populacao_max, String obs,
+			int perid_insp_dias, double altura, double largura, double profundidade, int zoo, String tratador) {
 		super();
 		this.id_jaula = id_jaula;
 		this.stats = stats;
@@ -56,168 +54,227 @@ public class Jaula {
 
 	/**
 	 * Metodo: getId_jaula
+	 * 
 	 * @return id_jaula
 	 */
 	public int getId_jaula() {
 		return id_jaula;
 	}
+
 	/**
 	 * Metodo: setId_jaula
-	 * @param id_jaula the id_jaula to set
+	 * 
+	 * @param id_jaula
+	 *            the id_jaula to set
 	 */
 	public void setId_jaula(int id_jaula) {
 		this.id_jaula = id_jaula;
 	}
+
 	/**
 	 * Metodo: isStats
+	 * 
 	 * @return stats
 	 */
 	public boolean isStats() {
 		return stats;
 	}
+
 	/**
 	 * Metodo: setStats
-	 * @param stats the stats to set
+	 * 
+	 * @param stats
+	 *            the stats to set
 	 */
 	public void setStats(boolean stats) {
 		this.stats = stats;
 	}
+
 	/**
 	 * Metodo: getDt_ultima_inspecao
+	 * 
 	 * @return dt_ultima_inspecao
 	 */
 	public LocalDate getDt_ultima_inspecao() {
 		return dt_ultima_inspecao;
 	}
+
 	/**
 	 * Metodo: setDt_ultima_inspecao
-	 * @param dt_ultima_inspecao the dt_ultima_inspecao to set
+	 * 
+	 * @param dt_ultima_inspecao
+	 *            the dt_ultima_inspecao to set
 	 */
 	public void setDt_ultima_inspecao(LocalDate dt_ultima_inspecao) {
 		this.dt_ultima_inspecao = dt_ultima_inspecao;
 	}
+
 	/**
 	 * Metodo: getPopulacao_max
+	 * 
 	 * @return populacao_max
 	 */
 	public int getPopulacao_max() {
 		return populacao_max;
 	}
+
 	/**
 	 * Metodo: setPopulacao_max
-	 * @param populacao_max the populacao_max to set
+	 * 
+	 * @param populacao_max
+	 *            the populacao_max to set
 	 */
 	public void setPopulacao_max(int populacao_max) {
 		this.populacao_max = populacao_max;
 	}
+
 	/**
 	 * Metodo: getObs
+	 * 
 	 * @return obs
 	 */
 	public String getObs() {
 		return obs;
 	}
+
 	/**
 	 * Metodo: setObs
-	 * @param obs the obs to set
+	 * 
+	 * @param obs
+	 *            the obs to set
 	 */
 	public void setObs(String obs) {
 		this.obs = obs;
 	}
+
 	/**
 	 * Metodo: getPerid_insp_dias
+	 * 
 	 * @return perid_insp_dias
 	 */
 	public int getPerid_insp_dias() {
 		return perid_insp_dias;
 	}
+
 	/**
 	 * Metodo: setPerid_insp_dias
-	 * @param perid_insp_dias the perid_insp_dias to set
+	 * 
+	 * @param perid_insp_dias
+	 *            the perid_insp_dias to set
 	 */
 	public void setPerid_insp_dias(int perid_insp_dias) {
 		this.perid_insp_dias = perid_insp_dias;
 	}
+
 	/**
 	 * Metodo: getAltura
+	 * 
 	 * @return altura
 	 */
 	public double getAltura() {
 		return altura;
 	}
+
 	/**
 	 * Metodo: setAltura
-	 * @param altura the altura to set
+	 * 
+	 * @param altura
+	 *            the altura to set
 	 */
 	public void setAltura(double altura) {
 		this.altura = altura;
 	}
+
 	/**
 	 * Metodo: getLargura
+	 * 
 	 * @return largura
 	 */
 	public double getLargura() {
 		return largura;
 	}
+
 	/**
 	 * Metodo: setLargura
-	 * @param largura the largura to set
+	 * 
+	 * @param largura
+	 *            the largura to set
 	 */
 	public void setLargura(double largura) {
 		this.largura = largura;
 	}
+
 	/**
 	 * Metodo: getProfundidade
+	 * 
 	 * @return profundidade
 	 */
 	public double getProfundidade() {
 		return profundidade;
 	}
+
 	/**
 	 * Metodo: setProfundidade
-	 * @param profundidade the profundidade to set
+	 * 
+	 * @param profundidade
+	 *            the profundidade to set
 	 */
 	public void setProfundidade(double profundidade) {
 		this.profundidade = profundidade;
 	}
+
 	/**
 	 * Metodo: getZoo
+	 * 
 	 * @return zoo
 	 */
 	public int getZoo() {
 		return zoo;
 	}
+
 	/**
 	 * Metodo: setZoo
-	 * @param zoo the zoo to set
+	 * 
+	 * @param zoo
+	 *            the zoo to set
 	 */
 	public void setZoo(int zoo) {
 		this.zoo = zoo;
 	}
+
 	/**
 	 * Metodo: getTratador
+	 * 
 	 * @return tratador
 	 */
 	public String getTratador() {
 		return tratador;
 	}
+
 	/**
 	 * Metodo: setTratador
-	 * @param tratador the tratador to set
+	 * 
+	 * @param tratador
+	 *            the tratador to set
 	 */
 	public void setTratador(String tratador) {
 		this.tratador = tratador;
 	}
+
 	/**
 	 * Metodo: getTipo
+	 * 
 	 * @return tipo
 	 */
 	public String getTipo() {
 		return tipo;
 	}
+
 	/**
 	 * Metodo: setTipo
-	 * @param tipo the tipo to set
+	 * 
+	 * @param tipo
+	 *            the tipo to set
 	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
@@ -244,5 +301,5 @@ public class Jaula {
 			return false;
 		return true;
 	}
-		
+
 }

@@ -22,6 +22,7 @@ public class Reserva {
 	private String tp_evento;
 	private String cnpj;
 	private int id;
+
 	/**
 	 * @param qtd_pessoas
 	 * @param dt_validade
@@ -53,174 +54,235 @@ public class Reserva {
 		this.cnpj = cnpj;
 		this.id = id;
 	}
+
 	/**
 	 * Metodo: getQtd_pessoas
+	 * 
 	 * @return qtd_pessoas
 	 */
 	public int getQtd_pessoas() {
 		return qtd_pessoas;
 	}
+
 	/**
 	 * Metodo: setQtd_pessoas
-	 * @param qtd_pessoas the qtd_pessoas to set
+	 * 
+	 * @param qtd_pessoas
+	 *            the qtd_pessoas to set
 	 */
 	public void setQtd_pessoas(int qtd_pessoas) {
 		this.qtd_pessoas = qtd_pessoas;
 	}
+
 	/**
 	 * Metodo: getDt_validade
+	 * 
 	 * @return dt_validade
 	 */
 	public LocalDate getDt_validade() {
 		return dt_validade;
 	}
+
 	/**
 	 * Metodo: setDt_validade
-	 * @param dt_validade the dt_validade to set
+	 * 
+	 * @param dt_validade
+	 *            the dt_validade to set
 	 */
 	public void setDt_validade(LocalDate dt_validade) {
 		this.dt_validade = dt_validade;
 	}
+
 	/**
 	 * Metodo: getHorario
+	 * 
 	 * @return horario
 	 */
 	public LocalTime getHorario() {
 		return horario;
 	}
+
 	/**
 	 * Metodo: setHorario
-	 * @param horario the horario to set
+	 * 
+	 * @param horario
+	 *            the horario to set
 	 */
 	public void setHorario(LocalTime horario) {
 		this.horario = horario;
 	}
+
 	/**
 	 * Metodo: getDt_reserva
+	 * 
 	 * @return dt_reserva
 	 */
 	public LocalDate getDt_reserva() {
 		return dt_reserva;
 	}
+
 	/**
 	 * Metodo: setDt_reserva
-	 * @param dt_reserva the dt_reserva to set
+	 * 
+	 * @param dt_reserva
+	 *            the dt_reserva to set
 	 */
 	public void setDt_reserva(LocalDate dt_reserva) {
 		this.dt_reserva = dt_reserva;
 	}
+
 	/**
 	 * Metodo: getValor
+	 * 
 	 * @return valor
 	 */
 	public double getValor() {
 		return valor;
 	}
+
 	/**
 	 * Metodo: setValor
-	 * @param valor the valor to set
+	 * 
+	 * @param valor
+	 *            the valor to set
 	 */
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
+
 	/**
 	 * Metodo: getStats
+	 * 
 	 * @return stats
 	 */
 	public String getStats() {
 		return stats;
 	}
+
 	/**
 	 * Metodo: setStats
-	 * @param stats the stats to set
+	 * 
+	 * @param stats
+	 *            the stats to set
 	 */
 	public void setStats(String stats) {
 		this.stats = stats;
 	}
+
 	/**
 	 * Metodo: getHr_inicio_reser
+	 * 
 	 * @return hr_inicio_reser
 	 */
 	public LocalTime getHr_inicio_reser() {
 		return hr_inicio_reser;
 	}
+
 	/**
 	 * Metodo: setHr_inicio_reser
-	 * @param hr_inicio_reser the hr_inicio_reser to set
+	 * 
+	 * @param hr_inicio_reser
+	 *            the hr_inicio_reser to set
 	 */
 	public void setHr_inicio_reser(LocalTime hr_inicio_reser) {
 		this.hr_inicio_reser = hr_inicio_reser;
 	}
+
 	/**
 	 * Metodo: getHr_final_reser
+	 * 
 	 * @return hr_final_reser
 	 */
 	public LocalTime getHr_final_reser() {
 		return hr_final_reser;
 	}
+
 	/**
 	 * Metodo: setHr_final_reser
-	 * @param hr_final_reser the hr_final_reser to set
+	 * 
+	 * @param hr_final_reser
+	 *            the hr_final_reser to set
 	 */
 	public void setHr_final_reser(LocalTime hr_final_reser) {
 		this.hr_final_reser = hr_final_reser;
 	}
+
 	/**
 	 * Metodo: getE_cortesia
+	 * 
 	 * @return e_cortesia
 	 */
 	public String getE_cortesia() {
 		return e_cortesia;
 	}
+
 	/**
 	 * Metodo: setE_cortesia
-	 * @param e_cortesia the e_cortesia to set
+	 * 
+	 * @param e_cortesia
+	 *            the e_cortesia to set
 	 */
 	public void setE_cortesia(String e_cortesia) {
 		this.e_cortesia = e_cortesia;
 	}
+
 	/**
 	 * Metodo: getTp_evento
+	 * 
 	 * @return tp_evento
 	 */
 	public String getTp_evento() {
 		return tp_evento;
 	}
+
 	/**
 	 * Metodo: setTp_evento
-	 * @param tp_evento the tp_evento to set
+	 * 
+	 * @param tp_evento
+	 *            the tp_evento to set
 	 */
 	public void setTp_evento(String tp_evento) {
 		this.tp_evento = tp_evento;
 	}
+
 	/**
 	 * Metodo: getCnpj
+	 * 
 	 * @return cnpj
 	 */
 	public String getCnpj() {
 		return cnpj;
 	}
+
 	/**
 	 * Metodo: setCnpj
-	 * @param cnpj the cnpj to set
+	 * 
+	 * @param cnpj
+	 *            the cnpj to set
 	 */
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
+
 	/**
 	 * Metodo: getId
+	 * 
 	 * @return id
 	 */
 	public int getId() {
 		return id;
 	}
+
 	/**
 	 * Metodo: setId
-	 * @param id the id to set
+	 * 
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -241,6 +303,7 @@ public class Reserva {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -303,6 +366,7 @@ public class Reserva {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Reserva [qtd_pessoas=" + qtd_pessoas + ", dt_validade=" + dt_validade + ", horario=" + horario
@@ -310,6 +374,5 @@ public class Reserva {
 				+ hr_inicio_reser + ", hr_final_reser=" + hr_final_reser + ", e_cortesia=" + e_cortesia + ", tp_evento="
 				+ tp_evento + ", cnpj=" + cnpj + ", id=" + id + "]";
 	}
-	
-	
+
 }

@@ -121,7 +121,6 @@ public class GerenciarConsultasController implements Initializable {
 	private TextField horaTextField;
 	@FXML
 	private TextField horaTextField1;
-	
 
 	private Consulta aRemover;
 	private Animal animalSelecionado;
@@ -135,7 +134,8 @@ public class GerenciarConsultasController implements Initializable {
 	void salvar() {
 		LocalDateTime aux = LocalDateTime.of(dataDaConsultaDatePicker1.getValue(),
 				LocalTime.of(Integer.parseInt(horaTextField1.getText()), Integer.parseInt(minutoTextField1.getText())));
-		if (veterinarioSelecionado1 != null && animalSelecionado1 != null && (aux.isAfter(LocalDateTime.now()) || aux.isEqual(consultaAtual.getData()))) {
+		if (veterinarioSelecionado1 != null && animalSelecionado1 != null
+				&& (aux.isAfter(LocalDateTime.now()) || aux.isEqual(consultaAtual.getData()))) {
 			consultaAtual.setAnimal(animalSelecionado1);
 			consultaAtual.setVeterinario(veterinarioSelecionado1);
 			consultaAtual.setData(aux);
@@ -148,12 +148,12 @@ public class GerenciarConsultasController implements Initializable {
 			minutoTextField1.setText("");
 			preencherTabelas();
 		} else if (!aux.isAfter(LocalDateTime.now())) {
-			ScreenManager.alertaErro("O novo horário da consulta não é futuro.");
+			ScreenManager.alertaErro("O novo horário da consulta não é futuro!");
 		} else if (veterinarioSelecionado1 == null) {
-			ScreenManager.alertaErro("Nenhum veterinário selecionado");
+			ScreenManager.alertaErro("Nenhum veterinário selecionado!");
 		} else if (animalSelecionado1 == null) {
-			ScreenManager.alertaErro("Nenhum animal selecionado");
-		} 
+			ScreenManager.alertaErro("Nenhum animal selecionado!");
+		}
 	}
 
 	@FXML
@@ -164,7 +164,7 @@ public class GerenciarConsultasController implements Initializable {
 			this.idAtual = aux.size() - 1;
 		}
 		consultaAtual = aux.get(idAtual);
-		
+
 		horaTextField1.setText("");
 		minutoTextField1.setText("");
 		observacoesTextField1.setText("");
@@ -180,7 +180,7 @@ public class GerenciarConsultasController implements Initializable {
 		minutoTextField1.setText(consultaAtual.getData().getMinute() + "");
 		observacoesTextField1.setText(consultaAtual.getObs());
 	}
-	
+
 	@FXML
 	void proximo() {
 		this.idAtual += 1;
@@ -209,19 +209,19 @@ public class GerenciarConsultasController implements Initializable {
 			Fachada.getInstance().cadastrarConsulta(nova);
 			preencherTabelas();
 			preencherTabelas1();
-			
+
 			horaTextField.setText("");
 			minutoTextField.setText("");
 			observacoesTextField.setText("");
 			animalSelecionado = null;
 			veterinarioSelecionado = null;
 		} else if (!aux.isAfter(LocalDateTime.now())) {
-			ScreenManager.alertaErro("O novo horário da consulta não é futuro.");
+			ScreenManager.alertaErro("O novo horário da consulta não é futuro!");
 		} else if (veterinarioSelecionado1 == null) {
-			ScreenManager.alertaErro("Nenhum veterinário selecionado");
+			ScreenManager.alertaErro("Nenhum veterinário selecionado!");
 		} else if (animalSelecionado1 == null) {
-			ScreenManager.alertaErro("Nenhum animal selecionado");
-		} 
+			ScreenManager.alertaErro("Nenhum animal selecionado!");
+		}
 	}
 
 	@FXML
@@ -261,7 +261,7 @@ public class GerenciarConsultasController implements Initializable {
 
 	@FXML
 	void voltar() {
-		ScreenManager.setSceneLeft(ScreenManager.getInstance().getTelaAdmin()); 
+		ScreenManager.setSceneLeft(ScreenManager.getInstance().getTelaAdmin());
 	}
 
 	private void preencherTabelas() {
@@ -353,7 +353,8 @@ public class GerenciarConsultasController implements Initializable {
 
 	private void preencherCamposVisao() {
 		idConsultaLabel.setText(consultaAtual.getId_consulta() + "");
-		nomeMedicoLabel.setText(consultaAtual.getVeterinario().getNome() + "\nCPF: " + consultaAtual.getVeterinario().getCpf());
+		nomeMedicoLabel.setText(
+				consultaAtual.getVeterinario().getNome() + "\nCPF: " + consultaAtual.getVeterinario().getCpf());
 		nomeAnimalLabel.setText(consultaAtual.getAnimal().getNome() + " ID: " + consultaAtual.getAnimal().getId());
 		horarioLabel.setText(ScreenManager.formatarLocalDateTime(consultaAtual.getData()));
 		obsLabel.setText(consultaAtual.getObs());
@@ -410,11 +411,11 @@ public class GerenciarConsultasController implements Initializable {
 		tabelaVeterinarios1.refresh();
 
 	}
-	
+
 	private void despreencherTabelas1() {
 		ArrayList<Animal> listaDeAnimais = new ArrayList<Animal>();
 		ArrayList<Veterinario> listaDeVeterinarios = new ArrayList<Veterinario>();
-		
+
 		tabelaAnimais1.setItems(FXCollections.observableArrayList(listaDeAnimais));
 		tabelaAnimais1.refresh();
 

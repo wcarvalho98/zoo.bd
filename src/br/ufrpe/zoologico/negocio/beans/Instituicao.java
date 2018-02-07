@@ -14,6 +14,7 @@ public class Instituicao {
 	private String telefone2;
 	private String razao_social;
 	private String tipo_instituicao;
+
 	/**
 	 * @param cnpj
 	 * @param nome_contato
@@ -34,104 +35,140 @@ public class Instituicao {
 		this.razao_social = razao_social;
 		this.tipo_instituicao = tipo_instituicao;
 	}
+
 	/**
 	 * Metodo: getCnpj
+	 * 
 	 * @return cnpj
 	 */
 	public String getCnpj() {
 		return cnpj;
 	}
+
 	/**
 	 * Metodo: setCnpj
-	 * @param cnpj the cnpj to set
+	 * 
+	 * @param cnpj
+	 *            the cnpj to set
 	 */
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
+
 	/**
 	 * Metodo: getNome_contato
+	 * 
 	 * @return nome_contato
 	 */
 	public String getNome_contato() {
 		return nome_contato;
 	}
+
 	/**
 	 * Metodo: setNome_contato
-	 * @param nome_contato the nome_contato to set
+	 * 
+	 * @param nome_contato
+	 *            the nome_contato to set
 	 */
 	public void setNome_contato(String nome_contato) {
 		this.nome_contato = nome_contato;
 	}
+
 	/**
 	 * Metodo: getEmail
+	 * 
 	 * @return email
 	 */
 	public String getEmail() {
 		return email;
 	}
+
 	/**
 	 * Metodo: setEmail
-	 * @param email the email to set
+	 * 
+	 * @param email
+	 *            the email to set
 	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	/**
 	 * Metodo: getTelefone1
+	 * 
 	 * @return telefone1
 	 */
 	public String getTelefone1() {
 		return telefone1;
 	}
+
 	/**
 	 * Metodo: setTelefone1
-	 * @param telefone1 the telefone1 to set
+	 * 
+	 * @param telefone1
+	 *            the telefone1 to set
 	 */
 	public void setTelefone1(String telefone1) {
 		this.telefone1 = telefone1;
 	}
+
 	/**
 	 * Metodo: getTelefone2
+	 * 
 	 * @return telefone2
 	 */
 	public String getTelefone2() {
 		return telefone2;
 	}
+
 	/**
 	 * Metodo: setTelefone2
-	 * @param telefone2 the telefone2 to set
+	 * 
+	 * @param telefone2
+	 *            the telefone2 to set
 	 */
 	public void setTelefone2(String telefone2) {
 		this.telefone2 = telefone2;
 	}
+
 	/**
 	 * Metodo: getRazao_social
+	 * 
 	 * @return razao_social
 	 */
 	public String getRazao_social() {
 		return razao_social;
 	}
+
 	/**
 	 * Metodo: setRazao_social
-	 * @param razao_social the razao_social to set
+	 * 
+	 * @param razao_social
+	 *            the razao_social to set
 	 */
 	public void setRazao_social(String razao_social) {
 		this.razao_social = razao_social;
 	}
+
 	/**
 	 * Metodo: getTipo_instituicao
+	 * 
 	 * @return tipo_instituicao
 	 */
 	public String getTipo_instituicao() {
 		return tipo_instituicao;
 	}
+
 	/**
 	 * Metodo: setTipo_instituicao
-	 * @param tipo_instituicao the tipo_instituicao to set
+	 * 
+	 * @param tipo_instituicao
+	 *            the tipo_instituicao to set
 	 */
 	public void setTipo_instituicao(String tipo_instituicao) {
 		this.tipo_instituicao = tipo_instituicao;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -145,6 +182,7 @@ public class Instituicao {
 		result = prime * result + ((tipo_instituicao == null) ? 0 : tipo_instituicao.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -191,6 +229,7 @@ public class Instituicao {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Instituicao [cnpj=" + cnpj + ", nome_contato=" + nome_contato + ", email=" + email + ", telefone1="

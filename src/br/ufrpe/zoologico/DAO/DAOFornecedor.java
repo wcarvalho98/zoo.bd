@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import br.ufrpe.zoologico.negocio.beans.Fornecedor;
 
-public class DAOFornecedor extends DAO<Fornecedor>{
+public class DAOFornecedor extends DAO<Fornecedor> {
 
 	@Override
 	public void inserir(Fornecedor o) throws Exception {
@@ -41,7 +41,8 @@ public class DAOFornecedor extends DAO<Fornecedor>{
 			e.printStackTrace();
 		}
 		while (rs.next()) {
-			Fornecedor o = new Fornecedor(rs.getInt(1), rs.getString(2),rs.getString(3), rs.getString(4), rs.getString(5), rs.getBoolean(6));
+			Fornecedor o = new Fornecedor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+					rs.getString(5), rs.getBoolean(6));
 			list.add(o);
 		}
 		rs.close();

@@ -1,6 +1,7 @@
 package br.ufrpe.zoologico.gui.grafica.controller;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -95,52 +96,54 @@ public class GerenciarServicosController implements Initializable {
 			ableAll();
 			salvarAltertacoesButton.setDisable(true);
 			cadastrarFaturaButton.setDisable(false);
+			dataDaFaturaDatePicker.setValue(LocalDate.now());
+			statusTextField.setText("Em andamento");
+			valorDaMultaTextField.setText("0");
 		} else {
-			ScreenManager.alertaErro("Nenhum serviço foi selecionado.");
+			ScreenManager.alertaErro("Nenhum serviço foi selecionado!");
 		}
 	}
 
 	@FXML
 	public void cadastrarFatura() {
 		try {
-			if (servicoSelecionado != null && dataDaFaturaDatePicker.getValue() != null && 
-					dstaDePagamentoDatePicker.getValue() != null &&
-					Double.parseDouble(valorDaFaturaTextField.getText()) >= 0 &&
-					Double.parseDouble(valorDaMultaTextField.getText()) >= 0) {
+			if (servicoSelecionado != null && dataDaFaturaDatePicker.getValue() != null
+					&& Double.parseDouble(valorDaFaturaTextField.getText()) >= 0
+					&& Double.parseDouble(valorDaMultaTextField.getText()) >= 0) {
 				Fatura a = new Fatura();
 				a.setDataDaFatura(dataDaFaturaDatePicker.getValue());
-				a.setDt_paga(dstaDePagamentoDatePicker.getValue());
+				if (dstaDePagamentoDatePicker.getValue() != null)
+					a.setDt_paga(dstaDePagamentoDatePicker.getValue());
+				else
+					a.setDt_paga(null);
 				a.setStats(statusTextField.getText());
 				a.setTp_fatura(tipoDeFaturaTextField.getText());
 				a.setValor(Double.parseDouble(valorDaFaturaTextField.getText()));
 				a.setVl_multa(Double.parseDouble(valorDaMultaTextField.getText()));
-				
+
 				Fachada.getInstance().cadastrarFatura(a, servicoSelecionado.getId());
 				preencherTabelaFaturas();
 				preencherCamposEdicao(null);
 				disableAll();
 				cadastrarFaturaButton.setDisable(true);
 				
-				ScreenManager.alertaInformativo("Fatura inserida com sucesso para o serviço de id = " + servicoSelecionado.getId());
-				
 			} else if (servicoSelecionado == null) {
-				ScreenManager.alertaErro("Nenhum serviço selecionado.");
+				ScreenManager.alertaErro("Nenhum serviço selecionado!");
 			}
 		} catch (NumberFormatException e) {
-			ScreenManager.alertaErro("Valores digitados de forma incorreta.");
-		} catch (Exception e){
-			ScreenManager.alertaErro("Algo deu errado.");
+			ScreenManager.alertaErro("Valores digitados de forma incorreta!");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
-	
+
 	@FXML
 	void removerFatura() {
 		if (faturaSelecionada != null) {
 			Fachada.getInstance().removerFatura(faturaSelecionada);
 			preencherTabelaFaturas();
-			ScreenManager.alertaInformativo("Fatura removida com sucesso");
 		} else {
-			ScreenManager.alertaErro("Nenhuma Fatura foi selecionada.");
+			ScreenManager.alertaErro("Nenhuma fatura foi selecionada!");
 		}
 	}
 
@@ -154,9 +157,7 @@ public class GerenciarServicosController implements Initializable {
 			preencherTabelaServicos();
 			descricaoServiçoTextField.setText("");
 			valorServiçoTextField.setText("");
-			ScreenManager.alertaInformativo("Servico cadastrado com sucesso!");
-		} else
-			ScreenManager.alertaInformativo("Por favor entre com os dados nos campos!");
+		}
 	}
 
 	@FXML
@@ -167,7 +168,7 @@ public class GerenciarServicosController implements Initializable {
 			cadastrarFaturaButton.setDisable(true);
 			preencherCamposEdicao(faturaSelecionada);
 		} else {
-			ScreenManager.alertaErro("Nenhuma fatura foi selecionada para edição");
+			ScreenManager.alertaErro("Nenhuma fatura foi selecionada para edição!");
 		}
 	}
 
@@ -176,7 +177,10 @@ public class GerenciarServicosController implements Initializable {
 		if (servicoSelecionado != null) {
 			Fachada.getInstance().removerServico(servicoSelecionado);
 			preencherTabelaServicos();
-			ScreenManager.alertaInformativo("Servico removido com sucesso!");
+			preencherTabelaFaturas();
+			disableAll();
+			salvarAltertacoesButton.setDisable(true);
+			cadastrarFaturaButton.setDisable(true);
 		}
 	}
 
@@ -195,7 +199,6 @@ public class GerenciarServicosController implements Initializable {
 			disableAll();
 			salvarAltertacoesButton.setDisable(true);
 			preencherTabelaFaturas();
-			ScreenManager.alertaInformativo("Dados alterados com sucesso!");
 		}
 	}
 

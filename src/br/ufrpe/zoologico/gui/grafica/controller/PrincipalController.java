@@ -12,8 +12,6 @@ import java.util.ResourceBundle;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
@@ -21,7 +19,7 @@ import javafx.scene.control.Tooltip;
 import javafx.stage.WindowEvent;
 
 public class PrincipalController implements Initializable {
-	
+
 	@FXML
 	private TextField loginId;
 	@FXML
@@ -32,12 +30,12 @@ public class PrincipalController implements Initializable {
 	private Tooltip tooltipLogin;
 	@FXML
 	private Tooltip tooltipSenha;
-	
+
 	@FXML
 	public void validaLogin() {
 		String nome = loginId.getText();
 		String senha = senhaId.getText();
-		
+
 		if (nome.isEmpty())
 			tooltipLogin.show(ScreenManager.getMainStage().getOwner());
 		else
@@ -50,33 +48,27 @@ public class PrincipalController implements Initializable {
 			try {
 				Fachada.getInstance().fazerLogin(nome, senha);
 				switch (nome) {
-					case "admin":
-						ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin());
-						break;
-					case "veterinario":
-						break;
-					case "secretario":
-						break;
-					case "tratador":
-						break;
+				case "admin":
+					ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin());
+					break;
+				case "veterinario":
+					break;
+				case "secretario":
+					break;
+				case "tratador":
+					break;
 				}
 			} catch (Exception e) {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Erro!");
-				alert.setHeaderText(null);
-				alert.setContentText(e.getMessage());
-
-				alert.showAndWait();
-				e.printStackTrace();
+				ScreenManager.alertaErro("Login inválido!");
 			}
-			
+
 		}
-			
+
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+
 		ScreenManager.getMainStage().setResizable(false);
 		ScreenManager.getMainStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
 

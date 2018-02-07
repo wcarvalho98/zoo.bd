@@ -11,21 +11,23 @@ import java.util.ArrayList;
 import br.ufrpe.zoologico.negocio.beans.Incidente;
 import br.ufrpe.zoologico.repositorio.Interfaces.IRepositorio;
 
-public class RepositorioIncidente implements IRepositorio<Incidente>{
-	
+public class RepositorioIncidente implements IRepositorio<Incidente> {
+
 	private ArrayList<Incidente> r;
 	private static IRepositorio<Incidente> i;
-	
-	private RepositorioIncidente(){
+
+	private RepositorioIncidente() {
 		r = new ArrayList<Incidente>();
 	}
-	
-	private static IRepositorio<Incidente> getInstance(){
-		if(i == null){
+
+	@SuppressWarnings("unused")
+	private static IRepositorio<Incidente> getInstance() {
+		if (i == null) {
 			i = new RepositorioIncidente();
 		}
 		return i;
 	}
+
 	@Override
 	public void cadastrar(Incidente obj) {
 		r.add(obj);

@@ -17,6 +17,7 @@ public class Calendario {
 	private String lembrete_1;
 	private String lembrete_2;
 	private String todo_list;
+
 	/**
 	 * @param seq
 	 * @param dia
@@ -39,118 +40,159 @@ public class Calendario {
 		this.lembrete_2 = lembrete_2;
 		this.todo_list = todo_list;
 	}
+
 	/**
 	 * Metodo: getSeq
+	 * 
 	 * @return seq
 	 */
 	public int getSeq() {
 		return seq;
 	}
+
 	/**
 	 * Metodo: setSeq
-	 * @param seq the seq to set
+	 * 
+	 * @param seq
+	 *            the seq to set
 	 */
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}
+
 	/**
 	 * Metodo: getDia
+	 * 
 	 * @return dia
 	 */
 	public LocalDate getDia() {
 		return dia;
 	}
+
 	/**
 	 * Metodo: setDia
-	 * @param dia the dia to set
+	 * 
+	 * @param dia
+	 *            the dia to set
 	 */
 	public void setDia(LocalDate dia) {
 		this.dia = dia;
 	}
+
 	/**
 	 * Metodo: isFim_de_semana
+	 * 
 	 * @return fim_de_semana
 	 */
 	public boolean isFim_de_semana() {
 		return fim_de_semana;
 	}
+
 	/**
 	 * Metodo: setFim_de_semana
-	 * @param fim_de_semana the fim_de_semana to set
+	 * 
+	 * @param fim_de_semana
+	 *            the fim_de_semana to set
 	 */
 	public void setFim_de_semana(boolean fim_de_semana) {
 		this.fim_de_semana = fim_de_semana;
 	}
+
 	/**
 	 * Metodo: isFeriado
+	 * 
 	 * @return feriado
 	 */
 	public boolean isFeriado() {
 		return feriado;
 	}
+
 	/**
 	 * Metodo: setFeriado
-	 * @param feriado the feriado to set
+	 * 
+	 * @param feriado
+	 *            the feriado to set
 	 */
 	public void setFeriado(boolean feriado) {
 		this.feriado = feriado;
 	}
+
 	/**
 	 * Metodo: getObs
+	 * 
 	 * @return obs
 	 */
 	public String getObs() {
 		return obs;
 	}
+
 	/**
 	 * Metodo: setObs
-	 * @param obs the obs to set
+	 * 
+	 * @param obs
+	 *            the obs to set
 	 */
 	public void setObs(String obs) {
 		this.obs = obs;
 	}
+
 	/**
 	 * Metodo: getLembrete_1
+	 * 
 	 * @return lembrete_1
 	 */
 	public String getLembrete_1() {
 		return lembrete_1;
 	}
+
 	/**
 	 * Metodo: setLembrete_1
-	 * @param lembrete_1 the lembrete_1 to set
+	 * 
+	 * @param lembrete_1
+	 *            the lembrete_1 to set
 	 */
 	public void setLembrete_1(String lembrete_1) {
 		this.lembrete_1 = lembrete_1;
 	}
+
 	/**
 	 * Metodo: getLembrete_2
+	 * 
 	 * @return lembrete_2
 	 */
 	public String getLembrete_2() {
 		return lembrete_2;
 	}
+
 	/**
 	 * Metodo: setLembrete_2
-	 * @param lembrete_2 the lembrete_2 to set
+	 * 
+	 * @param lembrete_2
+	 *            the lembrete_2 to set
 	 */
 	public void setLembrete_2(String lembrete_2) {
 		this.lembrete_2 = lembrete_2;
 	}
+
 	/**
 	 * Metodo: getTodo_list
+	 * 
 	 * @return todo_list
 	 */
 	public String getTodo_list() {
 		return todo_list;
 	}
+
 	/**
 	 * Metodo: setTodo_list
-	 * @param todo_list the todo_list to set
+	 * 
+	 * @param todo_list
+	 *            the todo_list to set
 	 */
 	public void setTodo_list(String todo_list) {
 		this.todo_list = todo_list;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -165,6 +207,7 @@ public class Calendario {
 		result = prime * result + ((todo_list == null) ? 0 : todo_list.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -207,12 +250,12 @@ public class Calendario {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Calendario [seq=" + seq + ", dia=" + dia + ", fim_de_semana=" + fim_de_semana + ", feriado=" + feriado
 				+ ", obs=" + obs + ", lembrete_1=" + lembrete_1 + ", lembrete_2=" + lembrete_2 + ", todo_list="
 				+ todo_list + "]";
 	}
-	
-	
+
 }

@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import br.ufrpe.zoologico.util.ConFactory;
 
 public class DAOLogin {
-	
+
 	private final String URL = "jdbc:mysql://localhost:3306/zoologico";
 	@SuppressWarnings("unused")
 	private String nome;
@@ -20,17 +20,17 @@ public class DAOLogin {
 	private String senha;
 	private Connection con;
 
-	public void fechar() throws SQLException {  
+	public void fechar() throws SQLException {
 		con.close();
 	}
-	
+
 	public void fazerLogin(String nome, String senha) throws Exception {
 		setNome(nome);
 		setSenha(senha);
 		con = ConFactory.conexao(URL, nome, senha);
 		con.setAutoCommit(false);
 	}
-	
+
 	public Connection getConnection() {
 		return this.con;
 	}
@@ -38,8 +38,9 @@ public class DAOLogin {
 	private void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	private void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
+
 }

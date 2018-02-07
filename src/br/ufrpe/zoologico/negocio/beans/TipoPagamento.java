@@ -9,6 +9,7 @@ package br.ufrpe.zoologico.negocio.beans;
 public class TipoPagamento {
 	private int cod;
 	private String desc;
+
 	/**
 	 * @param cod
 	 * @param desc
@@ -18,34 +19,45 @@ public class TipoPagamento {
 		this.cod = cod;
 		this.desc = desc;
 	}
+
 	/**
 	 * Metodo: getCod
+	 * 
 	 * @return cod
 	 */
 	public int getCod() {
 		return cod;
 	}
+
 	/**
 	 * Metodo: setCod
-	 * @param cod the cod to set
+	 * 
+	 * @param cod
+	 *            the cod to set
 	 */
 	public void setCod(int cod) {
 		this.cod = cod;
 	}
+
 	/**
 	 * Metodo: getDesc
+	 * 
 	 * @return desc
 	 */
 	public String getDesc() {
 		return desc;
 	}
+
 	/**
 	 * Metodo: setDesc
-	 * @param desc the desc to set
+	 * 
+	 * @param desc
+	 *            the desc to set
 	 */
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -54,6 +66,7 @@ public class TipoPagamento {
 		result = prime * result + ((desc == null) ? 0 : desc.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -72,10 +85,10 @@ public class TipoPagamento {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "TipoPagamento [cod=" + cod + ", desc=" + desc + "]";
 	}
-	
-	
+
 }

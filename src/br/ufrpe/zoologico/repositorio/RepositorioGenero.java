@@ -11,19 +11,20 @@ import java.util.ArrayList;
 import br.ufrpe.zoologico.negocio.beans.Genero;
 import br.ufrpe.zoologico.repositorio.Interfaces.IRepositorio;
 
-public class RepositorioGenero implements IRepositorio<Genero>{
+public class RepositorioGenero implements IRepositorio<Genero> {
 	private ArrayList<Genero> r;
 	private static IRepositorio<Genero> i;
-	
+
 	/**
 	 * 
 	 */
 	public RepositorioGenero() {
 		r = new ArrayList<Genero>();
 	}
-	
-	private static IRepositorio<Genero> getInstance(){
-		if(i == null){
+
+	@SuppressWarnings("unused")
+	private static IRepositorio<Genero> getInstance() {
+		if (i == null) {
 			i = new RepositorioGenero();
 		}
 		return i;

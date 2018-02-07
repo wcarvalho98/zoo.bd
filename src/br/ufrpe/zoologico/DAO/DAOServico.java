@@ -8,13 +8,15 @@ package br.ufrpe.zoologico.DAO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
+import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
 import br.ufrpe.zoologico.negocio.beans.Fatura;
 import br.ufrpe.zoologico.negocio.beans.Servico;
 
 public class DAOServico extends DAO<Servico> {
-	
+
 	@Override
 	public void inserir(Servico o) throws Exception {
 		String sql = "INSERT INTO servico (`descr`,`valor`) VALUES (?,?)";
@@ -23,12 +25,11 @@ public class DAOServico extends DAO<Servico> {
 		getStmt().setDouble(2, o.getValor());
 		try {
 			getStmt().execute();
-			//TODO FAZER
-			//Fatura a = new Fatura(0, o.getValor(), LocalDate.now(), null, )
 			getCon().commit();
+			ScreenManager.alertaInformativo("Inserção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível inserir!");
 		} finally {
 			fecharStmt();
 		}
@@ -42,9 +43,10 @@ public class DAOServico extends DAO<Servico> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Remoção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível remover!");
 		} finally {
 			fecharStmt();
 		}
@@ -60,14 +62,15 @@ public class DAOServico extends DAO<Servico> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Alteração realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível alterar!");
 		} finally {
 			fecharStmt();
 		}
 	}
-	
+
 	public Servico buscar(int id) throws Exception {
 		String sql = "SELECT * FROM servico WHERE id = ?";
 		preparar(sql);
@@ -79,7 +82,7 @@ public class DAOServico extends DAO<Servico> {
 		} catch (SQLException e) {
 			getCon().rollback();
 			fecharStmt();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Serviço não encontrado!");
 		}
 		rs.next();
 		Servico o = new Servico(rs.getInt(1), rs.getString(2), rs.getDouble(3));
@@ -102,7 +105,7 @@ public class DAOServico extends DAO<Servico> {
 			fecharStmt();
 			e.printStackTrace();
 		}
-		while(rs.next()) {
+		while (rs.next()) {
 			Servico o = new Servico(rs.getInt(1), rs.getString(2), rs.getDouble(3));
 			r.add(o);
 		}
@@ -110,10 +113,12 @@ public class DAOServico extends DAO<Servico> {
 		fecharStmt();
 		return r;
 	}
-	
-	public ArrayList<Fatura> faturasDoServico(Servico o) throws Exception{
+
+	public ArrayList<Fatura> faturasDoServico(Servico o) throws Exception {
 		ArrayList<Fatura> r = new ArrayList<Fatura>();
-		String sql = "select fatura.* from servico join item_servico join pedido_servico join fatura where servico.id = item_servico.idServ and item_servico.idPed = pedido_servico.id and fatura.id_ped_serv = pedido_servico.id and servico.id = ?";
+		String sql = "select fatura.* from servico join item_servico join pedido_servico join fatura "
+				+ "where servico.id = item_servico.idServ and item_servico.idPed = pedido_servico.id "
+				+ "and fatura.id_ped_serv = pedido_servico.id and servico.id = ?";
 		preparar(sql);
 		getStmt().setInt(1, o.getId());
 		ResultSet rs = null;
@@ -123,10 +128,15 @@ public class DAOServico extends DAO<Servico> {
 		} catch (SQLException e) {
 			getCon().rollback();
 			fecharStmt();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Nenhuma fatura encontrada!");
 		}
-		while(rs.next()) {
-			Fatura b = new Fatura(rs.getInt(1), rs.getDouble(2), rs.getTimestamp(3).toLocalDateTime().toLocalDate(), rs.getTimestamp(4).toLocalDateTime().toLocalDate(), rs.getDouble(5), rs.getString(6), rs.getString(7), rs.getInt(8));
+		while (rs.next()) {
+			LocalDate dt_paga = null;
+			if (rs.getDate(4) != null)
+				dt_paga = rs.getDate(4).toLocalDate();
+			Fatura b = new Fatura(rs.getInt(1), rs.getDouble(2), rs.getTimestamp(3).toLocalDateTime().toLocalDate(),
+					dt_paga, rs.getDouble(5), rs.getString(6),
+					rs.getString(7), rs.getInt(8));
 			r.add(b);
 		}
 		rs.close();

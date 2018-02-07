@@ -13,14 +13,14 @@ import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
 import br.ufrpe.zoologico.negocio.beans.SubCategoria;
 
 public class GerenciamentoSubCategoria {
-	
+
 	private DAOSubCategoria subCateg;
-	
-	public GerenciamentoSubCategoria(){
+
+	public GerenciamentoSubCategoria() {
 		subCateg = new DAOSubCategoria();
 	}
-	
-	public ArrayList<SubCategoria> listarTodas(){
+
+	public ArrayList<SubCategoria> listarTodas() {
 		try {
 			return subCateg.listarTodos();
 		} catch (Exception e) {

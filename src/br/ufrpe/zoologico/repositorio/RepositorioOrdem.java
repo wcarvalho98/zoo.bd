@@ -15,16 +15,17 @@ public class RepositorioOrdem implements IRepositorio<Ordem> {
 
 	private ArrayList<Ordem> r;
 	private static IRepositorio<Ordem> i;
-	
+
 	/**
 	 * 
 	 */
 	public RepositorioOrdem() {
 		r = new ArrayList<Ordem>();
 	}
-	
-	private static IRepositorio<Ordem> getInstance(){
-		if(i == null){
+
+	@SuppressWarnings("unused")
+	private static IRepositorio<Ordem> getInstance() {
+		if (i == null) {
 			i = new RepositorioOrdem();
 		}
 		return i;
@@ -34,7 +35,6 @@ public class RepositorioOrdem implements IRepositorio<Ordem> {
 	public void cadastrar(Ordem obj) {
 		r.add(obj);
 	}
-	
 
 	@Override
 	public void atualizar(Ordem newObj) {

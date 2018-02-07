@@ -16,6 +16,7 @@ import br.ufrpe.zoologico.negocio.beans.Animal;
 import br.ufrpe.zoologico.negocio.beans.Categoria;
 import br.ufrpe.zoologico.negocio.beans.Consulta;
 import br.ufrpe.zoologico.negocio.beans.Diagnostico;
+import br.ufrpe.zoologico.negocio.beans.EspacoReservavel;
 import br.ufrpe.zoologico.negocio.beans.Especie;
 import br.ufrpe.zoologico.negocio.beans.Estoque;
 import br.ufrpe.zoologico.negocio.beans.Fatura;
@@ -38,6 +39,7 @@ import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoAnimal;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoCategoria;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoConsultas;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoDiagnostico;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoEspacoReservavel;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoEspecie;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoEstoque;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoFaturas;
@@ -57,7 +59,7 @@ import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoVeterinario;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoZoo;
 
 public class Fachada {
-	
+
 	private static Fachada instance = null;
 	private GerenciamentoConsultas consultas;
 	private GerenciamentoJaula jaulas;
@@ -81,7 +83,8 @@ public class Fachada {
 	private GerenciamentoFornecedor fornecedor;
 	private GerenciamentoCategoria categ;
 	private GerenciamentoSubCategoria subCateg;
-	
+	private GerenciamentoEspacoReservavel espaco;
+
 	private Fachada() {
 		consultas = new GerenciamentoConsultas();
 		jaulas = new GerenciamentoJaula();
@@ -106,49 +109,50 @@ public class Fachada {
 		produto = new GerenciamentoProduto();
 		categ = new GerenciamentoCategoria();
 		subCateg = new GerenciamentoSubCategoria();
+		espaco = new GerenciamentoEspacoReservavel();
 	}
-	
+
 	public static Fachada getInstance() {
 		if (instance == null) {
 			instance = new Fachada();
 		}
 		return instance;
 	}
-	
-	public ArrayList<Zoo> listarZoo() throws Exception{
+
+	public ArrayList<Zoo> listarZoo() throws Exception {
 		return zoo.listar();
 	}
-	
+
 	/** CONSULTA */
 	public void cadastrarConsulta(Consulta o) {
 		consultas.cadastrarConsulta(o);
 	}
-	
+
 	public void removerConsulta(Consulta o) {
 		consultas.removerConsulta(o);
 	}
-	
+
 	public void removerConsulta(String id_veterinario) throws Exception {
 		consultas.remover(id_veterinario);
 	}
-	
+
 	public void alterarConsulta(Consulta o) {
 		consultas.alterarConsulta(o);
 	}
-	
+
 	public Consulta buscarConsulta(int id) {
 		return consultas.buscarConsulta(id);
 	}
-	
-	public ArrayList<Consulta> listarConsultas(){
+
+	public ArrayList<Consulta> listarConsultas() {
 		return consultas.listarConsultas();
 	}
-	
+
 	/** INSTITUICAO */
 	public void cadastrarInstituicao(Instituicao o) {
 		instituicoes.cadastrarInstituicao(o);
 	}
-	
+
 	public void removerInstituicao(Instituicao o) {
 		instituicoes.removerInstituicao(o);
 	}
@@ -156,108 +160,114 @@ public class Fachada {
 	public void alterarInstituicao(Instituicao o) {
 		instituicoes.alterarInstituicao(o);
 	}
-	
+
 	public Instituicao buscarInstituicao(String cnpj) {
 		return null;
 	}
-	
-	public ArrayList<Instituicao> listarInstituicoes(){
+
+	public ArrayList<Instituicao> listarInstituicoes() {
 		return instituicoes.listarInstituicoes();
 	}
-	
-	/** ANIMAL 
-	 * @throws Exception */
+
+	/**
+	 * ANIMAL
+	 * 
+	 * @throws Exception
+	 */
 	public void cadastrarAnimal(Animal o) throws Exception {
 		animal.cadastrarAnimal(o);
 	}
-	
+
 	public void removerAnimal(Animal o) {
 		animal.removerAnimal(o);
 	}
-	
+
 	public void alterarAnimal(Animal o) {
 		animal.alterarAnimal(o);
 	}
-	
+
 	public Animal buscarAnimal(int id) {
 		return animal.buscarAnimal(id);
 	}
-	
-	public ArrayList<Animal> listarAnimais(){
+
+	public ArrayList<Animal> listarAnimais() {
 		return animal.listarAnimais();
 	}
-	
-	public Ordem buscarOrdem(int id) throws Exception{
+
+	public Ordem buscarOrdem(int id) throws Exception {
 		return ordem.buscar(id);
 	}
-	public ArrayList<Especie> listarEspecie() throws Exception{
+
+	public ArrayList<Especie> listarEspecie() throws Exception {
 		return especie.listarTodos();
 	}
-	public ArrayList<Ordem> listarOrdem() throws Exception{
+
+	public ArrayList<Ordem> listarOrdem() throws Exception {
 		return ordem.listarTodos();
 	}
-	
-	public ArrayList<Genero> listarGenero() throws Exception{
+
+	public ArrayList<Genero> listarGenero() throws Exception {
 		return genero.listarTodos();
 	}
-	
-	public boolean generoPertenceOrdem(int idGenero, int idOrdem) throws Exception{
+
+	public boolean generoPertenceOrdem(int idGenero, int idOrdem) throws Exception {
 		return genero.pertence(idGenero, idOrdem);
 	}
-	
-	public Genero buscarGenero(int genero2) throws Exception{
+
+	public Genero buscarGenero(int genero2) throws Exception {
 		return genero.buscaGenero(genero2);
 	}
-	
+
 	public Especie buscarEspecie(int especie2) throws Exception {
 		return especie.buscar(especie2);
 	}
-	
-	public boolean especiePertenceGenero(int idEspecie, int idGenero) throws Exception{
+
+	public boolean especiePertenceGenero(int idEspecie, int idGenero) throws Exception {
 		return especie.pertence(idEspecie, idGenero);
 	}
-	
+
 	/** VETERINARIO */
 	public void cadastrarVeterinario(Veterinario o) {
 		veterinarios.cadastrarVeterinario(o);
 	}
+
 	public void removerVeterinario(Veterinario o) {
 		veterinarios.removerVeterinario(o);
 	}
-	
+
 	public void alterarVeterinario(Veterinario o) {
 		veterinarios.alterarVeterinario(o);
 	}
-	
+
 	public Veterinario buscarVeterinario(String cpf) {
 		return veterinarios.buscarVeterinario(cpf);
 	}
-	
-	public ArrayList<Veterinario> listarVeterinarios(){
+
+	public ArrayList<Veterinario> listarVeterinarios() {
 		return veterinarios.listarVeterinarios();
 	}
-	
+
 	/** FUNCIONARIO */
 	public void cadastrarFuncionario(Funcionario o) {
 		funcionarios.cadastrarFuncionario(o);
 	}
-	
+
 	public void removerFuncionario(Funcionario o) {
 		funcionarios.removerFuncionario(o);
 	}
-	
+
 	public void alterarFuncionario(Funcionario o) {
 		funcionarios.alterarFuncionario(o);
 	}
-	
+
 	public Funcionario buscarFuncionario(String cpf) {
 		return funcionarios.buscarFuncionario(cpf);
 	}
-	
-	public ArrayList<Funcionario> listarFuncionarios(){
+
+	public ArrayList<Funcionario> listarFuncionarios() {
 		return funcionarios.listarFuncionarios();
 	}
-	
+
 	/** SERVICO */
 	public void cadastrarServico(Servico o) {
 		servicos.cadastrarServico(o);
@@ -270,19 +280,19 @@ public class Fachada {
 	public void alterarServico(Servico o) {
 		servicos.alterarServico(o);
 	}
-	
+
 	public Servico buscarServico(int id) {
 		return servicos.buscarServico(id);
 	}
-	
-	public ArrayList<Servico> listarServicos(){
+
+	public ArrayList<Servico> listarServicos() {
 		return servicos.listarServicos();
 	}
-	
-	public ArrayList<Fatura> faturasDoServico(Servico o){
+
+	public ArrayList<Fatura> faturasDoServico(Servico o) {
 		return servicos.faturasDoServico(o);
 	}
-	
+
 	/** FATURA */
 	public void cadastrarFatura(Fatura o) {
 		faturas.cadastrarFatura(o);
@@ -295,55 +305,53 @@ public class Fachada {
 	public void alterarFatura(Fatura o) {
 		faturas.alterar(o);
 	}
-	
+
 	public Fatura buscarFatura(int id) {
 		return faturas.buscar(id);
 	}
 
-	public ArrayList<Fatura> listarFaturas(){
+	public ArrayList<Fatura> listarFaturas() {
 		return faturas.listarTodos();
 	}
-	
+
 	/** JAULA */
 	public void cadastrarJaula(Jaula o) {
 		jaulas.cadastrar(o);
 	}
-	
+
 	public void removerJaula(Jaula o) {
 		jaulas.remover(o);
 	}
-	
+
 	public void alterarJaula(Jaula o) {
 		jaulas.atualizar(o);
 	}
-	
+
 	public Jaula buscarJaula(int id) {
 		return jaulas.buscar(id);
 	}
-	
-	
+
 	public ArrayList<Jaula> listarJaulas() {
 		return jaulas.listarTodos();
 	}
-	
-	
+
 	/** ADMINISTRADOR */
 	public void cadastrarAdministrador(Administrador o) {
 		admin.cadastrarAdministrador(o);
 	}
-	
+
 	public void removerAdministrador(Administrador o) {
 		admin.removerAdministrador(o);
 	}
-	
+
 	public void alterarAdministrador(Administrador o) {
 		admin.alterarAdministrador(o);
 	}
-	
+
 	public Administrador buscarAdministrador(String login) {
 		return admin.buscarAdministrador(login);
 	}
-	
+
 	public ArrayList<Administrador> listarAdministradores() {
 		return admin.listarAdministradores();
 	}
@@ -352,54 +360,55 @@ public class Fachada {
 	public void cadastrarReserva(Reserva o) {
 		reserva.inserir(o);
 	}
-	
+
 	public void removerReserva(Reserva o) {
 		reserva.remover(o);
 	}
-	
+
 	public void removerReserva(String cnpj) {
 		reserva.remover(cnpj);
 	}
-	
+
 	public void removerReserva(int id) {
 		reserva.remover(id);
 	}
-	
+
 	public void alterarReserva(Reserva o) {
 		reserva.alterar(o);
 	}
-	
+
 	public Reserva buscarReserva(String cnpj, int id_espaco) {
 		return reserva.buscar(cnpj, id_espaco);
 	}
-	
+
 	public ArrayList<Reserva> listarReservas() {
 		return reserva.listarTodos();
 	}
-	
+
 	/** JORNADA_DE_TRABALHO */
 	public void cadastrarJornada(JornadaTrabalho o) {
 		jornada.inserir(o);
 	}
-	
+
 	public void removerJornada(JornadaTrabalho o) {
 		jornada.remover(o);
 	}
-	
+
 	public void alterarJornada(JornadaTrabalho o) {
 		jornada.alterar(o);
 	}
-	
+
 	public JornadaTrabalho buscarJornada(int id) {
 		return jornada.buscar(id);
 	}
-	
+
 	public ArrayList<JornadaTrabalho> listarJornada() {
 		return jornada.listarTodos();
 	}
 
-	/** 
+	/**
 	 * Metodo: buscarZoo
+	 * 
 	 * @param id_zoo
 	 * @return
 	 * @return Zoo
@@ -408,79 +417,78 @@ public class Fachada {
 		return zoo.buscar(id_zoo);
 	}
 
-	
 	/** LOGIN */
 	public void fecharConexao() throws SQLException {
 		login.fecharConexao();
 	}
-	
+
 	public void fazerLogin(String nome, String senha) throws Exception {
 		login.fazerLogin(nome, senha);
 	}
-	
+
 	public Connection getConnection() {
 		return login.getConnection();
 	}
-	
+
 	/** DIAGNOSTICO */
 	public void inserirDiagnostico(Diagnostico o) throws Exception {
 		diagnostico.inserir(o);
 	}
-	
+
 	public void removerDiagnostico(Diagnostico o) throws Exception {
 		diagnostico.remover(o);
 	}
-	
+
 	public void removerDiagnostico(int id_consulta) throws Exception {
 		diagnostico.remover(id_consulta);
 	}
-	
+
 	public void removerDiagnostico(String id_doenca) throws Exception {
 		diagnostico.remover(id_doenca);
 	}
-	
+
 	public void alterarDiagnostico(Diagnostico o) throws Exception {
 		diagnostico.alterar(o);
 	}
-	
+
 	/** ZOOLOGICO */
 	public void cadastrarZoo(Zoo o) throws Exception {
 		zoo.inserir(o);
 	}
-	
+
 	public void removerZoo(Zoo o) throws Exception {
 		zoo.remover(o);
 	}
-	
-	public void alterarZoo(Zoo o) throws Exception{
+
+	public void alterarZoo(Zoo o) throws Exception {
 		zoo.alterarZoo(o);
 	}
-	
-	/** ESTOQUE_ITEMESTOQUE */	
+
+	/** ESTOQUE_ITEMESTOQUE */
 	public void inserirEstoque(Estoque o) throws Exception {
 		estoque.inserirEstoque(o);
 	}
-	
+
 	public void removerEstoque(Estoque o) throws Exception {
 		estoque.removerEstoque(o);
 	}
-	
+
 	public void alterarEstoque(Estoque o) throws Exception {
 		estoque.alterarEstoque(o);
 	}
-	
+
 	public ArrayList<Estoque> listarEstoque() throws Exception {
 		return estoque.listarEstoque();
 	}
-	
+
 	public void inserirItem(ItemEstoque o) throws Exception {
 		estoque.inserirItem(o);
 	}
-	
+
 	public void removerItem(ItemEstoque o) throws Exception {
 		estoque.removerItem(o);
 	}
-	
+
 	public void alterarItem(ItemEstoque o) throws Exception {
 		estoque.alterarItem(o);
 	}
@@ -488,45 +496,71 @@ public class Fachada {
 	public ArrayList<ItemEstoque> listarItens() throws Exception {
 		return estoque.listarItens();
 	}
-	
-	public ArrayList<ItemEstoque> listarItensDoEstoque(Estoque a) throws Exception{
+
+	public ArrayList<ItemEstoque> listarItensDoEstoque(Estoque a) throws Exception {
 		return estoque.listarItensDoEstoque(a);
 	}
-	
-	/** PRODUTO_REF 
-	 * @throws Exception **/
-	public void inserirProduto(ProdutoRef o) throws Exception{
+
+	/**
+	 * PRODUTO_REF
+	 * 
+	 * @throws Exception
+	 **/
+	public void inserirProduto(ProdutoRef o) throws Exception {
 		produto.cadastrarProduto(o);
 	}
-	
-	public void removerProduto(ProdutoRef o) throws Exception{
+
+	public void removerProduto(ProdutoRef o) throws Exception {
 		produto.removerProduto(o);
 	}
-	
-	public void alterarProduto (ProdutoRef o) throws Exception{
+
+	public void alterarProduto(ProdutoRef o) throws Exception {
 		produto.alterarProduto(o);
 	}
-	
-	public ArrayList<ProdutoRef> listarProdutos() throws Exception{
+
+	public ArrayList<ProdutoRef> listarProdutos() throws Exception {
 		return produto.listarTodos();
 	}
-	
+
 	/** FORNECEDOR **/
-	public ArrayList<Fornecedor> listarTodosFornecedores(){
+	public ArrayList<Fornecedor> listarTodosFornecedores() {
 		return fornecedor.listarTodos();
 	}
-	
+
 	/** CATEGORIA **/
-	public ArrayList<Categoria> listarTodasCategorias(){
+	public ArrayList<Categoria> listarTodasCategorias() {
 		return categ.listarTodas();
 	}
-	
+
 	/** SUB_CATEGORIA **/
-	public ArrayList<SubCategoria> listarTodasSubCategorias(){
+	public ArrayList<SubCategoria> listarTodasSubCategorias() {
 		return subCateg.listarTodas();
 	}
-	
-	public void cadastrarFatura(Fatura o, int idServico) throws Exception{
+
+	public void cadastrarFatura(Fatura o, int idServico) throws Exception {
 		servicos.cadastrarFatura(o, idServico);
 	}
+	
+	/** ESPACORESERVAVEL **/
+	public void inserirEspacoReservavel(EspacoReservavel o) throws Exception {
+		espaco.inserir(o);
+	}
+	
+	public void removerEspacoReservavel(EspacoReservavel o) throws Exception {
+		espaco.remover(o);
+	}
+	
+	public void alterarEspacoReservavel(EspacoReservavel o) throws Exception {
+		espaco.alterar(o);
+	}
+	
+	public EspacoReservavel buscarEspacoReservavel(int id_espaco) throws Exception {
+		return espaco.buscar(id_espaco);
+	}
+	
+	public ArrayList<EspacoReservavel> listarTodosEspacosReservaveis() throws Exception {
+		return espaco.listarTodos();
+	}
+	
+	
 }

@@ -10,7 +10,7 @@ public class Genero {
 	private int id;
 	private String nome;
 	private int ordem;
-	
+
 	/**
 	 * @param id
 	 * @param nome
@@ -22,44 +22,59 @@ public class Genero {
 		this.nome = nome;
 		this.ordem = ordem;
 	}
+
 	/**
 	 * Metodo: getId
+	 * 
 	 * @return id
 	 */
 	public int getId() {
 		return id;
 	}
+
 	/**
 	 * Metodo: setId
-	 * @param id the id to set
+	 * 
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	/**
 	 * Metodo: getNome
+	 * 
 	 * @return nome
 	 */
 	public String getNome() {
 		return nome;
 	}
+
 	/**
 	 * Metodo: setNome
-	 * @param nome the nome to set
+	 * 
+	 * @param nome
+	 *            the nome to set
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	/**
 	 * Metodo: getOrdem
+	 * 
 	 * @return ordem
 	 */
 	public int getOrdem() {
 		return ordem;
 	}
+
 	/**
 	 * Metodo: setOrdem
-	 * @param ordem the ordem to set
+	 * 
+	 * @param ordem
+	 *            the ordem to set
 	 */
 	public void setOrdem(int ordem) {
 		this.ordem = ordem;

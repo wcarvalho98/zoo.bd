@@ -10,15 +10,16 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
 import br.ufrpe.zoologico.negocio.beans.Funcionario;
 
 public class DAOFuncionario extends DAO<Funcionario> {
-	
+
 	@Override
 	public void inserir(Funcionario o) throws Exception {
 		String sql = "INSERT INTO `funcionario` (`CPF`,`Nome`,`especializacao`,`fone_1`,`fone_2`,`data_de_contratacao`,"
-				+ "`salario`,`ender`,`jornada_trabalho`,`idZoo`) VALUES "
-				+ "(?,?,?,?,?,?,?,?,?,?)";
+				+ "`salario`,`ender`,`jornada_trabalho`,`idZoo`) VALUES " + "(?,?,?,?,?,?,?,?,?,?)";
 		preparar(sql);
 		getStmt().setString(1, o.getCpf());
 		getStmt().setString(2, o.getNome());
@@ -33,9 +34,10 @@ public class DAOFuncionario extends DAO<Funcionario> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Inserção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível inserir!");
 		} finally {
 			fecharStmt();
 		}
@@ -49,9 +51,10 @@ public class DAOFuncionario extends DAO<Funcionario> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Remoção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível remover!");
 		} finally {
 			fecharStmt();
 		}
@@ -61,8 +64,7 @@ public class DAOFuncionario extends DAO<Funcionario> {
 	public void alterar(Funcionario o) throws Exception {
 		String sql = "UPDATE `funcionario` SET `Nome` = ?,`especializacao` = ?,`fone_1` = ?,"
 				+ "`fone_2` = ?,`data_de_contratacao` = ?,"
-				+ "`salario` = ?,`ender` = ?,`jornada_trabalho` = ?,`idZoo` = ? "
-				+ "WHERE `CPF` = ?";
+				+ "`salario` = ?,`ender` = ?,`jornada_trabalho` = ?,`idZoo` = ? " + "WHERE `CPF` = ?";
 		preparar(sql);
 		getStmt().setString(1, o.getNome());
 		getStmt().setString(2, o.getEspecializacao());
@@ -77,14 +79,15 @@ public class DAOFuncionario extends DAO<Funcionario> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Alteração realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível alterar!");
 		} finally {
 			fecharStmt();
 		}
 	}
-	
+
 	public Funcionario buscar(String cpf) throws Exception {
 		String sql = "SELECT * FROM `funcionario` WHERE `CPF` = ?";
 		preparar(sql);
@@ -96,13 +99,12 @@ public class DAOFuncionario extends DAO<Funcionario> {
 		} catch (SQLException e) {
 			getCon().rollback();
 			fecharStmt();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Funcionário não encontrado!");
 		}
 		rs.next();
-		Funcionario o = new Funcionario(rs.getString(1), rs.getString(2),
-				rs.getString(3), rs.getString(4), rs.getString(5),
-				rs.getDate(6).toLocalDate(),
-				rs.getDouble(7), rs.getString(8), rs.getInt(9), rs.getInt(10));
+		Funcionario o = new Funcionario(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+				rs.getString(5), rs.getDate(6).toLocalDate(), rs.getDouble(7), rs.getString(8), rs.getInt(9),
+				rs.getInt(10));
 		rs.close();
 		fecharStmt();
 		return o;
@@ -110,7 +112,7 @@ public class DAOFuncionario extends DAO<Funcionario> {
 
 	@Override
 	public ArrayList<Funcionario> listarTodos() throws Exception {
-		ArrayList<Funcionario> r = new  ArrayList<Funcionario>();
+		ArrayList<Funcionario> r = new ArrayList<Funcionario>();
 		String sql = "SELECT * FROM `funcionario`";
 		preparar(sql);
 		ResultSet rs = null;
@@ -122,17 +124,16 @@ public class DAOFuncionario extends DAO<Funcionario> {
 			fecharStmt();
 			e.printStackTrace();
 		}
-		while(rs.next()) {
-			Funcionario o = new Funcionario(rs.getString(1), rs.getString(2),
-				rs.getString(3), rs.getString(4), rs.getString(5),
-				rs.getDate(6).toLocalDate(),
-				rs.getDouble(7), rs.getString(8), rs.getInt(9), rs.getInt(10));
+		while (rs.next()) {
+			Funcionario o = new Funcionario(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+					rs.getString(5), rs.getDate(6).toLocalDate(), rs.getDouble(7), rs.getString(8), rs.getInt(9),
+					rs.getInt(10));
 			r.add(o);
 		}
 		rs.close();
 		fecharStmt();
 		return r;
-		
+
 	}
 
 }

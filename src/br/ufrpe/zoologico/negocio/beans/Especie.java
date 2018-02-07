@@ -10,12 +10,12 @@ public class Especie {
 	private int seq;
 	private String nome;
 	private int genero;
-	
-	
+
 	@Override
 	public String toString() {
 		return "Especie [seq=" + seq + ", nome=" + nome + ", genero=" + genero + "]";
 	}
+
 	/**
 	 * @param seq
 	 * @param nome
@@ -27,50 +27,65 @@ public class Especie {
 		this.nome = nome;
 		this.genero = genero;
 	}
+
 	/**
 	 * Metodo: getSeq
+	 * 
 	 * @return seq
 	 */
 	public int getSeq() {
 		return seq;
 	}
+
 	/**
 	 * Metodo: setSeq
-	 * @param seq the seq to set
+	 * 
+	 * @param seq
+	 *            the seq to set
 	 */
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}
+
 	/**
 	 * Metodo: getNome
+	 * 
 	 * @return nome
 	 */
 	public String getNome() {
 		return nome;
 	}
+
 	/**
 	 * Metodo: setNome
-	 * @param nome the nome to set
+	 * 
+	 * @param nome
+	 *            the nome to set
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	/**
 	 * Metodo: getGenero
+	 * 
 	 * @return genero
 	 */
 	public int getGenero() {
 		return genero;
 	}
+
 	/**
 	 * Metodo: setGenero
-	 * @param genero the genero to set
+	 * 
+	 * @param genero
+	 *            the genero to set
 	 */
 	public void setGenero(int genero) {
 		this.genero = genero;
 	}
-	
-	public boolean equals(){
+
+	public boolean equals() {
 		return false;
 	}
 }

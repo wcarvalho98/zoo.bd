@@ -15,17 +15,19 @@ public class RepositorioPodeTer implements IRepositorio<PodeTer> {
 
 	private ArrayList<PodeTer> r;
 	private static IRepositorio<PodeTer> i;
-	
-	private RepositorioPodeTer(){
+
+	private RepositorioPodeTer() {
 		r = new ArrayList<PodeTer>();
 	}
-	
-	private static IRepositorio<PodeTer> getInstance(){
-		if(i == null){
+
+	@SuppressWarnings("unused")
+	private static IRepositorio<PodeTer> getInstance() {
+		if (i == null) {
 			i = new RepositorioPodeTer();
 		}
 		return i;
 	}
+
 	@Override
 	public void cadastrar(PodeTer obj) {
 		r.add(obj);

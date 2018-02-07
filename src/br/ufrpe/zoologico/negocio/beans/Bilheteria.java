@@ -20,6 +20,7 @@ public class Bilheteria {
 	private double duracao;
 	private LocalTime hr_fecha;
 	private int idZoo;
+
 	/**
 	 * @param id
 	 * @param total_inteira
@@ -47,146 +48,197 @@ public class Bilheteria {
 		this.hr_fecha = hr_fecha;
 		this.idZoo = idZoo;
 	}
+
 	/**
 	 * Metodo: getId
+	 * 
 	 * @return id
 	 */
 	public int getId() {
 		return id;
 	}
+
 	/**
 	 * Metodo: setId
-	 * @param id the id to set
+	 * 
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	/**
 	 * Metodo: getTotal_inteira
+	 * 
 	 * @return total_inteira
 	 */
 	public double getTotal_inteira() {
 		return total_inteira;
 	}
+
 	/**
 	 * Metodo: setTotal_inteira
-	 * @param total_inteira the total_inteira to set
+	 * 
+	 * @param total_inteira
+	 *            the total_inteira to set
 	 */
 	public void setTotal_inteira(double total_inteira) {
 		this.total_inteira = total_inteira;
 	}
+
 	/**
 	 * Metodo: getTotal_cortesia
+	 * 
 	 * @return total_cortesia
 	 */
 	public double getTotal_cortesia() {
 		return total_cortesia;
 	}
+
 	/**
 	 * Metodo: setTotal_cortesia
-	 * @param total_cortesia the total_cortesia to set
+	 * 
+	 * @param total_cortesia
+	 *            the total_cortesia to set
 	 */
 	public void setTotal_cortesia(double total_cortesia) {
 		this.total_cortesia = total_cortesia;
 	}
+
 	/**
 	 * Metodo: isStatus_biblheteria
+	 * 
 	 * @return status_biblheteria
 	 */
 	public boolean isStatus_biblheteria() {
 		return status_biblheteria;
 	}
+
 	/**
 	 * Metodo: setStatus_biblheteria
-	 * @param status_biblheteria the status_biblheteria to set
+	 * 
+	 * @param status_biblheteria
+	 *            the status_biblheteria to set
 	 */
 	public void setStatus_biblheteria(boolean status_biblheteria) {
 		this.status_biblheteria = status_biblheteria;
 	}
+
 	/**
 	 * Metodo: getData_bilheteria
+	 * 
 	 * @return data_bilheteria
 	 */
 	public LocalDate getData_bilheteria() {
 		return data_bilheteria;
 	}
+
 	/**
 	 * Metodo: setData_bilheteria
-	 * @param data_bilheteria the data_bilheteria to set
+	 * 
+	 * @param data_bilheteria
+	 *            the data_bilheteria to set
 	 */
 	public void setData_bilheteria(LocalDate data_bilheteria) {
 		this.data_bilheteria = data_bilheteria;
 	}
+
 	/**
 	 * Metodo: getReda_do_dia
+	 * 
 	 * @return reda_do_dia
 	 */
 	public double getReda_do_dia() {
 		return reda_do_dia;
 	}
+
 	/**
 	 * Metodo: setReda_do_dia
-	 * @param reda_do_dia the reda_do_dia to set
+	 * 
+	 * @param reda_do_dia
+	 *            the reda_do_dia to set
 	 */
 	public void setReda_do_dia(double reda_do_dia) {
 		this.reda_do_dia = reda_do_dia;
 	}
+
 	/**
 	 * Metodo: getHr_abertura
+	 * 
 	 * @return hr_abertura
 	 */
 	public LocalTime getHr_abertura() {
 		return hr_abertura;
 	}
+
 	/**
 	 * Metodo: setHr_abertura
-	 * @param hr_abertura the hr_abertura to set
+	 * 
+	 * @param hr_abertura
+	 *            the hr_abertura to set
 	 */
 	public void setHr_abertura(LocalTime hr_abertura) {
 		this.hr_abertura = hr_abertura;
 	}
+
 	/**
 	 * Metodo: getDuracao
+	 * 
 	 * @return duracao
 	 */
 	public double getDuracao() {
 		return duracao;
 	}
+
 	/**
 	 * Metodo: setDuracao
-	 * @param duracao the duracao to set
+	 * 
+	 * @param duracao
+	 *            the duracao to set
 	 */
 	public void setDuracao(double duracao) {
 		this.duracao = duracao;
 	}
+
 	/**
 	 * Metodo: getHr_fecha
+	 * 
 	 * @return hr_fecha
 	 */
 	public LocalTime getHr_fecha() {
 		return hr_fecha;
 	}
+
 	/**
 	 * Metodo: setHr_fecha
-	 * @param hr_fecha the hr_fecha to set
+	 * 
+	 * @param hr_fecha
+	 *            the hr_fecha to set
 	 */
 	public void setHr_fecha(LocalTime hr_fecha) {
 		this.hr_fecha = hr_fecha;
 	}
+
 	/**
 	 * Metodo: getIdZoo
+	 * 
 	 * @return idZoo
 	 */
 	public int getIdZoo() {
 		return idZoo;
 	}
+
 	/**
 	 * Metodo: setIdZoo
-	 * @param idZoo the idZoo to set
+	 * 
+	 * @param idZoo
+	 *            the idZoo to set
 	 */
 	public void setIdZoo(int idZoo) {
 		this.idZoo = idZoo;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -208,6 +260,7 @@ public class Bilheteria {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -248,6 +301,7 @@ public class Bilheteria {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Bilheteria [id=" + id + ", total_inteira=" + total_inteira + ", total_cortesia=" + total_cortesia
@@ -255,6 +309,5 @@ public class Bilheteria {
 				+ ", reda_do_dia=" + reda_do_dia + ", hr_abertura=" + hr_abertura + ", duracao=" + duracao
 				+ ", hr_fecha=" + hr_fecha + ", idZoo=" + idZoo + "]";
 	}
-	
-	
+
 }

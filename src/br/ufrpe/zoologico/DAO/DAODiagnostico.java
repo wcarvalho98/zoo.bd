@@ -9,6 +9,7 @@ package br.ufrpe.zoologico.DAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
 import br.ufrpe.zoologico.negocio.beans.Diagnostico;
 
 public class DAODiagnostico extends DAO<Diagnostico> {
@@ -23,9 +24,10 @@ public class DAODiagnostico extends DAO<Diagnostico> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Inserção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível inserir!");
 		} finally {
 			fecharStmt();
 		}
@@ -40,14 +42,15 @@ public class DAODiagnostico extends DAO<Diagnostico> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Remoção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível remover!");
 		} finally {
 			fecharStmt();
 		}
 	}
-	
+
 	public void remover(int id_consulta) throws Exception {
 		String sql = "DELETE FROM diagnostico WHERE id_consulta = ?";
 		preparar(sql);
@@ -55,14 +58,15 @@ public class DAODiagnostico extends DAO<Diagnostico> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Remoção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível remover!");
 		} finally {
 			fecharStmt();
 		}
 	}
-	
+
 	public void remover(String id_doenca) throws Exception {
 		String sql = "DELETE FROM diagnostico WHERE id_doenca = ?";
 		preparar(sql);
@@ -70,9 +74,10 @@ public class DAODiagnostico extends DAO<Diagnostico> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Remoção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível remover!");
 		} finally {
 			fecharStmt();
 		}
@@ -88,9 +93,10 @@ public class DAODiagnostico extends DAO<Diagnostico> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Alteração realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível alterar!");
 		} finally {
 			fecharStmt();
 		}

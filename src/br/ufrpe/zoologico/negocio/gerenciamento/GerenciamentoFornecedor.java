@@ -13,13 +13,13 @@ import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
 import br.ufrpe.zoologico.negocio.beans.Fornecedor;
 
 public class GerenciamentoFornecedor {
-	
+
 	private DAOFornecedor fornecedor;
-	
-	public GerenciamentoFornecedor(){
+
+	public GerenciamentoFornecedor() {
 		fornecedor = new DAOFornecedor();
 	}
-	
+
 	public ArrayList<Fornecedor> listarTodos() {
 		try {
 			return fornecedor.listarTodos();

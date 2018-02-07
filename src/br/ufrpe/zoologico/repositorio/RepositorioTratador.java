@@ -15,17 +15,19 @@ public class RepositorioTratador implements IRepositorio<Tratador> {
 
 	private ArrayList<Tratador> r;
 	private static IRepositorio<Tratador> i;
-	
-	private RepositorioTratador(){
+
+	private RepositorioTratador() {
 		r = new ArrayList<Tratador>();
 	}
-	
-	private static IRepositorio<Tratador> getInstance(){
-		if(i == null){
+
+	@SuppressWarnings("unused")
+	private static IRepositorio<Tratador> getInstance() {
+		if (i == null) {
 			i = new RepositorioTratador();
 		}
 		return i;
 	}
+
 	@Override
 	public void cadastrar(Tratador obj) {
 		r.add(obj);
@@ -34,7 +36,7 @@ public class RepositorioTratador implements IRepositorio<Tratador> {
 	@Override
 	public void atualizar(Tratador newObj) {
 		// TODO alterar Tratador no repositorio problema
-		//r.set(newObj, newObj);
+		// r.set(newObj, newObj);
 	}
 
 	@Override

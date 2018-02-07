@@ -9,7 +9,7 @@ package br.ufrpe.zoologico.negocio.beans;
 public class Ordem {
 	private int id;
 	private String nome;
-	
+
 	/**
 	 * @param id
 	 * @param nome
@@ -19,37 +19,47 @@ public class Ordem {
 		this.id = id;
 		this.nome = nome;
 	}
+
 	/**
 	 * Metodo: getId
+	 * 
 	 * @return id
 	 */
 	public int getId() {
 		return id;
 	}
+
 	/**
 	 * Metodo: setId
-	 * @param id the id to set
+	 * 
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	/**
 	 * Metodo: getNome
+	 * 
 	 * @return nome
 	 */
 	public String getNome() {
 		return nome;
 	}
+
 	/**
 	 * Metodo: setNome
-	 * @param nome the nome to set
+	 * 
+	 * @param nome
+	 *            the nome to set
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	@SuppressWarnings("unused")
-	private boolean equals(){
+	private boolean equals() {
 		return false;
 	}
 }

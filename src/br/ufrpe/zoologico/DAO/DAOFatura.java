@@ -12,21 +12,20 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
 import br.ufrpe.zoologico.negocio.beans.Fatura;
 import javafx.fxml.FXML;
 
 public class DAOFatura extends DAO<Fatura> {
 
 	public void inserir(Fatura o, int idServico) throws Exception {
-		String sql = "insert into pedido_servico (idZoo) values (?)";
+		String sql = "insert into pedido_servico (idZoo) values (1)";
 		preparar(sql);
-		getStmt().setInt(1, 1);
 		try {
 			getStmt().execute();
-			getCon().commit();
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Zoológico de ID 1 inexistente!");
 		} finally {
 			fecharStmt();
 		}
@@ -36,11 +35,10 @@ public class DAOFatura extends DAO<Fatura> {
 		ResultSet rs = null;
 		try {
 			rs = getStmt().executeQuery();
-			getCon().commit();
 		} catch (SQLException e) {
 			getCon().rollback();
 			fecharStmt();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível localizar o ID máximo!");
 		}
 		rs.next();
 		int idPed = rs.getInt(1);
@@ -52,16 +50,18 @@ public class DAOFatura extends DAO<Fatura> {
 		getStmt().setDouble(1, o.getValor());
 		getStmt().setInt(2, idPed);
 		getStmt().setDate(3, Date.valueOf(o.getDataDaFatura()));
-		getStmt().setDate(4, Date.valueOf(o.getDt_paga()));
+		if (o.getDt_paga() != null)
+			getStmt().setDate(4, Date.valueOf(o.getDt_paga()));
+		else
+			getStmt().setDate(4, null);
 		getStmt().setString(5, o.getTp_fatura());
 		getStmt().setDouble(6, o.getVl_multa());
 		getStmt().setString(7, o.getStats());
 		try {
 			getStmt().execute();
-			getCon().commit();
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível gerar fatura!");
 		} finally {
 			fecharStmt();
 		}
@@ -73,9 +73,10 @@ public class DAOFatura extends DAO<Fatura> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Inserção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível inserir serviço!");
 		} finally {
 			fecharStmt();
 		}
@@ -90,9 +91,10 @@ public class DAOFatura extends DAO<Fatura> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Remoção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível remover!");
 		} finally {
 			fecharStmt();
 		}
@@ -104,7 +106,10 @@ public class DAOFatura extends DAO<Fatura> {
 		preparar(sql);
 		getStmt().setDouble(1, o.getValor());
 		getStmt().setDate(2, Date.valueOf(o.getDataDaFatura()));
-		getStmt().setDate(3, Date.valueOf(o.getDt_paga()));
+		if (o.getDt_paga() != null)
+			getStmt().setDate(3, Date.valueOf(o.getDt_paga()));
+		else
+			getStmt().setDate(3, null);
 		getStmt().setDouble(4, o.getVl_multa());
 		getStmt().setString(5, o.getStats());
 		getStmt().setString(6, o.getTp_fatura());
@@ -113,9 +118,10 @@ public class DAOFatura extends DAO<Fatura> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Alteração realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível alterar!");
 		} finally {
 			fecharStmt();
 		}
@@ -132,7 +138,7 @@ public class DAOFatura extends DAO<Fatura> {
 		} catch (SQLException e) {
 			getCon().rollback();
 			fecharStmt();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Fatura não encontrada!");
 		}
 		rs.next();
 		LocalDate dataDaFatura = null;
@@ -182,7 +188,7 @@ public class DAOFatura extends DAO<Fatura> {
 
 	@FXML
 	public void voltar() {
-		// TODO ScreenManager.setScene(ScreenManager.getInstance.);
+		// TODO ScreenManager.setScene(ScreenManager.getInstance.); ????????????
 	}
 
 	@Override

@@ -17,7 +17,7 @@ public class AdminController {
 
 	@FXML
 	void abrirTelaAnimal_Item() {
-		ScreenManager.setScene(ScreenManager.getInstance().getTelaAnimal_Item());
+		ScreenManager.setSceneRight(ScreenManager.getInstance().getTelaAnimal_Item());
 	}
 
 	@FXML
@@ -82,12 +82,12 @@ public class AdminController {
 
 	@FXML
 	void fechar() {
-
+		ScreenManager.sairDoSistema();
 	}
 
 	@FXML
 	void inicio() {
-
+		ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin());
 	}
 
 }

@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
 import br.ufrpe.zoologico.negocio.beans.Genero;
 
 public class DAOGenero extends DAO<Genero> {
@@ -60,7 +61,7 @@ public class DAOGenero extends DAO<Genero> {
 		} catch (SQLException e) {
 			getCon().rollback();
 			fecharStmt();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Gênero não encontrado!");
 		}
 		rs.next();
 		Genero o = new Genero(rs.getInt(1), rs.getString(2), rs.getInt(3));

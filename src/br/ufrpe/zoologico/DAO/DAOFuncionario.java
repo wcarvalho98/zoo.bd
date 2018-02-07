@@ -10,6 +10,8 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
 import br.ufrpe.zoologico.negocio.beans.Funcionario;
 
 public class DAOFuncionario extends DAO<Funcionario> {
@@ -32,9 +34,10 @@ public class DAOFuncionario extends DAO<Funcionario> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Inserção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível inserir!");
 		} finally {
 			fecharStmt();
 		}
@@ -48,9 +51,10 @@ public class DAOFuncionario extends DAO<Funcionario> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Remoção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível remover!");
 		} finally {
 			fecharStmt();
 		}
@@ -75,9 +79,10 @@ public class DAOFuncionario extends DAO<Funcionario> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Alteração realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível alterar!");
 		} finally {
 			fecharStmt();
 		}
@@ -94,7 +99,7 @@ public class DAOFuncionario extends DAO<Funcionario> {
 		} catch (SQLException e) {
 			getCon().rollback();
 			fecharStmt();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Funcionário não encontrado!");
 		}
 		rs.next();
 		Funcionario o = new Funcionario(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),

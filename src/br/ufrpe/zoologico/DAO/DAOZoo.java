@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 
+import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
 import br.ufrpe.zoologico.negocio.beans.Zoo;
 
 public class DAOZoo extends DAO<Zoo> {
@@ -27,9 +28,10 @@ public class DAOZoo extends DAO<Zoo> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Inserção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível inserir!");
 		} finally {
 			fecharStmt();
 		}
@@ -43,9 +45,10 @@ public class DAOZoo extends DAO<Zoo> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Remoção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível remover!");
 		} finally {
 			fecharStmt();
 		}
@@ -64,9 +67,10 @@ public class DAOZoo extends DAO<Zoo> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Alteração realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível alterar!");
 		} finally {
 			fecharStmt();
 		}
@@ -83,7 +87,7 @@ public class DAOZoo extends DAO<Zoo> {
 		} catch (SQLException e) {
 			getCon().rollback();
 			fecharStmt();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Zoológico não encontrado!");
 		}
 		rs.next();
 		Zoo j = new Zoo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getTime(5).toLocalTime(),

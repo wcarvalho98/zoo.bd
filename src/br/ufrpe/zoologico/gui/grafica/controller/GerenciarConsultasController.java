@@ -148,11 +148,11 @@ public class GerenciarConsultasController implements Initializable {
 			minutoTextField1.setText("");
 			preencherTabelas();
 		} else if (!aux.isAfter(LocalDateTime.now())) {
-			ScreenManager.alertaErro("O novo horário da consulta não é futuro.");
+			ScreenManager.alertaErro("O novo horário da consulta não é futuro!");
 		} else if (veterinarioSelecionado1 == null) {
-			ScreenManager.alertaErro("Nenhum veterinário selecionado");
+			ScreenManager.alertaErro("Nenhum veterinário selecionado!");
 		} else if (animalSelecionado1 == null) {
-			ScreenManager.alertaErro("Nenhum animal selecionado");
+			ScreenManager.alertaErro("Nenhum animal selecionado!");
 		}
 	}
 
@@ -216,11 +216,11 @@ public class GerenciarConsultasController implements Initializable {
 			animalSelecionado = null;
 			veterinarioSelecionado = null;
 		} else if (!aux.isAfter(LocalDateTime.now())) {
-			ScreenManager.alertaErro("O novo horário da consulta não é futuro.");
+			ScreenManager.alertaErro("O novo horário da consulta não é futuro!");
 		} else if (veterinarioSelecionado1 == null) {
-			ScreenManager.alertaErro("Nenhum veterinário selecionado");
+			ScreenManager.alertaErro("Nenhum veterinário selecionado!");
 		} else if (animalSelecionado1 == null) {
-			ScreenManager.alertaErro("Nenhum animal selecionado");
+			ScreenManager.alertaErro("Nenhum animal selecionado!");
 		}
 	}
 

@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
 import br.ufrpe.zoologico.negocio.beans.Ordem;
 
 public class DAOOrdem extends DAO<Ordem> {
@@ -37,7 +38,7 @@ public class DAOOrdem extends DAO<Ordem> {
 		} catch (SQLException e) {
 			getCon().rollback();
 			fecharStmt();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Ordem não encontrada!");
 		}
 		rs.next();
 		Ordem o = new Ordem(rs.getInt(1), rs.getString(2));

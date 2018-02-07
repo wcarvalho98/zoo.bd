@@ -12,6 +12,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.gui.grafica.controller.Fachada;
+import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
 import br.ufrpe.zoologico.negocio.beans.Animal;
 import br.ufrpe.zoologico.negocio.beans.Consulta;
 import br.ufrpe.zoologico.negocio.beans.Veterinario;
@@ -30,9 +31,10 @@ public class DAOConsultas extends DAO<Consulta> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Inserção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível inserir!");
 		} finally {
 			fecharStmt();
 		}
@@ -46,9 +48,10 @@ public class DAOConsultas extends DAO<Consulta> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Remoção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível remover!");
 		} finally {
 			fecharStmt();
 		}
@@ -61,9 +64,10 @@ public class DAOConsultas extends DAO<Consulta> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Remoção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível remover!");
 		} finally {
 			fecharStmt();
 		}
@@ -83,9 +87,10 @@ public class DAOConsultas extends DAO<Consulta> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Alteração realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível alterar!");
 		} finally {
 			fecharStmt();
 		}
@@ -102,7 +107,7 @@ public class DAOConsultas extends DAO<Consulta> {
 		} catch (SQLException e) {
 			getCon().rollback();
 			fecharStmt();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Consulta não encontrada!");
 		}
 		rs.next();
 		Veterinario vet = Fachada.getInstance().buscarVeterinario(rs.getString(4));

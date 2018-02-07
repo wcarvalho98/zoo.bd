@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.gui.grafica.controller.Fachada;
+import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
 import br.ufrpe.zoologico.negocio.beans.Funcionario;
 import br.ufrpe.zoologico.negocio.beans.Veterinario;
 
@@ -29,9 +30,10 @@ public class DAOVeterinario extends DAO<Veterinario> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Inserção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível inserir!");
 		} finally {
 			fecharStmt();
 		}
@@ -48,9 +50,10 @@ public class DAOVeterinario extends DAO<Veterinario> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Remoção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível remover!");
 		} finally {
 			fecharStmt();
 		}
@@ -69,9 +72,10 @@ public class DAOVeterinario extends DAO<Veterinario> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Alteração realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível alterar!");
 		} finally {
 			fecharStmt();
 		}
@@ -89,7 +93,7 @@ public class DAOVeterinario extends DAO<Veterinario> {
 		} catch (SQLException e) {
 			getCon().rollback();
 			fecharStmt();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Veterinário não encontrado!");
 		}
 		preparar(sqlVet);
 		getStmt().setString(1, cpf);
@@ -100,7 +104,7 @@ public class DAOVeterinario extends DAO<Veterinario> {
 		} catch (SQLException e) {
 			getCon().rollback();
 			fecharStmt();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Veterinário não encontrado!");
 		}
 		rs.next();
 		rt.next();

@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
 import br.ufrpe.zoologico.negocio.beans.Jaula;
 
 public class DAOJaula extends DAO<Jaula> {
@@ -35,9 +36,10 @@ public class DAOJaula extends DAO<Jaula> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Inserção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível inserir!");
 		} finally {
 			fecharStmt();
 		}
@@ -52,9 +54,10 @@ public class DAOJaula extends DAO<Jaula> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Remoção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível remover!");
 		} finally {
 			fecharStmt();
 		}
@@ -82,9 +85,10 @@ public class DAOJaula extends DAO<Jaula> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Alteração realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível alterar!");
 		} finally {
 			fecharStmt();
 		}
@@ -101,7 +105,7 @@ public class DAOJaula extends DAO<Jaula> {
 		} catch (SQLException e) {
 			getCon().rollback();
 			fecharStmt();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Jaula não encontrada!");
 		}
 		rs.next();
 		Jaula j = new Jaula(rs.getInt(1), rs.getBoolean(2), rs.getString(3), rs.getDate(4).toLocalDate(), rs.getInt(5),

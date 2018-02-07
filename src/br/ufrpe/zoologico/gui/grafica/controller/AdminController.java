@@ -82,12 +82,12 @@ public class AdminController {
 
 	@FXML
 	void fechar() {
-
+		ScreenManager.sairDoSistema();
 	}
 
 	@FXML
 	void inicio() {
-
+		ScreenManager.setScene(ScreenManager.getInstance().getTelaAdmin());
 	}
 
 }

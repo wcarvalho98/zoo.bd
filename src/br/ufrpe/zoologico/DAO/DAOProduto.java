@@ -35,7 +35,7 @@ public class DAOProduto extends DAO<ProdutoRef> {
 			ScreenManager.alertaInformativo("Inserção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			ScreenManager.alertaErro(e.getMessage());
+			ScreenManager.alertaErro("Não foi possível inserir!");
 		} finally {
 			fecharStmt();
 		}
@@ -49,11 +49,10 @@ public class DAOProduto extends DAO<ProdutoRef> {
 		try {
 			getStmt().execute();
 			getCon().commit();
-			ScreenManager.alertaInformativo("Remoção feita com sucesso!");
+			ScreenManager.alertaInformativo("Remoção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			ScreenManager.alertaErro(e.getMessage());
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível remover!");
 		} finally {
 			fecharStmt();
 		}
@@ -79,9 +78,10 @@ public class DAOProduto extends DAO<ProdutoRef> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Alteração realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			ScreenManager.alertaErro(e.getMessage());
+			ScreenManager.alertaErro("Não foi possível alterar!");
 		} finally {
 			fecharStmt();
 		}

@@ -12,8 +12,6 @@ import java.util.ResourceBundle;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
@@ -61,13 +59,7 @@ public class PrincipalController implements Initializable {
 					break;
 				}
 			} catch (Exception e) {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Erro!");
-				alert.setHeaderText(null);
-				alert.setContentText(e.getMessage());
-
-				alert.showAndWait();
-				e.printStackTrace();
+				ScreenManager.alertaErro("Login inválido!");
 			}
 
 		}

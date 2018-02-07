@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
 import br.ufrpe.zoologico.negocio.beans.Fatura;
 import br.ufrpe.zoologico.negocio.beans.Servico;
 
@@ -26,9 +27,10 @@ public class DAOServico extends DAO<Servico> {
 			// TODO FAZER
 			// Fatura a = new Fatura(0, o.getValor(), LocalDate.now(), null, )
 			getCon().commit();
+			ScreenManager.alertaInformativo("Inserção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível inserir!");
 		} finally {
 			fecharStmt();
 		}
@@ -42,9 +44,10 @@ public class DAOServico extends DAO<Servico> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Remoção realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível remover!");
 		} finally {
 			fecharStmt();
 		}
@@ -60,9 +63,10 @@ public class DAOServico extends DAO<Servico> {
 		try {
 			getStmt().execute();
 			getCon().commit();
+			ScreenManager.alertaInformativo("Alteração realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Não foi possível alterar!");
 		} finally {
 			fecharStmt();
 		}
@@ -79,7 +83,7 @@ public class DAOServico extends DAO<Servico> {
 		} catch (SQLException e) {
 			getCon().rollback();
 			fecharStmt();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Serviço não encontrado!");
 		}
 		rs.next();
 		Servico o = new Servico(rs.getInt(1), rs.getString(2), rs.getDouble(3));
@@ -113,7 +117,9 @@ public class DAOServico extends DAO<Servico> {
 
 	public ArrayList<Fatura> faturasDoServico(Servico o) throws Exception {
 		ArrayList<Fatura> r = new ArrayList<Fatura>();
-		String sql = "select fatura.* from servico join item_servico join pedido_servico join fatura where servico.id = item_servico.idServ and item_servico.idPed = pedido_servico.id and fatura.id_ped_serv = pedido_servico.id and servico.id = ?";
+		String sql = "select fatura.* from servico join item_servico join pedido_servico join fatura "
+				+ "where servico.id = item_servico.idServ and item_servico.idPed = pedido_servico.id "
+				+ "and fatura.id_ped_serv = pedido_servico.id and servico.id = ?";
 		preparar(sql);
 		getStmt().setInt(1, o.getId());
 		ResultSet rs = null;
@@ -123,7 +129,7 @@ public class DAOServico extends DAO<Servico> {
 		} catch (SQLException e) {
 			getCon().rollback();
 			fecharStmt();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Nenhuma fatura encontrada!");
 		}
 		while (rs.next()) {
 			Fatura b = new Fatura(rs.getInt(1), rs.getDouble(2), rs.getTimestamp(3).toLocalDateTime().toLocalDate(),

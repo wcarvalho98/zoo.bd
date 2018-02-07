@@ -124,7 +124,7 @@ public class CadastroProdutoController implements Initializable {
 			ProdutoRef p = pegarTudo();
 			f.removerProduto(p);
 		} catch (Exception e) {
-			ScreenManager.alertaErro(e.getMessage());
+			e.printStackTrace();
 		} finally {
 			allNull();
 			allDisable();
@@ -149,7 +149,7 @@ public class CadastroProdutoController implements Initializable {
 		try {
 			f.inserirProduto(p);
 		} catch (Exception e) {
-			ScreenManager.alertaErro(e.getMessage());
+			e.printStackTrace();
 		} finally {
 			allNull();
 		}
@@ -167,9 +167,8 @@ public class CadastroProdutoController implements Initializable {
 		try {
 			ProdutoRef p = pegarTudo();
 			f.alterarProduto(p);
-			ScreenManager.alertaInformativo("Altualizaçõa feita com sucesso!");
 		} catch (Exception e) {
-			ScreenManager.alertaErro(e.getMessage());
+			e.printStackTrace();
 		} finally {
 			allNull();
 		}
@@ -321,7 +320,7 @@ public class CadastroProdutoController implements Initializable {
 			precoUltCompra.setText(Double.valueOf(p.getPreco_ult_compra()).toString());
 			quantEstoq.setText(Integer.valueOf(p.getQtd_total_estoque()).toString());
 		} catch (Exception e) {
-			ScreenManager.alertaErro(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 

@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
 import br.ufrpe.zoologico.negocio.beans.Categoria;
 
 public class DAOCategoria extends DAO<Categoria> {
@@ -60,7 +61,7 @@ public class DAOCategoria extends DAO<Categoria> {
 		} catch (SQLException e) {
 			getCon().rollback();
 			fecharStmt();
-			e.printStackTrace();
+			ScreenManager.alertaErro("Categoria não encontrada!");
 		}
 		rs.next();
 		Categoria o = new Categoria(rs.getInt(1), rs.getString(2));

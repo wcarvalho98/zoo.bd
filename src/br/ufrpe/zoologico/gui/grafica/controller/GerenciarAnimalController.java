@@ -152,16 +152,15 @@ public class GerenciarAnimalController implements Initializable {
 					try {
 						System.out.println(b.toString());
 						f.cadastrarAnimal(b);
-						ScreenManager.alertaInformativo("Cadastro realizado com sucesso!");
 					} catch (Exception e) {
-						ScreenManager.alertaErro("Não foi possível!");
+						e.printStackTrace();
 					}
 				} else
 					ScreenManager.alertaErro("Espécie não pertence a gênero!");
 			} else
-				ScreenManager.alertaErro("Genêro não pertence a ordem!");
+				ScreenManager.alertaErro("Gênero não pertence a ordem!");
 		} catch (Exception e) {
-			ScreenManager.alertaErro(e.getMessage());
+			e.printStackTrace();
 		}
 		allNull();
 		allDisable();
@@ -173,11 +172,8 @@ public class GerenciarAnimalController implements Initializable {
 	@FXML
 	public void remover() throws Exception {
 		Animal b = f.buscarAnimal(Integer.valueOf(idAnimal.getText()));
-		if (b == null)
-			ScreenManager.alertaErro("Animal não existe!");
-		else {
+		if (b != null) {
 			f.removerAnimal(b);
-			ScreenManager.alertaInformativo("Animal removido com sucesso!");
 			preencherAnimal(0);
 		}
 	}

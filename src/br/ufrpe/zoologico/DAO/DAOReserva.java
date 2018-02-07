@@ -14,7 +14,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+import br.ufrpe.zoologico.gui.grafica.controller.Fachada;
 import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
+import br.ufrpe.zoologico.negocio.beans.Fatura;
 import br.ufrpe.zoologico.negocio.beans.Reserva;
 
 public class DAOReserva extends DAO<Reserva> {
@@ -37,8 +39,7 @@ public class DAOReserva extends DAO<Reserva> {
 		getStmt().setInt(12, o.getId());
 		try {
 			getStmt().execute();
-			getCon().commit();
-			ScreenManager.alertaInformativo("Inserção realizada com sucesso!");
+			Fachada.getInstance().cadastrarFatura(new Fatura(0, o.getValor(), LocalDate.now(), null, 0, null, "Crédito", 0));
 		} catch (SQLException e) {
 			getCon().rollback();
 			ScreenManager.alertaErro("Não foi possível inserir!");

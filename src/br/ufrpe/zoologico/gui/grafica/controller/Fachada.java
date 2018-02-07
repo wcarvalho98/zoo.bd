@@ -16,6 +16,7 @@ import br.ufrpe.zoologico.negocio.beans.Animal;
 import br.ufrpe.zoologico.negocio.beans.Categoria;
 import br.ufrpe.zoologico.negocio.beans.Consulta;
 import br.ufrpe.zoologico.negocio.beans.Diagnostico;
+import br.ufrpe.zoologico.negocio.beans.EspacoReservavel;
 import br.ufrpe.zoologico.negocio.beans.Especie;
 import br.ufrpe.zoologico.negocio.beans.Estoque;
 import br.ufrpe.zoologico.negocio.beans.Fatura;
@@ -38,6 +39,7 @@ import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoAnimal;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoCategoria;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoConsultas;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoDiagnostico;
+import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoEspacoReservavel;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoEspecie;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoEstoque;
 import br.ufrpe.zoologico.negocio.gerenciamento.GerenciamentoFaturas;
@@ -81,6 +83,7 @@ public class Fachada {
 	private GerenciamentoFornecedor fornecedor;
 	private GerenciamentoCategoria categ;
 	private GerenciamentoSubCategoria subCateg;
+	private GerenciamentoEspacoReservavel espaco;
 
 	private Fachada() {
 		consultas = new GerenciamentoConsultas();
@@ -106,6 +109,7 @@ public class Fachada {
 		produto = new GerenciamentoProduto();
 		categ = new GerenciamentoCategoria();
 		subCateg = new GerenciamentoSubCategoria();
+		espaco = new GerenciamentoEspacoReservavel();
 	}
 
 	public static Fachada getInstance() {
@@ -536,4 +540,27 @@ public class Fachada {
 	public void cadastrarFatura(Fatura o, int idServico) throws Exception {
 		servicos.cadastrarFatura(o, idServico);
 	}
+	
+	/** ESPACORESERVAVEL **/
+	public void inserirEspacoReservavel(EspacoReservavel o) throws Exception {
+		espaco.inserir(o);
+	}
+	
+	public void removerEspacoReservavel(EspacoReservavel o) throws Exception {
+		espaco.remover(o);
+	}
+	
+	public void alterarEspacoReservavel(EspacoReservavel o) throws Exception {
+		espaco.alterar(o);
+	}
+	
+	public EspacoReservavel buscarEspacoReservavel(int id_espaco) throws Exception {
+		return espaco.buscar(id_espaco);
+	}
+	
+	public ArrayList<EspacoReservavel> listarTodosEspacosReservaveis() throws Exception {
+		return espaco.listarTodos();
+	}
+	
+	
 }

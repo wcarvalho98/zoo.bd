@@ -14,9 +14,26 @@ import java.util.ArrayList;
 
 import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
 import br.ufrpe.zoologico.negocio.beans.Fatura;
-import javafx.fxml.FXML;
 
 public class DAOFatura extends DAO<Fatura> {
+
+	@Override
+	public void inserir(Fatura o) throws Exception {
+		String sql = "CALL gera_fatura(?, ?)";
+		preparar(sql);
+		getStmt().setDouble(1, o.getValor());
+		getStmt().setString(2, o.getTp_fatura());
+		try {
+			getStmt().execute();
+			getCon().commit();
+		} catch (SQLException e) {
+			getCon().rollback();
+			ScreenManager.alertaErro("Não foi possível gerar fatura!");
+		} finally {
+			fecharStmt();
+		}
+		
+	}
 
 	public void inserir(Fatura o, int idServico) throws Exception {
 		String sql = "insert into pedido_servico (idZoo) values (1)";
@@ -185,14 +202,4 @@ public class DAOFatura extends DAO<Fatura> {
 		fecharStmt();
 		return r;
 	}
-
-	@FXML
-	public void voltar() {
-		// TODO ScreenManager.setScene(ScreenManager.getInstance.); ????????????
-	}
-
-	@Override
-	public void inserir(Fatura o) throws Exception {
-	}
-
 }

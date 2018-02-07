@@ -6,6 +6,7 @@
  */
 package br.ufrpe.zoologico.gui.grafica.controller;
 
+import java.sql.SQLException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -65,7 +66,13 @@ public class ScreenManager {
 			t.setOnFinished(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
-					System.exit(0);
+					try {
+						Fachada.getInstance().fecharConexao();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					} finally {
+						System.exit(0);
+					}
 				}
 			});
 		} else {

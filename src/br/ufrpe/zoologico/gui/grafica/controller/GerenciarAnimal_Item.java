@@ -124,15 +124,17 @@ public class GerenciarAnimal_Item implements Initializable {
 				a.setVl_compra(Double.parseDouble(vlCompraTextField.getText()));
 				a.setQtd(Integer.parseInt(quantidadeTextField.getText()));
 				a.setAnimal_consome(animalSelecionado.getId());
-				
+
 				Fachada.getInstance().inserirItem(a);
-				
+
 				preencherTabelaItem();
 				preencherCampos(null);
 				setCamposDisable(true);
-				
+
 				cadastrarItemButton.setDisable(true);
 				salvarAlteracoesButton.setDisable(true);
+				produtoSelecionado = null;
+				estoqueSelecionado = null;
 			} catch (NumberFormatException e) {
 				ScreenManager.alertaErro("Valores informados de maneira incorreta.");
 			} catch (Exception e) {
@@ -155,13 +157,45 @@ public class GerenciarAnimal_Item implements Initializable {
 
 	@FXML
 	void removerEstoqueItem() {
-
+		if (itemSelecionado != null) {
+			try {
+				Fachada.getInstance().removerItem(itemSelecionado);
+				preencherTabelaItem();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@FXML
 	void salvarAlteracoesItemEstoque() {
-		cadastrarItemButton.setDisable(true);
-		salvarAlteracoesButton.setDisable(true);
+		if (animalSelecionado != null && produtoSelecionado != null && estoqueSelecionado != null) {
+			try {
+				itemSelecionado.setCod_prod_ref(produtoSelecionado.getCod());
+				itemSelecionado.setIdEstoque(estoqueSelecionado.getId());
+				itemSelecionado.setData_entrada(dtEntradaDatePicker.getValue());
+				itemSelecionado.setData_validade(dtValidadeDatePicker.getValue());
+				itemSelecionado.setVl_compra(Double.parseDouble(vlCompraTextField.getText()));
+				itemSelecionado.setQtd(Integer.parseInt(quantidadeTextField.getText()));
+				
+				Fachada.getInstance().alterarItem(itemSelecionado);
+				
+				preencherTabelaItem();
+				preencherCampos(null);
+				setCamposDisable(true);
+				
+				cadastrarItemButton.setDisable(true);
+				salvarAlteracoesButton.setDisable(true);
+				produtoSelecionado = null;
+				estoqueSelecionado = null;
+			} catch (NumberFormatException e) {
+				ScreenManager.alertaErro("Valores informados de maneira incorreta.");
+			} catch (Exception e) {
+				ScreenManager.alertaErro("Um problema ocorreu.");
+			}
+		} else {
+			ScreenManager.alertaErro("Nenhum produto ou estoque ou animal selecionado");
+		}
 	}
 
 	@FXML
@@ -177,7 +211,7 @@ public class GerenciarAnimal_Item implements Initializable {
 	@FXML
 	void selecionarEstoqueItem() {
 		preencherCampos(null);
-	setCamposDisable(true);
+		setCamposDisable(true);
 		itemSelecionado = tabelaItemEstoque.getSelectionModel().getSelectedItem();
 	}
 
@@ -370,7 +404,7 @@ public class GerenciarAnimal_Item implements Initializable {
 		tabelaProduto.setVisible(!a);
 		tabelaEstoque.setVisible(!a);
 	}
-	
+
 	private void despreencherProdutoEEstoque() {
 		tabelaProduto.setItems(FXCollections.observableArrayList(new ArrayList<ProdutoRef>()));
 		tabelaProduto.refresh();

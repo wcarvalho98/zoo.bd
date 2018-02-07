@@ -103,7 +103,7 @@ public class DAOReserva extends DAO<Reserva> {
 	public void alterar(Reserva o) throws Exception {
 		String sql = "UPDATE reserva SET `qtd_pessoas` = ?, `dt_validade` = ?, `horario` = ?, `dt_reserva` = ?"
 				+ ", `valor` = ?, `stats` = ?, `hr_inicio_reser` = ?, `hr_final_reser` = ?, `e_cortesia` = ?, `tp_evento` = ?"
-				+ "WHERE cnpj = ?, id_espaco = ?";
+				+ "WHERE cnpj = ? AND id_espaco = ?";
 		preparar(sql);
 		getStmt().setInt(1, o.getQtd_pessoas());
 		getStmt().setDate(2, Date.valueOf(o.getDt_validade()));
@@ -123,6 +123,7 @@ public class DAOReserva extends DAO<Reserva> {
 			ScreenManager.alertaInformativo("Alteração realizada com sucesso!");
 		} catch (SQLException e) {
 			getCon().rollback();
+			e.printStackTrace();
 			ScreenManager.alertaErro("Não foi possível alterar!");
 		} finally {
 			fecharStmt();

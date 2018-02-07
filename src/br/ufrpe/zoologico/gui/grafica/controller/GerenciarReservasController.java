@@ -223,6 +223,7 @@ public class GerenciarReservasController implements Initializable {
     @FXML
     void salvar(ActionEvent event) {
     	if (instituicaoAtual != null && espacoAtual != null) {
+    		reservaAtual = new Reserva();
     		reservaAtual.setCnpj(instituicaoAtual.getCnpj());
     		reservaAtual.setId(espacoAtual.getId());
     		reservaAtual.setValor(Double.parseDouble(valorTextField.getText()));

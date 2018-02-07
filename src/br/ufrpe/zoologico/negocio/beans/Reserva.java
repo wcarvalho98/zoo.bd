@@ -22,6 +22,10 @@ public class Reserva {
 	private String tp_evento;
 	private String cnpj;
 	private int id;
+	
+	public Reserva() {
+		
+	}
 
 	/**
 	 * @param qtd_pessoas

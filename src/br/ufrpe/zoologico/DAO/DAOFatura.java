@@ -28,6 +28,7 @@ public class DAOFatura extends DAO<Fatura> {
 			getCon().commit();
 		} catch (SQLException e) {
 			getCon().rollback();
+			e.printStackTrace();
 			ScreenManager.alertaErro("Não foi possível gerar fatura!");
 		} finally {
 			fecharStmt();

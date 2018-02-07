@@ -1,6 +1,7 @@
 package br.ufrpe.zoologico.gui.grafica.controller;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -95,6 +96,9 @@ public class GerenciarServicosController implements Initializable {
 			ableAll();
 			salvarAltertacoesButton.setDisable(true);
 			cadastrarFaturaButton.setDisable(false);
+			dataDaFaturaDatePicker.setValue(LocalDate.now());
+			statusTextField.setText("Em andamento");
+			valorDaMultaTextField.setText("0");
 		} else {
 			ScreenManager.alertaErro("Nenhum serviço foi selecionado!");
 		}
@@ -104,12 +108,14 @@ public class GerenciarServicosController implements Initializable {
 	public void cadastrarFatura() {
 		try {
 			if (servicoSelecionado != null && dataDaFaturaDatePicker.getValue() != null
-					&& dstaDePagamentoDatePicker.getValue() != null
 					&& Double.parseDouble(valorDaFaturaTextField.getText()) >= 0
 					&& Double.parseDouble(valorDaMultaTextField.getText()) >= 0) {
 				Fatura a = new Fatura();
 				a.setDataDaFatura(dataDaFaturaDatePicker.getValue());
-				a.setDt_paga(dstaDePagamentoDatePicker.getValue());
+				if (dstaDePagamentoDatePicker.getValue() != null)
+					a.setDt_paga(dstaDePagamentoDatePicker.getValue());
+				else
+					a.setDt_paga(null);
 				a.setStats(statusTextField.getText());
 				a.setTp_fatura(tipoDeFaturaTextField.getText());
 				a.setValor(Double.parseDouble(valorDaFaturaTextField.getText()));
@@ -171,6 +177,10 @@ public class GerenciarServicosController implements Initializable {
 		if (servicoSelecionado != null) {
 			Fachada.getInstance().removerServico(servicoSelecionado);
 			preencherTabelaServicos();
+			preencherTabelaFaturas();
+			disableAll();
+			salvarAltertacoesButton.setDisable(true);
+			cadastrarFaturaButton.setDisable(true);
 		}
 	}
 

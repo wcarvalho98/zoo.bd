@@ -8,6 +8,7 @@ package br.ufrpe.zoologico.DAO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import br.ufrpe.zoologico.gui.grafica.controller.ScreenManager;
@@ -130,8 +131,11 @@ public class DAOServico extends DAO<Servico> {
 			ScreenManager.alertaErro("Nenhuma fatura encontrada!");
 		}
 		while (rs.next()) {
+			LocalDate dt_paga = null;
+			if (rs.getDate(4) != null)
+				dt_paga = rs.getDate(4).toLocalDate();
 			Fatura b = new Fatura(rs.getInt(1), rs.getDouble(2), rs.getTimestamp(3).toLocalDateTime().toLocalDate(),
-					rs.getTimestamp(4).toLocalDateTime().toLocalDate(), rs.getDouble(5), rs.getString(6),
+					dt_paga, rs.getDouble(5), rs.getString(6),
 					rs.getString(7), rs.getInt(8));
 			r.add(b);
 		}

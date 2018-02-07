@@ -50,7 +50,10 @@ public class DAOFatura extends DAO<Fatura> {
 		getStmt().setDouble(1, o.getValor());
 		getStmt().setInt(2, idPed);
 		getStmt().setDate(3, Date.valueOf(o.getDataDaFatura()));
-		getStmt().setDate(4, Date.valueOf(o.getDt_paga()));
+		if (o.getDt_paga() != null)
+			getStmt().setDate(4, Date.valueOf(o.getDt_paga()));
+		else
+			getStmt().setDate(4, null);
 		getStmt().setString(5, o.getTp_fatura());
 		getStmt().setDouble(6, o.getVl_multa());
 		getStmt().setString(7, o.getStats());
@@ -103,7 +106,10 @@ public class DAOFatura extends DAO<Fatura> {
 		preparar(sql);
 		getStmt().setDouble(1, o.getValor());
 		getStmt().setDate(2, Date.valueOf(o.getDataDaFatura()));
-		getStmt().setDate(3, Date.valueOf(o.getDt_paga()));
+		if (o.getDt_paga() != null)
+			getStmt().setDate(3, Date.valueOf(o.getDt_paga()));
+		else
+			getStmt().setDate(3, null);
 		getStmt().setDouble(4, o.getVl_multa());
 		getStmt().setString(5, o.getStats());
 		getStmt().setString(6, o.getTp_fatura());

@@ -100,6 +100,8 @@ public class GerenciarAnimalController implements Initializable {
 		f = Fachada.getInstance();
 		allDisable();
 		select();
+		salvarAlteracao.setDisable(true);
+		salvarAlteracao.setVisible(false);
 
 		i = 0;
 		try {

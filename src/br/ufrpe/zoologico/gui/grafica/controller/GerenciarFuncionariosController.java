@@ -123,6 +123,7 @@ public class GerenciarFuncionariosController implements Initializable {
 	private Funcionario funcionarioSelecionado;
 	private Zoo zoologicoSelecionado;
 	private JornadaTrabalho jornadaSelecionada;
+	private Fachada f;
 
 	@FXML
 	void cadastrarFuncionario() {

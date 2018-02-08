@@ -261,8 +261,9 @@ public class GerenciarAnimal_Item implements Initializable {
 
 	private void preencherTabelaItem() {
 		try {
-			ArrayList<ItemEstoque> itens = Fachada.getInstance().listarItens();
-			for (int i = 0; i < itens.size(); i++) {
+			ArrayList<ItemEstoque> itens = new ArrayList<ItemEstoque>();
+			ArrayList<ItemEstoque> todosOsItens = Fachada.getInstance().listarItens();
+			for (int i = 0; i < todosOsItens.size(); i++) {
 				if (itens.get(i).getAnimal_consome() != animalSelecionado.getId()) {
 					itens.remove(i);
 				}

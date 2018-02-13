@@ -198,16 +198,27 @@ public class GerenciarAnimalController implements Initializable {
 	}
 
 	@FXML
-	public void salvarAlteracao() {
+	public void salvarAlteracao() throws NumberFormatException, Exception {
 		LocalDate val5 = dtFale.getValue();
 		String val2 = obs.getText();
 		String val3 = nome.getText();
 		LocalDate val4 = dtNas.getValue();
-		Animal b = new Animal(Integer.valueOf(idAnimal.getText()), val3, true, val4, val5, 
-				Integer.valueOf(idade.getText()), val3, val2, zooAtual.getIdZoo(), jaulaAtual.getId_jaula(),
-				ordemAtual.getId(), generoAtual.getId(), especieAtual.getSeq());
+		if (f.generoPertenceOrdem(generoAtual.getId(), ordemAtual.getId())) {
+			if (f.especiePertenceGenero(especieAtual.getSeq(), generoAtual.getId())) {
+				Animal b = new Animal(Integer.valueOf(idAnimal.getText()), val3, true, val4, val5, 
+						Integer.valueOf(idade.getText()), val3, val2, zooAtual.getIdZoo(), jaulaAtual.getId_jaula(),
+						ordemAtual.getId(), generoAtual.getId(), especieAtual.getSeq());
 
-		f.alterarAnimal(b);
+				f.alterarAnimal(b);
+			}else{
+				ScreenManager.alertaErro("Especie Não pertence a genero");
+			}
+		}else{
+			ScreenManager.alertaErro("Genero Não pertence a ordem");
+		}
+		allDisable();
+		salvarAlteracao.setDisable(true);
+		salvarAlteracao.setVisible(false);
 	}
 
 	@FXML

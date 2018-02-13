@@ -263,9 +263,9 @@ public class GerenciarAnimal_Item implements Initializable {
 		try {
 			ArrayList<ItemEstoque> itens = new ArrayList<ItemEstoque>();
 			ArrayList<ItemEstoque> todosOsItens = Fachada.getInstance().listarItens();
-			for (int i = 0; i < todosOsItens.size(); i++) {
-				if (itens.get(i).getAnimal_consome() != animalSelecionado.getId()) {
-					itens.remove(i);
+			for (int i = 0 ; i < todosOsItens.size() - 1; i++){
+				if(todosOsItens.get(i).getAnimal_consome() == animalSelecionado.getId()){
+					itens.add(todosOsItens.get(i));
 				}
 			}
 

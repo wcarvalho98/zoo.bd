@@ -104,9 +104,9 @@ $$
 
 -- procedure
 delimiter $$
-create procedure gera_fatura(in `valor_fatura` double, in `tp_fatura` varchar(50))
+create procedure gera_fatura(in `valor_fatura` double, in `tp_fatura` varchar(50), in `id_ped_serv` int)
 	begin
-		INSERT INTO `fatura` (`valor`,`dataDaFatura`, `vl_multa`,`stats`, `tp_fatura`, `id_ped_serv`) VALUES (`valor_fatura`, curdate(), 0, 'Em andamento', `tp_fatura`, null);
+		INSERT INTO `fatura` (`valor`,`dataDaFatura`, `vl_multa`,`stats`, `tp_fatura`, `id_ped_serv`) VALUES (`valor_fatura`, curdate(), 0, 'Em andamento', `tp_fatura`, `id_ped_serv`);
     end
 $$
 
@@ -179,4 +179,5 @@ begin
     end if;
 end
 $$
-
+o produto=
+insert int

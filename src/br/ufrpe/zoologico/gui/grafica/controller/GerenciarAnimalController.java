@@ -188,6 +188,9 @@ public class GerenciarAnimalController implements Initializable {
 		idAnimal.setDisable(true);
 		salvarAlteracao.setDisable(false);
 		salvarAlteracao.setVisible(true);
+		cadastrar.setVisible(false);
+		cadastrar.setDisable(true);
+		
 		preencherTabelaEspecie(f.listarEspecie());
 		preencherTabelaGenero(f.listarGenero());
 		preencherTabelaJaula(f.listarJaulas());
@@ -235,6 +238,9 @@ public class GerenciarAnimalController implements Initializable {
 			idAnimal.setDisable(true);
 			cadastrar.setVisible(true);
 			cadastrar.setDisable(false);
+			salvarAlteracao.setDisable(true);
+			salvarAlteracao.setVisible(false);
+			
 		} catch (Exception e) {
 			Alert a = new Alert(AlertType.ERROR);
 			a.setTitle("Erro");
